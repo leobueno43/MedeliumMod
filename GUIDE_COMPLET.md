@@ -85,6 +85,182 @@ public static final DeferredItem<Item> GEMME_MAGIQUE = ITEMS.register("gemme_mag
 output.accept(ModItems.MON_OBJET.get());
 ```
 
+### 1.5 📝 Descriptions Personnalisées (Tooltips)
+
+#### 1.5.1 Tooltip Simple sur Objet
+
+**Créer :** `src/main/java/com/medelium/item/custom/CustomTooltipItem.java`
+
+```java
+package com.medelium.item.custom;
+
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+
+import java.util.List;
+
+public class CustomTooltipItem extends Item {
+    
+    public CustomTooltipItem(Properties properties) {
+        super(properties);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        // Ajouter des lignes de description
+        tooltipComponents.add(Component.literal("§7Description normale en gris"));
+        tooltipComponents.add(Component.literal("§6Texte en or doré"));
+        tooltipComponents.add(Component.literal("§cTexte en rouge"));
+        tooltipComponents.add(Component.literal("§b§oTexte cyan italique"));
+        tooltipComponents.add(Component.literal(""));
+        tooltipComponents.add(Component.literal("§8Lore: §fObjet légendaire"));
+        
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+    }
+}
+```
+
+**Utiliser dans ModItems.java :**
+```java
+public static final DeferredItem<Item> EPEE_LEGENDAIRE = ITEMS.register("epee_legendaire",
+    () -> new CustomTooltipItem(new Item.Properties().rarity(Rarity.EPIC)));
+```
+
+#### 1.5.2 Codes Couleur Disponibles
+
+```
+§0 - Noir
+§1 - Bleu foncé
+§2 - Vert foncé
+§3 - Cyan foncé
+§4 - Rouge foncé
+§5 - Violet
+§6 - Or
+§7 - Gris
+§8 - Gris foncé
+§9 - Bleu
+§a - Vert
+§b - Cyan
+§c - Rouge
+§d - Rose
+§e - Jaune
+§f - Blanc
+
+§l - Gras
+§o - Italique
+§n - Souligné
+§m - Barré
+§k - Aléatoire (animé)
+§r - Reset (retour normal)
+```
+
+#### 1.5.3 Tooltip avec Informations Dynamiques
+
+```java
+@Override
+public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+    // Récupérer des données NBT
+    if (stack.hasTag()) {
+        int level = stack.getTag().getInt("power_level");
+        tooltipComponents.add(Component.literal("§6Niveau de Puissance: §f" + level));
+    }
+    
+    // Afficher seulement si SHIFT est pressé
+    if (Screen.hasShiftDown()) {
+        tooltipComponents.add(Component.literal("§7Informations détaillées:"));
+        tooltipComponents.add(Component.literal("§8- Propriété 1"));
+        tooltipComponents.add(Component.literal("§8- Propriété 2"));
+    } else {
+        tooltipComponents.add(Component.literal("§7[SHIFT pour plus d'infos]"));
+    }
+    
+    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+}
+```
+
+**Importer Screen :**
+```java
+import net.minecraft.client.gui.screens.Screen;
+```
+
+#### 1.5.4 Tooltip sur Bloc
+
+**Créer :** `src/main/java/com/medelium/block/custom/CustomTooltipBlock.java`
+
+```java
+package com.medelium.block.custom;
+
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.block.Block;
+
+import java.util.List;
+
+public class CustomTooltipBlock extends Block {
+    
+    public CustomTooltipBlock(Properties properties) {
+        super(properties);
+    }
+}
+
+// Créer aussi le BlockItem personnalisé
+package com.medelium.item.custom;
+
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.block.Block;
+
+import java.util.List;
+
+public class CustomTooltipBlockItem extends BlockItem {
+    
+    public CustomTooltipBlockItem(Block block, Properties properties) {
+        super(block, properties);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        tooltipComponents.add(Component.literal("§7Bloc spécial médiéval"));
+        tooltipComponents.add(Component.literal("§6Résistance: §fÉlevée"));
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+    }
+}
+```
+
+**Dans ModBlocks.java :**
+```java
+private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
+    ModItems.ITEMS.register(name, () -> new CustomTooltipBlockItem(block.get(), new Item.Properties()));
+}
+```
+
+#### 1.5.5 Tooltip Multilingue
+
+Au lieu de texte codé en dur, utiliser des traductions :
+
+```java
+@Override
+public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+    tooltipComponents.add(Component.translatable("tooltip.medeliummod.royal_sword.line1"));
+    tooltipComponents.add(Component.translatable("tooltip.medeliummod.royal_sword.line2"));
+    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+}
+```
+
+**Dans fr_fr.json :**
+```json
+{
+  "tooltip.medeliummod.royal_sword.line1": "§6Épée légendaire des rois",
+  "tooltip.medeliummod.royal_sword.line2": "§7Tranche tout ce qui se dresse sur son chemin"
+}
+```
+
 ---
 
 ## 2. 🧱 Blocs (Blocks)
@@ -488,7 +664,438 @@ public class GuardEntity extends PathfinderMob {
 }
 ```
 
-### 6.3 Enregistrer les Attributs
+### 6.3 🐉 Créer un BOSS
+
+#### 6.3.1 Classe de Boss avec Barre de Vie
+
+**Créer :** `src/main/java/com/medelium/entity/custom/DragonBossEntity.java`
+
+```java
+package com.medelium.entity.custom;
+
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.BossEvent;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+
+public class DragonBossEntity extends Monster {
+    private final ServerBossEvent bossEvent;
+
+    public DragonBossEntity(EntityType<? extends Monster> entityType, Level level) {
+        super(entityType, level);
+        // Créer la barre de boss
+        this.bossEvent = new ServerBossEvent(
+            Component.literal("§4§l⚔ Dragon des Ténèbres ⚔"),
+            BossEvent.BossBarColor.RED,
+            BossEvent.BossBarOverlay.PROGRESS
+        );
+        this.xpReward = 500;  // XP donné à la mort
+    }
+
+    @Override
+    protected void registerGoals() {
+        // Objectifs agressifs
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 0.8));
+        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 24.0F));
+        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+        
+        // Cibler les joueurs
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Monster.createMonsterAttributes()
+            .add(Attributes.MAX_HEALTH, 500.0)  // 500 HP (250 coeurs)
+            .add(Attributes.MOVEMENT_SPEED, 0.35)
+            .add(Attributes.ATTACK_DAMAGE, 15.0)  // 15 dégâts (7.5 coeurs)
+            .add(Attributes.ARMOR, 10.0)  // Armure
+            .add(Attributes.KNOCKBACK_RESISTANCE, 1.0)  // Pas de recul
+            .add(Attributes.FOLLOW_RANGE, 64.0);  // Détection longue distance
+    }
+
+    @Override
+    public void startSeenByPlayer(ServerPlayer player) {
+        super.startSeenByPlayer(player);
+        this.bossEvent.addPlayer(player);  // Afficher la barre de boss
+    }
+
+    @Override
+    public void stopSeenByPlayer(ServerPlayer player) {
+        super.stopSeenByPlayer(player);
+        this.bossEvent.removePlayer(player);  // Cacher la barre
+    }
+
+    @Override
+    protected void customServerAiStep() {
+        super.customServerAiStep();
+        // Mettre à jour la barre de vie
+        this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
+    }
+
+    @Override
+    public boolean canBeAffected(net.minecraft.world.effect.MobEffectInstance effect) {
+        // Boss immunisé à certains effets
+        if (effect.getEffect() == net.minecraft.world.effect.MobEffects.WITHER ||
+            effect.getEffect() == net.minecraft.world.effect.MobEffects.POISON) {
+            return false;
+        }
+        return super.canBeAffected(effect);
+    }
+}
+```
+
+#### 6.3.2 Boss avec Phases de Combat
+
+```java
+public class DragonBossEntity extends Monster {
+    private int phase = 1;  // Phase de combat actuelle
+    
+    @Override
+    protected void customServerAiStep() {
+        super.customServerAiStep();
+        
+        float healthPercentage = this.getHealth() / this.getMaxHealth();
+        
+        // Phase 2 : 50% de vie
+        if (healthPercentage <= 0.5f && phase == 1) {
+            phase = 2;
+            this.bossEvent.setName(Component.literal("§4§l⚔ Dragon Enragé ⚔"));
+            this.bossEvent.setColor(BossEvent.BossBarColor.PURPLE);
+            
+            // Augmenter les stats
+            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.45);
+            this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(25.0);
+            
+            // Effet visuel
+            this.level().explode(this, this.getX(), this.getY(), this.getZ(), 
+                0.0F, Level.ExplosionInteraction.NONE);
+        }
+        
+        // Phase 3 : 25% de vie
+        if (healthPercentage <= 0.25f && phase == 2) {
+            phase = 3;
+            this.bossEvent.setName(Component.literal("§c§l§k⚔§r §4Dragon Furieux §c§l§k⚔"));
+            this.bossEvent.setColor(BossEvent.BossBarColor.RED);
+            this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(35.0);
+        }
+        
+        this.bossEvent.setProgress(healthPercentage);
+    }
+}
+```
+
+#### 6.3.3 Boss avec Attaques Spéciales
+
+```java
+private int attackCooldown = 0;
+
+@Override
+public void aiStep() {
+    super.aiStep();
+    
+    if (!this.level().isClientSide && this.getTarget() != null) {
+        attackCooldown--;
+        
+        if (attackCooldown <= 0) {
+            // Attaque spéciale toutes les 5 secondes (100 ticks)
+            specialAttack();
+            attackCooldown = 100;
+        }
+    }
+}
+
+private void specialAttack() {
+    Player target = (Player) this.getTarget();
+    if (target != null) {
+        // Projectile de feu
+        net.minecraft.world.entity.projectile.SmallFireball fireball = 
+            new net.minecraft.world.entity.projectile.SmallFireball(
+                this.level(), this, 
+                target.getX() - this.getX(),
+                target.getY() - this.getY(),
+                target.getZ() - this.getZ()
+            );
+        fireball.setPos(this.getX(), this.getY() + 1, this.getZ());
+        this.level().addFreshEntity(fireball);
+        
+        // Son et effet
+        this.playSound(net.minecraft.sounds.SoundEvents.GHAST_SHOOT, 1.0F, 1.0F);
+    }
+}
+```
+
+### 6.4 🔱 Créer un MINI-BOSS
+
+```java
+package com.medelium.entity.custom;
+
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.BossEvent;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.level.Level;
+
+public class MiniBossEntity extends Monster {
+    private final ServerBossEvent bossEvent;
+
+    public MiniBossEntity(EntityType<? extends Monster> entityType, Level level) {
+        super(entityType, level);
+        // Barre de boss plus petite
+        this.bossEvent = new ServerBossEvent(
+            Component.literal("§6Capitaine des Gardes"),
+            BossEvent.BossBarColor.YELLOW,
+            BossEvent.BossBarOverlay.NOTCHED_10  // 10 encoches
+        );
+        this.xpReward = 100;
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Monster.createMonsterAttributes()
+            .add(Attributes.MAX_HEALTH, 100.0)  // 50 coeurs
+            .add(Attributes.MOVEMENT_SPEED, 0.3)
+            .add(Attributes.ATTACK_DAMAGE, 8.0)
+            .add(Attributes.ARMOR, 5.0)
+            .add(Attributes.KNOCKBACK_RESISTANCE, 0.5);
+    }
+
+    @Override
+    public void startSeenByPlayer(ServerPlayer player) {
+        super.startSeenByPlayer(player);
+        this.bossEvent.addPlayer(player);
+    }
+
+    @Override
+    public void stopSeenByPlayer(ServerPlayer player) {
+        super.stopSeenByPlayer(player);
+        this.bossEvent.removePlayer(player);
+    }
+
+    @Override
+    protected void customServerAiStep() {
+        super.customServerAiStep();
+        this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
+    }
+}
+```
+
+**Styles de barres de boss disponibles :**
+- `BossBarColor`: WHITE, PINK, BLUE, RED, GREEN, YELLOW, PURPLE
+- `BossBarOverlay`: PROGRESS (pleine), NOTCHED_6, NOTCHED_10, NOTCHED_12, NOTCHED_20
+
+### 6.5 💎 Système de Loot Aléatoire
+
+#### 6.5.1 Loot Table pour Boss
+
+**Créer :** `src/main/resources/data/medeliummod/loot_table/entities/dragon_boss.json`
+
+```json
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 10,
+                "max": 20
+              }
+            }
+          ],
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 3,
+        "max": 5
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "medeliummod:royal_sword",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:enchant_randomly",
+              "options": [
+                "minecraft:sharpness",
+                "minecraft:fire_aspect"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "medeliummod:gold_coin",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 5,
+                "max": 15
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:emerald",
+          "weight": 15,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "medeliummod:dragon_scale",
+          "weight": 100,
+          "conditions": [
+            {
+              "condition": "minecraft:killed_by_player"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+#### 6.5.2 Loot Aléatoire dans le Code
+
+**Ajouter dans l'entité :**
+
+```java
+@Override
+public void die(net.minecraft.world.damagesource.DamageSource cause) {
+    super.die(cause);
+    
+    if (!this.level().isClientSide && cause.getEntity() instanceof Player player) {
+        // Drop garanti
+        this.spawnAtLocation(ModItems.ROYAL_SEAL.get(), 1);
+        
+        // Drop avec probabilité
+        if (this.random.nextFloat() < 0.5f) {  // 50% de chance
+            this.spawnAtLocation(ModItems.ROYAL_SWORD.get(), 1);
+        }
+        
+        // Drop rare
+        if (this.random.nextFloat() < 0.05f) {  // 5% de chance
+            ItemStack rareItem = new ItemStack(ModItems.ANCIENT_SCROLL.get());
+            // Ajouter enchantement
+            rareItem.enchant(net.minecraft.world.item.enchantment.Enchantments.SHARPNESS, 5);
+            this.spawnAtLocation(rareItem);
+        }
+        
+        // Drop aléatoire entre 5 et 15 pièces d'or
+        int coinAmount = 5 + this.random.nextInt(11);
+        this.spawnAtLocation(ModItems.GOLD_COIN.get(), coinAmount);
+        
+        // Effet à la mort
+        this.level().explode(this, this.getX(), this.getY(), this.getZ(), 
+            3.0F, Level.ExplosionInteraction.NONE);
+    }
+}
+```
+
+#### 6.5.3 Loot Table Avancé avec Conditions
+
+```json
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "medeliummod:legendary_helmet",
+          "weight": 1,
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.01
+            },
+            {
+              "condition": "minecraft:killed_by_player"
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": {
+                "text": "Casque du Dragon Ancien",
+                "color": "gold",
+                "bold": true
+              }
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Forgé dans les flammes",
+                  "color": "gray",
+                  "italic": true
+                },
+                {
+                  "text": "d'un dragon millénaire",
+                  "color": "gray",
+                  "italic": true
+                }
+              ]
+            },
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "min": 20,
+                "max": 30
+              },
+              "treasure": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+### 6.6 Enregistrer les Attributs
 
 **Créer :** `src/main/java/com/medelium/event/ModEventBusEvents.java`
 
@@ -904,14 +1511,560 @@ public static final DeferredBlock<Block> DEEPSLATE_SILVER_ORE = registerBlock("d
 
 ## 13. 🖥️ Interfaces Graphiques (GUI)
 
-### 13.1 Créer un Bloc avec Inventaire
+### 13.1 🎨 GUI Complètement Personnalisé avec Image
+
+> **Important :** Cette section montre comment créer un GUI entièrement basé sur UNE IMAGE que vous dessinez vous-même, avec des zones cliquables. Pas besoin de composants classiques !
+
+#### 13.1.1 Créer Votre Image de GUI
+
+**Logiciel recommandé :** Paint.NET, GIMP, Photoshop, ou même Paint
+
+**Emplacement :** `src/main/resources/assets/medeliummod/textures/gui/custom_menu.png`
+
+**Dimensions :** 256x256 pixels (taille de l'image complète)
+
+**Zone visible :** Les premiers 176x166 pixels (en haut à gauche) seront affichés
+
+**Exemple de design à créer :**
+```
+┌─────────────────────────────────────────┐ 176px
+│  🏰 Medelium - Menu Médiéval           │
+│                                         │
+│   ┌─────────┐  ┌─────────┐             │
+│   │ Quêtes  │  │  Shop   │             │  166px
+│   └─────────┘  └─────────┘             │
+│                                         │
+│   ┌─────────┐  ┌─────────┐             │
+│   │ Métiers │  │ Statut  │             │
+│   └─────────┘  └─────────┘             │
+└─────────────────────────────────────────┘
+```
+
+**Conseils pour votre image :**
+1. Dessinez tout : fond, boutons, texte, icônes
+2. Utilisez des couleurs médiévales (marron, or, pierre)
+3. Créez des "boutons" visuels (rectangles avec bordures)
+4. Ajoutez des décorations (épées, couronnes, parchemin)
+5. Marquez mentalement où vous voulez les zones cliquables
+
+#### 13.1.2 Créer le Menu (Sans Inventaire)
+
+**Créer :** `src/main/java/com/medelium/screen/AlchemyTableScreen.java`
+
+```java
+package com.medelium.screen;
+
+import com.medelium.MedeliumMod;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
+
+public class AlchemyTableScreen extends AbstractContainerScreen<AlchemyTableMenu> {
+    // Chemin vers votre texture de GUI
+    private static final ResourceLocation TEXTURE = 
+        ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/alchemy_table.png");
+
+    public AlchemyTableScreen(AlchemyTableMenu menu, Inventory playerInventory, Component title) {
+        super(menu, playerInventory, title);
+        this.imageHeight = 166;  // Hauteur de votre GUI
+        this.imageWidth = 176;   // Largeur de votre GUI
+    }
+
+    @Override
+    protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+        int x = (this.width - this.imageWidth) / 2;
+        int y = (this.height - this.imageHeight) / 2;
+        
+        // Dessiner l'image de fond
+        guiGraphics.blit(TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
+    }
+
+    @Override
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        this.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
+        this.renderTooltip(guiGraphics, mouseX, mouseY);
+    }
+}
+```
+
+#### 13.1.3 Ajouter des Zones Cliquables sur Votre Image
+
+**Voici où vous créez l'interactivité !**
+
+```java
+public class CustomMenuScreen extends AbstractContainerScreen<CustomMenu> {
+    private static final ResourceLocation TEXTURE = 
+        ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/custom_menu.png");
+
+    public CustomMenuScreen(CustomMenu menu, Inventory playerInventory, Component title) {
+        super(menu, playerInventory, title);
+        this.imageHeight = 166;
+        this.imageWidth = 176;
+    }
+
+    @Override
+    protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+        int x = (this.width - this.imageWidth) / 2;
+        int y = (this.height - this.imageHeight) / 2;
+        
+        // Dessiner votre image
+        guiGraphics.blit(TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
+        
+        // Surligner Plusieurs Images Superposées
+
+**Exemple : Image de fond + overlay qui change**
+
+```java
+private static final ResourceLocation BG_TEXTURE = 
+    ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/menu_background.png");
+private static final ResourceLocation OVERLAY_HOVER = 
+    ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/button_hover.png");
+
+@Override
+protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+    int x = (this.width - this.imageWidth) / 2;
+    int y = (this.height - this.imageHeight) / 2;
+    
+    // 1. Dessiner le fond principal
+    guiGraphics.blit(BG_TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
+    
+    // 2. Dessiner une image de survol sur un bouton spécifique
+    if (isMouseOverButton1(mouseX, mouseY, x, y)) {
+        // Dessiner une petite image de surbrillance (60x20 pixels depuis votre image)
+        guiGraphics.blit(OVERLAY_HOVER, 
+            x + 20, y + 40,  // Position où dessiner
+            0, 0,            // Position dans l'image source (u, v)
+            60, 20);         // Taille à dessiner
+    }
+}
+```
+
+#### 13.1.5 GUI Animé avec Images
+
+**Créer une animation simple (bouton qui pulse) :**
+
+```java
+private int animationTick = 0;
+
+@Override
+protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+    int x = (this.width - this.imageWidth) / 2;
+    int y = (this.height - this.imageHeight) / 2;
+    
+    // Image de fond
+    guiGraphics.blit(TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
+    
+    // Animation : changer l'image toutes les 10 ticks
+    animationTick++;
+    int frame = (animationTick / 10) % 4;  // 4 frames d'animation
+    
+    // Dessiner la frame actuelle (depuis différentes positions dans votre image)
+    guiGraphics.blit(TEXTURE, 
+        x + 100, y + 50,      // Où dessiner
+        0, 166 + (frame * 20), // Position dans l'image (u, v)
+        20, 20);              // Taille
+}
+```
+
+**Organisation de votre image pour animation :**
+```
+┌────────────────────┐
+│  GUI principal     │ 0-165 pixels de haut
+│  176x166          │
+├────────────────────┤
+│ Frame 1 │ 166-185 │
+├────────────────────┤
+│ Frame 2 │ 186-205 │
+├────────────────────┤
+│ Frame 3 │ 206-225 │
+├────────────────────┤
+│ Frame 4 │ 226-245 │
+└───────────Ouvrir le GUI avec une Commande ou Objet
+
+**Option 1 : Commande pour ouvrir le GUI**
+
+```java
+// Dans ModCommands.java
+dispatcher.register(Commands.literal("openmenu")
+    .executes(context -> {
+        if (context.getSource().getEntity() instanceof ServerPlayer player) {
+            player.openMenu(new SimpleMenuProvider(
+                (id, playerInv, p) -> new CustomMenu(id, playerInv),
+                Component.literal("Menu Médiéval")
+            ));
+        }
+        return 1;
+    }));
+```
+
+**Option 2 : Objet qui ouvre le GUI**
+
+```java
+package com.medelium.item.custom;
+
+import com.medelium.screen.CustomMenu;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+
+public class MenuOpenerItem extends Item {
+    
+    public MenuOpenerItem(Properties properties) {
+        super(properties);
+    }
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
+            serverPlayer.openMenu(new SimpleMenuProvider(
+                (id, playerInv, p) -> new CustomMenu(id, playerInv),
+                Component.literal("§6Menu Médiéval")
+            ));
+        }
+        return InteractionResultHolder.success(player.getItemInHand(hand));
+    }
+}
+```
+
+**Enregistrer l'objet :**
+```java
+// Dans ModItems.java
+public static final DeferredItem<Item> MENU_OPENER = ITEMS.register("menu_opener",
+    () -> new MenuOpenerItem(new Item.Properties()));
+```
+
+**Option 3 : Bloc qui ouvre le GUI**
+
+```java
+// Dans le bloc
+**Code complet :**
+
+```java
+package com.medelium.screen;
+
+import com.medelium.MedeliumMod;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
+
+public class QuestMenuScreen extends AbstractContainerScreen<CustomMenu> {
+    private static final ResourceLocation TEXTURE = 
+        ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/quest_menu.png");
+
+    public QuestMenuScreen(CustomMenu menu, Inventory playerInventory, Component title) {
+        super(menu, playerInventory, title);
+        this.imageHeight = 166;
+        this.imageWidth = 176;
+    }
+
+    @Override
+    protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+        int x = (this.width - this.imageWidth) / 2;
+        int y = (this.height - this.imageHeight) / 2;
+        
+        // Dessiner l'image complète
+        guiGraphics.blit(TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
+        
+        // Surbrillance au survol
+        if (isOverQuest1(mouseX, mouseY, x, y)) {
+            guiGraphics.fill(x + 10, y + 30, x + 166, y + 55, 0x40FFFFFF);
+        }
+        if (isOverQuest2(mouseX, mouseY, x, y)) {
+            guiGraphics.fill(x + 10, y + 60, x + 166, y + 85, 0x40FFFFFF);
+        }
+        if (isOverQuest3(mouseX, mouseY, x, y)) {
+            guiGraphics.fill(x + 10, y + 90, x + 166, y + 115, 0x40FFFFFF);
+        }
+        if (isOverCloseButton(mouseX, mouseY, x, y)) {
+            guiGraphics.fill(x + 60, y + 140, x + 116, y + 156, 0x40FF0000);
+        }
+    }
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        int x = (this.width - this.imageWidth) / 2;
+        int y = (this.height - this.imageHeight) / 2;
+        
+        // Quête 1 cliquée
+        if (isOverQuest1(mouseX, mouseY, x, y)) {
+            minecraft.player.sendSystemMessage(Component.literal("§aQuête 1 : Tuer le Dragon"));
+            playDownSound(minecraft.getSoundManager());
+            return true;
+        }
+        
+        // Quête 2 cliquée
+        if (isOverQuest2(mouseX, mouseY, x, y)) {
+            minecraft.player.sendSystemMessage(Component.literal("§aQuête 2 : Récupérer l'épée"));
+            playDownSound(minecraft.getSoundManager());
+            return true;
+        }
+        
+        // Quête 3 cliquée
+        if (isOverQuest3(mouseX, mouseY, x, y)) {
+            minecraft.player.sendSystemMessage(Component.literal("§aQuête 3 : Sauver le village"));
+            playDownSound(minecraft.getSoundManager());
+            return true;
+        }
+        
+        // Bouton fermer
+        if (isOverCloseButton(mouseX, mouseY, x, y)) {
+            this.onClose();
+            return true;
+        }
+        
+        return super.mouseClicked(mouseX, mouseY, button);
+    }
+    
+    // Zones de détection
+    private boolean isOverQuest1(double mX, double mY, int gX, int gY) {
+        return mX >= gX + 10 && mX <= gX + 166 && mY >= gY + 30 && mY <= gY + 55;
+    }
+    
+    private boolean isOverQuest2(double mX, double mY, int gX, int gY) {
+        return mX >= gX + 10 && mX <= gX + 166 && mY >= gY + 60 && mY <= gY + 85;
+    }
+    
+    private boolean isOverQuest3(double mX, double mY, int gX, int gY) {
+        return mX >= gX + 10 && mX <= gX + 166 && mY >= gY + 90 && mY <= gY + 115;
+    }
+    
+    private boolean isOverCloseButton(double mX, double mY, int gX, int gY) {
+        return mX >= gX + 60 && mX <= gX + 116 && mY >= gY + 140 && mY <= gY + 156;
+    }
+
+    @Override
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
+        
+        int x = (this.width - this.imageWidth) / 2;
+        int y = (this.height - this.imageHeight) / 2;
+        
+        // Tooltips
+        if (isOverQuest1(mouseX, mouseY, x, y)) {
+            guiGraphics.renderTooltip(this.font, 
+                Component.literal("§6Récompense: 100 pièces d'or"), mouseX, mouseY);
+        }
+    }
+    
+    @Override
+    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+        // Vide = votre image contient déjà tout
+    }
+}
+```
+
+**Résumé : GUI = Image Pure**
+1. ✅ Vous créez UNE image avec tout dessiné dessus
+2. ✅ Vous définissez les zones cliquables dans le code
+3. ✅ Pas besoin de composants Minecraft classiques
+4. ✅ Total contrôle visuel sur votre interface !
+1. **Ouvrez votre image** dans un éditeur
+2. **Notez les coordonnées** de chaque bouton que vous avez dessiné :
+   - X de départ (depuis la gauche)
+   - Y de départ (depuis le haut)
+   - Largeur du bouton
+   - Hauteur du bouton
+
+3. **Exemple** : Si vous avez dessiné un bouton "Quêtes" à :
+   - Position : 20 pixels de gauche, 40 pixels du haut
+   - Taille : 60 pixels large, 20 pixels haut
+   - Code : `mouseX >= x + 20 && mouseX <= x + 80 && mouseY >= y + 40 && mouseY <= y + 60`
+
+#### 13.1.4 GUI avec Éléments Personnalisés
+
+```java
+@Override
+protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+    int x = (this.width - this.imageWidth) / 2;
+    int y = (this.height - this.imageHeight) / 2;
+    
+    // Image de fond principale
+    guiGraphics.blit(TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
+    
+    // Ajouter une barre de progression (si en train de crafter)
+    if (menu.isCrafting()) {
+        int progress = menu.getScaledProgress();
+        // Dessiner barre (x, y, u, v, width, height)
+        guiGraphics.blit(TEXTURE, x + 79, y + 35, 176, 0, progress, 16);
+    }
+    
+    // Ajouter une icône de feu (si actif)
+    if (menu.isLit()) {
+        guiGraphics.blit(TEXTURE, x + 56, y + 53, 176, 16, 14, 14);
+    }
+}
+
+@Override
+public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    this.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
+    super.render(guiGraphics, mouseX, mouseY, partialTick);
+    this.renderTooltip(guiGraphics, mouseX, mouseY);
+    
+    int x = (this.width - this.imageWidth) / 2;
+    int y = (this.height - this.imageHeight) / 2;
+    
+    // Ajouter du texte personnalisé
+    guiGraphics.drawString(this.font, "§6Alchimie Médiévale", x + 8, y + 6, 0xFFFFFF, false);
+    
+    // Tooltip personnalisé au survol
+    if (mouseX >= x + 79 && mouseX <= x + 103 && mouseY >= y + 35 && mouseY <= y + 51) {
+        guiGraphics.renderTooltip(this.font, Component.literal("Progression: " + menu.getProgress() + "%"), mouseX, mouseY);
+    }
+}
+```
+
+#### 13.1.5 GUI avec Plusieurs Images
+
+```java
+private static final ResourceLocation BG_TEXTURE = 
+    ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/alchemy_bg.png");
+private static final ResourceLocation OVERLAY_TEXTURE = 
+    ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/alchemy_overlay.png");
+private static final ResourceLocation ICONS_TEXTURE = 
+    ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/icons.png");
+
+@Override
+protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+    int x = (this.width - this.imageWidth) / 2;
+    int y = (this.height - this.imageHeight) / 2;
+    
+    // Fond
+    guiGraphics.blit(BG_TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
+    
+    // Overlay décoratif
+    guiGraphics.blit(OVERLAY_TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
+    
+    // Icônes spéciales
+    guiGraphics.blit(ICONS_TEXTURE, x + 10, y + 10, 0, 0, 16, 16, 256, 256);
+}
+```
+
+#### 13.1.6 Enregistrer le Menu Type
+
+**Créer :** `src/main/java/com/medelium/screen/ModMenuTypes.java`
+
+```java
+package com.medelium.screen;
+
+import com.medelium.MedeliumMod;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.inventory.MenuType;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+public class ModMenuTypes {
+    public static final DeferredRegister<MenuType<?>> MENUS =
+        DeferredRegister.create(Registries.MENU, MedeliumMod.MOD_ID);
+
+    public static final DeferredHolder<MenuType<?>, MenuType<AlchemyTableMenu>> ALCHEMY_TABLE_MENU =
+        MENUS.register("alchemy_table_menu", () ->
+            IMenuTypeExtension.create((windowId, inv, data) -> {
+                // Logique de création du menu
+                return new AlchemyTableMenu(windowId, inv, new ItemStackHandler(3), 
+                    ContainerLevelAccess.NULL);
+            }));
+
+    public static void register(IEventBus eventBus) {
+        MENUS.register(eventBus);
+    }
+}
+```
+
+**Dans MedeliumMod.java :**
+```java
+ModMenuTypes.register(modEventBus);
+```
+
+#### 13.1.7 Enregistrer l'Écran (Client)
+
+**Créer :** `src/main/java/com/medelium/event/ModClientEvents.java`
+
+```java
+package com.medelium.event;
+
+import com.medelium.MedeliumMod;
+import com.medelium.screen.AlchemyTableScreen;
+import com.medelium.screen.ModMenuTypes;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+
+@EventBusSubscriber(modid = MedeliumMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+public class ModClientEvents {
+    
+    @SubscribeEvent
+    public static void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(ModMenuTypes.ALCHEMY_TABLE_MENU.get(), AlchemyTableScreen::new);
+    }
+}
+```
+
+#### 13.1.8 GUI avec Boutons Cliquables
+
+```java
+public class AlchemyTableScreen extends AbstractContainerScreen<AlchemyTableMenu> {
+    
+    @Override
+    protected void init() {
+        super.init();
+        
+        int x = (this.width - this.imageWidth) / 2;
+        int y = (this.height - this.imageHeight) / 2;
+        
+        // Ajouter un bouton
+        this.addRenderableWidget(Button.builder(
+            Component.literal("Transmuter"),
+            button -> onTransmuteClicked()
+        ).bounds(x + 70, y + 60, 60, 20).build());
+    }
+    
+    private void onTransmuteClicked() {
+        // Envoyer packet au serveur
+        MedeliumMod.LOGGER.info("Bouton Transmuter cliqué!");
+    }
+    
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        int x = (this.width - this.imageWidth) / 2;
+        int y = (this.height - this.imageHeight) / 2;
+        
+        // Zone cliquable personnalisée
+        if (mouseX >= x + 100 && mouseX <= x + 116 && 
+            mouseY >= y + 20 && mouseY <= y + 36) {
+            // Action personnalisée
+            return true;
+        }
+        
+        return super.mouseClicked(mouseX, mouseY, button);
+    }
+}
+```
+
+### 13.2 Créer un Bloc avec Inventaire
 
 **Créer :** `src/main/java/com/medelium/block/custom/AlchemyTableBlock.java`
 
 ```java
 package com.medelium.block.custom;
 
+import com.medelium.block.entity.AlchemyTableBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -931,9 +2084,11 @@ public class AlchemyTableBlock extends Block implements EntityBlock {
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos,
                                                Player player, BlockHitResult hitResult) {
-        if (!level.isClientSide()) {
+        if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
             BlockEntity entity = level.getBlockEntity(pos);
-            // Ouvrir l'interface ici
+            if (entity instanceof AlchemyTableBlockEntity alchemyTable) {
+                serverPlayer.openMenu(alchemyTable, pos);
+            }
         }
         return InteractionResult.sidedSuccess(level.isClientSide());
     }
@@ -941,8 +2096,7 @@ public class AlchemyTableBlock extends Block implements EntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        // Retourner votre BlockEntity
-        return null;
+        return new AlchemyTableBlockEntity(pos, state);
     }
 }
 ```
