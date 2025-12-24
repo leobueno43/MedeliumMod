@@ -261,6 +261,439 @@ public void appendHoverText(ItemStack stack, TooltipContext context, List<Compon
 }
 ```
 
+### 1.6 🎮 Système de Progression avec Tooltips Dynamiques
+
+> **Exemple complet :** Pioche qui level up en cassant des blocs, avec barre de progression, changement de texture, et déblocage d'avantages
+
+#### 1.6.1 Créer l'Objet avec Progression
+
+**Créer :** `src/main/java/com/medelium/item/custom/LevelablePickaxeItem.java`
+
+```java
+package com.medelium.item.custom;
+
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TooltipFlag;
+
+import java.util.List;
+
+public class LevelablePickaxeItem extends PickaxeItem {
+    
+    public LevelablePickaxeItem(Tier tier, Properties properties) {
+        super(tier, properties);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        // Récupérer les données NBT
+        int blocksBreaking = getBlocksBroken(stack);
+        int level = getLevel(stack);
+        int blocksNeeded = getBlocksNeededForNextLevel(level);
+        int currentProgress = blocksBreaking % blocksNeeded;
+        
+        // Afficher le niveau avec couleur dynamique
+        String levelColor = getLevelColor(level);
+        tooltipComponents.add(Component.literal(levelColor + "⚡ Niveau: " + level));
+        
+        // Barre de progression visuelle
+        String progressBar = createProgressBar(currentProgress, blocksNeeded);
+        tooltipComponents.add(Component.literal("§7" + progressBar));
+        tooltipComponents.add(Component.literal("§7Blocs cassés: §f" + currentProgress + "§7/§f" + blocksNeeded));
+        
+        // Ligne vide
+        tooltipComponents.add(Component.literal(""));
+        
+        // Avantages actuels
+        tooltipComponents.add(Component.literal("§6Avantages actifs:"));
+        if (level >= 5) {
+            tooltipComponents.add(Component.literal("§a✓ Rapidité I"));
+        }
+        if (level >= 10) {
+            tooltipComponents.add(Component.literal("§a✓ Efficacité II"));
+        }
+        if (level >= 15) {
+            tooltipComponents.add(Component.literal("§a✓ Fortune I"));
+        }
+        if (level >= 20) {
+            tooltipComponents.add(Component.literal("§a✓ Rapidité III"));
+            tooltipComponents.add(Component.literal("§d✓ Mode Dieu"));
+        }
+        
+        // Informations détaillées avec SHIFT
+        if (Screen.hasShiftDown()) {
+            tooltipComponents.add(Component.literal(""));
+            tooltipComponents.add(Component.literal("§8Prochain niveau:"));
+            
+            if (level < 5) {
+                tooltipComponents.add(Component.literal("§7Niveau 5: §aRapidité I"));
+            } else if (level < 10) {
+                tooltipComponents.add(Component.literal("§7Niveau 10: §aEfficacité II"));
+            } else if (level < 15) {
+                tooltipComponents.add(Component.literal("§7Niveau 15: §aFortune I"));
+            } else if (level < 20) {
+                tooltipComponents.add(Component.literal("§7Niveau 20: §d§lMode Dieu"));
+            } else {
+                tooltipComponents.add(Component.literal("§6§l★ NIVEAU MAX ★"));
+            }
+        } else {
+            tooltipComponents.add(Component.literal(""));
+            tooltipComponents.add(Component.literal("§8[SHIFT pour voir les prochains déblocages]"));
+        }
+        
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+    }
+    
+    // Créer une barre de progression visuelle
+    private String createProgressBar(int current, int max) {
+        int barLength = 20;  // Longueur de la barre
+        int filled = (int) ((double) current / max * barLength);
+        
+        StringBuilder bar = new StringBuilder("§a[");
+        for (int i = 0; i < barLength; i++) {
+            if (i < filled) {
+                bar.append("§a■");  // Partie remplie
+            } else {
+                bar.append("§7■");  // Partie vide
+            }
+        }
+        bar.append("§a]");
+        
+        return bar.toString();
+    }
+    
+    // Couleur selon le niveau
+    private String getLevelColor(int level) {
+        if (level >= 20) return "§d§l";  // Rose gras (légendaire)
+        if (level >= 15) return "§6§l";  // Or gras (épique)
+        if (level >= 10) return "§5";    // Violet (rare)
+        if (level >= 5) return "§b";     // Cyan (peu commun)
+        return "§f";                      // Blanc (commun)
+    }
+    
+    // Blocs nécessaires pour level up (augmente avec le niveau)
+    private int getBlocksNeededForNextLevel(int level) {
+        return 100 + (level * 50);  // 100 au début, +50 par niveau
+    }
+    
+    // Récupérer le nombre de blocs cassés
+    public static int getBlocksBroken(ItemStack stack) {
+        if (stack.hasTag()) {
+            return stack.getTag().getInt("blocks_broken");
+        }
+        return 0;
+    }
+    
+    // Récupérer le niveau
+    public static int getLevel(ItemStack stack) {
+        if (stack.hasTag()) {
+            return stack.getTag().getInt("level");
+        }
+        return 1;  // Niveau de départ
+    }
+    
+    // Définir les blocs cassés
+    public static void setBlocksBroken(ItemStack stack, int amount) {
+        stack.getOrCreateTag().putInt("blocks_broken", amount);
+    }
+    
+    // Définir le niveau
+    public static void setLevel(ItemStack stack, int level) {
+        stack.getOrCreateTag().putInt("level", level);
+    }
+}
+```
+
+#### 1.6.2 Détecter les Blocs Cassés et Augmenter la Progression
+
+**Créer :** `src/main/java/com/medelium/event/LevelingEvents.java`
+
+```java
+package com.medelium.event;
+
+import com.medelium.MedeliumMod;
+import com.medelium.item.custom.LevelablePickaxeItem;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.level.BlockEvent;
+
+@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
+public class LevelingEvents {
+    
+    @SubscribeEvent
+    public static void onBlockBreak(BlockEvent.BreakEvent event) {
+        Player player = event.getPlayer();
+        ItemStack heldItem = player.getMainHandItem();
+        
+        // Vérifier si c'est notre pioche qui level
+        if (heldItem.getItem() instanceof LevelablePickaxeItem) {
+            // Augmenter le compteur de blocs cassés
+            int blocksBroken = LevelablePickaxeItem.getBlocksBroken(heldItem);
+            int currentLevel = LevelablePickaxeItem.getLevel(heldItem);
+            
+            blocksBroken++;
+            LevelablePickaxeItem.setBlocksBroken(heldItem, blocksBroken);
+            
+            // Calculer les blocs nécessaires pour level up
+            int blocksNeeded = 100 + (currentLevel * 50);
+            int progress = blocksBroken % blocksNeeded;
+            
+            // Vérifier si on doit level up
+            if (progress == 0 && blocksBroken > 0) {
+                levelUp(player, heldItem, currentLevel);
+            }
+        }
+    }
+    
+    private static void levelUp(Player player, ItemStack item, int oldLevel) {
+        int newLevel = oldLevel + 1;
+        LevelablePickaxeItem.setLevel(item, newLevel);
+        
+        // Message de level up
+        player.sendSystemMessage(Component.literal("§6§l⬆ NIVEAU AUGMENTÉ !"));
+        player.sendSystemMessage(Component.literal("§7Pioche niveau §f" + oldLevel + " §7→ §a" + newLevel));
+        
+        // Son de level up
+        player.level().playSound(null, player.blockPosition(), 
+            SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 1.0F, 1.0F);
+        
+        // Particules
+        if (player instanceof ServerPlayer serverPlayer) {
+            serverPlayer.level().sendParticles(
+                net.minecraft.core.particles.ParticleTypes.TOTEM_OF_UNDYING,
+                player.getX(), player.getY() + 1, player.getZ(),
+                50, 0.5, 0.5, 0.5, 0.1
+            );
+        }
+        
+        // Déblocages spéciaux
+        if (newLevel == 5) {
+            player.sendSystemMessage(Component.literal("§a✓ Débloqué: Rapidité I"));
+        } else if (newLevel == 10) {
+            player.sendSystemMessage(Component.literal("§a✓ Débloqué: Efficacité II"));
+        } else if (newLevel == 15) {
+            player.sendSystemMessage(Component.literal("§a✓ Débloqué: Fortune I"));
+        } else if (newLevel == 20) {
+            player.sendSystemMessage(Component.literal("§d§l✓ DÉBLOQUÉ: MODE DIEU !"));
+            player.level().playSound(null, player.blockPosition(), 
+                SoundEvents.END_PORTAL_SPAWN, SoundSource.PLAYERS, 1.0F, 1.0F);
+        }
+    }
+}
+```
+
+#### 1.6.3 Appliquer les Avantages (Effets Actifs)
+
+**Ajouter dans LevelablePickaxeItem.java :**
+
+```java
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+
+// Méthode appelée quand l'objet est dans la main
+@Override
+public void inventoryTick(ItemStack stack, Level level, net.minecraft.world.entity.Entity entity, int slotId, boolean isSelected) {
+    if (isSelected && entity instanceof LivingEntity living) {
+        int itemLevel = getLevel(stack);
+        
+        // Niveau 5+ : Rapidité I
+        if (itemLevel >= 5) {
+            living.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                net.minecraft.world.effect.MobEffects.DIG_SPEED, 20, 0, false, false));
+        }
+        
+        // Niveau 10+ : Efficacité II
+        if (itemLevel >= 10) {
+            living.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                net.minecraft.world.effect.MobEffects.DIG_SPEED, 20, 1, false, false));
+        }
+        
+        // Niveau 15+ : Chance (simule Fortune)
+        if (itemLevel >= 15) {
+            living.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                net.minecraft.world.effect.MobEffects.LUCK, 20, 0, false, false));
+        }
+        
+        // Niveau 20+ : Mode Dieu
+        if (itemLevel >= 20) {
+            living.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                net.minecraft.world.effect.MobEffects.DIG_SPEED, 20, 2, false, false));
+            living.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                net.minecraft.world.effect.MobEffects.DAMAGE_BOOST, 20, 1, false, false));
+            living.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                net.minecraft.world.effect.MobEffects.REGENERATION, 20, 0, false, false));
+        }
+    }
+    
+    super.inventoryTick(stack, level, entity, slotId, isSelected);
+}
+```
+
+#### 1.6.4 Changement de Texture Selon le Niveau
+
+**Option 1 : Plusieurs items différents**
+
+Créer plusieurs pioches : `levelable_pickaxe_1.png`, `levelable_pickaxe_2.png`, etc.
+
+**Option 2 : Item dynamique avec NBT (avancé)**
+
+**Créer un override dans le modèle JSON :**
+
+`models/item/levelable_pickaxe.json`:
+```json
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "medeliummod:item/levelable_pickaxe_1"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "medeliummod:level": 5
+      },
+      "model": "medeliummod:item/levelable_pickaxe_5"
+    },
+    {
+      "predicate": {
+        "medeliummod:level": 10
+      },
+      "model": "medeliummod:item/levelable_pickaxe_10"
+    },
+    {
+      "predicate": {
+        "medeliummod:level": 15
+      },
+      "model": "medeliummod:item/levelable_pickaxe_15"
+    },
+    {
+      "predicate": {
+        "medeliummod:level": 20
+      },
+      "model": "medeliummod:item/levelable_pickaxe_20"
+    }
+  ]
+}
+```
+
+**Enregistrer le predicate personnalisé :**
+
+```java
+// Dans un event client
+@SubscribeEvent
+public static void registerItemProperties(RegisterEvent event) {
+    if (event.getRegistryKey().equals(Registries.ITEM)) {
+        ItemProperties.register(ModItems.LEVELABLE_PICKAXE.get(),
+            ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "level"),
+            (stack, level, entity, seed) -> {
+                int itemLevel = LevelablePickaxeItem.getLevel(stack);
+                if (itemLevel >= 20) return 20;
+                if (itemLevel >= 15) return 15;
+                if (itemLevel >= 10) return 10;
+                if (itemLevel >= 5) return 5;
+                return 1;
+            });
+    }
+}
+```
+
+**Créer les différents modèles :**
+- `levelable_pickaxe_1.json` → texture normale
+- `levelable_pickaxe_5.json` → texture cyan (niveau 5)
+- `levelable_pickaxe_10.json` → texture violette (niveau 10)
+- `levelable_pickaxe_15.json` → texture dorée (niveau 15)
+- `levelable_pickaxe_20.json` → texture rose/légendaire (niveau 20)
+
+#### 1.6.5 Système Complet avec Récompenses Variées
+
+**Exemple : Différents types de progression**
+
+```java
+// Dans le tooltip
+tooltipComponents.add(Component.literal("§6Récompenses débloquées:"));
+
+// Récompenses de vitesse
+if (level >= 3) {
+    tooltipComponents.add(Component.literal("§a✓ Vitesse de minage +10%"));
+}
+if (level >= 7) {
+    tooltipComponents.add(Component.literal("§a✓ Vitesse de minage +25%"));
+}
+
+// Récompenses de butin
+if (level >= 5) {
+    tooltipComponents.add(Component.literal("§a✓ Chance de double drop: 10%"));
+}
+if (level >= 12) {
+    tooltipComponents.add(Component.literal("§a✓ Chance de double drop: 25%"));
+}
+
+// Récompenses spéciales
+if (level >= 10) {
+    tooltipComponents.add(Component.literal("§b✓ Auto-réparation"));
+}
+if (level >= 15) {
+    tooltipComponents.add(Component.literal("§d✓ Veine miner (mine 3x3)"));
+}
+if (level >= 20) {
+    tooltipComponents.add(Component.literal("§6§l✓ PIOCHE DIVINE"));
+}
+
+// Statistiques totales
+tooltipComponents.add(Component.literal(""));
+tooltipComponents.add(Component.literal("§8Total blocs cassés: §7" + getBlocksBroken(stack)));
+```
+
+#### 1.6.6 Sauvegarder la Progression (Persistance)
+
+Le système NBT sauvegarde automatiquement, mais vous pouvez aussi :
+
+**Sauvegarder dans les données du joueur :**
+
+```java
+// Quand l'objet est craftée/obtenu
+@Override
+public void onCraftedBy(ItemStack stack, Level level, Player player) {
+    // Initialiser avec niveau 1
+    setLevel(stack, 1);
+    setBlocksBroken(stack, 0);
+    
+    // Ajouter un UUID unique
+    stack.getOrCreateTag().putString("owner", player.getStringUUID());
+    stack.getOrCreateTag().putLong("created_time", level.getGameTime());
+    
+    super.onCraftedBy(stack, level, player);
+}
+```
+
+**Afficher l'historique dans le tooltip :**
+
+```java
+if (Screen.hasShiftDown()) {
+    if (stack.hasTag() && stack.getTag().contains("owner")) {
+        tooltipComponents.add(Component.literal(""));
+        tooltipComponents.add(Component.literal("§8Propriétaire: §7" + getPlayerName(stack)));
+        
+        long createdTime = stack.getTag().getLong("created_time");
+        long currentTime = minecraft.level.getGameTime();
+        long ticksExisted = currentTime - createdTime;
+        long secondsExisted = ticksExisted / 20;
+        
+        tooltipComponents.add(Component.literal("§8Âge: §7" + formatTime(secondsExisted)));
+    }
+}
+```
+
 ---
 
 ## 2. 🧱 Blocs (Blocks)
