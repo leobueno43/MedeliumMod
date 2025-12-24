@@ -942,7 +942,732 @@ public static final DeferredItem<HoeItem> SILVER_HOE = ITEMS.register("silver_ho
 
 ---
 
-## 5. 🍖 Nourriture et Potions
+## 5. 💬 Affichage de Messages et Notifications
+
+### 5.1 📺 Titre au Centre de l'Écran
+
+**Afficher un titre + sous-titre au milieu de l'écran (comme "Bienvenue")**
+
+```java
+import net.minecraft.network.protocol.game.ClientboundSetTitlesAnimationPacket;
+import net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket;
+import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.network.chat.Component;
+
+// Dans votre code (événement, commande, etc.)
+public static void showTitle(ServerPlayer player, String title, String subtitle) {
+    // Texte du titre
+    player.connection.send(new ClientboundSetTitleTextPacket(
+        Component.literal("§6§l" + title)
+    ));
+    
+    // Texte du sous-titre
+    player.connection.send(new ClientboundSetSubtitleTextPacket(
+        Component.literal("§7" + subtitle)
+    ));
+    
+    // Durée d'affichage (fadeIn, stay, fadeOut en ticks)
+    player.connection.send(new ClientboundSetTitlesAnimationPacket(
+        10,   // Fade in (0.5 sec)
+        70,   // Temps d'affichage (3.5 sec)
+        20    // Fade out (1 sec)
+    ));
+}
+
+// Exemple d'utilisation
+showTitle(player, "NIVEAU AUGMENTÉ !", "Vous êtes maintenant niveau 5");
+```
+
+**Exemples de titres stylisés :**
+
+```java
+// Titre de réussite
+showTitle(player, "✓ SUCCÈS !", "Quête terminée");
+
+// Titre d'avertissement
+player.connection.send(new ClientboundSetTitleTextPacket(
+    Component.literal("§c§l⚠ ATTENTION !")));
+player.connection.send(new ClientboundSetSubtitleTextPacket(
+    Component.literal("§7Un boss approche...")));
+
+// Titre animé avec couleurs
+player.connection.send(new ClientboundSetTitleTextPacket(
+    Component.literal("§d§k||§r §5§lROYAUTÉ §d§k||")));
+```
+
+### 5.2 📊 Action Bar (Au-dessus de la Hotbar)
+
+**Afficher un message au-dessus de la barre d'objets (persiste et se met à jour)**
+
+```java
+import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
+
+// Message simple
+public static void showActionBar(ServerPlayer player, String message) {
+    player.connection.send(new ClientboundSetActionBarTextPacket(
+        Component.literal(message)
+    ));
+}
+
+// Exemple d'utilisation
+showActionBar(player, "§aBlocs cassés: §f50§7/§f100");
+```
+
+**Utilisation courante - Barre de progression en temps réel :**
+
+```java
+// Dans votre event de casse de bloc
+@SubscribeEvent
+public static void onBlockBreak(BlockEvent.BreakEvent event) {
+    if (event.getPlayer() instanceof ServerPlayer player) {
+        ItemStack item = player.getMainHandItem();
+        
+        int progress = getBlocksBroken(item);
+        int needed = getBlocksNeeded(item);
+        
+        // Créer une barre visuelle
+        String bar = createProgressBar(progress, needed);
+        
+        // Afficher dans l'action bar
+        showActionBar(player, "§6Progression: " + bar + " §f" + progress + "§7/§f" + needed);
+    }
+}
+
+private static String createProgressBar(int current, int max) {
+    int percentage = (int)((double)current / max * 100);
+    int bars = percentage / 5;  // 20 barres max
+    
+    StringBuilder result = new StringBuilder("§a[");
+    for (int i = 0; i < 20; i++) {
+        if (i < bars) {
+            result.append("§a|");
+        } else {
+            result.append("§7|");
+        }
+    }
+    result.append("§a]");
+    return result.toString();
+}
+```
+
+**Action bar avec mise à jour continue :**
+
+```java
+// Dans inventoryTick de votre item
+@Override
+public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
+    if (!level.isClientSide() && isSelected && entity instanceof ServerPlayer player) {
+        // Mettre à jour l'action bar chaque seconde
+        if (level.getGameTime() % 20 == 0) {
+            int blocksLeft = getBlocksNeeded(stack) - (getBlocksBroken(stack) % getBlocksNeeded(stack));
+            showActionBar(player, "§7Il reste §e" + blocksLeft + " blocs §7avant le niveau suivant");
+        }
+    }
+}
+```
+
+### 5.3 🏆 Toast/Advancement (Popup en Haut à Droite)
+
+**Afficher une notification style achievement qui slide depuis le côté**
+
+#### 5.3.1 Toast Simple (Sans Achievement)
+
+```java
+import net.minecraft.advancements.AdvancementType;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+
+// Créer un toast personnalisé
+public static void showToast(ServerPlayer player, String title, String description, ItemStack icon) {
+    // Utiliser le système de chat pour simuler (méthode simple)
+    player.sendSystemMessage(Component.literal("§6[Notification] §f" + title));
+    player.sendSystemMessage(Component.literal("§7" + description));
+}
+```
+
+#### 5.3.2 Advancement Personnalisé (Vrai Toast)
+
+**Créer :** `src/main/resources/data/medeliummod/advancements/notifications/level_up.json`
+
+```json
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:diamond_pickaxe"
+    },
+    "title": {
+      "text": "Niveau Augmenté !",
+      "color": "gold",
+      "bold": true
+    },
+    "description": {
+      "text": "Vous avez atteint le niveau 5",
+      "color": "gray"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false,
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}
+```
+
+**Déclencher l'advancement via code :**
+
+```java
+import net.minecraft.advancements.AdvancementHolder;
+import net.minecraft.advancements.AdvancementProgress;
+import net.minecraft.resources.ResourceLocation;
+
+public static void grantAdvancement(ServerPlayer player, String advancementId) {
+    ResourceLocation id = ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, advancementId);
+    AdvancementHolder advancement = player.server.getAdvancements().get(id);
+    
+    if (advancement != null) {
+        AdvancementProgress progress = player.getAdvancements().getOrStartProgress(advancement);
+        if (!progress.isDone()) {
+            for (String criterion : progress.getRemainingCriteria()) {
+                player.getAdvancements().award(advancement, criterion);
+            }
+        }
+    }
+}
+
+// Utilisation
+grantAdvancement(player, "notifications/level_up");
+```
+
+#### 5.3.3 Toast Complètement Personnalisé (avec Image)
+
+**Créer une classe de Toast personnalisée :**
+
+```java
+package com.medelium.client.toast;
+
+import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.toasts.Toast;
+import net.minecraft.client.gui.components.toasts.ToastComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+
+public class CustomToast implements Toast {
+    private static final ResourceLocation BACKGROUND_IMAGE = 
+        ResourceLocation.fromNamespaceAndPath("medeliummod", "textures/gui/toast.png");
+    
+    private final Component title;
+    private final Component description;
+    private final ItemStack icon;
+    private long firstDisplay;
+    private boolean newDisplay;
+
+    public CustomToast(Component title, Component description, ItemStack icon) {
+        this.title = title;
+        this.description = description;
+        this.icon = icon;
+    }
+
+    @Override
+    public Visibility render(GuiGraphics guiGraphics, ToastComponent toastComponent, long timeSinceLastVisible) {
+        if (this.newDisplay) {
+            this.firstDisplay = timeSinceLastVisible;
+            this.newDisplay = false;
+        }
+
+        // Dessiner le fond (160x32 pixels)
+        guiGraphics.blit(BACKGROUND_IMAGE, 0, 0, 0, 0, 160, 32, 160, 32);
+
+        // Dessiner l'icône
+        guiGraphics.renderFakeItem(this.icon, 8, 8);
+
+        // Dessiner le titre
+        guiGraphics.drawString(toastComponent.getMinecraft().font, 
+            this.title, 30, 7, 0xFFFF00, false);
+
+        // Dessiner la description
+        guiGraphics.drawString(toastComponent.getMinecraft().font, 
+            this.description, 30, 18, 0xFFFFFF, false);
+
+        // Durée d'affichage : 5 secondes
+        return timeSinceLastVisible - this.firstDisplay >= 5000L ? Visibility.HIDE : Visibility.SHOW;
+    }
+
+    // Afficher le toast
+    public static void show(Component title, Component description, ItemStack icon) {
+        net.minecraft.client.Minecraft.getInstance().getToasts().addToast(
+            new CustomToast(title, description, icon)
+        );
+    }
+}
+```
+
+**Créer l'image du toast :** `textures/gui/toast.png` (160x32 pixels)
+
+**Utiliser le toast :**
+
+```java
+// Côté client uniquement !
+if (level.isClientSide()) {
+    CustomToast.show(
+        Component.literal("§6§lNiveau 5 Atteint !"),
+        Component.literal("§7Rapidité débloquée"),
+        new ItemStack(ModItems.ROYAL_SWORD.get())
+    );
+}
+```
+
+**Envoyer du serveur au client :**
+
+```java
+// Créer un packet réseau (système avancé)
+// Ou utiliser l'advancement system ci-dessus (plus simple)
+```
+
+### 5.4 🎨 Popup avec Image Personnalisée
+
+**Créer un écran overlay qui s'affiche temporairement**
+
+#### 5.4.1 Popup avec Position Personnalisable
+
+```java
+package com.medelium.client.screen;
+
+import com.medelium.MedeliumMod;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+
+public class PopupScreen extends Screen {
+    private static final ResourceLocation POPUP_TEXTURE = 
+        ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/popup.png");
+    
+    private final int displayTime;
+    private int ticksDisplayed = 0;
+    private final PopupPosition position;
+    private final int popupWidth = 200;
+    private final int popupHeight = 100;
+
+    // Enum pour les positions
+    public enum PopupPosition {
+        CENTER,           // Centre de l'écran
+        TOP_LEFT,         // Coin haut gauche
+        TOP_RIGHT,        // Coin haut droit
+        BOTTOM_LEFT,      // Coin bas gauche
+        BOTTOM_RIGHT,     // Coin bas droit
+        TOP_CENTER,       // Centre en haut
+        BOTTOM_CENTER,    // Centre en bas
+        LEFT_CENTER,      // Centre à gauche
+        RIGHT_CENTER,     // Centre à droite
+        CUSTOM            // Position personnalisée
+    }
+    
+    private int customX = 0;
+    private int customY = 0;
+
+    public PopupScreen(int displayTimeInTicks, PopupPosition position) {
+        super(Component.empty());
+        this.displayTime = displayTimeInTicks;
+        this.position = position;
+    }
+    
+    public PopupScreen(int displayTimeInTicks, int customX, int customY) {
+        super(Component.empty());
+        this.displayTime = displayTimeInTicks;
+        this.position = PopupPosition.CUSTOM;
+        this.customX = customX;
+        this.customY = customY;
+    }
+
+    @Override
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        // Calculer la position selon le choix
+        int x = calculateX();
+        int y = calculateY();
+        
+        // Fond semi-transparent (optionnel)
+        // guiGraphics.fill(0, 0, this.width, this.height, 0x80000000);
+        
+        // Image de popup
+        guiGraphics.blit(POPUP_TEXTURE, x, y, 0, 0, popupWidth, popupHeight, 256, 256);
+        
+        // Texte personnalisé (centré dans la popup)
+        guiGraphics.drawCenteredString(this.font, 
+            "§6§lNIVEAU AUGMENTÉ !", 
+            x + popupWidth / 2, y + 30, 0xFFFFFF);
+        
+        guiGraphics.drawCenteredString(this.font, 
+            "§7Vous êtes maintenant niveau 5", 
+            x + popupWidth / 2, y + 50, 0xAAAAAA);
+    }
+    
+    private int calculateX() {
+        return switch (position) {
+            case CENTER -> (this.width - popupWidth) / 2;
+            case TOP_LEFT, BOTTOM_LEFT, LEFT_CENTER -> 10;  // Marge de 10px
+            case TOP_RIGHT, BOTTOM_RIGHT, RIGHT_CENTER -> this.width - popupWidth - 10;
+            case TOP_CENTER, BOTTOM_CENTER -> (this.width - popupWidth) / 2;
+            case CUSTOM -> customX;
+        };
+    }
+    
+    private int calculateY() {
+        return switch (position) {
+            case CENTER -> (this.height - popupHeight) / 2;
+            case TOP_LEFT, TOP_RIGHT, TOP_CENTER -> 10;  // Marge de 10px
+            case BOTTOM_LEFT, BOTTOM_RIGHT, BOTTOM_CENTER -> this.height - popupHeight - 10;
+            case LEFT_CENTER, RIGHT_CENTER -> (this.height - popupHeight) / 2;
+            case CUSTOM -> customY;
+        };
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        ticksDisplayed++;
+        
+        if (ticksDisplayed >= displayTime) {
+            this.onClose();
+        }
+    }
+
+    @Override
+    public boolean isPauseScreen() {
+        return false;
+    }
+    
+    // Méthodes statiques pour afficher facilement
+    public static void show(int durationTicks, PopupPosition position) {
+        Minecraft.getInstance().setScreen(new PopupScreen(durationTicks, position));
+    }
+    
+    public static void showCenter(int durationTicks) {
+        show(durationTicks, PopupPosition.CENTER);
+    }
+    
+    public static void showTopRight(int durationTicks) {
+        show(durationTicks, PopupPosition.TOP_RIGHT);
+    }
+    
+    public static void showBottomLeft(int durationTicks) {
+        show(durationTicks, PopupPosition.BOTTOM_LEFT);
+    }
+    
+    // Position personnalisée (coordonnées exactes)
+    public static void showCustom(int durationTicks, int x, int y) {
+        Minecraft.getInstance().setScreen(new PopupScreen(durationTicks, x, y));
+    }
+}
+```
+
+#### 5.4.2 Exemples d'Utilisation
+
+```java
+// Centre de l'écran
+PopupScreen.showCenter(60);
+
+// Coin haut droit
+PopupScreen.showTopRight(60);
+
+// Coin bas gauche
+PopupScreen.showBottomLeft(60);
+
+// Position spécifique
+PopupScreen.show(60, PopupScreen.PopupPosition.BOTTOM_CENTER);
+
+// Coordonnées exactes (100 pixels de gauche, 50 de haut)
+PopupScreen.showCustom(60, 100, 50);
+```
+
+#### 5.4.3 Popup avec Animation de Slide
+
+**Popup qui slide depuis un côté :**
+
+```java
+public class AnimatedPopupScreen extends Screen {
+    private static final ResourceLocation POPUP_TEXTURE = 
+        ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/popup.png");
+    
+    private final int displayTime;
+    private int ticksDisplayed = 0;
+    private final SlideDirection direction;
+    private final int popupWidth = 200;
+    private final int popupHeight = 100;
+    
+    public enum SlideDirection {
+        FROM_LEFT, FROM_RIGHT, FROM_TOP, FROM_BOTTOM
+    }
+    
+    public AnimatedPopupScreen(int displayTimeInTicks, SlideDirection direction) {
+        super(Component.empty());
+        this.displayTime = displayTimeInTicks;
+        this.direction = direction;
+    }
+
+    @Override
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        // Position finale (centre droit par exemple)
+        int targetX = this.width - popupWidth - 10;
+        int targetY = (this.height - popupHeight) / 2;
+        
+        // Calculer l'animation (0.0 à 1.0)
+        float animationProgress = Math.min((float)ticksDisplayed / 20f, 1.0f);  // 1 seconde pour entrer
+        
+        // Position actuelle avec animation
+        int x = getAnimatedX(targetX, animationProgress);
+        int y = getAnimatedY(targetY, animationProgress);
+        
+        // Dessiner la popup
+        guiGraphics.blit(POPUP_TEXTURE, x, y, 0, 0, popupWidth, popupHeight, 256, 256);
+        
+        // Texte seulement si l'animation est presque finie
+        if (animationProgress > 0.5f) {
+            guiGraphics.drawCenteredString(this.font, 
+                "§6§lNOTIFICATION", 
+                x + popupWidth / 2, y + 30, 0xFFFFFF);
+        }
+    }
+    
+    private int getAnimatedX(int targetX, float progress) {
+        return switch (direction) {
+            case FROM_LEFT -> (int)(targetX * progress - popupWidth * (1 - progress));
+            case FROM_RIGHT -> (int)(this.width - (this.width - targetX) * progress);
+            case FROM_TOP, FROM_BOTTOM -> targetX;
+        };
+    }
+    
+    private int getAnimatedY(int targetY, float progress) {
+        return switch (direction) {
+            case FROM_TOP -> (int)(targetY * progress - popupHeight * (1 - progress));
+            case FROM_BOTTOM -> (int)(this.height - (this.height - targetY) * progress);
+            case FROM_LEFT, FROM_RIGHT -> targetY;
+        };
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        ticksDisplayed++;
+        if (ticksDisplayed >= displayTime) {
+            this.onClose();
+        }
+    }
+
+    @Override
+    public boolean isPauseScreen() {
+        return false;
+    }
+    
+    public static void slideFromRight(int durationTicks) {
+        Minecraft.getInstance().setScreen(
+            new AnimatedPopupScreen(durationTicks, SlideDirection.FROM_RIGHT));
+    }
+}
+```
+
+#### 5.4.4 Popup Sans Bloquer le Jeu (Overlay)
+
+**Popup qui s'affiche PAR DESSUS le jeu sans ouvrir de menu :**
+
+```java
+package com.medelium.client.overlay;
+
+import com.medelium.MedeliumMod;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.resources.ResourceLocation;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RenderGuiOverlayEvent;
+
+@EventBusSubscriber(modid = MedeliumMod.MOD_ID, bus = EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+public class PopupOverlay {
+    private static final ResourceLocation POPUP_TEXTURE = 
+        ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/popup.png");
+    
+    private static boolean isVisible = false;
+    private static int ticksRemaining = 0;
+    private static int popupX = 0;
+    private static int popupY = 0;
+    private static String title = "";
+    private static String subtitle = "";
+    
+    @SubscribeEvent
+    public static void onRenderGui(RenderGuiOverlayEvent.Post event) {
+        if (isVisible && ticksRemaining > 0) {
+            GuiGraphics guiGraphics = event.getGuiGraphics();
+            Minecraft mc = Minecraft.getInstance();
+            
+            // Dessiner la popup
+            guiGraphics.blit(POPUP_TEXTURE, popupX, popupY, 0, 0, 200, 100, 256, 256);
+            
+            // Texte
+            guiGraphics.drawCenteredString(mc.font, title, 
+                popupX + 100, popupY + 30, 0xFFFFFF);
+            guiGraphics.drawCenteredString(mc.font, subtitle, 
+                popupX + 100, popupY + 50, 0xAAAAAA);
+            
+            ticksRemaining--;
+            
+            if (ticksRemaining <= 0) {
+                isVisible = false;
+            }
+        }
+    }
+    
+    // Afficher la popup à une position
+    public static void show(String title, String subtitle, int x, int y, int durationTicks) {
+        PopupOverlay.title = title;
+        PopupOverlay.subtitle = subtitle;
+        PopupOverlay.popupX = x;
+        PopupOverlay.popupY = y;
+        PopupOverlay.ticksRemaining = durationTicks;
+        PopupOverlay.isVisible = true;
+    }
+    
+    // Méthodes pratiques
+    public static void showTopRight(String title, String subtitle, int durationTicks) {
+        Minecraft mc = Minecraft.getInstance();
+        show(title, subtitle, mc.getWindow().getGuiScaledWidth() - 210, 10, durationTicks);
+    }
+    
+    public static void showBottomCenter(String title, String subtitle, int durationTicks) {
+        Minecraft mc = Minecraft.getInstance();
+        int x = (mc.getWindow().getGuiScaledWidth() - 200) / 2;
+        int y = mc.getWindow().getGuiScaledHeight() - 110;
+        show(title, subtitle, x, y, durationTicks);
+    }
+    
+    public static void showCenter(String title, String subtitle, int durationTicks) {
+        Minecraft mc = Minecraft.getInstance();
+        int x = (mc.getWindow().getGuiScaledWidth() - 200) / 2;
+        int y = (mc.getWindow().getGuiScaledHeight() - 100) / 2;
+        show(title, subtitle, x, y, durationTicks);
+    }
+}
+```
+
+**Utiliser l'overlay :**
+
+```java
+// Depuis n'importe où (client-side)
+PopupOverlay.showTopRight("§6Level Up!", "§7Niveau 5 atteint", 100);
+PopupOverlay.showBottomCenter("§aQuête terminée", "§7+100 pièces", 80);
+PopupOverlay.showCenter("§c§lATTENTION", "§7Boss proche", 120);
+
+// Position personnalisée
+PopupOverlay.show("§bInfo", "§7Message", 50, 50, 60);
+```
+
+**Avantage de l'overlay :** Le jeu continue normalement, pas de pause ni de changement d'écran !
+
+#### 5.4.5 Positions Prédéfinies - Référence Visuelle
+
+```
+Écran de jeu (exemple 1920x1080 scaled)
+┌────────────────────────────────────────┐
+│ TOP_LEFT    TOP_CENTER      TOP_RIGHT  │
+│    📦           📦              📦      │
+│                                        │
+│                                        │
+│ LEFT_CENTER    CENTER    RIGHT_CENTER │
+│    📦           📦              📦      │
+│                                        │
+│                                        │
+│ BOTTOM_LEFT  BOTTOM_CENTER BOTTOM_RIGHT│
+│    📦           📦              📦      │
+└────────────────────────────────────────┘
+
+Coordonnées utiles :
+- Marge standard : 10px
+- Popup standard : 200x100px
+- Centre X : (screenWidth - 200) / 2
+- Centre Y : (screenHeight - 100) / 2
+```
+
+### 5.5 📋 Récapitulatif des Méthodes
+
+| Méthode | Position | Durée | Complexité | Usage Recommandé |
+|---------|----------|-------|------------|------------------|
+| **Title** | Centre écran | 3-5 sec | ⭐ Facile | Events majeurs (boss battu, level up) |
+| **Action Bar** | Au-dessus hotbar | Jusqu'à update | ⭐ Facile | Informations continues (progression) |
+| **Toast** | Haut droite | 5 sec | ⭐⭐ Moyen | Notifications (réussite, déblocage) |
+| **Popup** | Centre écran | Variable | ⭐⭐⭐ Avancé | Events spéciaux avec image |
+
+### 5.6 💡 Exemples d'Utilisation Pratiques
+
+**Lors d'un level up :**
+
+```java
+private static void levelUp(Player player, ItemStack item, int newLevel) {
+    if (player instanceof ServerPlayer serverPlayer) {
+        // 1. Action bar pour confirmation rapide
+        showActionBar(serverPlayer, "§a✓ Niveau " + newLevel + " atteint !");
+        
+        // 2. Titre dramatique
+        showTitle(serverPlayer, "NIVEAU " + newLevel, "Continuez ainsi !");
+        
+        // 3. Toast avec l'item
+        grantAdvancement(serverPlayer, "notifications/level_up");
+        
+        // 4. Son + Particules
+        serverPlayer.level().playSound(null, serverPlayer.blockPosition(), 
+            SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 1.0F, 1.0F);
+    }
+}
+```
+
+**Progression en temps réel :**
+
+```java
+// Mise à jour continue dans action bar
+@Override
+public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
+    if (!level.isClientSide() && isSelected && entity instanceof ServerPlayer player) {
+        if (level.getGameTime() % 10 == 0) {  // Update toutes les 0.5 sec
+            int progress = getBlocksBroken(stack) % getBlocksNeeded(stack);
+            int needed = getBlocksNeeded(stack);
+            String bar = createProgressBar(progress, needed);
+            
+            showActionBar(player, "§6⛏ " + bar + " §f" + progress + "§7/§f" + needed);
+        }
+    }
+}
+```
+
+**Système de quêtes :**
+
+```java
+public static void completeQuest(ServerPlayer player, String questName) {
+    // Titre
+    showTitle(player, "✓ QUÊTE TERMINÉE", questName);
+    
+    // Toast
+    CustomToast.show(
+        Component.literal("§aQuête terminée !"),
+        Component.literal("§7" + questName),
+        new ItemStack(Items.EMERALD)
+    );
+    
+    // Récompense dans chat
+    player.sendSystemMessage(Component.literal("§6+100 pièces d'or"));
+}
+```
+
+---
+
+## 6. 🍖 Nourriture et Potions
 
 ### 5.1 Nourriture Simple
 
