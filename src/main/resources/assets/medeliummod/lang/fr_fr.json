@@ -1,0 +1,18 @@
+{
+  "itemGroup.medeliummod.medelium_tab": "Medelium - Fantasy Médiévale",
+  
+  "item.medeliummod.knight_sword": "Épée de Chevalier",
+  "item.medeliummod.royal_sword": "Épée Royale",
+  "item.medeliummod.silver_coin": "Pièce d'Argent",
+  "item.medeliummod.gold_coin": "Pièce d'Or",
+  "item.medeliummod.royal_seal": "Sceau Royal",
+  "item.medeliummod.ancient_scroll": "Parchemin Ancien",
+  "item.medeliummod.medieval_bread": "Pain Médiéval",
+  "item.medeliummod.mead": "Hydromel",
+  
+  "block.medeliummod.castle_stone": "Pierre de Château",
+  "block.medeliummod.castle_stone_bricks": "Briques de Pierre de Château",
+  "block.medeliummod.medieval_lantern": "Lanterne Médiévale",
+  "block.medeliummod.royal_throne": "Trône Royal",
+  "block.medeliummod.medieval_table": "Table Médiévale"
+}

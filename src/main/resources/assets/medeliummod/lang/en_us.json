@@ -1,0 +1,18 @@
+{
+  "itemGroup.medeliummod.medelium_tab": "Medelium - Medieval Fantasy",
+  
+  "item.medeliummod.knight_sword": "Knight's Sword",
+  "item.medeliummod.royal_sword": "Royal Sword",
+  "item.medeliummod.silver_coin": "Silver Coin",
+  "item.medeliummod.gold_coin": "Gold Coin",
+  "item.medeliummod.royal_seal": "Royal Seal",
+  "item.medeliummod.ancient_scroll": "Ancient Scroll",
+  "item.medeliummod.medieval_bread": "Medieval Bread",
+  "item.medeliummod.mead": "Mead",
+  
+  "block.medeliummod.castle_stone": "Castle Stone",
+  "block.medeliummod.castle_stone_bricks": "Castle Stone Bricks",
+  "block.medeliummod.medieval_lantern": "Medieval Lantern",
+  "block.medeliummod.royal_throne": "Royal Throne",
+  "block.medeliummod.medieval_table": "Medieval Table"
+}
