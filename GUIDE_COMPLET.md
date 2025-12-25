@@ -29,7 +29,29 @@ Ce guide vous explique **TOUT** ce que vous pouvez ajouter à votre mod médiév
 
 ## 1. 📦 Objets (Items)
 
+> **📖 C'est quoi un Item ?**
+> Un item (objet) est tout ce qui peut être tenu dans l'inventaire : pièces de monnaie, nourriture, outils, armes, etc.
+> Dans Minecraft, TOUT ce que vous pouvez ramasser est un Item.
+>
+> **🎯 Pourquoi créer des items personnalisés ?**
+> - Ajouter de la monnaie pour votre système économique RP
+> - Créer des objets de quête uniques
+> - Fabriquer des matériaux spéciaux pour le craft
+> - Développer votre univers médiéval avec des objets thématiques
+>
+> **🔧 Comment ça marche ?**
+> 1. Vous **enregistrez** l'item dans le code (ModItems.java)
+> 2. Vous **traduisez** son nom (fr_fr.json)
+> 3. Vous créez sa **texture** (image PNG 16x16)
+> 4. Vous créez son **modèle** (fichier JSON qui lie la texture)
+> 5. Vous l'ajoutez à un **onglet créatif** pour le trouver en jeu
+
 ### 1.1 Créer un Objet Simple
+
+**📝 Ce que vous allez apprendre :**
+- Enregistrer un item basique dans le code
+- Comprendre les propriétés de base
+- Le rendre disponible en jeu
 
 **Où :** `src/main/java/com/medelium/item/ModItems.java`
 
@@ -67,6 +89,17 @@ public static final DeferredItem<Item> GEMME_MAGIQUE = ITEMS.register("gemme_mag
 
 ### 1.3 Ajouter les Traductions
 
+> **📖 Pourquoi les traductions sont OBLIGATOIRES ?**
+> Sans fichier de traduction, votre item s'affiche comme : `item.medeliummod.mon_objet`
+> Avec traduction, il s'affiche : `Mon Super Objet` ✨
+>
+> **🎯 Comment ça marche :**
+> - Minecraft lit le fichier `fr_fr.json` (français) ou `en_us.json` (anglais)
+> - La clé `item.medeliummod.mon_objet` correspond à votre item
+> - La valeur est le nom affiché en jeu
+>
+> **💡 Astuce :** Créez les deux fichiers (fr_fr.json ET en_us.json) pour supporter multi-langues !
+
 **Fichier :** `src/main/resources/assets/medeliummod/lang/fr_fr.json`
 
 ```json
@@ -78,6 +111,22 @@ public static final DeferredItem<Item> GEMME_MAGIQUE = ITEMS.register("gemme_mag
 
 ### 1.4 Ajouter l'Objet au Creative Tab
 
+> **📖 C'est quoi un Creative Tab ?**
+> C'est un onglet dans le menu créatif (mode créatif) qui regroupe vos items.
+> Comme "Blocs de construction", "Redstone", etc.
+>
+> **🎯 Pourquoi créer votre propre onglet ?**
+> - Tous vos items du mod au même endroit
+> - Plus facile pour les joueurs de trouver vos objets
+> - Design professionnel
+> - Icône personnalisée pour l'onglet
+>
+> **💡 Structure :**
+> 1. Vous créez l'onglet dans ModCreativeTabs.java
+> 2. Vous définissez son icône (un de vos items)
+> 3. Vous ajoutez tous vos items dedans
+> 4. Il apparaît automatiquement en jeu !
+
 **Fichier :** `src/main/java/com/medelium/tab/ModCreativeTabs.java`
 
 ```java
@@ -87,7 +136,31 @@ output.accept(ModItems.MON_OBJET.get());
 
 ### 1.5 📝 Descriptions Personnalisées (Tooltips)
 
+> **📖 C'est quoi un Tooltip ?**
+> C'est le petit texte qui s'affiche quand vous survolez un objet avec votre souris dans l'inventaire.
+> Par défaut, Minecraft affiche juste le nom de l'objet et ses enchantements.
+>
+> **🎯 Pourquoi personnaliser les tooltips ?**
+> - Ajouter du **lore** (histoire) à vos objets légendaires
+> - Afficher des **statistiques** (dégâts, bonus, etc.)
+> - Montrer les **conditions** d'utilisation (niveau requis, métier)
+> - Donner des **indices** pour les quêtes
+> - Rendre votre mod plus **immersif** et professionnel
+>
+> **🔧 Comment ça marche techniquement ?**
+> 1. Vous créez une classe d'item personnalisée
+> 2. Vous override (remplacez) la méthode `appendHoverText`
+> 3. Dans cette méthode, vous ajoutez vos lignes de texte
+> 4. Vous utilisez des codes couleur pour styliser
+>
+> **🎨 Codes couleur disponibles :**
+> `§0-§9, §a-§f` pour les couleurs + `§l` (gras), `§o` (italique), `§n` (souligné)
+>
+> **💡 Astuce Pro :** Utilisez `Screen.hasShiftDown()` pour afficher plus d'infos quand le joueur appuie sur SHIFT !
+
 #### 1.5.1 Tooltip Simple sur Objet
+
+**📝 Ce code ajoute des lignes de texte coloré sous le nom de l'objet :**
 
 **Créer :** `src/main/java/com/medelium/item/custom/CustomTooltipItem.java`
 
@@ -262,6 +335,44 @@ public void appendHoverText(ItemStack stack, TooltipContext context, List<Compon
 ```
 
 ### 1.6 🎮 Système de Progression avec Tooltips Dynamiques
+
+> **📖 C'est quoi un système de progression ?**
+> C'est rendre vos objets "vivants" : ils gagnent de l'expérience, montent de niveau, débloquent des capacités.
+> Comme dans les RPG où votre personnage devient plus fort en jouant !
+>
+> **🎯 Exemple concret :**
+> Vous avez une pioche. Au début, elle est normale (niveau 1).
+> Chaque fois que vous cassez un bloc, elle gagne de l'XP.
+> À 100 blocs cassés → niveau 2 → elle mine plus vite
+> À 500 blocs cassés → niveau 5 → effet Fortune activé
+> À 1000 blocs cassés → niveau 10 → texture change en or, super pouvoirs !
+>
+> **🔧 Comment ça fonctionne techniquement ?**
+>
+> **1. Stockage des données (NBT)**
+> Les objets peuvent stocker des données cachées (comme un mini-fichier de sauvegarde)
+> On y stocke : niveau actuel, blocs cassés, etc.
+>
+> **2. Détection des événements**
+> On "écoute" quand le joueur casse un bloc avec cet objet
+> → On incrémente le compteur
+>
+> **3. Calcul et Level Up**
+> On vérifie si assez de blocs cassés
+> → Si oui : niveau + 1, réinitialiser le compteur, effets spéciaux
+>
+> **4. Affichage dynamique**
+> Le tooltip lit les données NBT et affiche la progression en temps réel
+> Barre visuelle : `[■■■■§7■■■]` = 50% de progression
+>
+> **5. Application des bonus**
+> Selon le niveau, l'objet donne des effets (rapidité, fortune, etc.)
+>
+> **💡 Ce système est RÉUTILISABLE pour :**
+> - Épées qui deviennent plus fortes en tuant des mobs
+> - Armures qui se renforcent avec les dégâts subis
+> - Outils qui débloquent des capacités spéciales
+> - Items de quête qui évoluent avec le joueur
 
 > **Exemple complet :** Pioche qui level up en cassant des blocs, avec barre de progression, changement de texture, et déblocage d'avantages
 
@@ -698,7 +809,34 @@ if (Screen.hasShiftDown()) {
 
 ## 2. 🧱 Blocs (Blocks)
 
+> **📖 C'est quoi un Bloc ?**
+> Un bloc est un élément placeable dans le monde : pierre, bois, votre château personnalisé, etc.
+> Contrairement aux items, les blocs ont une présence physique dans le monde 3D.
+>
+> **🎯 Différence Item vs Bloc :**
+> - **Item** = dans l'inventaire, dans la main
+> - **Bloc** = placé dans le monde
+> - Un bloc a TOUJOURS un item associé pour pouvoir le placer/récupérer
+>
+> **🔧 Comment ça marche ?**
+> 1. Vous créez le **Bloc** (ce qui existe dans le monde)
+> 2. Vous créez automatiquement le **BlockItem** (version inventaire du bloc)
+> 3. Le système les lie ensemble automatiquement
+>
+> **💡 Ce que vous pouvez faire :**
+> - Blocs décoratifs (murs de château, trônes)
+> - Blocs fonctionnels (four custom, table d'alchimie)
+> - Blocs lumineux (lanternes, cristaux magiques)
+> - Blocs transparents (vitraux)
+> - Blocs interactifs (coffres, portes secrètes)
+
 ### 2.1 Bloc Simple
+
+**📝 Étapes pour créer un bloc :**
+1. Enregistrer le bloc dans ModBlocks.java
+2. Le BlockItem est créé automatiquement
+3. Créer les textures et modèles
+4. Ajouter les traductions
 
 **Où :** `src/main/java/com/medelium/block/ModBlocks.java`
 
@@ -777,7 +915,34 @@ public static final DeferredBlock<WallBlock> MUR_CHATEAU = registerBlock("mur_ch
 
 ## 3. 🛡️ Armures (Armor)
 
+> **📖 Comment fonctionnent les armures dans Minecraft ?**
+> Une armure complète = 4 pièces (casque, plastron, jambières, bottes)
+> Chaque pièce a ses propres valeurs de protection et durabilité.
+>
+> **🎯 Le système de matériaux :**
+> Au lieu de créer 4 items séparés avec des valeurs en dur, Minecraft utilise un système de **Matériau**.
+> Le matériau définit TOUTES les propriétés une seule fois, puis vous créez les 4 pièces qui l'utilisent.
+>
+> **🔧 Processus en 2 étapes :**
+>
+> **ÉTAPE 1 : Créer le Matériau** (ex: "KNIGHT")
+> - Protection de chaque pièce (casque=2, plastron=6, etc.)
+> - Durabilité totale
+> - Enchantabilité (facilité à enchanter)
+> - Son d'équipement
+> - Matériau de réparation (quoi utiliser sur l'enclume)
+> - Texture de l'armure portée
+>
+> **ÉTAPE 2 : Créer les 4 Pièces**
+> - Chaque pièce utilise le matériau créé à l'étape 1
+> - Elles héritent automatiquement de toutes ses propriétés
+>
+> **💡 Avantage :** Si vous voulez changer la protection, vous modifiez UNE ligne dans le matériau,
+> et les 4 pièces sont mises à jour automatiquement !
+
 ### 3.1 Créer un Matériau d'Armure
+
+**📝 Ce fichier définit les caractéristiques générales de votre armure :**
 
 **Créer un nouveau fichier :** `src/main/java/com/medelium/item/ModArmorMaterials.java`
 
@@ -887,9 +1052,57 @@ output.accept(ModItems.KNIGHT_BOOTS.get());
 
 ## 4. ⛏️ Outils (Tools)
 
-### 4.1 Créer un Tier d'Outil
+> **📖 Comment fonctionnent les outils dans Minecraft ?**
+> Les outils = pioche, hache, pelle, houe, épée
+> Chaque outil a un **Tier** (niveau de matériau) qui définit ses caractéristiques.
+>
+> **🎯 Le système de Tiers (Niveaux de Matériaux) :**
+>
+> Dans Minecraft Vanilla :
+> - **Bois** (Tier 0) : Mine pierre, durabilité 59
+> - **Pierre** (Tier 1) : Mine fer, durabilité 131
+> - **Fer** (Tier 2) : Mine diamant, durabilité 250
+> - **Diamant** (Tier 3) : Mine obsidienne, durabilité 1561
+> - **Netherite** (Tier 4) : Mine tout, durabilité 2031
+>
+> **🔧 Propriétés d'un Tier custom :**
+>
+> **1. Mining Level** (niveau d'extraction)
+> - Définit QUELS blocs l'outil peut miner
+> - Tag de bloc : "needs_iron_tool", "needs_diamond_tool", etc.
+> - Si votre pioche a un mining level trop bas, le bloc ne drop rien
+>
+> **2. Durability** (durabilité)
+> - Combien d'utilisations avant de casser
+> - 1 utilisation = casser 1 bloc ou frapper 1 fois
+>
+> **3. Speed** (vitesse de minage)
+> - Multiplicateur de vitesse
+> - 4.0 = bois, 6.0 = pierre, 8.0 = fer, 10.0 = netherite
+> - Plus c'est haut, plus c'est rapide
+>
+> **4. Attack Damage Bonus**
+> - Dégâts supplémentaires pour les armes
+> - Pour pioche/hache utilisée comme arme
+>
+> **5. Enchantment Value** (enchantabilité)
+> - Facilité à obtenir de bons enchantements
+> - Or = 22 (très enchantable mais fragile)
+> - Diamant = 10
+> - Plus c'est haut, meilleurs sont les enchantements possibles
+>
+> **6. Repair Ingredient** (matériau de réparation)
+> - Quel item utiliser dans l'enclume pour réparer
+> - Ex: lingot de fer pour outils en fer
+>
+> **💡 Créer un set d'outils custom :**
+> 1. Créer le TIER avec toutes les propriétés
+> 2. Créer les 5 outils qui utilisent ce tier
+> 3. Ils héritent automatiquement des caractéristiques !
 
-**Créer :** `src/main/java/com/medelium/item/ModToolTiers.java`
+### 4.1 Créer un Tier d'Outil Custom
+
+**📝 Ce fichier définit les propriétés de votre matériau d'outil :**
 
 ```java
 package com.medelium.item;
@@ -944,7 +1157,53 @@ public static final DeferredItem<HoeItem> SILVER_HOE = ITEMS.register("silver_ho
 
 ## 5. 💬 Affichage de Messages et Notifications
 
+> **📖 Pourquoi communiquer avec le joueur ?**
+> Dans un mod RP, l'immersion est primordiale. Le joueur doit être informé de ce qui se passe :
+> - Quand il level up
+> - Quand une quête est terminée
+> - Quand il manque une condition
+> - Pour afficher sa progression
+>
+> **🎯 Les 4 méthodes de notification dans Minecraft :**
+>
+> **1. TITRE (Centre écran)** 📺
+> - Grand texte au milieu de l'écran
+> - Impossible à rater
+> - Usage : Événements MAJEURS (victoire boss, level up important)
+> - Durée : 3-5 secondes
+>
+> **2. ACTION BAR (Au-dessus hotbar)** 📊
+> - Petite ligne de texte juste au-dessus de la barre d'objets
+> - Reste visible jusqu'à ce qu'on le change
+> - Usage : Informations CONTINUES (progression, jauge)
+> - Parfait pour : Barres de progression en temps réel
+>
+> **3. TOAST/ACHIEVEMENT (Popup haut-droite)** 🏆
+> - Petite fenêtre qui slide depuis le coin
+> - Style "succès débloqué" de Minecraft
+> - Usage : Notifications, déblocages, récompenses
+> - Durée : 5 secondes, puis disparaît
+>
+> **4. POPUP PERSONNALISÉE (Image custom)** 🎨
+> - Fenêtre complètement personnalisée avec votre propre design
+> - Peut être placée N'IMPORTE OÙ sur l'écran
+> - Usage : Menus spéciaux, annonces importantes
+> - Total contrôle sur l'apparence
+>
+> **🔧 Côté Client vs Serveur :**
+> **IMPORTANT :** Ces affichages se font côté CLIENT (l'écran du joueur)
+> Si vous êtes sur un serveur, il faut envoyer depuis le serveur vers le client.
+>
+> **💡 Quand utiliser quoi ?**
+> - Level up important → **Titre** + **Toast**
+> - Progression continue → **Action Bar**
+> - Quête terminée → **Toast** ou **Popup**
+> - Avertissement urgent → **Titre**
+> - Statistiques temps réel → **Action Bar**
+
 ### 5.1 📺 Titre au Centre de l'Écran
+
+**📝 Envoie un grand message au centre qui s'affiche puis disparaît en fondu :**
 
 **Afficher un titre + sous-titre au milieu de l'écran (comme "Bienvenue")**
 
@@ -1824,7 +2083,65 @@ public class GuardEntity extends PathfinderMob {
 
 ### 6.3 🐉 Créer un BOSS
 
+> **📖 Différence entre Mob normal et Boss :**
+>
+> **Mob Normal :**
+> - 20-40 HP
+> - Comportement simple
+> - Pas de barre de vie visible
+> - Drops basiques
+>
+> **BOSS :**
+> - 200-500+ HP
+> - Barre de vie en haut de l'écran (comme l'Ender Dragon)
+> - Phases de combat (change de comportement selon sa vie)
+> - Immunités spéciales
+> - Attaques puissantes et variées
+> - Drops légendaires
+> - Particules et effets visuels
+>
+> **🎯 Éléments qui font un bon boss :**
+>
+> **1. Barre de Vie (Boss Bar)**
+> - Affichée en haut pour tous les joueurs proches
+> - Change de couleur selon la phase
+> - Nom personnalisé stylisé
+>
+> **2. Système de Phases**
+> - 100% HP = Phase 1 (lent, attaques basiques)
+> - 50% HP = Phase 2 (plus rapide, attaques spéciales)
+> - 25% HP = Phase 3 (mode berserk, très dangereux)
+>
+> **3. Résistances**
+> - Immunisé au recul (knockback resistance = 1.0)
+> - Immunisé à certains effets (poison, wither)
+> - Armure naturelle élevée
+>
+> **4. Mécaniques Spéciales**
+> - Tir de projectiles
+> - Invocation de mobs
+> - Zones de dégâts au sol
+> - Téléportation
+>
+> **5. Récompenses Épiques**
+> - Items légendaires uniques
+> - XP massive (500+)
+> - Achievements
+>
+> **🔧 Comment créer un boss (étapes) :**
+> 1. Créer la classe qui hérite de Monster (pas PathfinderMob)
+> 2. Créer le ServerBossEvent (barre de vie)
+> 3. Définir les attributs (HP, dégâts, armure)
+> 4. Programmer les phases de combat
+> 5. Ajouter les attaques spéciales
+> 6. Configurer les immunités
+> 7. Définir les loots
+>
+> **💡 Astuce :** Commencez simple, puis ajoutez les mécaniques une par une en testant !
+
 #### 6.3.1 Classe de Boss avec Barre de Vie
+
+**📝 Cette classe crée un boss complet avec barre de vie visible :**
 
 **Créer :** `src/main/java/com/medelium/entity/custom/DragonBossEntity.java`
 
@@ -1995,6 +2312,51 @@ private void specialAttack() {
 ```
 
 ### 6.4 🔱 Créer un MINI-BOSS
+
+> **📖 C'est quoi un Mini-Boss ?**
+> Entre un mob normal et un boss complet :
+> - Plus de vie qu'un mob normal (100-200 HP)
+> - Pas de barre visible en haut (mais peut avoir un healthbar custom)
+> - Phases de combat simplifiées (2-3 phases max)
+> - Drops meilleurs que les mobs normaux
+> - Peut spawner dans le monde naturellement (rareté)
+>
+> **🎯 Différences Mini-Boss vs Boss complet :**
+>
+> | Caractéristique | Mini-Boss | Boss Complet |
+> |-----------------|-----------|-------------|
+> | HP | 100-200 | 300-1000+ |
+> | Barre visible | ❌ Non | ✅ Oui (en haut) |
+> | Phases | 2-3 | 3-5+ |
+> | Spawn naturel | ✅ Oui (rare) | ❌ Non (invoqué) |
+> | Difficulté | Moyen | Très dur |
+> | Temps de combat | 30-60s | 3-10min |
+>
+> **🔧 Système de Phases Simplifié :**
+>
+> **Phase 1 (100%-50% HP) :**
+> - Attaques de mêlée normales
+> - Vitesse normale
+> - Pas d'effets spéciaux
+>
+> **Phase 2 (50%-0% HP) :**
+> - Speed boost (+30%)
+> - Commence à lancer des projectiles
+> - Effets de particules
+> - Son spécial
+>
+> **💡 Exemples d'utilisation :**
+> - **Chevalier Noir** : Spawn dans les donjons, 150 HP, 2 phases
+> - **Loup-Garou** : Spawn la nuit en forêt, 120 HP, devient enragé à 50%
+> - **Bandit Chef** : Spawn dans les camps, 100 HP, appelle des renforts à 30%
+>
+> **🎮 Le code ci-dessous montre :**
+> - Comment détecter le changement de phase
+> - Comment modifier le comportement selon la phase
+> - Comment ajouter des effets visuels et sonores
+> - Comment donner de meilleurs loots
+
+**📝 Classe de Mini-Boss avec phases de combat :**
 
 ```java
 package com.medelium.entity.custom;
@@ -2281,6 +2643,40 @@ public class ModEventBusEvents {
 
 ## 7. 🏰 Structures
 
+> **📖 C'est quoi une Structure ?**
+> Une structure = construction qui spawn naturellement dans le monde
+> Exemples Vanilla : villages, temples, donjons, forteresses
+>
+> **🎯 Structures pour votre mod médiéval :**
+> - 🏰 Châteaux abandonnés
+> - ⛪ Chapelles
+> - 🏪 Tavernes
+> - 🏗️ Ruines anciennes
+> - ⛺ Camps de bandits
+> - 🔮 Tours de mage
+>
+> **🔧 Comment créer une structure (étapes) :**
+>
+> **1. Construire en jeu**
+> - Construisez votre structure en mode créatif
+> - Utilisez le bloc "Structure Block" de Minecraft
+> - Sauvegardez la structure (.nbt)
+>
+> **2. Exporter le fichier**
+> - Le fichier .nbt va dans `resources/data/medeliummod/structures/`
+>
+> **3. Créer le système de spawn**
+> - Code Java qui dit OÙ et QUAND la structure spawn
+> - Définir : biomes, rareté, distance entre structures
+>
+> **4. Enregistrer**
+> - Enregistrer le type de structure dans le mod
+>
+> **💡 IMPORTANT :**
+> Les structures sont COMPLEXES pour les débutants.
+> Recommandation : Commencez par des structures simples (petite ruine)
+> Puis augmentez la complexité (grand château avec plusieurs salles)
+
 ### 7.1 Créer une Structure Simple avec Template Pools
 
 **Créer :** `src/main/resources/data/medeliummod/worldgen/template_pool/castle/start.json`
@@ -2329,7 +2725,53 @@ public class ModEventBusEvents {
 
 ## 8. 🌌 Dimensions
 
+> **📖 C'est quoi une Dimension ?**
+> Une dimension = monde parallèle complètement séparé
+> Exemples Vanilla : Nether, End, Overworld
+>
+> **🎯 Dimensions pour mod médiéval fantasy :**
+> - 🌌 **Royaume des Fées** (forêt enchantée, ciel rose)
+> - 🔥 **Enfers** (lave, démons, feu partout)
+> - ❄️ **Terres Gelées** (glace, neige infinie)
+> - 🌃 **Plan Astéral** (flottant dans l'espace, cristaux)
+> - 🌲 **Forêt Ancienne** (arbres géants, ruines elfiques)
+>
+> **🔧 Ce qu'implique créer une dimension :**
+>
+> **1. Générateur de terrain**
+> - Définir comment le monde se génère
+> - Blocs par défaut (pierre, terre, etc.)
+> - Hauteur du monde
+>
+> **2. Système de Biomes**
+> - Quels biomes existent dans cette dimension
+> - Leur distribution
+>
+> **3. Portail d'accès**
+> - Comment le joueur y entre (portail custom)
+> - Où il spawn en arrivant
+>
+> **4. Propriétés spéciales**
+> - Couleur du ciel
+> - Effet de brouillard
+> - Mobs qui spawnent naturellement
+> - Jour/nuit ou toujours nuit
+> - Lit fonctionne ou explose
+>
+> **⚠️ ATTENTION : C'EST TRÈS AVANCÉ !**
+> Créer une dimension complète demande :
+> - Fichiers JSON complexes
+> - Connaissance approfondie de la génération de monde
+> - Beaucoup de tests
+>
+> **💡 Conseil pour débutants :**
+> 1. Maîtrisez d'abord les items/blocs/entités
+> 2. Puis tentez une dimension simple (juste un monde plat custom)
+> 3. Ensuite compliquez progressivement
+
 ### 8.1 Créer une Dimension Personnalisée
+
+**📝 Ce fichier JSON définit votre dimension et comment le terrain se génère :**
 
 **Créer :** `src/main/resources/data/medeliummod/dimension/medieval_realm.json`
 
@@ -2348,6 +2790,17 @@ public class ModEventBusEvents {
 ```
 
 ### 8.2 Créer un Type de Dimension
+
+> **📖 Le fichier dimension_type définit les "règles physiques" de votre dimension :**
+>
+> **ultrawarm** = Est-ce que l'eau s'évapore (comme le Nether) ?
+> **natural** = Est-ce un monde "naturel" (ciel, nuages, jour/nuit) ?
+> **bed_works** = Est-ce que les lits fonctionnent ou explosent ?
+> **has_skylight** = Y a-t-il de la lumière du ciel ?
+> **coordinate_scale** = Ratio de distance (8.0 = comme le Nether)
+> **ambient_light** = Luminosité ambiante (0.0 = noir, 1.0 = lumineux)
+>
+> **💡 Exemple :** Royaume Féerique = natural:true, ambient_light:0.8 (toujours lumineux)
 
 **Créer :** `src/main/resources/data/medeliummod/dimension_type/medieval_realm.json`
 
@@ -2383,7 +2836,46 @@ public class ModEventBusEvents {
 
 ## 9. ✨ Enchantements
 
+> **📖 Comment fonctionnent les enchantements ?**
+> Un enchantement = bonus magique sur un item (comme Tranchant, Fortune, etc.)
+> S'obtient via table d'enchantement, enclume, ou livres enchantés
+>
+> **🎯 Enchantements pour mod médiéval :**
+> - **Feu Sacré** : Épée qui inflige des dégâts supplémentaires aux morts-vivants
+> - **Bénédiction** : Armure qui régénère la vie lentement
+> - **Fortune du Marchand** : Outil qui double les drops de certains blocs
+> - **Légèreté** : Bottes qui permettent de courir plus vite
+> - **Âme de Dragon** : Arme qui stocke l'XP des kills
+>
+> **🔧 Propriétés d'un enchantement :**
+>
+> **1. Niveau Maximum**
+> - Combien de niveaux l'enchantement a (I, II, III, etc.)
+> - Ex: Fortune va jusqu'à III
+>
+> **2. Rareté**
+> - COMMON : Facile à obtenir
+> - UNCOMMON : Moyen
+> - RARE : Difficile
+> - VERY_RARE : Très rare
+>
+> **3. Compatibilité**
+> - Sur quoi peut-il être appliqué (arme, armure, outil)
+> - Quels enchantements sont incompatibles entre eux
+>
+> **4. Trésor**
+> - Si true : Ne s'obtient QUE dans les coffres/loots
+> - Si false : Table d'enchantement possible
+>
+> **💡 Application de l'effet :**
+> L'enchantement ne fait rien tout seul !
+> Il faut écouter des événements (attaque, dégâts reçus, etc.)
+> Et checker si l'item a votre enchantement
+> Puis appliquer l'effet custom
+
 ### 9.1 Créer un Enchantement Personnalisé
+
+**📝 Ce fichier enregistre votre enchantement dans le jeu :**
 
 **Créer :** `src/main/java/com/medelium/enchantment/ModEnchantments.java`
 
@@ -2411,6 +2903,46 @@ public class ModEnchantments {
 ---
 
 ## 10. 🧪 Effets de Potion
+
+> **📖 C'est quoi un Effet de Potion ?**
+> Un effet = status temporaire sur le joueur (comme Régénération, Poison, Force)
+> Peut être donné par : potions, nourriture, enchantements, zones, mobs
+>
+> **🎯 Effets pour mod médiéval :**
+> - 🛡️ **Égide du Chevalier** : +20% de résistance aux dégâts
+> - 🎯 **Précision de l'Archer** : Projectiles plus rapides et précis
+> - ⚔️ **Rage du Barbare** : +50% dégâts mais -20% défense
+> - 🧝 **Vision Magique** : Voir les coffres à travers les murs
+> - 💉 **Peste Noire** : Perte de vie progressive + contagieux
+> - 🌲 **Bénédiction de la Forêt** : Régénération en forêt uniquement
+>
+> **🔧 Types d'effets :**
+>
+> **BENEFIQUE (bleu) :**
+> - Bon pour le joueur
+> - Icône bleue
+> - Ex: Force, Speed, Régénération
+>
+> **NUISIBLE (rouge) :**
+> - Mauvais pour le joueur
+> - Icône rouge
+> - Ex: Poison, Faiblesse, Lenteur
+>
+> **NEUTRE (gris) :**
+> - Ni bon ni mauvais
+> - Ex: Vision nocturne, Invisibilité
+>
+> **💡 Comment programmer l'effet :**
+> 1. Créer la classe de l'effet (ce qui se passe chaque tick)
+> 2. L'enregistrer dans le jeu
+> 3. Créer une icône 18x18 pixels
+> 4. Appliquer l'effet via code : `player.addEffect(new MobEffectInstance(...))`
+>
+> **🎮 Application automatique :**
+> - Manger une nourriture → Donne l'effet
+> - Entrer dans une zone → Effet activé
+> - Être touché par un mob → Effet appliqué
+> - Porter une armure → Effet permanent
 
 ### 10.1 Créer un Effet Personnalisé
 
@@ -2668,6 +3200,53 @@ public static final DeferredBlock<Block> DEEPSLATE_SILVER_ORE = registerBlock("d
 ---
 
 ## 13. 🖥️ Interfaces Graphiques (GUI)
+
+> **📖 C'est quoi un GUI (Graphical User Interface) ?**
+> C'est un menu/fenêtre qui s'affiche à l'écran : inventaire, four, table de craft, etc.
+> Dans votre mod RP, vous pouvez créer des interfaces pour TOUT :
+> - Menu de quêtes
+> - Shop de marchand
+> - Système de métiers
+> - Table d'alchimie
+> - Livre de sorts
+>
+> **🎯 Deux approches pour créer un GUI :**
+>
+> **APPROCHE 1 : Composants Minecraft** (Complexe)
+> - Utiliser les boutons, slots, et widgets de Minecraft
+> - Beaucoup de code Java
+> - Difficile à positionner exactement
+> - Mais : Intégration native
+>
+> **APPROCHE 2 : Image Pure + Zones Cliquables** (Simple - ce qu'on va faire !)
+> - Vous dessinez TOUTE l'interface dans un logiciel d'image (Paint, GIMP, etc.)
+> - Vous définissez des zones rectangulaires cliquables dans le code
+> - Total contrôle du design
+> - Plus facile pour les débutants
+>
+> **🔧 Comment fonctionne l'approche "Image Pure" :**
+>
+> **ÉTAPE 1 : Dessiner l'image** (logiciel d'image)
+> - Créer une image 176x166 pixels
+> - Dessiner le fond, les boutons, le texte, tout !
+> - Sauvegarder en PNG
+>
+> **ÉTAPE 2 : Créer le Menu** (Java)
+> - Fichier qui dit "ce GUI existe"
+> - Très simple si pas de slots d'inventaire
+>
+> **ÉTAPE 3 : Créer l'Écran** (Java)
+> - Code qui affiche votre image
+> - Définit où sont les zones cliquables
+> - Exemple : "Si clic entre X=20-80 et Y=40-60 → action"
+>
+> **ÉTAPE 4 : Enregistrer** (Java)
+> - Dire à Minecraft que ce GUI existe
+> - Lier le menu et l'écran ensemble
+>
+> **💡 Avantage ÉNORME de cette méthode :**
+> Vous modifiez juste l'image PNG pour changer le design !
+> Pas besoin de retoucher le code si vous voulez changer les couleurs ou ajouter des décos.
 
 ### 13.1 🎨 GUI Complètement Personnalisé avec Image
 
@@ -3531,7 +4110,715 @@ public class ModCommands {
 
 ---
 
-## 18. 🎓 Systèmes de Compétences
+## 18. 🔒 Systèmes de Conditions et Dépendances
+
+> **📖 C'est quoi un système de conditions ?**
+> C'est empêcher l'utilisation de quelque chose tant que le joueur n'a pas rempli certains critères.
+> Comme un niveau minimum dans les MMO, ou une quête préalable dans les RPG.
+>
+> **🎯 Exemples concrets dans un mod RP médiéval :**
+>
+> **Four de Forgeron :**
+> - ❌ Condition : Être forgeron niveau 10
+> - ✅ Si oui → Peut l'utiliser
+> - ❌ Si non → Message "Seuls les forgerons peuvent utiliser ça !"
+>
+> **Épée Légendaire :**
+> - ❌ Condition 1 : Être niveau 50
+> - ❌ Condition 2 : Avoir tué le dragon
+> - ❌ Condition 3 : Être de classe Guerrier
+> - ✅ Toutes remplies → L'épée fonctionne
+> - ❌ Sinon → L'épée ne fait aucun dégât
+>
+> **Portail Dimensionnel :**
+> - ❌ Condition : 10 diamants dans l'inventaire
+> - ✅ Si oui → Portail s'active, diamants consommés
+> - ❌ Si non → Rien ne se passe
+>
+> **🔧 Comment implémenter techniquement :**
+>
+> **1. Stocker les données du joueur**
+> Utiliser le système d'Attachments de NeoForge
+> → Sauvegarder : métier, niveau, XP, statistiques
+> → Ces données survivent à la mort et déconnexion
+>
+> **2. Créer des vérifications**
+> Avant d'exécuter une action (utiliser bloc, item, GUI), on check :
+> ```java
+> if (!joueur.aLeMetier("forgeron")) {
+>     return ERREUR;
+> }
+> if (joueur.niveau < 10) {
+>     return ERREUR;
+> }
+> // OK, action autorisée
+> ```
+>
+> **3. Donner du feedback**
+> Messages clairs : "❌ Vous devez être forgeron niveau 10"
+> Sons d'erreur, effets visuels
+>
+> **4. Afficher les requis**
+> Dans les tooltips : montrer ce qui est nécessaire
+> Dans les GUIs : afficher les conditions
+>
+> **💡 Système de Métiers = La base :**
+> On va d'abord créer un système de métiers (forgeron, alchimiste, etc.)
+> Puis on l'utilisera pour conditionner l'accès aux blocs, items, et fonctionnalités.
+>
+> **🎮 Résultat en jeu :**
+> - Les joueurs choisissent un métier avec `/profession set forgeron`
+> - Ils gagnent de l'XP en faisant des actions liées
+> - Montent de niveau pour débloquer du contenu
+> - Créé de la progression et de la spécialisation (RP !)
+
+### 18.1 💼 Système de Métiers/Professions
+
+**📝 On va créer un système complet de métiers avec niveau et XP :**
+
+**Créer un système où les joueurs choisissent un métier qui débloque certaines fonctionnalités**
+
+#### 18.1.1 Créer la Classe de Données de Joueur
+
+**Créer :** `src/main/java/com/medelium/capability/PlayerProfession.java`
+
+```java
+package com.medelium.capability;
+
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
+import net.neoforged.neoforge.common.util.INBTSerializable;
+
+public class PlayerProfession implements INBTSerializable<CompoundTag> {
+    private String profession = "none";  // forgeron, alchimiste, mineur, etc.
+    private int level = 1;
+    private int experience = 0;
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
+        this.level = 1;
+        this.experience = 0;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getExperience() {
+        return experience;
+    }
+
+    public void addExperience(int amount) {
+        this.experience += amount;
+        checkLevelUp();
+    }
+
+    private void checkLevelUp() {
+        int xpNeeded = getXPNeededForLevel(level);
+        if (experience >= xpNeeded) {
+            experience -= xpNeeded;
+            level++;
+        }
+    }
+
+    private int getXPNeededForLevel(int currentLevel) {
+        return 100 * currentLevel;  // 100, 200, 300, etc.
+    }
+
+    public boolean hasProfession(String profession) {
+        return this.profession.equals(profession);
+    }
+
+    public boolean hasLevel(int minimumLevel) {
+        return this.level >= minimumLevel;
+    }
+
+    @Override
+    public CompoundTag serializeNBT(HolderLookup.Provider provider) {
+        CompoundTag nbt = new CompoundTag();
+        nbt.putString("profession", profession);
+        nbt.putInt("level", level);
+        nbt.putInt("experience", experience);
+        return nbt;
+    }
+
+    @Override
+    public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
+        this.profession = nbt.getString("profession");
+        this.level = nbt.getInt("level");
+        this.experience = nbt.getInt("experience");
+    }
+}
+```
+
+#### 18.1.2 Attacher les Données au Joueur
+
+**Créer :** `src/main/java/com/medelium/capability/ModCapabilities.java`
+
+```java
+package com.medelium.capability;
+
+import com.medelium.MedeliumMod;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.attachment.AttachmentType;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+
+import java.util.function.Supplier;
+
+@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
+public class ModCapabilities {
+    public static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = 
+        DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, MedeliumMod.MOD_ID);
+
+    public static final Supplier<AttachmentType<PlayerProfession>> PLAYER_PROFESSION = 
+        ATTACHMENT_TYPES.register("player_profession", 
+            () -> AttachmentType.serializable(PlayerProfession::new).build());
+
+    // Récupérer les données d'un joueur
+    public static PlayerProfession getProfession(Player player) {
+        return player.getData(PLAYER_PROFESSION);
+    }
+
+    // Copier les données à la mort
+    @SubscribeEvent
+    public static void onPlayerClone(PlayerEvent.Clone event) {
+        if (event.isWasDeath()) {
+            PlayerProfession oldData = event.getOriginal().getData(PLAYER_PROFESSION);
+            PlayerProfession newData = event.getEntity().getData(PLAYER_PROFESSION);
+            
+            newData.setProfession(oldData.getProfession());
+            newData.setLevel(oldData.getLevel());
+        }
+    }
+}
+```
+
+**Enregistrer dans MedeliumMod.java :**
+```java
+ModCapabilities.ATTACHMENT_TYPES.register(modEventBus);
+```
+
+#### 18.1.3 Commandes pour Gérer les Métiers
+
+**Créer :** `src/main/java/com/medelium/command/ProfessionCommands.java`
+
+```java
+package com.medelium.command;
+
+import com.medelium.MedeliumMod;
+import com.medelium.capability.ModCapabilities;
+import com.medelium.capability.PlayerProfession;
+import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.context.CommandContext;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
+
+@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
+public class ProfessionCommands {
+    
+    @SubscribeEvent
+    public static void onRegisterCommands(RegisterCommandsEvent event) {
+        CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
+        
+        // /profession set <métier>
+        dispatcher.register(Commands.literal("profession")
+            .then(Commands.literal("set")
+                .then(Commands.argument("profession", StringArgumentType.word())
+                    .suggests((context, builder) -> {
+                        builder.suggest("forgeron");
+                        builder.suggest("alchimiste");
+                        builder.suggest("mineur");
+                        builder.suggest("fermier");
+                        builder.suggest("bucheron");
+                        return builder.buildFuture();
+                    })
+                    .executes(ProfessionCommands::setProfession)))
+            
+            // /profession info
+            .then(Commands.literal("info")
+                .executes(ProfessionCommands::showInfo))
+            
+            // /profession addxp <montant>
+            .then(Commands.literal("addxp")
+                .then(Commands.argument("amount", IntegerArgumentType.integer(1))
+                    .executes(ProfessionCommands::addXP))));
+    }
+    
+    private static int setProfession(CommandContext<CommandSourceStack> context) {
+        if (context.getSource().getEntity() instanceof ServerPlayer player) {
+            String profession = StringArgumentType.getString(context, "profession");
+            PlayerProfession data = ModCapabilities.getProfession(player);
+            
+            data.setProfession(profession);
+            
+            player.sendSystemMessage(Component.literal("§6Métier choisi: §f" + profession));
+            player.sendSystemMessage(Component.literal("§7Vous commencez au niveau 1"));
+        }
+        return 1;
+    }
+    
+    private static int showInfo(CommandContext<CommandSourceStack> context) {
+        if (context.getSource().getEntity() instanceof ServerPlayer player) {
+            PlayerProfession data = ModCapabilities.getProfession(player);
+            
+            player.sendSystemMessage(Component.literal("§6=== Informations Métier ==="));
+            player.sendSystemMessage(Component.literal("§7Métier: §f" + data.getProfession()));
+            player.sendSystemMessage(Component.literal("§7Niveau: §a" + data.getLevel()));
+            player.sendSystemMessage(Component.literal("§7Expérience: §e" + data.getExperience()));
+        }
+        return 1;
+    }
+    
+    private static int addXP(CommandContext<CommandSourceStack> context) {
+        if (context.getSource().getEntity() instanceof ServerPlayer player) {
+            int amount = IntegerArgumentType.getInteger(context, "amount");
+            PlayerProfession data = ModCapabilities.getProfession(player);
+            
+            int oldLevel = data.getLevel();
+            data.addExperience(amount);
+            int newLevel = data.getLevel();
+            
+            player.sendSystemMessage(Component.literal("§a+§e" + amount + " XP"));
+            
+            if (newLevel > oldLevel) {
+                player.sendSystemMessage(Component.literal("§6§l⬆ NIVEAU AUGMENTÉ !"));
+                player.sendSystemMessage(Component.literal("§7Niveau §f" + oldLevel + " §7→ §a" + newLevel));
+            }
+        }
+        return 1;
+    }
+}
+```
+
+### 18.2 🔒 Bloc avec Conditions d'Utilisation
+
+**Créer un bloc (four, table de craft) qui nécessite un métier et un niveau spécifiques**
+
+#### 18.2.1 Four Personnalisé avec Conditions
+
+**Créer :** `src/main/java/com/medelium/block/custom/BlacksmithForgeBlock.java`
+
+```java
+package com.medelium.block.custom;
+
+import com.medelium.capability.ModCapabilities;
+import com.medelium.capability.PlayerProfession;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+
+public class BlacksmithForgeBlock extends Block {
+    
+    private static final String REQUIRED_PROFESSION = "forgeron";
+    private static final int REQUIRED_LEVEL = 5;
+    
+    public BlacksmithForgeBlock(Properties properties) {
+        super(properties);
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos,
+                                               Player player, BlockHitResult hitResult) {
+        if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
+            // Vérifier les conditions
+            if (!checkConditions(serverPlayer)) {
+                return InteractionResult.FAIL;
+            }
+            
+            // Conditions remplies, ouvrir le GUI ou faire l'action
+            serverPlayer.sendSystemMessage(Component.literal("§aForge utilisée avec succès !"));
+            level.playSound(null, pos, SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
+            
+            // Ici, ouvrir votre GUI de forge
+            // serverPlayer.openMenu(...);
+        }
+        return InteractionResult.sidedSuccess(level.isClientSide());
+    }
+    
+    private boolean checkConditions(ServerPlayer player) {
+        PlayerProfession data = ModCapabilities.getProfession(player);
+        
+        // Vérifier le métier
+        if (!data.hasProfession(REQUIRED_PROFESSION)) {
+            player.sendSystemMessage(Component.literal("§c✗ Métier requis: §f" + REQUIRED_PROFESSION));
+            player.playNotifySound(SoundEvents.VILLAGER_NO, SoundSource.PLAYERS, 1.0F, 1.0F);
+            return false;
+        }
+        
+        // Vérifier le niveau
+        if (!data.hasLevel(REQUIRED_LEVEL)) {
+            player.sendSystemMessage(Component.literal("§c✗ Niveau requis: §f" + REQUIRED_LEVEL + 
+                " §7(Vous êtes niveau " + data.getLevel() + ")"));
+            player.playNotifySound(SoundEvents.VILLAGER_NO, SoundSource.PLAYERS, 1.0F, 1.0F);
+            return false;
+        }
+        
+        return true;
+    }
+}
+```
+
+#### 18.2.2 Afficher les Conditions dans le Tooltip du Bloc
+
+**Créer un BlockItem personnalisé :**
+
+```java
+package com.medelium.item.custom;
+
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.block.Block;
+
+import java.util.List;
+
+public class ConditionalBlockItem extends BlockItem {
+    private final String requiredProfession;
+    private final int requiredLevel;
+    
+    public ConditionalBlockItem(Block block, Properties properties, String profession, int level) {
+        super(block, properties);
+        this.requiredProfession = profession;
+        this.requiredLevel = level;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        tooltipComponents.add(Component.literal(""));
+        tooltipComponents.add(Component.literal("§cConditions requises:"));
+        tooltipComponents.add(Component.literal("§7• Métier: §f" + requiredProfession));
+        tooltipComponents.add(Component.literal("§7• Niveau: §f" + requiredLevel));
+        
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+    }
+}
+```
+
+**Enregistrer le bloc avec le bon BlockItem :**
+
+```java
+// Dans ModBlocks.java
+public static final DeferredBlock<Block> BLACKSMITH_FORGE = 
+    BLOCKS.register("blacksmith_forge", () -> new BlacksmithForgeBlock(
+        BlockBehaviour.Properties.of().strength(3.0f).requiresCorrectToolForDrops()));
+
+// Dans ModItems.java - enregistrer le BlockItem spécial
+public static final DeferredItem<Item> BLACKSMITH_FORGE_ITEM = 
+    ITEMS.register("blacksmith_forge", () -> new ConditionalBlockItem(
+        ModBlocks.BLACKSMITH_FORGE.get(), 
+        new Item.Properties(),
+        "forgeron",
+        5
+    ));
+```
+
+### 18.3 🛠️ Objet avec Conditions d'Utilisation
+
+**Outil qui nécessite un métier spécifique**
+
+```java
+package com.medelium.item.custom;
+
+import com.medelium.capability.ModCapabilities;
+import com.medelium.capability.PlayerProfession;
+import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+
+import java.util.List;
+
+public class ProfessionalPickaxeItem extends PickaxeItem {
+    private static final String REQUIRED_PROFESSION = "mineur";
+    private static final int REQUIRED_LEVEL = 10;
+    
+    public ProfessionalPickaxeItem(Tier tier, Properties properties) {
+        super(tier, properties);
+    }
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        if (!level.isClientSide()) {
+            PlayerProfession data = ModCapabilities.getProfession(player);
+            
+            if (!data.hasProfession(REQUIRED_PROFESSION) || !data.hasLevel(REQUIRED_LEVEL)) {
+                player.sendSystemMessage(Component.literal("§c✗ Vous ne pouvez pas utiliser cet outil !"));
+                player.sendSystemMessage(Component.literal("§7Requis: §f" + REQUIRED_PROFESSION + " niveau " + REQUIRED_LEVEL));
+                level.playSound(null, player.blockPosition(), 
+                    SoundEvents.VILLAGER_NO, SoundSource.PLAYERS, 1.0F, 1.0F);
+                return InteractionResultHolder.fail(player.getItemInHand(hand));
+            }
+        }
+        return super.use(level, player, hand);
+    }
+    
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        tooltipComponents.add(Component.literal(""));
+        tooltipComponents.add(Component.literal("§6Pioche Professionnelle"));
+        tooltipComponents.add(Component.literal("§cRequis: §f" + REQUIRED_PROFESSION + " Niv." + REQUIRED_LEVEL));
+        
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+    }
+}
+```
+
+### 18.4 🎯 GUI avec Vérification de Conditions
+
+**Menu qui vérifie les conditions avant de s'ouvrir**
+
+```java
+package com.medelium.block.custom;
+
+import com.medelium.capability.ModCapabilities;
+import com.medelium.capability.PlayerProfession;
+import com.medelium.screen.AlchemyTableMenu;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+
+public class AlchemyTableBlock extends Block {
+    
+    public AlchemyTableBlock(Properties properties) {
+        super(properties);
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos,
+                                               Player player, BlockHitResult hitResult) {
+        if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
+            PlayerProfession data = ModCapabilities.getProfession(serverPlayer);
+            
+            // Vérifier métier
+            if (!data.hasProfession("alchimiste")) {
+                serverPlayer.sendSystemMessage(Component.literal("§c✗ Seuls les alchimistes peuvent utiliser cette table !"));
+                return InteractionResult.FAIL;
+            }
+            
+            // Vérifier niveau
+            if (!data.hasLevel(3)) {
+                serverPlayer.sendSystemMessage(Component.literal("§c✗ Niveau d'alchimie insuffisant !"));
+                serverPlayer.sendSystemMessage(Component.literal("§7Niveau requis: §f3 §7(Vous: §f" + data.getLevel() + "§7)"));
+                return InteractionResult.FAIL;
+            }
+            
+            // Ouvrir le GUI
+            serverPlayer.openMenu(new SimpleMenuProvider(
+                (id, playerInv, p) -> new AlchemyTableMenu(id, playerInv),
+                Component.literal("§5Table d'Alchimie")
+            ));
+        }
+        return InteractionResult.sidedSuccess(level.isClientSide());
+    }
+}
+```
+
+### 18.5 ⚡ Système Multi-Conditions
+
+**Vérifier plusieurs conditions en même temps**
+
+```java
+package com.medelium.util;
+
+import com.medelium.capability.ModCapabilities;
+import com.medelium.capability.PlayerProfession;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ConditionChecker {
+    
+    public static class Condition {
+        private final String description;
+        private final boolean met;
+        
+        public Condition(String description, boolean met) {
+            this.description = description;
+            this.met = met;
+        }
+        
+        public boolean isMet() { return met; }
+        public String getDescription() { return description; }
+    }
+    
+    // Vérifier toutes les conditions et afficher le résultat
+    public static boolean checkConditions(ServerPlayer player, List<Condition> conditions) {
+        boolean allMet = true;
+        
+        for (Condition condition : conditions) {
+            if (!condition.isMet()) {
+                player.sendSystemMessage(Component.literal("§c✗ " + condition.getDescription()));
+                allMet = false;
+            }
+        }
+        
+        return allMet;
+    }
+    
+    // Builder pour créer des conditions facilement
+    public static class Builder {
+        private final ServerPlayer player;
+        private final List<Condition> conditions = new ArrayList<>();
+        
+        public Builder(ServerPlayer player) {
+            this.player = player;
+        }
+        
+        public Builder profession(String profession) {
+            PlayerProfession data = ModCapabilities.getProfession(player);
+            conditions.add(new Condition(
+                "Métier: " + profession,
+                data.hasProfession(profession)
+            ));
+            return this;
+        }
+        
+        public Builder level(int minLevel) {
+            PlayerProfession data = ModCapabilities.getProfession(player);
+            conditions.add(new Condition(
+                "Niveau minimum: " + minLevel,
+                data.hasLevel(minLevel)
+            ));
+            return this;
+        }
+        
+        public Builder hasItem(ItemStack item, int amount) {
+            boolean hasEnough = player.getInventory().countItem(item.getItem()) >= amount;
+            conditions.add(new Condition(
+                "Objet: " + item.getHoverName().getString() + " x" + amount,
+                hasEnough
+            ));
+            return this;
+        }
+        
+        public Builder customCondition(String description, boolean met) {
+            conditions.add(new Condition(description, met));
+            return this;
+        }
+        
+        public boolean check() {
+            return checkConditions(player, conditions);
+        }
+        
+        public List<Condition> getConditions() {
+            return conditions;
+        }
+    }
+}
+```
+
+**Utiliser le builder :**
+
+```java
+// Dans votre bloc ou item
+PlayerProfession data = ModCapabilities.getProfession(serverPlayer);
+
+boolean canUse = new ConditionChecker.Builder(serverPlayer)
+    .profession("forgeron")
+    .level(10)
+    .hasItem(new ItemStack(Items.DIAMOND), 3)
+    .customCondition("Avoir tué le dragon", hasKilledDragon(serverPlayer))
+    .check();
+
+if (!canUse) {
+    serverPlayer.sendSystemMessage(Component.literal("§cConditions non remplies !"));
+    return InteractionResult.FAIL;
+}
+```
+
+### 18.6 📊 Afficher les Conditions au Survol (Advanced)
+
+**Tooltip dynamique selon si le joueur peut utiliser ou non**
+
+```java
+@Override
+public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+    tooltipComponents.add(Component.literal(""));
+    tooltipComponents.add(Component.literal("§6Conditions:"));
+    
+    // Note: Côté client, on ne peut pas accéder aux données serveur facilement
+    // Donc soit on affiche juste les requis, soit on utilise un système de sync
+    
+    tooltipComponents.add(Component.literal("§7• Forgeron niveau 10"));
+    tooltipComponents.add(Component.literal("§7• 3 diamants dans l'inventaire"));
+    
+    // Si on veut afficher si c'est rempli ou non, il faut synchroniser les données
+    // avec un packet réseau (système avancé)
+    
+    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+}
+```
+
+### 18.7 💡 Exemples d'Utilisation Pratiques
+
+**Four de forgeron avancé :**
+- Métier: Forgeron niveau 15
+- Item requis: Charbon de bois x5
+- Déblocage: Avoir crafté 100 outils
+
+**Table d'enchantement améliorée :**
+- Métier: Enchanteur niveau 20
+- Item requis: Lapis x10, Livre enchanté x1
+- Condition: Être dans un biome montagne
+
+**Portail dimensionnel :**
+- Multi-métiers: Mage niveau 30 OU Alchimiste niveau 40
+- Item: Œil d'ender x12
+- Condition: Phase de lune = pleine lune
+
+---
+
+## 19. 🎓 Systèmes de Compétences
 
 ### 18.1 Stocker des Données Joueur (NBT)
 
