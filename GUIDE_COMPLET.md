@@ -5054,4 +5054,2266 @@ Vous savez maintenant **TOUT** ce qu'il est possible de créer dans votre mod !
 4. N'hésitez pas à copier-coller les exemples
 5. Les erreurs sont normales, lisez les logs !
 
+---
+
+## 19. 📜 Système de Quêtes Complet
+
+> **📖 Pourquoi un système de quêtes ?**
+> Les quêtes sont le CŒUR d'un mod RP. Elles donnent du sens aux actions, racontent une histoire, et motivent les joueurs.
+>
+> **🎯 Types de quêtes possibles :**
+> - 📦 **Collecte** : Ramener X items
+> - ⚔️ **Combat** : Tuer X mobs/boss
+> - 🗣️ **Dialogue** : Parler à des PNJ
+> - 🏃 **Exploration** : Découvrir des lieux
+> - 🔨 **Craft** : Fabriquer des objets
+> - 🎭 **Multi-étapes** : Combinaison de tout ça
+>
+> **🔧 Architecture d'un système de quêtes :**
+>
+> **1. La Quête** (Quest)
+> - ID unique
+> - Titre et description
+> - Objectifs à accomplir
+> - Récompenses
+> - Conditions de démarrage
+>
+> **2. Les Objectifs** (Objectives)
+> - Type d'objectif
+> - Progression actuelle / max
+> - Validation
+>
+> **3. Le Gestionnaire** (QuestManager)
+> - Stocke les quêtes actives par joueur
+> - Vérifie la progression
+> - Distribue les récompenses
+>
+> **4. Le Journal** (Quest Log UI)
+> - Affiche les quêtes en cours
+> - Montre la progression
+> - Permet d'abandonner
+>
+> **💡 Persistance :**
+> Toutes les données de quête doivent être sauvegardées avec le joueur (NBT/Capability)
+> pour survivre aux déconnexions et redémarrages serveur.
+
+### 19.1 Structure de Base d'une Quête
+
+**📝 Classe Quest - Représente une quête complète :**
+
+```java
+package com.medelium.quest;
+
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Quest {
+    private final String id;
+    private final Component title;
+    private final Component description;
+    private final List<QuestObjective> objectives;
+    private final List<QuestReward> rewards;
+    private final int minLevel;
+    
+    public Quest(String id, Component title, Component description, int minLevel) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.objectives = new ArrayList<>();
+        this.rewards = new ArrayList<>();
+        this.minLevel = minLevel;
+    }
+    
+    public String getId() { return id; }
+    public Component getTitle() { return title; }
+    public Component getDescription() { return description; }
+    public int getMinLevel() { return minLevel; }
+    
+    public Quest addObjective(QuestObjective objective) {
+        objectives.add(objective);
+        return this;
+    }
+    
+    public Quest addReward(QuestReward reward) {
+        rewards.add(reward);
+        return this;
+    }
+    
+    public List<QuestObjective> getObjectives() { return objectives; }
+    public List<QuestReward> getRewards() { return rewards; }
+    
+    // Vérifier si toutes les objectifs sont complétés
+    public boolean isCompleted(ServerPlayer player) {
+        PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+        QuestProgress progress = data.getProgress(this.id);
+        if (progress == null) return false;
+        
+        for (int i = 0; i < objectives.size(); i++) {
+            if (progress.getObjectiveProgress(i) < objectives.get(i).getRequiredAmount()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    // Donner les récompenses
+    public void giveRewards(ServerPlayer player) {
+        for (QuestReward reward : rewards) {
+            reward.grant(player);
+        }
+    }
+}
+```
+
+### 19.2 Objectifs de Quête
+
+**📝 Interface QuestObjective - Base pour tous les types d'objectifs :**
+
+```java
+package com.medelium.quest;
+
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+
+public interface QuestObjective {
+    Component getDescription();
+    int getRequiredAmount();
+    
+    // Vérifier si cet événement fait progresser l'objectif
+    boolean checkProgress(ServerPlayer player, Object eventData);
+}
+```
+
+**📝 Objectif : Collecter des Items :**
+
+```java
+package com.medelium.quest.objectives;
+
+import com.medelium.quest.QuestObjective;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+
+public class CollectItemObjective implements QuestObjective {
+    private final Item item;
+    private final int amount;
+    
+    public CollectItemObjective(Item item, int amount) {
+        this.item = item;
+        this.amount = amount;
+    }
+    
+    @Override
+    public Component getDescription() {
+        return Component.literal("Collecter " + amount + "x " + item.getDescription().getString());
+    }
+    
+    @Override
+    public int getRequiredAmount() {
+        return amount;
+    }
+    
+    @Override
+    public boolean checkProgress(ServerPlayer player, Object eventData) {
+        if (eventData instanceof ItemStack stack) {
+            return stack.is(item);
+        }
+        return false;
+    }
+    
+    // Compter combien le joueur en a dans son inventaire
+    public int countInInventory(ServerPlayer player) {
+        int count = 0;
+        for (ItemStack stack : player.getInventory().items) {
+            if (stack.is(item)) {
+                count += stack.getCount();
+            }
+        }
+        return count;
+    }
+}
+```
+
+**📝 Objectif : Tuer des Mobs :**
+
+```java
+package com.medelium.quest.objectives;
+
+import com.medelium.quest.QuestObjective;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+
+public class KillMobObjective implements QuestObjective {
+    private final EntityType<?> entityType;
+    private final int amount;
+    
+    public KillMobObjective(EntityType<?> entityType, int amount) {
+        this.entityType = entityType;
+        this.amount = amount;
+    }
+    
+    @Override
+    public Component getDescription() {
+        return Component.literal("Tuer " + amount + "x " + entityType.getDescription().getString());
+    }
+    
+    @Override
+    public int getRequiredAmount() {
+        return amount;
+    }
+    
+    @Override
+    public boolean checkProgress(ServerPlayer player, Object eventData) {
+        if (eventData instanceof LivingEntity entity) {
+            return entity.getType() == entityType;
+        }
+        return false;
+    }
+}
+```
+
+### 19.3 Gestionnaire de Quêtes
+
+**📝 PlayerQuestData - Stocke les quêtes du joueur :**
+
+```java
+package com.medelium.quest;
+
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
+import org.jetbrains.annotations.UnknownNullability;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class PlayerQuestData {
+    private final Map<String, QuestProgress> activeQuests = new HashMap<>();
+    private final Map<String, Long> completedQuests = new HashMap<>();
+    
+    public void startQuest(String questId) {
+        if (!activeQuests.containsKey(questId)) {
+            activeQuests.put(questId, new QuestProgress(questId));
+        }
+    }
+    
+    public void completeQuest(String questId) {
+        activeQuests.remove(questId);
+        completedQuests.put(questId, System.currentTimeMillis());
+    }
+    
+    public boolean isQuestActive(String questId) {
+        return activeQuests.containsKey(questId);
+    }
+    
+    public boolean isQuestCompleted(String questId) {
+        return completedQuests.containsKey(questId);
+    }
+    
+    public QuestProgress getProgress(String questId) {
+        return activeQuests.get(questId);
+    }
+    
+    public void incrementObjective(String questId, int objectiveIndex, int amount) {
+        QuestProgress progress = activeQuests.get(questId);
+        if (progress != null) {
+            progress.incrementObjective(objectiveIndex, amount);
+        }
+    }
+    
+    // Sauvegarde NBT
+    public CompoundTag save(HolderLookup.Provider provider) {
+        CompoundTag tag = new CompoundTag();
+        
+        // Quêtes actives
+        ListTag activeList = new ListTag();
+        for (QuestProgress progress : activeQuests.values()) {
+            activeList.add(progress.save());
+        }
+        tag.put("ActiveQuests", activeList);
+        
+        // Quêtes complétées
+        CompoundTag completedTag = new CompoundTag();
+        for (Map.Entry<String, Long> entry : completedQuests.entrySet()) {
+            completedTag.putLong(entry.getKey(), entry.getValue());
+        }
+        tag.put("CompletedQuests", completedTag);
+        
+        return tag;
+    }
+    
+    // Chargement NBT
+    public void load(CompoundTag tag, HolderLookup.Provider provider) {
+        activeQuests.clear();
+        completedQuests.clear();
+        
+        // Quêtes actives
+        ListTag activeList = tag.getList("ActiveQuests", Tag.TAG_COMPOUND);
+        for (Tag t : activeList) {
+            QuestProgress progress = QuestProgress.load((CompoundTag) t);
+            activeQuests.put(progress.getQuestId(), progress);
+        }
+        
+        // Quêtes complétées
+        CompoundTag completedTag = tag.getCompound("CompletedQuests");
+        for (String key : completedTag.getAllKeys()) {
+            completedQuests.put(key, completedTag.getLong(key));
+        }
+    }
+}
+```
+
+**📝 QuestProgress - Progression d'une quête :**
+
+```java
+package com.medelium.quest;
+
+import net.minecraft.nbt.CompoundTag;
+
+public class QuestProgress {
+    private final String questId;
+    private final int[] objectiveProgress;
+    
+    public QuestProgress(String questId) {
+        this.questId = questId;
+        // Récupérer la quête pour savoir combien d'objectifs
+        Quest quest = QuestRegistry.getQuest(questId);
+        this.objectiveProgress = new int[quest.getObjectives().size()];
+    }
+    
+    public QuestProgress(String questId, int objectiveCount) {
+        this.questId = questId;
+        this.objectiveProgress = new int[objectiveCount];
+    }
+    
+    public String getQuestId() { return questId; }
+    
+    public int getObjectiveProgress(int index) {
+        if (index < 0 || index >= objectiveProgress.length) return 0;
+        return objectiveProgress[index];
+    }
+    
+    public void incrementObjective(int index, int amount) {
+        if (index >= 0 && index < objectiveProgress.length) {
+            objectiveProgress[index] += amount;
+        }
+    }
+    
+    public void setObjectiveProgress(int index, int value) {
+        if (index >= 0 && index < objectiveProgress.length) {
+            objectiveProgress[index] = value;
+        }
+    }
+    
+    public CompoundTag save() {
+        CompoundTag tag = new CompoundTag();
+        tag.putString("QuestId", questId);
+        tag.putIntArray("Progress", objectiveProgress);
+        return tag;
+    }
+    
+    public static QuestProgress load(CompoundTag tag) {
+        String questId = tag.getString("QuestId");
+        int[] progress = tag.getIntArray("Progress");
+        QuestProgress questProgress = new QuestProgress(questId, progress.length);
+        for (int i = 0; i < progress.length; i++) {
+            questProgress.setObjectiveProgress(i, progress[i]);
+        }
+        return questProgress;
+    }
+}
+```
+
+### 19.4 Registre de Quêtes
+
+**📝 QuestRegistry - Enregistre toutes les quêtes du mod :**
+
+```java
+package com.medelium.quest;
+
+import com.medelium.item.ModItems;
+import com.medelium.quest.objectives.CollectItemObjective;
+import com.medelium.quest.objectives.KillMobObjective;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Items;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class QuestRegistry {
+    private static final Map<String, Quest> QUESTS = new HashMap<>();
+    
+    public static void register() {
+        // Quête 1 : Première collecte
+        Quest firstQuest = new Quest(
+            "first_collection",
+            Component.literal("§6Première Collecte"),
+            Component.literal("§7Le forgeron a besoin de fer pour forger."),
+            1
+        );
+        firstQuest.addObjective(new CollectItemObjective(Items.IRON_INGOT, 10));
+        firstQuest.addReward(new ItemReward(ModItems.GOLD_COIN.get(), 50));
+        firstQuest.addReward(new XPReward(100));
+        QUESTS.put(firstQuest.getId(), firstQuest);
+        
+        // Quête 2 : Chasse aux zombies
+        Quest zombieHunt = new Quest(
+            "zombie_hunt",
+            Component.literal("§6Menace Zombie"),
+            Component.literal("§7Des zombies menacent le village !"),
+            3
+        );
+        zombieHunt.addObjective(new KillMobObjective(EntityType.ZOMBIE, 20));
+        zombieHunt.addReward(new ItemReward(ModItems.SILVER_SWORD.get(), 1));
+        zombieHunt.addReward(new XPReward(250));
+        QUESTS.put(zombieHunt.getId(), zombieHunt);
+        
+        // Quête 3 : Multi-objectifs
+        Quest epicQuest = new Quest(
+            "epic_journey",
+            Component.literal("§6§lVoyage Épique"),
+            Component.literal("§7Une quête légendaire vous attend..."),
+            10
+        );
+        epicQuest.addObjective(new CollectItemObjective(Items.DIAMOND, 5));
+        epicQuest.addObjective(new KillMobObjective(EntityType.ENDER_DRAGON, 1));
+        epicQuest.addObjective(new CollectItemObjective(Items.NETHER_STAR, 1));
+        epicQuest.addReward(new ItemReward(ModItems.LEGENDARY_SWORD.get(), 1));
+        epicQuest.addReward(new XPReward(5000));
+        QUESTS.put(epicQuest.getId(), epicQuest);
+    }
+    
+    public static Quest getQuest(String id) {
+        return QUESTS.get(id);
+    }
+    
+    public static Map<String, Quest> getAllQuests() {
+        return QUESTS;
+    }
+}
+```
+
+### 19.5 Récompenses de Quêtes
+
+**📝 Interface QuestReward :**
+
+```java
+package com.medelium.quest;
+
+import net.minecraft.server.level.ServerPlayer;
+
+public interface QuestReward {
+    void grant(ServerPlayer player);
+}
+```
+
+**📝 ItemReward - Donner un item :**
+
+```java
+package com.medelium.quest;
+
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+
+public class ItemReward implements QuestReward {
+    private final Item item;
+    private final int amount;
+    
+    public ItemReward(Item item, int amount) {
+        this.item = item;
+        this.amount = amount;
+    }
+    
+    @Override
+    public void grant(ServerPlayer player) {
+        ItemStack stack = new ItemStack(item, amount);
+        player.addItem(stack);
+    }
+}
+```
+
+**📝 XPReward - Donner de l'XP :**
+
+```java
+package com.medelium.quest;
+
+import net.minecraft.server.level.ServerPlayer;
+
+public class XPReward implements QuestReward {
+    private final int amount;
+    
+    public XPReward(int amount) {
+        this.amount = amount;
+    }
+    
+    @Override
+    public void grant(ServerPlayer player) {
+        player.giveExperiencePoints(amount);
+    }
+}
+```
+
+### 19.6 Événements de Progression
+
+**📝 Écouter les événements pour progresser les quêtes :**
+
+```java
+package com.medelium.event;
+
+import com.medelium.MedeliumMod;
+import com.medelium.quest.*;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.LivingEntity;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+
+@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
+public class QuestEvents {
+    
+    // Quand un joueur tue une entité
+    @SubscribeEvent
+    public static void onEntityKilled(LivingDeathEvent event) {
+        if (event.getSource().getEntity() instanceof ServerPlayer player) {
+            LivingEntity killed = event.getEntity();
+            
+            PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+            
+            // Vérifier toutes les quêtes actives
+            for (String questId : data.getActiveQuests().keySet()) {
+                Quest quest = QuestRegistry.getQuest(questId);
+                if (quest == null) continue;
+                
+                // Vérifier chaque objectif
+                for (int i = 0; i < quest.getObjectives().size(); i++) {
+                    QuestObjective objective = quest.getObjectives().get(i);
+                    
+                    if (objective.checkProgress(player, killed)) {
+                        data.incrementObjective(questId, i, 1);
+                        
+                        // Vérifier si la quête est complétée
+                        if (quest.isCompleted(player)) {
+                            completeQuest(player, quest);
+                        } else {
+                            // Message de progression
+                            QuestProgress progress = data.getProgress(questId);
+                            int current = progress.getObjectiveProgress(i);
+                            int required = objective.getRequiredAmount();
+                            player.displayClientMessage(
+                                Component.literal("§aQuête: " + current + "/" + required + " " + objective.getDescription().getString()),
+                                true
+                            );
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    // Quand un joueur ramasse un item
+    @SubscribeEvent
+    public static void onItemPickup(PlayerEvent.ItemPickupEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            ItemStack pickedUp = event.getStack();
+            
+            PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+            
+            for (String questId : data.getActiveQuests().keySet()) {
+                Quest quest = QuestRegistry.getQuest(questId);
+                if (quest == null) continue;
+                
+                for (int i = 0; i < quest.getObjectives().size(); i++) {
+                    QuestObjective objective = quest.getObjectives().get(i);
+                    
+                    if (objective.checkProgress(player, pickedUp)) {
+                        // Pour les items, on compte combien il en a dans l'inventaire
+                        if (objective instanceof CollectItemObjective collectObj) {
+                            int currentCount = collectObj.countInInventory(player);
+                            QuestProgress progress = data.getProgress(questId);
+                            progress.setObjectiveProgress(i, Math.min(currentCount, objective.getRequiredAmount()));
+                            
+                            if (quest.isCompleted(player)) {
+                                completeQuest(player, quest);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private static void completeQuest(ServerPlayer player, Quest quest) {
+        PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+        
+        // Donner les récompenses
+        quest.giveRewards(player);
+        
+        // Marquer comme complétée
+        data.completeQuest(quest.getId());
+        
+        // Message de réussite
+        player.sendSystemMessage(Component.literal("§6§l✔ QUÊTE TERMINÉE !"));
+        player.sendSystemMessage(Component.literal("§e" + quest.getTitle().getString()));
+        
+        // Son de succès
+        player.playSound(SoundEvents.PLAYER_LEVELUP, 1.0F, 1.0F);
+    }
+}
+```
+
+### 19.7 Commandes de Quête
+
+**📝 Commandes pour gérer les quêtes :**
+
+```java
+package com.medelium.command;
+
+import com.medelium.quest.*;
+import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.context.CommandContext;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+
+public class QuestCommands {
+    
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+        dispatcher.register(Commands.literal("quest")
+            .then(Commands.literal("start")
+                .then(Commands.argument("questId", StringArgumentType.string())
+                    .executes(QuestCommands::startQuest)))
+            .then(Commands.literal("list")
+                .executes(QuestCommands::listQuests))
+            .then(Commands.literal("progress")
+                .executes(QuestCommands::showProgress))
+            .then(Commands.literal("complete")
+                .then(Commands.argument("questId", StringArgumentType.string())
+                    .requires(source -> source.hasPermission(2))
+                    .executes(QuestCommands::forceComplete)))
+        );
+    }
+    
+    private static int startQuest(CommandContext<CommandSourceStack> context) {
+        ServerPlayer player = context.getSource().getPlayer();
+        String questId = StringArgumentType.getString(context, "questId");
+        
+        Quest quest = QuestRegistry.getQuest(questId);
+        if (quest == null) {
+            player.sendSystemMessage(Component.literal("§cQuête introuvable !"));
+            return 0;
+        }
+        
+        PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+        
+        if (data.isQuestCompleted(questId)) {
+            player.sendSystemMessage(Component.literal("§cVous avez déjà complété cette quête !"));
+            return 0;
+        }
+        
+        if (data.isQuestActive(questId)) {
+            player.sendSystemMessage(Component.literal("§cCette quête est déjà en cours !"));
+            return 0;
+        }
+        
+        data.startQuest(questId);
+        player.sendSystemMessage(Component.literal("§a§lNOUVELLE QUÊTE !"));
+        player.sendSystemMessage(quest.getTitle());
+        player.sendSystemMessage(quest.getDescription());
+        
+        return 1;
+    }
+    
+    private static int listQuests(CommandContext<CommandSourceStack> context) {
+        ServerPlayer player = context.getSource().getPlayer();
+        PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+        
+        player.sendSystemMessage(Component.literal("§6§l=== QUÊTES ACTIVES ==="));
+        
+        if (data.getActiveQuests().isEmpty()) {
+            player.sendSystemMessage(Component.literal("§7Aucune quête en cours"));
+        } else {
+            for (String questId : data.getActiveQuests().keySet()) {
+                Quest quest = QuestRegistry.getQuest(questId);
+                if (quest != null) {
+                    player.sendSystemMessage(Component.literal("§e- " + quest.getTitle().getString()));
+                }
+            }
+        }
+        
+        return 1;
+    }
+    
+    private static int showProgress(CommandContext<CommandSourceStack> context) {
+        ServerPlayer player = context.getSource().getPlayer();
+        PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+        
+        for (String questId : data.getActiveQuests().keySet()) {
+            Quest quest = QuestRegistry.getQuest(questId);
+            if (quest == null) continue;
+            
+            QuestProgress progress = data.getProgress(questId);
+            
+            player.sendSystemMessage(Component.literal("§6" + quest.getTitle().getString()));
+            for (int i = 0; i < quest.getObjectives().size(); i++) {
+                QuestObjective obj = quest.getObjectives().get(i);
+                int current = progress.getObjectiveProgress(i);
+                int required = obj.getRequiredAmount();
+                
+                String status = current >= required ? "§a✔" : "§7○";
+                player.sendSystemMessage(Component.literal(
+                    status + " " + obj.getDescription().getString() + " (" + current + "/" + required + ")"
+                ));
+            }
+        }
+        
+        return 1;
+    }
+    
+    private static int forceComplete(CommandContext<CommandSourceStack> context) {
+        ServerPlayer player = context.getSource().getPlayer();
+        String questId = StringArgumentType.getString(context, "questId");
+        
+        Quest quest = QuestRegistry.getQuest(questId);
+        if (quest == null) {
+            player.sendSystemMessage(Component.literal("§cQuête introuvable !"));
+            return 0;
+        }
+        
+        PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+        quest.giveRewards(player);
+        data.completeQuest(questId);
+        
+        player.sendSystemMessage(Component.literal("§aQuête complétée de force !"));
+        return 1;
+    }
+}
+```
+
+---
+
+## 20. 🏛️ Système de Factions & Réputation
+
+> **📖 Pourquoi des factions ?**
+> Les factions ajoutent de la profondeur au RP : alliances, ennemis, accès conditionnels.
+> Le joueur doit faire des choix qui impactent son gameplay.
+>
+> **🎯 Exemples de factions médiévales :**
+> - ⚔️ **Garde Royale** : Protection du royaume
+> - 🗡️ **Guilde des Mercenaires** : Contrats et combats
+> - 📚 **Ordre des Mages** : Magie et connaissance
+> - 🌙 **Culte des Ombres** : Faction secrète maléfique
+> - 🏪 **Ligue des Marchands** : Commerce et richesse
+>
+> **🔧 Système de réputation :**
+>
+> **Niveaux de réputation :**
+> - **Haï** (-1000 à -500) : Attaqué à vue, aucun accès
+> - **Hostile** (-500 à -100) : Pas de commerce, quêtes refusées
+> - **Neutre** (-100 à 100) : Accès basique
+> - **Amical** (100 à 500) : Réductions, quêtes spéciales
+> - **Allié** (500 à 1000) : Accès VIP, équipement faction
+> - **Exalté** (1000+) : Récompenses légendaires
+>
+> **💡 Actions qui modifient la réputation :**
+> - Compléter des quêtes : +50 à +200
+> - Tuer des ennemis de la faction : +10 à +50
+> - Tuer des membres de la faction : -200 à -500
+> - Commerce : +1 à +5 par transaction
+> - Donner des items : Variable selon valeur
+
+### 20.1 Structure de Faction
+
+**📝 Classe Faction :**
+
+```java
+package com.medelium.faction;
+
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Item;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Faction {
+    private final String id;
+    private final Component name;
+    private final Component description;
+    private final Map<Item, Integer> favoriteItems; // Items qui donnent réputation
+    private final Map<EntityType<?>, Integer> enemyMobs; // Mobs à tuer pour réputation
+    
+    public Faction(String id, Component name, Component description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.favoriteItems = new HashMap<>();
+        this.enemyMobs = new HashMap<>();
+    }
+    
+    public String getId() { return id; }
+    public Component getName() { return name; }
+    public Component getDescription() { return description; }
+    
+    public Faction addFavoriteItem(Item item, int reputationGain) {
+        favoriteItems.put(item, reputationGain);
+        return this;
+    }
+    
+    public Faction addEnemyMob(EntityType<?> type, int reputationGain) {
+        enemyMobs.put(type, reputationGain);
+        return this;
+    }
+    
+    public int getReputationForItem(Item item) {
+        return favoriteItems.getOrDefault(item, 0);
+    }
+    
+    public int getReputationForKill(EntityType<?> type) {
+        return enemyMobs.getOrDefault(type, 0);
+    }
+    
+    // Déterminer le niveau de réputation
+    public static ReputationLevel getReputationLevel(int reputation) {
+        if (reputation >= 1000) return ReputationLevel.EXALTED;
+        if (reputation >= 500) return ReputationLevel.ALLIED;
+        if (reputation >= 100) return ReputationLevel.FRIENDLY;
+        if (reputation >= -100) return ReputationLevel.NEUTRAL;
+        if (reputation >= -500) return ReputationLevel.HOSTILE;
+        return ReputationLevel.HATED;
+    }
+    
+    public enum ReputationLevel {
+        HATED("§4Haï", -1000, -500),
+        HOSTILE("§c Hostile", -500, -100),
+        NEUTRAL("§7Neutre", -100, 100),
+        FRIENDLY("§aAmical", 100, 500),
+        ALLIED("§2Allié", 500, 1000),
+        EXALTED("§6§lExalté", 1000, Integer.MAX_VALUE);
+        
+        private final String displayName;
+        private final int min;
+        private final int max;
+        
+        ReputationLevel(String displayName, int min, int max) {
+            this.displayName = displayName;
+            this.min = min;
+            this.max = max;
+        }
+        
+        public String getDisplayName() { return displayName; }
+        public int getMin() { return min; }
+        public int getMax() { return max; }
+    }
+}
+```
+
+### 20.2 Données de Réputation du Joueur
+
+**📝 PlayerFactionData - Stocke les réputations :**
+
+```java
+package com.medelium.faction;
+
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class PlayerFactionData {
+    private final Map<String, Integer> reputations = new HashMap<>();
+    
+    public int getReputation(String factionId) {
+        return reputations.getOrDefault(factionId, 0);
+    }
+    
+    public void setReputation(String factionId, int value) {
+        reputations.put(factionId, Math.max(-1000, Math.min(1000, value)));
+    }
+    
+    public void addReputation(String factionId, int amount) {
+        int current = getReputation(factionId);
+        setReputation(factionId, current + amount);
+    }
+    
+    public Faction.ReputationLevel getLevel(String factionId) {
+        return Faction.getReputationLevel(getReputation(factionId));
+    }
+    
+    public boolean hasMinimumReputation(String factionId, int minimum) {
+        return getReputation(factionId) >= minimum;
+    }
+    
+    // Sauvegarde NBT
+    public CompoundTag save(HolderLookup.Provider provider) {
+        CompoundTag tag = new CompoundTag();
+        for (Map.Entry<String, Integer> entry : reputations.entrySet()) {
+            tag.putInt(entry.getKey(), entry.getValue());
+        }
+        return tag;
+    }
+    
+    public void load(CompoundTag tag, HolderLookup.Provider provider) {
+        reputations.clear();
+        for (String key : tag.getAllKeys()) {
+            reputations.put(key, tag.getInt(key));
+        }
+    }
+}
+```
+
+### 20.3 Registre de Factions
+
+**📝 FactionRegistry :**
+
+```java
+package com.medelium.faction;
+
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Items;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class FactionRegistry {
+    private static final Map<String, Faction> FACTIONS = new HashMap<>();
+    
+    public static void register() {
+        // Garde Royale
+        Faction royalGuard = new Faction(
+            "royal_guard",
+            Component.literal("§6Garde Royale"),
+            Component.literal("§7Protecteurs du royaume et de la couronne")
+        );
+        royalGuard.addEnemyMob(EntityType.ZOMBIE, 5);
+        royalGuard.addEnemyMob(EntityType.SKELETON, 5);
+        royalGuard.addEnemyMob(EntityType.PILLAGER, 15);
+        royalGuard.addFavoriteItem(Items.IRON_INGOT, 2);
+        royalGuard.addFavoriteItem(Items.DIAMOND, 10);
+        FACTIONS.put(royalGuard.getId(), royalGuard);
+        
+        // Ordre des Mages
+        Faction mageOrder = new Faction(
+            "mage_order",
+            Component.literal("§5Ordre des Mages"),
+            Component.literal("§7Gardiens de la connaissance arcanique")
+        );
+        mageOrder.addEnemyMob(EntityType.WITCH, 10);
+        mageOrder.addEnemyMob(EntityType.EVOKER, 20);
+        mageOrder.addFavoriteItem(Items.LAPIS_LAZULI, 3);
+        mageOrder.addFavoriteItem(Items.ENCHANTED_BOOK, 15);
+        FACTIONS.put(mageOrder.getId(), mageOrder);
+        
+        // Guilde des Mercenaires
+        Faction mercenaries = new Faction(
+            "mercenaries",
+            Component.literal("§cGuilde des Mercenaires"),
+            Component.literal("§7Combattants à louer pour le plus offrant")
+        );
+        mercenaries.addEnemyMob(EntityType.CREEPER, 8);
+        mercenaries.addEnemyMob(EntityType.ENDERMAN, 12);
+        mercenaries.addFavoriteItem(Items.GOLD_INGOT, 5);
+        mercenaries.addFavoriteItem(Items.EMERALD, 8);
+        FACTIONS.put(mercenaries.getId(), mercenaries);
+    }
+    
+    public static Faction getFaction(String id) {
+        return FACTIONS.get(id);
+    }
+    
+    public static Map<String, Faction> getAllFactions() {
+        return FACTIONS;
+    }
+}
+```
+
+### 20.4 Événements de Réputation
+
+**📝 Gagner de la réputation :**
+
+```java
+package com.medelium.event;
+
+import com.medelium.MedeliumMod;
+import com.medelium.faction.*;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.LivingEntity;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+
+@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
+public class FactionEvents {
+    
+    @SubscribeEvent
+    public static void onMobKilled(LivingDeathEvent event) {
+        if (event.getSource().getEntity() instanceof ServerPlayer player) {
+            LivingEntity killed = event.getEntity();
+            PlayerFactionData data = player.getData(ModAttachments.FACTION_DATA);
+            
+            // Vérifier toutes les factions
+            for (Faction faction : FactionRegistry.getAllFactions().values()) {
+                int reputationGain = faction.getReputationForKill(killed.getType());
+                
+                if (reputationGain > 0) {
+                    int oldRep = data.getReputation(faction.getId());
+                    Faction.ReputationLevel oldLevel = Faction.getReputationLevel(oldRep);
+                    
+                    data.addReputation(faction.getId(), reputationGain);
+                    
+                    int newRep = data.getReputation(faction.getId());
+                    Faction.ReputationLevel newLevel = Faction.getReputationLevel(newRep);
+                    
+                    // Message de gain
+                    player.displayClientMessage(
+                        Component.literal("§a+" + reputationGain + " §7réputation avec §f" + faction.getName().getString()),
+                        true
+                    );
+                    
+                    // Si changement de niveau
+                    if (oldLevel != newLevel) {
+                        player.sendSystemMessage(Component.literal("§6§l✦ NOUVEAU RANG !"));
+                        player.sendSystemMessage(Component.literal(
+                            "§e" + faction.getName().getString() + " : " + newLevel.getDisplayName()
+                        ));
+                        player.playSound(SoundEvents.PLAYER_LEVELUP, 1.0F, 1.5F);
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+### 20.5 Accès Conditionnels basés sur Réputation
+
+**📝 Bloc nécessitant une réputation :**
+
+```java
+package com.medelium.block.custom;
+
+import com.medelium.faction.*;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+
+public class FactionDoorBlock extends Block {
+    private final String requiredFaction;
+    private final int minimumReputation;
+    
+    public FactionDoorBlock(Properties properties, String factionId, int minRep) {
+        super(properties);
+        this.requiredFaction = factionId;
+        this.minimumReputation = minRep;
+    }
+    
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, 
+                                               Player player, BlockHitResult hitResult) {
+        if (player instanceof ServerPlayer serverPlayer) {
+            PlayerFactionData data = serverPlayer.getData(ModAttachments.FACTION_DATA);
+            int reputation = data.getReputation(requiredFaction);
+            
+            if (reputation < minimumReputation) {
+                Faction faction = FactionRegistry.getFaction(requiredFaction);
+                player.displayClientMessage(Component.literal(
+                    "§cAccès refusé ! Réputation " + faction.getName().getString() + 
+                    " requise : " + minimumReputation + " (vous: " + reputation + ")"
+                ), true);
+                return InteractionResult.FAIL;
+            }
+            
+            // Ouvrir la porte ou accès autorisé
+            player.displayClientMessage(Component.literal("§aAccès autorisé"), true);
+            return InteractionResult.SUCCESS;
+        }
+        
+        return InteractionResult.PASS;
+    }
+}
+```
+
+### 20.6 Commandes de Faction
+
+**📝 Commandes pour gérer les factions :**
+
+```java
+package com.medelium.command;
+
+import com.medelium.faction.*;
+import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.context.CommandContext;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+
+public class FactionCommands {
+    
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+        dispatcher.register(Commands.literal("faction")
+            .then(Commands.literal("list")
+                .executes(FactionCommands::listFactions))
+            .then(Commands.literal("reputation")
+                .executes(FactionCommands::showReputations))
+            .then(Commands.literal("set")
+                .requires(source -> source.hasPermission(2))
+                .then(Commands.argument("factionId", StringArgumentType.string())
+                    .then(Commands.argument("amount", IntegerArgumentType.integer(-1000, 1000))
+                        .executes(FactionCommands::setReputation))))
+        );
+    }
+    
+    private static int listFactions(CommandContext<CommandSourceStack> context) {
+        ServerPlayer player = context.getSource().getPlayer();
+        
+        player.sendSystemMessage(Component.literal("§6§l=== FACTIONS ==="));
+        for (Faction faction : FactionRegistry.getAllFactions().values()) {
+            player.sendSystemMessage(Component.literal("§e- " + faction.getName().getString()));
+            player.sendSystemMessage(Component.literal("  §7" + faction.getDescription().getString()));
+        }
+        
+        return 1;
+    }
+    
+    private static int showReputations(CommandContext<CommandSourceStack> context) {
+        ServerPlayer player = context.getSource().getPlayer();
+        PlayerFactionData data = player.getData(ModAttachments.FACTION_DATA);
+        
+        player.sendSystemMessage(Component.literal("§6§l=== VOS RÉPUTATIONS ==="));
+        
+        for (Faction faction : FactionRegistry.getAllFactions().values()) {
+            int rep = data.getReputation(faction.getId());
+            Faction.ReputationLevel level = Faction.getReputationLevel(rep);
+            
+            player.sendSystemMessage(Component.literal(
+                level.getDisplayName() + " §f" + faction.getName().getString() + " §7(" + rep + ")"
+            ));
+        }
+        
+        return 1;
+    }
+    
+    private static int setReputation(CommandContext<CommandSourceStack> context) {
+        ServerPlayer player = context.getSource().getPlayer();
+        String factionId = StringArgumentType.getString(context, "factionId");
+        int amount = IntegerArgumentType.getInteger(context, "amount");
+        
+        Faction faction = FactionRegistry.getFaction(factionId);
+        if (faction == null) {
+            player.sendSystemMessage(Component.literal("§cFaction introuvable !"));
+            return 0;
+        }
+        
+        PlayerFactionData data = player.getData(ModAttachments.FACTION_DATA);
+        data.setReputation(factionId, amount);
+        
+        player.sendSystemMessage(Component.literal(
+            "§aRéputation " + faction.getName().getString() + " définie à " + amount
+        ));
+        
+        return 1;
+    }
+}
+```
+
+---
+
+---
+
+## 21. ⚡ Événements Dynamiques du Monde
+
+> **📖 C'est quoi un événement dynamique ?**
+> Un événement = quelque chose qui se passe automatiquement dans le monde, indépendamment du joueur.
+> Comme les invasions de pillagers Vanilla, mais en BEAUCOUP plus customisé !
+>
+> **🎯 Exemples pour mod médiéval :**
+> - 🌙 **Nuit des Morts-Vivants** : Zombies x3, chaque nuit de pleine lune
+> - 🐉 **Arrivée du Dragon** : Boss spawn aléatoire dans le monde
+> - ⚔️ **Guerre des Factions** : PNJ se battent entre eux
+> - 🌊 **Invasion des Mers** : Monstres marins attaquent les côtes
+> - 🎭 **Festival du Village** : PNJ festifs, bonus XP pendant 3 jours
+> - ☄️ **Pluie de Météorites** : Blocs magiques tombent du ciel
+>
+> **🔧 Types d'événements :**
+>
+> **1. TEMPOREL** (basé sur le temps)
+> - Chaque X jours
+> - À une heure précise
+> - Phases de lune
+>
+> **2. SPATIAL** (basé sur la position)
+> - Dans certains biomes
+> - Autour de structures
+> - Zones définies
+>
+> **3. CONDITIONNEL** (basé sur des conditions)
+> - Quand un joueur atteint un niveau
+> - Quand un item est crafté
+> - Quand une quête est terminée
+>
+> **💡 Architecture d'un événement :**
+> 1. **Déclencheur** : Quand l'événement démarre
+> 2. **Durée** : Combien de temps ça dure
+> 3. **Effets** : Ce qui se passe
+> 4. **Fin** : Ce qui se passe à la fin
+
+### 21.1 Structure d'Événement
+
+**📝 Classe WorldEvent - Base pour tous les événements :**
+
+```java
+package com.medelium.worldevent;
+
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+
+public abstract class WorldEvent {
+    private final String id;
+    private final Component name;
+    private final int durationTicks;
+    private int ticksActive = 0;
+    private boolean active = false;
+    
+    public WorldEvent(String id, Component name, int durationTicks) {
+        this.id = id;
+        this.name = name;
+        this.durationTicks = durationTicks;
+    }
+    
+    public String getId() { return id; }
+    public Component getName() { return name; }
+    public boolean isActive() { return active; }
+    
+    // Démarrer l'événement
+    public void start(ServerLevel level) {
+        if (!active) {
+            active = true;
+            ticksActive = 0;
+            onStart(level);
+        }
+    }
+    
+    // Tick de l'événement (appelé chaque tick tant qu'actif)
+    public void tick(ServerLevel level) {
+        if (!active) return;
+        
+        ticksActive++;
+        onTick(level);
+        
+        // Vérifier si l'événement doit se terminer
+        if (ticksActive >= durationTicks) {
+            end(level);
+        }
+    }
+    
+    // Terminer l'événement
+    public void end(ServerLevel level) {
+        if (active) {
+            active = false;
+            onEnd(level);
+        }
+    }
+    
+    // Méthodes à override dans les sous-classes
+    protected abstract void onStart(ServerLevel level);
+    protected abstract void onTick(ServerLevel level);
+    protected abstract void onEnd(ServerLevel level);
+    
+    // Vérifier si l'événement peut démarrer
+    public abstract boolean canStart(ServerLevel level);
+}
+```
+
+### 21.2 Événement : Invasion de Zombies
+
+**📝 ZombieInvasionEvent - Invasion massive de zombies :**
+
+```java
+package com.medelium.worldevent.events;
+
+import com.medelium.worldevent.WorldEvent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.monster.Zombie;
+
+public class ZombieInvasionEvent extends WorldEvent {
+    private int zombiesSpawned = 0;
+    private final int maxZombies = 50;
+    
+    public ZombieInvasionEvent() {
+        super(
+            "zombie_invasion",
+            Component.literal("§4§lINVASION ZOMBIE !"),
+            20 * 60 * 5 // 5 minutes
+        );
+    }
+    
+    @Override
+    public boolean canStart(ServerLevel level) {
+        // Peut démarrer seulement la nuit
+        long time = level.getDayTime() % 24000;
+        return time >= 13000 && time <= 23000;
+    }
+    
+    @Override
+    protected void onStart(ServerLevel level) {
+        // Annoncer à tous les joueurs
+        for (ServerPlayer player : level.players()) {
+            player.sendSystemMessage(Component.literal("§4§l━━━━━━━━━━━━━━━━━━━━"));
+            player.sendSystemMessage(Component.literal("§c§l   INVASION ZOMBIE !"));
+            player.sendSystemMessage(Component.literal("§7Une horde massive approche..."));
+            player.sendSystemMessage(Component.literal("§4§l━━━━━━━━━━━━━━━━━━━━"));
+            
+            player.playNotifySound(SoundEvents.WITHER_SPAWN, SoundSource.MASTER, 1.0F, 0.8F);
+        }
+        
+        zombiesSpawned = 0;
+    }
+    
+    @Override
+    protected void onTick(ServerLevel level) {
+        // Spawn des zombies toutes les 2 secondes
+        if (ticksActive % 40 == 0 && zombiesSpawned < maxZombies) {
+            for (ServerPlayer player : level.players()) {
+                // Spawn 2-5 zombies autour de chaque joueur
+                int amount = 2 + level.random.nextInt(4);
+                
+                for (int i = 0; i < amount && zombiesSpawned < maxZombies; i++) {
+                    // Position aléatoire autour du joueur (rayon 15-30 blocs)
+                    double angle = level.random.nextDouble() * Math.PI * 2;
+                    double distance = 15 + level.random.nextDouble() * 15;
+                    
+                    double x = player.getX() + Math.cos(angle) * distance;
+                    double z = player.getZ() + Math.sin(angle) * distance;
+                    double y = level.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.WORLD_SURFACE, (int)x, (int)z);
+                    
+                    BlockPos spawnPos = new BlockPos((int)x, (int)y, (int)z);
+                    
+                    // Créer le zombie
+                    Zombie zombie = EntityType.ZOMBIE.create(level);
+                    if (zombie != null) {
+                        zombie.setPos(x, y, z);
+                        
+                        // Zombie plus fort pendant l'invasion
+                        zombie.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH).setBaseValue(30.0);
+                        zombie.setHealth(30.0F);
+                        zombie.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE).setBaseValue(5.0);
+                        
+                        level.addFreshEntity(zombie);
+                        zombiesSpawned++;
+                    }
+                }
+            }
+        }
+        
+        // Message de progression toutes les minutes
+        if (ticksActive % (20 * 60) == 0) {
+            int minutesLeft = (durationTicks - ticksActive) / (20 * 60);
+            for (ServerPlayer player : level.players()) {
+                player.displayClientMessage(
+                    Component.literal("§cInvasion: " + minutesLeft + " minute(s) restante(s)"),
+                    true
+                );
+            }
+        }
+    }
+    
+    @Override
+    protected void onEnd(ServerLevel level) {
+        for (ServerPlayer player : level.players()) {
+            player.sendSystemMessage(Component.literal("§a§l✔ L'invasion est terminée !"));
+            player.sendSystemMessage(Component.literal("§7Les zombies se retirent..."));
+            
+            player.playNotifySound(SoundEvents.PLAYER_LEVELUP, SoundSource.MASTER, 1.0F, 1.0F);
+            
+            // Récompense de survie
+            player.giveExperiencePoints(500);
+        }
+    }
+}
+```
+
+### 21.3 Événement : Boss Apparition
+
+**📝 DragonEventSpawn - Dragon spawn aléatoire :**
+
+```java
+package com.medelium.worldevent.events;
+
+import com.medelium.entity.ModEntities;
+import com.medelium.worldevent.WorldEvent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.Entity;
+
+public class DragonSpawnEvent extends WorldEvent {
+    private Entity spawnedDragon = null;
+    
+    public DragonSpawnEvent() {
+        super(
+            "dragon_spawn",
+            Component.literal("§4§l⚠ APPARITION DU DRAGON"),
+            20 * 60 * 30 // 30 minutes
+        );
+    }
+    
+    @Override
+    public boolean canStart(ServerLevel level) {
+        // 5% de chance chaque jour
+        return level.random.nextInt(100) < 5;
+    }
+    
+    @Override
+    protected void onStart(ServerLevel level) {
+        // Trouver un joueur aléatoire pour spawn le dragon près de lui
+        if (!level.players().isEmpty()) {
+            ServerPlayer randomPlayer = level.players().get(level.random.nextInt(level.players().size()));
+            
+            // Position dans le ciel
+            double x = randomPlayer.getX() + (level.random.nextDouble() - 0.5) * 100;
+            double y = 150;
+            double z = randomPlayer.getZ() + (level.random.nextDouble() - 0.5) * 100;
+            
+            BlockPos spawnPos = new BlockPos((int)x, (int)y, (int)z);
+            
+            // Spawn du dragon
+            Entity dragon = ModEntities.DRAGON_BOSS.get().create(level);
+            if (dragon != null) {
+                dragon.setPos(x, y, z);
+                level.addFreshEntity(dragon);
+                spawnedDragon = dragon;
+                
+                // Annonce mondiale
+                for (ServerPlayer player : level.players()) {
+                    player.sendSystemMessage(Component.literal("§4§l━━━━━━━━━━━━━━━━━━━━"));
+                    player.sendSystemMessage(Component.literal("§c§l  ⚠ DRAGON DÉTECTÉ !"));
+                    player.sendSystemMessage(Component.literal("§7Un dragon ancien s'est réveillé !"));
+                    player.sendSystemMessage(Component.literal("§ePosition: " + (int)x + ", " + (int)y + ", " + (int)z));
+                    player.sendSystemMessage(Component.literal("§4§l━━━━━━━━━━━━━━━━━━━━"));
+                    
+                    player.playNotifySound(SoundEvents.ENDER_DRAGON_GROWL, SoundSource.MASTER, 2.0F, 0.8F);
+                }
+            }
+        }
+    }
+    
+    @Override
+    protected void onTick(ServerLevel level) {
+        // Vérifier si le dragon est mort
+        if (spawnedDragon != null && !spawnedDragon.isAlive()) {
+            // Dragon tué !
+            for (ServerPlayer player : level.players()) {
+                player.sendSystemMessage(Component.literal("§a§l✔ LE DRAGON A ÉTÉ VAINCU !"));
+                player.sendSystemMessage(Component.literal("§6Récompense: 1000 XP"));
+                player.giveExperiencePoints(1000);
+            }
+            end(level);
+        }
+    }
+    
+    @Override
+    protected void onEnd(ServerLevel level) {
+        if (spawnedDragon != null && spawnedDragon.isAlive()) {
+            // Le dragon s'enfuit
+            spawnedDragon.discard();
+            
+            for (ServerPlayer player : level.players()) {
+                player.sendSystemMessage(Component.literal("§7Le dragon s'est enfui..."));
+            }
+        }
+    }
+}
+```
+
+### 21.4 Gestionnaire d'Événements
+
+**📝 WorldEventManager - Gère tous les événements :**
+
+```java
+package com.medelium.worldevent;
+
+import com.medelium.worldevent.events.*;
+import net.minecraft.server.level.ServerLevel;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class WorldEventManager {
+    private final List<WorldEvent> registeredEvents = new ArrayList<>();
+    private final List<WorldEvent> activeEvents = new ArrayList<>();
+    private final ServerLevel level;
+    
+    public WorldEventManager(ServerLevel level) {
+        this.level = level;
+        registerEvents();
+    }
+    
+    private void registerEvents() {
+        registeredEvents.add(new ZombieInvasionEvent());
+        registeredEvents.add(new DragonSpawnEvent());
+        // Ajouter d'autres événements ici
+    }
+    
+    public void tick() {
+        // Tick des événements actifs
+        for (WorldEvent event : new ArrayList<>(activeEvents)) {
+            event.tick(level);
+            
+            if (!event.isActive()) {
+                activeEvents.remove(event);
+            }
+        }
+        
+        // Vérifier si de nouveaux événements peuvent démarrer
+        // (seulement toutes les 10 secondes pour optimiser)
+        if (level.getGameTime() % 200 == 0) {
+            for (WorldEvent event : registeredEvents) {
+                if (!event.isActive() && event.canStart(level)) {
+                    // Chance aléatoire de démarrer (10%)
+                    if (level.random.nextInt(100) < 10) {
+                        startEvent(event);
+                    }
+                }
+            }
+        }
+    }
+    
+    public void startEvent(WorldEvent event) {
+        if (!activeEvents.contains(event)) {
+            event.start(level);
+            activeEvents.add(event);
+        }
+    }
+    
+    public void stopAllEvents() {
+        for (WorldEvent event : new ArrayList<>(activeEvents)) {
+            event.end(level);
+        }
+        activeEvents.clear();
+    }
+    
+    public List<WorldEvent> getActiveEvents() {
+        return new ArrayList<>(activeEvents);
+    }
+}
+```
+
+### 21.5 Intégration au Serveur
+
+**📝 Ticker pour les événements mondiaux :**
+
+```java
+package com.medelium.event;
+
+import com.medelium.MedeliumMod;
+import com.medelium.worldevent.WorldEventManager;
+import net.minecraft.server.level.ServerLevel;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.tick.LevelTickEvent;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
+public class WorldEventTicker {
+    private static final Map<ServerLevel, WorldEventManager> MANAGERS = new HashMap<>();
+    
+    @SubscribeEvent
+    public static void onLevelTick(LevelTickEvent.Post event) {
+        if (event.getLevel() instanceof ServerLevel serverLevel) {
+            // Créer le manager si n'existe pas
+            WorldEventManager manager = MANAGERS.computeIfAbsent(
+                serverLevel, 
+                WorldEventManager::new
+            );
+            
+            // Tick du manager
+            manager.tick();
+        }
+    }
+}
+```
+
+### 21.6 Commandes pour Événements
+
+**📝 Commandes admin pour déclencher événements :**
+
+```java
+package com.medelium.command;
+
+import com.medelium.worldevent.*;
+import com.medelium.worldevent.events.*;
+import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.context.CommandContext;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+
+public class EventCommands {
+    
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+        dispatcher.register(Commands.literal("worldevent")
+            .requires(source -> source.hasPermission(2))
+            .then(Commands.literal("start")
+                .then(Commands.literal("zombie_invasion")
+                    .executes(ctx -> startZombieInvasion(ctx)))
+                .then(Commands.literal("dragon_spawn")
+                    .executes(ctx -> startDragonSpawn(ctx))))
+            .then(Commands.literal("stop")
+                .executes(EventCommands::stopAllEvents))
+            .then(Commands.literal("list")
+                .executes(EventCommands::listActiveEvents))
+        );
+    }
+    
+    private static int startZombieInvasion(CommandContext<CommandSourceStack> ctx) {
+        ServerLevel level = ctx.getSource().getLevel();
+        WorldEventManager manager = getManager(level);
+        
+        WorldEvent event = new ZombieInvasionEvent();
+        manager.startEvent(event);
+        
+        ctx.getSource().sendSuccess(() -> 
+            Component.literal("§aInvasion zombie démarrée !"), true);
+        
+        return 1;
+    }
+    
+    private static int startDragonSpawn(CommandContext<CommandSourceStack> ctx) {
+        ServerLevel level = ctx.getSource().getLevel();
+        WorldEventManager manager = getManager(level);
+        
+        WorldEvent event = new DragonSpawnEvent();
+        manager.startEvent(event);
+        
+        ctx.getSource().sendSuccess(() -> 
+            Component.literal("§aDragon invoqué !"), true);
+        
+        return 1;
+    }
+    
+    private static int stopAllEvents(CommandContext<CommandSourceStack> ctx) {
+        ServerLevel level = ctx.getSource().getLevel();
+        WorldEventManager manager = getManager(level);
+        
+        manager.stopAllEvents();
+        
+        ctx.getSource().sendSuccess(() -> 
+            Component.literal("§aTous les événements arrêtés"), true);
+        
+        return 1;
+    }
+    
+    private static int listActiveEvents(CommandContext<CommandSourceStack> ctx) {
+        ServerLevel level = ctx.getSource().getLevel();
+        WorldEventManager manager = getManager(level);
+        
+        List<WorldEvent> active = manager.getActiveEvents();
+        
+        if (active.isEmpty()) {
+            ctx.getSource().sendSuccess(() -> 
+                Component.literal("§7Aucun événement actif"), false);
+        } else {
+            ctx.getSource().sendSuccess(() -> 
+                Component.literal("§6§lÉvénements actifs:"), false);
+            
+            for (WorldEvent event : active) {
+                ctx.getSource().sendSuccess(() -> 
+                    Component.literal("§e- " + event.getName().getString()), false);
+            }
+        }
+        
+        return 1;
+    }
+    
+    private static WorldEventManager getManager(ServerLevel level) {
+        // Récupérer depuis WorldEventTicker.MANAGERS
+        return WorldEventTicker.MANAGERS.computeIfAbsent(level, WorldEventManager::new);
+    }
+}
+```
+
+---
+
+## 22. ⚙️ Performance & Optimisation
+
+> **📖 Pourquoi optimiser ?**
+> Un mod mal optimisé = serveur qui lag, joueurs qui quittent, expérience ruinée.
+> Même avec du bon code, des mauvaises pratiques peuvent DÉTRUIRE les performances.
+>
+> **🎯 Les 3 tueurs de performance :**
+>
+> **1. TICKS EXCESSIFS** 🔄
+> - Faire des calculs CHAQUE tick (20x/seconde)
+> - Vérifier des choses inutilement
+> - Boucles sur TOUS les joueurs/entités
+>
+> **2. NETWORK SPAM** 📡
+> - Envoyer trop de packets
+> - Synchro trop fréquente
+> - Données trop grosses
+>
+> **3. MEMORY LEAKS** 💾
+> - Garder des références à des objets supprimés
+> - Collections qui grandissent infiniment
+> - Pas de nettoyage
+>
+> **🔧 Règles d'or :**
+>
+> ✅ **Faire :**
+> - Cacher les calculs coûteux
+> - Utiliser des timers (toutes les X secondes au lieu de chaque tick)
+> - Limiter la portée des vérifications
+> - Nettoyer les données inutiles
+>
+> ❌ **Ne JAMAIS faire :**
+> - Boucler sur TOUTES les entités du monde
+> - Faire des calculs complexes chaque tick
+> - Créer des objets inutilement dans une boucle
+> - Ignorer les null checks
+
+### 22.1 Optimisation des Ticks
+
+**❌ MAUVAIS - Vérifie TOUTES les entités chaque tick :**
+
+```java
+// NE JAMAIS FAIRE ÇA !
+@SubscribeEvent
+public static void onServerTick(TickEvent.ServerTickEvent event) {
+    for (ServerLevel level : server.getAllLevels()) {
+        for (Entity entity : level.getAllEntities()) {
+            // Calculs coûteux sur chaque entité...
+            // 1000 entités × 20 ticks = 20,000 calculs par seconde !
+        }
+    }
+}
+```
+
+**✅ BON - Limite avec un timer :**
+
+```java
+private static int tickCounter = 0;
+
+@SubscribeEvent
+public static void onServerTick(TickEvent.ServerTickEvent event) {
+    tickCounter++;
+    
+    // Seulement toutes les 5 secondes (100 ticks)
+    if (tickCounter >= 100) {
+        tickCounter = 0;
+        
+        // Maintenant les calculs se font 20x moins souvent
+        performExpensiveCalculation();
+    }
+}
+```
+
+### 22.2 Cache des Calculs Coûteux
+
+**📝 Exemple : Distance entre joueurs (calcul coûteux) :**
+
+```java
+package com.medelium.util;
+
+import net.minecraft.server.level.ServerPlayer;
+import java.util.HashMap;
+import java.util.Map;
+
+public class PlayerDistanceCache {
+    private static final Map<String, Double> distanceCache = new HashMap<>();
+    private static long lastUpdateTime = 0;
+    private static final long UPDATE_INTERVAL = 100; // Update toutes les 5 secondes
+    
+    public static double getDistance(ServerPlayer player1, ServerPlayer player2) {
+        long currentTime = player1.level().getGameTime();
+        
+        // Clé unique pour cette paire de joueurs
+        String key = getCacheKey(player1, player2);
+        
+        // Utiliser le cache si récent
+        if (currentTime - lastUpdateTime < UPDATE_INTERVAL && distanceCache.containsKey(key)) {
+            return distanceCache.get(key);
+        }
+        
+        // Calculer et mettre en cache
+        double distance = player1.distanceTo(player2);
+        distanceCache.put(key, distance);
+        lastUpdateTime = currentTime;
+        
+        return distance;
+    }
+    
+    private static String getCacheKey(ServerPlayer p1, ServerPlayer p2) {
+        // Ordre cohérent pour la clé
+        if (p1.getId() < p2.getId()) {
+            return p1.getUUID() + "_" + p2.getUUID();
+        } else {
+            return p2.getUUID() + "_" + p1.getUUID();
+        }
+    }
+    
+    public static void clearCache() {
+        distanceCache.clear();
+    }
+}
+```
+
+### 22.3 Limiter les Packets Network
+
+**❌ MAUVAIS - Envoie un packet CHAQUE tick :**
+
+```java
+// NE PAS FAIRE - 20 packets par seconde !
+public void tick() {
+    syncToClient(); // Appelé chaque tick
+}
+```
+
+**✅ BON - Envoie seulement quand nécessaire :**
+
+```java
+private int lastSyncedValue = 0;
+private int ticksSinceLastSync = 0;
+
+public void tick() {
+    ticksSinceLastSync++;
+    
+    // Sync seulement si la valeur a changé ET au moins 1 seconde s'est écoulée
+    if (currentValue != lastSyncedValue && ticksSinceLastSync >= 20) {
+        syncToClient();
+        lastSyncedValue = currentValue;
+        ticksSinceLastSync = 0;
+    }
+}
+```
+
+### 22.4 Nettoyage de Mémoire
+
+**📝 Nettoyer les données des joueurs déconnectés :**
+
+```java
+package com.medelium.event;
+
+import com.medelium.MedeliumMod;
+import net.minecraft.server.level.ServerPlayer;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+
+@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
+public class CleanupEvents {
+    
+    @SubscribeEvent
+    public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            // Nettoyer TOUTES les références au joueur
+            PlayerDistanceCache.clearForPlayer(player);
+            QuestTracker.removePlayer(player.getUUID());
+            ActiveEventManager.removePlayer(player.getUUID());
+            
+            // Etc. pour tous vos systèmes
+        }
+    }
+}
+```
+
+### 22.5 Profiling - Trouver les Problèmes
+
+**📝 Simple profiler pour mesurer le temps :**
+
+```java
+package com.medelium.util;
+
+import com.medelium.MedeliumMod;
+
+public class PerformanceProfiler {
+    private static long startTime = 0;
+    
+    public static void start(String label) {
+        startTime = System.nanoTime();
+    }
+    
+    public static void end(String label) {
+        long elapsed = System.nanoTime() - startTime;
+        double milliseconds = elapsed / 1_000_000.0;
+        
+        // Log si ça prend plus de 1ms (signe de problème)
+        if (milliseconds > 1.0) {
+            MedeliumMod.LOGGER.warn("[PERF] {} took {}ms", label, String.format("%.2f", milliseconds));
+        }
+    }
+}
+
+// Utilisation:
+PerformanceProfiler.start("Quest Check");
+// ... code à mesurer ...
+PerformanceProfiler.end("Quest Check");
+```
+
+### 22.6 Optimisations Spécifiques
+
+**📝 Limiter les spawns d'entités :**
+
+```java
+private static final int MAX_CUSTOM_MOBS_PER_CHUNK = 5;
+
+public static boolean canSpawnMob(ServerLevel level, BlockPos pos) {
+    // Compter les mobs custom dans le chunk
+    ChunkPos chunkPos = new ChunkPos(pos);
+    int count = 0;
+    
+    for (Entity entity : level.getChunk(chunkPos.x, chunkPos.z).getEntities()) {
+        if (entity instanceof CustomMobEntity) {
+            count++;
+        }
+    }
+    
+    return count < MAX_CUSTOM_MOBS_PER_CHUNK;
+}
+```
+
+**📝 Limiter les particules :**
+
+```java
+private int particleSpawnCooldown = 0;
+
+public void spawnParticles() {
+    particleSpawnCooldown--;
+    
+    if (particleSpawnCooldown <= 0) {
+        // Spawn les particules
+        level.addParticle(...);
+        
+        // Cooldown de 10 ticks (0.5 secondes)
+        particleSpawnCooldown = 10;
+    }
+}
+```
+
+---
+
+## 23. 🔒 Sécurité & Anti-Exploit
+
+> **📖 Pourquoi la sécurité est CRITIQUE ?**
+> Les joueurs vont TOUJOURS essayer de tricher. Toujours.
+> Si vous ne validez pas côté serveur, votre mod sera exploité en 5 minutes.
+>
+> **🎯 Les exploits les plus communs :**
+>
+> **1. PACKET INJECTION** 📡
+> - Joueur envoie des packets modifiés
+> - Exemple : "J'ai tué le boss" sans l'avoir tué
+>
+> **2. DUPLICATION D'ITEMS** 📦
+> - Profiter de la synchro client/serveur
+> - Cloner des items précieux
+>
+> **3. BYPASS DE CONDITIONS** 🚪
+> - Ignorer les checks de niveau/profession
+> - Accéder à du contenu verrouillé
+>
+> **4. XP/MONEY FARMING** 💰
+> - Répéter une action infiniment
+> - Exploiter les récompenses
+>
+> **🔧 Règle ABSOLUE :**
+> **TOUT doit être validé côté SERVEUR, JAMAIS faire confiance au client !**
+
+### 23.1 Validation Serveur Stricte
+
+**❌ DANGEREUX - Fait confiance au client :**
+
+```java
+// NE JAMAIS FAIRE ÇA !
+public void handleQuestComplete(Player player, String questId) {
+    // Pas de vérification = le joueur peut prétendre avoir fini n'importe quelle quête
+    Quest quest = QuestRegistry.getQuest(questId);
+    quest.giveRewards(player);
+}
+```
+
+**✅ SÉCURISÉ - Valide tout :**
+
+```java
+public void handleQuestComplete(ServerPlayer player, String questId) {
+    Quest quest = QuestRegistry.getQuest(questId);
+    
+    // VÉRIFICATION 1 : La quête existe ?
+    if (quest == null) {
+        MedeliumMod.LOGGER.warn("Player {} tried to complete invalid quest {}", 
+            player.getName().getString(), questId);
+        return;
+    }
+    
+    PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+    
+    // VÉRIFICATION 2 : Le joueur a cette quête active ?
+    if (!data.isQuestActive(questId)) {
+        MedeliumMod.LOGGER.warn("Player {} tried to complete inactive quest {}", 
+            player.getName().getString(), questId);
+        return;
+    }
+    
+    // VÉRIFICATION 3 : TOUS les objectifs sont vraiment complétés ?
+    if (!quest.isCompleted(player)) {
+        MedeliumMod.LOGGER.warn("Player {} tried to complete unfinished quest {}", 
+            player.getName().getString(), questId);
+        return;
+    }
+    
+    // OK, tout est validé
+    quest.giveRewards(player);
+    data.completeQuest(questId);
+}
+```
+
+### 23.2 Anti-Duplication
+
+**📝 Vérifier l'inventaire avant donner des items :**
+
+```java
+public static boolean giveItemSafely(ServerPlayer player, ItemStack stack) {
+    // Compter combien le joueur a AVANT
+    int countBefore = countItem(player, stack.getItem());
+    
+    // Donner l'item
+    boolean success = player.addItem(stack);
+    
+    // Compter combien le joueur a APRÈS
+    int countAfter = countItem(player, stack.getItem());
+    
+    // Vérifier que la différence est cohérente
+    int expectedDifference = stack.getCount();
+    int actualDifference = countAfter - countBefore;
+    
+    if (actualDifference != expectedDifference) {
+        MedeliumMod.LOGGER.error("Item duplication detected for player {}!", 
+            player.getName().getString());
+        
+        // Rollback : retirer les items en trop
+        removeItem(player, stack.getItem(), actualDifference);
+        return false;
+    }
+    
+    return success;
+}
+
+private static int countItem(ServerPlayer player, Item item) {
+    int count = 0;
+    for (ItemStack stack : player.getInventory().items) {
+        if (stack.is(item)) {
+            count += stack.getCount();
+        }
+    }
+    return count;
+}
+```
+
+### 23.3 Cooldowns Anti-Spam
+
+**📝 Empêcher le spam d'actions :**
+
+```java
+package com.medelium.util;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+public class CooldownManager {
+    private static final Map<String, Long> cooldowns = new HashMap<>();
+    
+    public static boolean isOnCooldown(UUID playerId, String action) {
+        String key = playerId + ":" + action;
+        Long lastUse = cooldowns.get(key);
+        
+        if (lastUse == null) {
+            return false;
+        }
+        
+        long currentTime = System.currentTimeMillis();
+        return (currentTime - lastUse) < getCooldownDuration(action);
+    }
+    
+    public static void setCooldown(UUID playerId, String action) {
+        String key = playerId + ":" + action;
+        cooldowns.put(key, System.currentTimeMillis());
+    }
+    
+    public static long getRemainingCooldown(UUID playerId, String action) {
+        String key = playerId + ":" + action;
+        Long lastUse = cooldowns.get(key);
+        
+        if (lastUse == null) {
+            return 0;
+        }
+        
+        long elapsed = System.currentTimeMillis() - lastUse;
+        long duration = getCooldownDuration(action);
+        
+        return Math.max(0, duration - elapsed);
+    }
+    
+    private static long getCooldownDuration(String action) {
+        return switch (action) {
+            case "quest_start" -> 5000; // 5 secondes
+            case "faction_donate" -> 10000; // 10 secondes
+            case "boss_summon" -> 300000; // 5 minutes
+            default -> 1000; // 1 seconde par défaut
+        };
+    }
+}
+
+// Utilisation:
+if (CooldownManager.isOnCooldown(player.getUUID(), "quest_start")) {
+    long remaining = CooldownManager.getRemainingCooldown(player.getUUID(), "quest_start");
+    player.sendSystemMessage(Component.literal(
+        "§cCooldown: " + (remaining / 1000) + " secondes restantes"
+    ));
+    return;
+}
+
+CooldownManager.setCooldown(player.getUUID(), "quest_start");
+// ... exécuter l'action ...
+```
+
+### 23.4 Validation des Permissions
+
+**📝 System de permissions par niveau :**
+
+```java
+package com.medelium.util;
+
+import net.minecraft.server.level.ServerPlayer;
+
+public class PermissionChecker {
+    
+    public enum Permission {
+        USE_ADMIN_COMMANDS(2),
+        BYPASS_COOLDOWNS(2),
+        MODIFY_QUESTS(3),
+        GIVE_ITEMS(2),
+        TELEPORT_PLAYERS(2),
+        MANAGE_EVENTS(3);
+        
+        private final int requiredLevel;
+        
+        Permission(int level) {
+            this.requiredLevel = level;
+        }
+        
+        public int getRequiredLevel() {
+            return requiredLevel;
+        }
+    }
+    
+    public static boolean hasPermission(ServerPlayer player, Permission permission) {
+        // Vérifier le niveau d'opérateur
+        int playerLevel = player.getServer().getProfilePermissions(player.getGameProfile());
+        return playerLevel >= permission.getRequiredLevel();
+    }
+    
+    public static boolean checkAndWarn(ServerPlayer player, Permission permission) {
+        if (!hasPermission(player, permission)) {
+            player.sendSystemMessage(Component.literal(
+                "§cVous n'avez pas la permission pour cette action !"
+            ));
+            
+            MedeliumMod.LOGGER.warn("Player {} tried to use {} without permission", 
+                player.getName().getString(), permission.name());
+            
+            return false;
+        }
+        return true;
+    }
+}
+
+// Utilisation dans une commande:
+if (!PermissionChecker.checkAndWarn(player, Permission.MODIFY_QUESTS)) {
+    return 0;
+}
+```
+
+### 23.5 Logs de Sécurité
+
+**📝 Logger les actions suspectes :**
+
+```java
+package com.medelium.security;
+
+import com.medelium.MedeliumMod;
+import net.minecraft.server.level.ServerPlayer;
+
+public class SecurityLogger {
+    
+    public static void logSuspiciousActivity(ServerPlayer player, String activity, String details) {
+        MedeliumMod.LOGGER.warn("[SECURITY] Player: {} | Activity: {} | Details: {}", 
+            player.getName().getString(),
+            activity,
+            details
+        );
+        
+        // Optionnel : Notifier les admins en ligne
+        for (ServerPlayer admin : player.getServer().getPlayerList().getPlayers()) {
+            if (admin.hasPermissions(3)) {
+                admin.sendSystemMessage(Component.literal(
+                    "§c[SECURITY] " + player.getName().getString() + " : " + activity
+                ));
+            }
+        }
+    }
+    
+    public static void logItemGiven(ServerPlayer player, ItemStack stack) {
+        MedeliumMod.LOGGER.info("[ITEM] Given to {}: {}x {}", 
+            player.getName().getString(),
+            stack.getCount(),
+            stack.getDisplayName().getString()
+        );
+    }
+    
+    public static void logQuestComplete(ServerPlayer player, String questId) {
+        MedeliumMod.LOGGER.info("[QUEST] Player {} completed quest {}", 
+            player.getName().getString(),
+            questId
+        );
+    }
+}
+```
+
+---
+
 **Bon développement ! ⚔️🏰✨**
