@@ -1071,7 +1071,7 @@ package com.medelium;
 
 import com.medelium.item.ModItems;
 import com.medelium.block.ModBlocks;
-import com.medelium.item.ModItemGroups;
+import com.medelium.tab.ModCreativeTabs;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -1084,7 +1084,7 @@ public class Medelium implements ModInitializer {
     public void onInitialize() {
         ModItems.registerModItems();
         ModBlocks.registerModBlocks();
-        ModItemGroups.registerItemGroups();
+        ModCreativeTabs.registerItemGroups();
         LOGGER.info("Initializing Médélium mod!");
     }
 }
@@ -1174,9 +1174,10 @@ public class ModBlocks {
 **📁 `src/main/java/com/medelium/tab/ModCreativeTabs.java` :**
 
 ```java
-package com.medelium.item;
+package com.medelium.tab;
 
 import com.medelium.Medelium;
+import com.medelium.item.ModItems;
 import com.medelium.block.ModBlocks;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
@@ -1186,7 +1187,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-public class ModItemGroups {
+public class ModCreativeTabs {
     public static final ItemGroup MEDELIUM_GROUP = Registry.register(Registries.ITEM_GROUP,
         new Identifier(Medelium.MOD_ID, "medelium_tab"),
         FabricItemGroup.builder()
