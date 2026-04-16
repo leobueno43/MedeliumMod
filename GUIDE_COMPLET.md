@@ -1658,7 +1658,51 @@ public static final Item EPEE_LEGENDAIRE = registerItem("epee_legendaire",
     new CustomTooltipItem(new FabricItemSettings().rarity(Rarity.EPIC)));
 ```
 
-#### 1.5.2 Codes Couleur Disponibles
+#### 1.5.2 Tooltip Unique par Item (Méthode Recommandée)
+
+> **💡 Pourquoi cette méthode ?**
+> La section 1.5.1 montre une classe avec un texte fixe en dur.
+> Mais si vous voulez un tooltip **différent pour chaque item**, il faudrait créer une classe par item... pas pratique !
+>
+> **✅ La solution :** La classe `CustomItem` (voir Section 1.7) gère à la fois les tooltips
+> ET la couleur du nom. Une seule classe pour tout, sans duplication de code.
+
+**Utiliser dans ModItems.java — chaque item a son propre texte :**
+```java
+import com.medelium.item.custom.CustomItem;
+import net.minecraft.util.Formatting;
+
+// Tooltip custom avec couleur de nom par défaut (blanc)
+public static final Item MEDELIUM_INGOT = registerItem("medelium_ingot",
+    new CustomItem(new FabricItemSettings(), Formatting.WHITE,
+        "§7Un lingot forgé dans les flammes anciennes",
+        "§6Matériau légendaire"
+    ));
+
+// Tooltip custom avec couleur de nom custom (or)
+public static final Item SILVER_COIN = registerItem("silver_coin",
+    new CustomItem(new FabricItemSettings(), Formatting.GOLD,
+        "§7Une pièce d'argent brillante",
+        "§8Monnaie du royaume"
+    ));
+
+// Tooltip multi-lignes avec espacement
+public static final Item ANCIENT_SCROLL = registerItem("ancient_scroll",
+    new CustomItem(new FabricItemSettings().maxCount(1), Formatting.LIGHT_PURPLE,
+        "§5§oUn parchemin couvert de runes",
+        "",
+        "§8Qui sait quels secrets il renferme..."
+    ));
+```
+
+> **📌 Avantages :**
+> - **1 seule classe** (`CustomItem`) pour tooltip + couleur du nom
+> - Tooltip défini **directement** dans `ModItems.java`, facile à lire et modifier
+> - Supporte **autant de lignes** que nécessaire (y compris des lignes vides pour espacer)
+> - Si vous ne voulez pas de rareté custom, passez `Formatting.WHITE` (= couleur normale)
+> - Voir **Section 1.7** pour le code complet de `CustomItem.java`
+
+#### 1.5.3 Codes Couleur Disponibles
 
 ```
 §0 - Noir
@@ -1686,7 +1730,7 @@ public static final Item EPEE_LEGENDAIRE = registerItem("epee_legendaire",
 §r - Reset (retour normal)
 ```
 
-#### 1.5.3 Tooltip avec Informations Dynamiques
+#### 1.5.4 Tooltip avec Informations Dynamiques
 
 ```java
 @Override
@@ -1715,7 +1759,7 @@ public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> too
 import net.minecraft.client.gui.currentScreen.Screen;
 ```
 
-#### 1.5.4 Tooltip sur Bloc
+#### 1.5.5 Tooltip sur Bloc
 
 **Créer :** `src/main/java/com/medelium/block/custom/CustomTooltipBlock.java`
 
@@ -1767,7 +1811,7 @@ private static Item registerBlockItem(String name, Block block) {
 }
 ```
 
-#### 1.5.5 Tooltip Multilingue
+#### 1.5.6 Tooltip Multilingue
 
 Au lieu de texte codé en dur, utiliser des traductions :
 
@@ -2247,6 +2291,143 @@ if (Screen.hasShiftDown()) {
         tooltip.add(Text.literal("§8Âge: §7" + formatTime(secondsExisted)));
     }
 }
+```
+
+---
+
+### 1.7 🎨 Raretés Personnalisées & CustomItem (Classe Universelle)
+
+> **📖 C'est quoi la rareté ?**
+> La rareté contrôle la **couleur du nom** de l'objet dans l'inventaire.
+> Par défaut, Minecraft propose 4 raretés :
+> - `COMMON` → Blanc
+> - `UNCOMMON` → Jaune
+> - `RARE` → Cyan
+> - `EPIC` → Violet clair
+>
+> **🎯 Pourquoi créer des raretés custom ?**
+> Les 4 raretés vanilla sont limitées. Pour un mod médiéval/RPG, vous voudrez peut-être :
+> - **Rouge** pour les objets maudits
+> - **Vert** pour les objets de la nature
+> - **Or gras** pour les objets mythiques
+> - **Rose** pour les objets féeriques
+>
+> **⚠️ Problème :** `Rarity` est un **enum Java** avec 4 valeurs fixes. On ne peut pas en ajouter simplement.
+>
+> **✅ Solution :** La classe `CustomItem` override `getName()` pour changer la couleur du nom
+> ET `appendTooltip()` pour les descriptions. **Une seule classe remplace tout.**
+> Pas besoin de classes séparées `TooltipItem` ni `CustomRarityItem`.
+
+#### 1.7.1 La Classe CustomItem (Tout-en-Un)
+
+> **💡 Cette classe gère tout :** couleur du nom (rareté custom) + tooltip personnalisé.
+> C'est la seule classe dont vous avez besoin pour personnaliser vos items.
+
+**Créer :** `src/main/java/com/medelium/item/custom/CustomItem.java`
+
+```java
+package com.medelium.item.custom;
+
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+
+public class CustomItem extends Item {
+    private final Formatting nameColor;
+    private final String[] tooltipLines;
+
+    public CustomItem(Settings settings, Formatting nameColor, String... tooltipLines) {
+        super(settings);
+        this.nameColor = nameColor;
+        this.tooltipLines = tooltipLines;
+    }
+
+    @Override
+    public Text getName(ItemStack stack) {
+        return super.getName(stack).copy().formatted(nameColor);
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world,
+                              List<Text> tooltip, TooltipContext context) {
+        for (String line : tooltipLines) {
+            tooltip.add(Text.literal(line));
+        }
+        super.appendTooltip(stack, world, tooltip, context);
+    }
+}
+```
+
+#### 1.7.2 Utilisation — Tous les Cas de Figure
+
+**Dans ModItems.java :**
+```java
+import com.medelium.item.custom.CustomItem;
+import net.minecraft.util.Formatting;
+
+// ✅ Rareté custom + tooltip custom
+public static final Item MEDELIUM_INGOT = registerItem("medelium_ingot",
+    new CustomItem(new FabricItemSettings(), Formatting.GOLD,
+        "§7Un lingot forgé dans les flammes anciennes",
+        "§6Matériau légendaire"
+    ));
+
+// ✅ Tooltip custom seulement (nom blanc = couleur normale)
+public static final Item SILVER_COIN = registerItem("silver_coin",
+    new CustomItem(new FabricItemSettings(), Formatting.WHITE,
+        "§7Une pièce d'argent brillante",
+        "§8Monnaie du royaume"
+    ));
+
+// ✅ Rareté custom seulement (pas de tooltip)
+public static final Item FOREST_GEM = registerItem("forest_gem",
+    new CustomItem(new FabricItemSettings(), Formatting.GREEN));
+
+// ✅ Rareté custom + tooltip multi-lignes avec espacement
+public static final Item CURSED_BONE = registerItem("cursed_bone",
+    new CustomItem(new FabricItemSettings(), Formatting.RED,
+        "§4Un os imprégné de magie noire",
+        "",
+        "§8§oNe le gardez pas trop longtemps..."
+    ));
+```
+
+> **📌 Récapitulatif :**
+>
+> | Besoin | Comment faire |
+> |--------|---------------|
+> | Item basique sans custom | `new Item(new FabricItemSettings())` |
+> | Tooltip uniquement | `new CustomItem(settings, Formatting.WHITE, "ligne1", "ligne2")` |
+> | Couleur du nom uniquement | `new CustomItem(settings, Formatting.RED)` |
+> | Couleur + Tooltip | `new CustomItem(settings, Formatting.GOLD, "ligne1", "ligne2")` |
+>
+> **→ Une seule classe `CustomItem` remplace `TooltipItem` et `CustomRarityItem`.**
+
+#### 1.7.3 Couleurs Disponibles (Formatting)
+
+```
+Formatting.BLACK        - Noir
+Formatting.DARK_BLUE    - Bleu foncé
+Formatting.DARK_GREEN   - Vert foncé
+Formatting.DARK_AQUA    - Cyan foncé
+Formatting.DARK_RED     - Rouge foncé
+Formatting.DARK_PURPLE  - Violet foncé
+Formatting.GOLD         - Or
+Formatting.GRAY         - Gris
+Formatting.DARK_GRAY    - Gris foncé
+Formatting.BLUE         - Bleu
+Formatting.GREEN        - Vert
+Formatting.AQUA         - Cyan
+Formatting.RED          - Rouge
+Formatting.LIGHT_PURPLE - Rose
+Formatting.YELLOW       - Jaune
+Formatting.WHITE        - Blanc
 ```
 
 ---
