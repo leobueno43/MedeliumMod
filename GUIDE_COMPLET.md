@@ -6,70 +6,70 @@ Ce guide vous explique **TOUT** ce que vous pouvez ajouter à votre mod médiév
 
 ## 🎯 Table des Matières Complète
 
-### 📦 **FONDATIONS** (Sections 1-18)
+### 📦 **FONDATIONS** (Sections 1-19)
 *Les bases essentielles pour créer votre mod*
 
-1. [Objets (Items)](#1-objets-items)
-2. [Blocs (Blocks)](#2-blocs-blocks)
-3. [Armures (Armor)](#3-armures-armor)
-4. [Outils (Tools)](#4-outils-tools)
-5. [Affichage de Messages et Notifications](#5-affichage-de-messages-et-notifications)
-6. [Nourriture et Potions](#6-nourriture-et-potions)
-7. [Entités (Mobs)](#6-entités-mobs)
-8. [Structures](#7-structures)
-9. [Dimensions](#8-dimensions)
-10. [Enchantements](#9-enchantements)
-11. [Effets de Potion](#10-effets-de-potion)
-12. [Recettes de Craft](#11-recettes-de-craft)
-13. [Génération de Minerais](#12-génération-de-minerais)
-14. [Interfaces Graphiques (GUI)](#13-interfaces-graphiques-gui)
-15. [Sons Personnalisés](#14-sons-personnalisés)
-16. [Textures et Modèles](#15-textures-et-modèles)
-17. [Events et Mécaniques](#16-events-et-mécaniques)
-18. [Commandes Personnalisées](#17-commandes-personnalisées)
+1. [Objets (Items)](#1--objets-items)
+2. [Blocs (Blocks)](#2--blocs-blocks)
+3. [Armures (Armor)](#3--armures-armor)
+4. [Outils (Tools)](#4--outils-tools)
+5. [Affichage de Messages et Notifications](#5--affichage-de-messages-et-notifications)
+6. [Nourriture et Potions](#6--nourriture-et-potions)
+7. [Entités (Mobs)](#7--entités-mobs)
+8. [Structures](#8--structures)
+9. [Dimensions](#9--dimensions)
+10. [Enchantements](#10--enchantements)
+11. [Effets de Potion](#11--effets-de-potion)
+12. [Recettes de Craft](#12--recettes-de-craft)
+13. [Génération de Minerais](#13--génération-de-minerais)
+14. [Interfaces Graphiques (GUI)](#14--interfaces-graphiques-gui)
+15. [Sons Personnalisés](#15--sons-personnalisés)
+16. [Textures et Modèles](#16--textures-et-modèles)
+17. [Events et Mécaniques](#17--events-et-mécaniques)
+18. [Commandes Personnalisées](#18--commandes-personnalisées)
+19. [Systèmes de Conditions et Dépendances](#19--systèmes-de-conditions-et-dépendances)
 
-### ⚔️ **SYSTÈMES RPG** (Sections 19-28)
+### ⚔️ **SYSTÈMES RPG** (Sections 20-29)
 *Créez un véritable MMORPG médiéval*
 
-19. [Systèmes de Compétences](#18-systèmes-de-compétences)
-20. [Système de Quêtes Complet](#19-système-de-quêtes-complet)
-21. [Factions & Réputation](#20-système-de-factions--réputation)
-22. [Événements Dynamiques du Monde](#21-événements-dynamiques-du-monde)
-23. [Performance & Optimisation](#22-performance--optimisation)
-24. [Sécurité & Anti-Exploit](#23-sécurité--anti-exploit)
-25. [Networking & Packets Custom](#24-networking--packets-custom)
-26. [Économie Serveur Complète](#25-économie-serveur-complète)
-27. [Dialogues & PNJ Avancés](#26-dialogues--pnj-avancés)
-28. [Système de Stats RPG Complet](#27-système-de-stats-rpg-complet)
+20. [Système de Quêtes Complet](#20--système-de-quêtes-complet)
+21. [Factions & Réputation](#21--système-de-factions--réputation)
+22. [Événements Dynamiques du Monde](#22--événements-dynamiques-du-monde)
+23. [Performance & Optimisation](#23--performance--optimisation)
+24. [Sécurité & Anti-Exploit](#24--sécurité--anti-exploit)
+25. [Networking & Packets Custom](#25--networking--packets-custom)
+26. [Économie Serveur Complète](#26--économie-serveur-complète)
+27. [Dialogues & PNJ Avancés](#27--dialogues--pnj-avancés)
+28. [Système de Stats RPG Complet](#28--système-de-stats-rpg-complet)
+29. [Outils Game Master](#29--outils-game-master)
 
-### 🔧 **OUTILS AVANCÉS** (Sections 29-35)
+### 🔧 **OUTILS AVANCÉS** (Sections 30-37)
 *Professionnalisez votre mod*
 
-29. [Outils Game Master](#28-outils-game-master)
-30. [Build & Déploiement](#29-build--déploiement)
-31. [Tags & Data Packs](#30-tags--data-packs)
-32. [Loot Tables Avancés](#31-loot-tables-avancés)
-33. [Configuration (TOML)](#32-configuration-toml)
-34. [Localisation (i18n)](#33-localisation-i18n)
-35. [Keybindings & Overlays HUD](#34-keybindings--overlays-hud)
-36. [Biomes & World Features](#35-biomes--world-features)
+30. [Build & Déploiement](#30--build--déploiement)
+31. [Tags & Data Packs](#31--tags--data-packs)
+32. [Loot Tables Avancés](#32--loot-tables-avancés)
+33. [Configuration (JSON)](#33--configuration-json)
+34. [Localisation (i18n)](#34--localisation-i18n)
+35. [Keybindings & Overlays HUD](#35--keybindings--overlays-hud)
+36. [Biomes & World Features](#36--biomes--world-features)
+37. [Particles & Animations](#37--particles--animations)
 
-### ✨ **EXPERT LEVEL** (Sections 36-47)
+### ✨ **EXPERT LEVEL** (Sections 38-49)
 *Maîtrise totale de Fabric 1.20.1*
 
-37. [Particles & Animations](#36-particles--animations)
-38. [Advancements (Succès)](#37-advancements-succès)
-39. [Compatibilité JEI/Curios](#38-compatibilité-jeicurios)
-40. [Villageois & Professions](#39-villageois--professions)
-41. [Data Generators](#section-40--data-generators-)
-42. [Render Types (Transparence)](#section-41--render-types-transparence-)
-43. [Fluids Custom (Liquides)](#section-42--fluids-custom-liquides-)
-44. [Music Discs Custom](#section-43--music-discs-custom-)
-45. [Banner Patterns Custom](#section-44--banner-patterns-custom-)
-46. [Patchouli / REI / EMI Support](#section-45--patchouli--rei--emi-support-)
-47. [Status Effects Custom](#section-46--status-effects-custom-effets-de-statut-)
-48. [Entity AI Goals Custom](#section-47--entity-ai-goals-custom-comportements-ia-)
-49. [Paintings Custom](#section-48--paintings-custom-tableaux-décoratifs-)
+38. [Advancements (Succès)](#38--advancements-succès)
+39. [Compatibilité JEI/Curios](#39--compatibilité-jeicurios)
+40. [Villageois & Professions](#40--villageois--professions)
+41. [Data Generators](#41--data-generators)
+42. [Render Types (Transparence)](#42--render-types-transparence)
+43. [Fluids Custom (Liquides)](#43--fluids-custom-liquides)
+44. [Music Discs Custom](#44--music-discs-custom)
+45. [Banner Patterns Custom](#45--banner-patterns-custom)
+46. [Patchouli / REI / EMI Support](#46--patchouli--rei--emi-support)
+47. [Status Effects Custom](#47--status-effects-custom)
+48. [Entity AI Goals Custom](#48--entity-ai-goals-custom)
+49. [Paintings Custom](#49--paintings-custom)
 
 ---
 
@@ -80,128 +80,128 @@ Ce guide vous explique **TOUT** ce que vous pouvez ajouter à votre mod médiév
 Trouvez rapidement la section qui couvre un concept spécifique :
 
 **A**
-- **Advancements** → Section 37
-- **AI Goals (Entity)** → Section 47
-- **Animation** → Section 36
+- **Advancements** → Section 38
+- **AI Goals (Entity)** → Section 48
+- **Animation** → Section 37
 - **Armor (Custom)** → Section 3
 - **ArmorMaterial** → Section 3
-- **Attachment (Fabric)** → Sections 18, 19, 27
+- **Attachment (Fabric)** → Sections 19, 20, 28
 
 **B**
-- **Banner Patterns** → Section 44
-- **Biomes** → Section 35
-- **BlockEntity** → Section 13
-- **BlockState** → Sections 2, 15, 40
-- **BootstrapContext** → Sections 43, 44, 48
-- **Brewing (Potions)** → Section 46
+- **Banner Patterns** → Section 45
+- **Biomes** → Section 36
+- **BlockEntity** → Section 14
+- **BlockState** → Sections 2, 16, 41
+- **BootstrapContext** → Sections 44, 45, 49
+- **Brewing (Potions)** → Section 47
 
 **C**
-- **Capability (deprecated)** → Section 27 (voir Attachment)
-- **Commands** → Section 17
-- **Configuration (TOML)** → Section 32
+- **Capability (deprecated)** → Section 28 (voir Attachment)
+- **Commands** → Section 18
+- **Configuration (JSON)** → Section 33
 - **Creative Tabs** → Section 1
-- **Curios API** → Section 38
-- **Fabric Networking API** → Section 24
+- **Curios API** → Section 39
+- **Fabric Networking API** → Section 25
 
 **D**
-- **Data Generators** → Section 40
-- **Data Packs** → Section 30
-- **Registry.register** → Sections 1, 2, 3, 4, 46, 47
-- **Dimensions** → Section 8
-- **Dialogues (NPC)** → Section 26
+- **Data Generators** → Section 41
+- **Data Packs** → Section 31
+- **Registry.register** → Sections 1, 2, 3, 4, 47, 48
+- **Dimensions** → Section 9
+- **Dialogues (NPC)** → Section 27
 
 **E**
-- **Economy System** → Section 25
-- **Effects (StatusEffect)** → Sections 10, 46
-- **EMI Plugin** → Section 45
-- **Enchantments** → Section 9
-- **Entity (Custom)** → Section 6
-- **Events (Forge/Fabric)** → Section 16
+- **Economy System** → Section 26
+- **Effects (StatusEffect)** → Sections 11, 47
+- **EMI Plugin** → Section 46
+- **Enchantments** → Section 10
+- **Entity (Custom)** → Section 7
+- **Events (Forge/Fabric)** → Section 17
 
 **F**
-- **Factions** → Section 20
-- **Fluids (Custom)** → Section 42
-- **/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */** → Section 42
+- **Factions** → Section 21
+- **Fluids (Custom)** → Section 43
+- **/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */** → Section 43
 - **FoodComponent** → Section 6
 
 **G**
-- **Game Master Tools** → Section 28
-- **FabricDataGenerator** → Section 40
-- **GUI (Custom)** → Section 13
+- **Game Master Tools** → Section 29
+- **FabricDataGenerator** → Section 41
+- **GUI (Custom)** → Section 14
 
 **H**
-- **HUD Overlays** → Section 34
+- **HUD Overlays** → Section 35
 
 **I**
-- **i18n (Localisation)** → Section 33
+- **i18n (Localisation)** → Section 34
 - **Items (Custom)** → Section 1
 
 **J**
-- **JEI Integration** → Section 38
-- **/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */** → Section 43
+- **JEI Integration** → Section 39
+- **/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */** → Section 44
 
 **K**
-- **Keybindings** → Section 34
+- **Keybindings** → Section 35
 
 **L**
-- **Localisation** → Section 33
-- **Loot Tables** → Section 31
+- **Localisation** → Section 34
+- **Loot Tables** → Section 32
 
 **M**
-- **StatusEffect** → Sections 10, 46
-- **Music Discs** → Section 43
+- **StatusEffect** → Sections 11, 47
+- **Music Discs** → Section 44
 
 **N**
-- **Networking** → Section 24
-- **NPC (Advanced)** → Section 26
+- **Networking** → Section 25
+- **NPC (Advanced)** → Section 27
 
 **O**
-- **Ore Generation** → Section 12
-- **Overlays (HUD)** → Section 34
+- **Ore Generation** → Section 13
+- **Overlays (HUD)** → Section 35
 
 **P**
-- **Packets (Custom)** → Section 24
-- **Paintings** → Section 48
-- **Particles** → Section 36
-- **net.minecraft.entity.decoration.painting.PaintingVariant** → Section 48
-- **Patchouli** → Section 45
-- **Performance** → Section 22
-- **POI (Point of Interest)** → Section 39
-- **Potions** → Sections 6, 10, 46
+- **Packets (Custom)** → Section 25
+- **Paintings** → Section 49
+- **Particles** → Section 37
+- **net.minecraft.entity.decoration.painting.PaintingVariant** → Section 49
+- **Patchouli** → Section 46
+- **Performance** → Section 23
+- **POI (Point of Interest)** → Section 40
+- **Potions** → Sections 6, 11, 47
 
 **Q**
-- **Quests System** → Section 19
+- **Quests System** → Section 20
 
 **R**
-- **Recipes (Crafting)** → Section 11
+- **Recipes (Crafting)** → Section 12
 - **Registry** → Toutes les sections avec Registry.register
-- **REI Plugin** → Section 45
-- **RenderType** → Section 41
-- **Reputation** → Section 20
-- **ResourceKey** → Sections 43, 44, 48
+- **REI Plugin** → Section 46
+- **RenderType** → Section 42
+- **Reputation** → Section 21
+- **ResourceKey** → Sections 44, 45, 49
 
 **S**
-- **Security (Anti-Exploit)** → Section 23
-- **Sounds** → Section 14
-- **Stats (RPG)** → Section 27
-- **PacketByteBuf** → Section 24
-- **Structures** → Section 7
+- **Security (Anti-Exploit)** → Section 24
+- **Sounds** → Section 15
+- **Stats (RPG)** → Section 28
+- **PacketByteBuf** → Section 25
+- **Structures** → Section 8
 
 **T**
-- **Tags** → Section 30
-- **Textures** → Section 15
+- **Tags** → Section 31
+- **Textures** → Section 16
 - **Tiers (Tool)** → Section 4
-- **TOML Config** → Section 32
+- **JSON Config** → Section 33
 - **Tools (Custom)** → Section 4
 - **Tooltips** → Section 1
-- **Trades (VillagerEntity)** → Section 39
+- **Trades (VillagerEntity)** → Section 40
 
 **V**
-- **Villagers (Custom)** → Section 39
+- **Villagers (Custom)** → Section 40
 
 **W**
-- **World Events** → Section 21
-- **World Features** → Section 35
+- **World Events** → Section 22
+- **World Features** → Section 36
 
 ---
 
@@ -218,10 +218,10 @@ Progressez à votre rythme en suivant les sections adaptées à votre niveau :
 - **Section 4** : Outils (Tools) - Pioche, épée, pelle
 - **Section 5** : Messages & Notifications - Communiquer avec le joueur
 - **Section 6** : Nourriture & Potions - Items consommables
-- **Section 11** : Recettes de Craft - Comment fabriquer vos items
-- **Section 14** : Sons Personnalisés - Ajouter de l'audio
-- **Section 15** : Textures & Modèles - Visuels de base
-- **Section 33** : Localisation (i18n) - Traductions multilingues
+- **Section 12** : Recettes de Craft - Comment fabriquer vos items
+- **Section 15** : Sons Personnalisés - Ajouter de l'audio
+- **Section 16** : Textures & Modèles - Visuels de base
+- **Section 34** : Localisation (i18n) - Traductions multilingues
 
 **📌 Temps estimé : 1-2 semaines**
 
@@ -230,20 +230,20 @@ Progressez à votre rythme en suivant les sections adaptées à votre niveau :
 #### 🟡 **INTERMÉDIAIRE** - Solides bases requises
 *Vous maîtrisez les sections débutant*
 
-- **Section 7** : Structures - Générer des bâtiments
-- **Section 9** : Enchantements - Effets magiques sur items
-- **Section 10** : Effets de Potion - Status effects vanilla
-- **Section 12** : Génération de Minerais - WorldGen
-- **Section 13** : GUI (Interfaces) - Menus personnalisés
-- **Section 16** : Events & Mécaniques - Réagir aux actions
-- **Section 17** : Commandes - Commands custom
-- **Section 30** : Tags & Data Packs - Organisation des données
-- **Section 31** : Loot Tables - Drops personnalisés
-- **Section 32** : Configuration TOML - Fichiers de config
-- **Section 34** : Keybindings & HUD - Touches et overlays
-- **Section 35** : Biomes & World Features - Génération custom
-- **Section 37** : Advancements - Système de succès
-- **Section 48** : Paintings Custom - Tableaux décoratifs
+- **Section 8** : Structures - Générer des bâtiments
+- **Section 10** : Enchantements - Effets magiques sur items
+- **Section 11** : Effets de Potion - Status effects vanilla
+- **Section 13** : Génération de Minerais - WorldGen
+- **Section 14** : GUI (Interfaces) - Menus personnalisés
+- **Section 17** : Events & Mécaniques - Réagir aux actions
+- **Section 18** : Commandes - Commands custom
+- **Section 31** : Tags & Data Packs - Organisation des données
+- **Section 32** : Loot Tables - Drops personnalisés
+- **Section 33** : Configuration JSON - Fichiers de config
+- **Section 35** : Keybindings & HUD - Touches et overlays
+- **Section 36** : Biomes & World Features - Génération custom
+- **Section 38** : Advancements - Système de succès
+- **Section 49** : Paintings Custom - Tableaux décoratifs
 
 **📌 Temps estimé : 2-4 semaines**
 
@@ -252,20 +252,20 @@ Progressez à votre rythme en suivant les sections adaptées à votre niveau :
 #### 🟠 **AVANCÉ** - Bonne maîtrise de Java
 *Concepts complexes, systèmes multi-composants*
 
-- **Section 6** : Entités (Mobs) - Créatures vivantes
-- **Section 8** : Dimensions - Mondes parallèles
-- **Section 18** : Systèmes de Compétences - Skills RPG
-- **Section 19** : Quêtes Complètes - Quest system
-- **Section 20** : Factions & Réputation - Relations entre factions
-- **Section 21** : Événements Dynamiques - World events
-- **Section 26** : Dialogues & PNJ - NPCs intelligents
-- **Section 27** : Stats RPG - Système de statistiques
-- **Section 28** : Outils Game Master - Admin tools
-- **Section 36** : Particles & Animations - Effets visuels
-- **Section 38** : JEI/Curios - Compatibilité mods
-- **Section 39** : Villageois Custom - Professions et trades
-- **Section 46** : Status Effects Custom - StatusEffect from scratch
-- **Section 47** : Entity AI Goals - Comportements d'IA
+- **Section 7** : Entités (Mobs) - Créatures vivantes
+- **Section 9** : Dimensions - Mondes parallèles
+- **Section 19** : Conditions & Dépendances - Systèmes de conditions
+- **Section 20** : Quêtes Complètes - Quest system
+- **Section 21** : Factions & Réputation - Relations entre factions
+- **Section 22** : Événements Dynamiques - World events
+- **Section 27** : Dialogues & PNJ - NPCs intelligents
+- **Section 28** : Stats RPG - Système de statistiques
+- **Section 29** : Outils Game Master - Admin tools
+- **Section 37** : Particles & Animations - Effets visuels
+- **Section 39** : JEI/Curios - Compatibilité mods
+- **Section 40** : Villageois Custom - Professions et trades
+- **Section 47** : Status Effects Custom - StatusEffect from scratch
+- **Section 48** : Entity AI Goals - Comportements d'IA
 
 **📌 Temps estimé : 4-8 semaines**
 
@@ -274,17 +274,17 @@ Progressez à votre rythme en suivant les sections adaptées à votre niveau :
 #### 🔴 **EXPERT** - Maîtrise complète requise
 *APIs avancées, optimisation, architecture complexe*
 
-- **Section 22** : Performance & Optimisation - Profiling avancé
-- **Section 23** : Sécurité & Anti-Exploit - Protection serveur
-- **Section 24** : Networking & Packets - Communication client-serveur
-- **Section 25** : Économie Serveur - Système économique complet
-- **Section 29** : Build & Déploiement - Publication professionnelle
-- **Section 40** : Data Generators - Automatisation JSON
-- **Section 41** : Render Types - Transparence et rendu
-- **Section 42** : Fluids Custom - Liquides personnalisés
-- **Section 43** : Music Discs - Disques avec /* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */
-- **Section 44** : Banner Patterns - Motifs de bannières
-- **Section 45** : Patchouli/REI/EMI - Documentation in-game
+- **Section 23** : Performance & Optimisation - Profiling avancé
+- **Section 24** : Sécurité & Anti-Exploit - Protection serveur
+- **Section 25** : Networking & Packets - Communication client-serveur
+- **Section 26** : Économie Serveur - Système économique complet
+- **Section 30** : Build & Déploiement - Publication professionnelle
+- **Section 41** : Data Generators - Automatisation JSON
+- **Section 42** : Render Types - Transparence et rendu
+- **Section 43** : Fluids Custom - Liquides personnalisés
+- **Section 44** : Music Discs - Disques de musique custom
+- **Section 45** : Banner Patterns - Motifs de bannières
+- **Section 46** : Patchouli/REI/EMI - Documentation in-game
 
 **📌 Temps estimé : 8-12 semaines pour la maîtrise totale**
 
@@ -295,9 +295,9 @@ Progressez à votre rythme en suivant les sections adaptées à votre niveau :
 #### 🏰 **Parcours "Mod Décoratif"**
 *Pour créer un mod de construction/décoration*
 
-1. Section 1 (Items) → 2 (Blocs) → 15 (Textures) → 11 (Recettes)
-2. Section 48 (Paintings) → 14 (Sons) → 33 (Localisation)
-3. Section 30 (Tags) → 31 (Loot Tables) → 32 (Config)
+1. Section 1 (Items) → 2 (Blocs) → 16 (Textures) → 12 (Recettes)
+2. Section 49 (Paintings) → 15 (Sons) → 34 (Localisation)
+3. Section 31 (Tags) → 32 (Loot Tables) → 33 (Config)
 
 **Résultat** : Mod avec items décoratifs, blocs, tableaux, sons
 
@@ -307,12 +307,12 @@ Progressez à votre rythme en suivant les sections adaptées à votre niveau :
 *Pour créer un MMORPG médiéval*
 
 1. **Base** : 1, 2, 3, 4, 6 (Items, Blocs, Armures, Outils, Nourriture)
-2. **Combat** : 9 (Enchants) → 10 (Effects) → 46 (Status Effects Custom)
-3. **Mobs** : 6 (Entités) → 47 (AI Goals)
-4. **Systèmes** : 18 (Compétences) → 19 (Quêtes) → 20 (Factions)
-5. **Stats** : 27 (Stats RPG) → 26 (Dialogues NPC)
-6. **Monde** : 7 (Structures) → 35 (Biomes) → 21 (Events)
-7. **Économie** : 25 (Économie) → 39 (Villageois)
+2. **Combat** : 10 (Enchants) → 11 (Effects) → 47 (Status Effects Custom)
+3. **Mobs** : 7 (Entités) → 48 (AI Goals)
+4. **Systèmes** : 19 (Conditions) → 20 (Quêtes) → 21 (Factions)
+5. **Stats** : 28 (Stats RPG) → 27 (Dialogues NPC)
+6. **Monde** : 8 (Structures) → 36 (Biomes) → 22 (Events)
+7. **Économie** : 26 (Économie) → 40 (Villageois)
 
 **Résultat** : MMORPG complet avec classes, quêtes, factions
 
@@ -321,11 +321,11 @@ Progressez à votre rythme en suivant les sections adaptées à votre niveau :
 #### 🔧 **Parcours "Mod Technique"**
 *Pour créer un mod axé sur les mécaniques*
 
-1. **Fondations** : 1, 2, 13 (Items, Blocs, GUI)
-2. **Data** : 30 (Tags) → 40 (Data Generators)
-3. **Systèmes** : 16 (Events) → 24 (Networking) → 32 (Config)
-4. **Avancé** : 22 (Performance) → 23 (Sécurité)
-5. **Intégration** : 38 (JEI/Curios) → 45 (Patchouli/REI/EMI)
+1. **Fondations** : 1, 2, 14 (Items, Blocs, GUI)
+2. **Data** : 31 (Tags) → 41 (Data Generators)
+3. **Systèmes** : 17 (Events) → 25 (Networking) → 33 (Config)
+4. **Avancé** : 23 (Performance) → 24 (Sécurité)
+5. **Intégration** : 39 (JEI/Curios) → 46 (Patchouli/REI/EMI)
 
 **Résultat** : Mod technique optimisé et professionnel
 
@@ -334,11 +334,11 @@ Progressez à votre rythme en suivant les sections adaptées à votre niveau :
 #### 🌍 **Parcours "WorldGen Expert"**
 *Pour créer un mod de génération de monde*
 
-1. **Base** : 1, 2, 15 (Items, Blocs, Textures)
-2. **Génération** : 12 (Minerais) → 35 (Biomes) → 7 (Structures)
-3. **Dimensions** : 8 (Dimensions custom)
-4. **Fluides** : 42 (Fluids) → 41 (Render Types)
-5. **Avancé** : 21 (Events Dynamiques) → 40 (Data Generators)
+1. **Base** : 1, 2, 16 (Items, Blocs, Textures)
+2. **Génération** : 13 (Minerais) → 36 (Biomes) → 8 (Structures)
+3. **Dimensions** : 9 (Dimensions custom)
+4. **Fluides** : 43 (Fluids) → 42 (Render Types)
+5. **Avancé** : 22 (Events Dynamiques) → 41 (Data Generators)
 
 **Résultat** : Mod avec biomes, structures, dimensions custom
 
@@ -1008,14 +1008,14 @@ PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, entity) -> {
 
 1. **Architecture Globale** : Au début, pour comprendre la structure
 2. **Registry.register** : Avant de créer items/blocs (Sections 1-4)
-3. **Networking** : Avant Section 24 (Packets)
-4. **Attachments** : Avant Sections 18, 19, 27 (Systèmes RPG)
-5. **WorldGen** : Avant Sections 12, 35 (Génération monde)
-6. **GUI** : Avant Section 13 (Interfaces)
-7. **Events** : Avant Section 16 (Mécaniques)
+3. **Networking** : Avant Section 25 (Packets)
+4. **Attachments** : Avant Sections 19, 20, 28 (Systèmes RPG)
+5. **WorldGen** : Avant Sections 13, 36 (Génération monde)
+6. **GUI** : Avant Section 14 (Interfaces)
+7. **Events** : Avant Section 17 (Mécaniques)
 8. **Lifecycle** : Comprendre l'ordre de chargement du mod
-9. **Data-Driven** : Avant Sections 43, 44, 48 (Registries JSON)
-10. **Quêtes** : Avant Section 19 (Quest System)
+9. **Data-Driven** : Avant Sections 44, 45, 49 (Registries JSON)
+10. **Quêtes** : Avant Section 20 (Quest System)
 
 **✨ Ces diagrammes sont des références visuelles pour accompagner les sections détaillées du guide !**
 
@@ -1321,13 +1321,13 @@ Cochez au fur et à mesure :
 
 Vos items sont invisibles (cubes roses) ? Normal ! Il faut des textures.
 
-**➡️ Allez à la Section 15 : Textures & Modèles**
+**➡️ Allez à la Section 16 : Textures & Modèles**
 
 **🏆 Parcours Recommandé pour Débutant :**
 
 1. ✅ **Quick Start** (vous êtes ici !)
-2. ➡️ **Section 15** : Textures & Modèles (30 min)
-3. ➡️ **Section 11** : Recettes de Craft (20 min)
+2. ➡️ **Section 16** : Textures & Modèles (30 min)
+3. ➡️ **Section 12** : Recettes de Craft (20 min)
 4. ➡️ **Section 1** : Items avancés (tooltips, propriétés) (1h)
 5. ➡️ **Section 2** : Blocs avancés (propriétés, BlockEntity) (1h)
 
@@ -1363,7 +1363,7 @@ Vos items sont invisibles (cubes roses) ? Normal ! Il faut des textures.
 **❌ Items invisibles (cubes roses/noirs)**
 ```
 ✅ Solution : Vous n'avez pas encore créé les textures !
-   → Allez à Section 15 : Textures & Modèles
+   → Allez à Section 16 : Textures & Modèles
 ```
 
 **❌ Onglet créatif n'apparaît pas**
@@ -1477,7 +1477,7 @@ public static final Item KNIGHT_EMBLEM = registerItem("knight_emblem", new Item(
 
 **🎉 Bravo ! Vous avez terminé le Quick Start !**
 
-**Prochaine étape** : Section 15 (Textures) pour rendre vos objets beaux ! 🎨
+**Prochaine étape** : Section 16 (Textures) pour rendre vos objets beaux ! 🎨
 
 ---
 
@@ -2635,7 +2635,7 @@ public static final HoeItem SILVER_HOE = registerItem("silver_hoe", new HoeItem(
 > - Avertissement urgent → **Titre**
 > - Statistiques temps réel → **Action Bar**
 
-### 5.1 📺 Titre au Centre de l'Écran
+### 6.1 📺 Titre au Centre de l'Écran
 
 **📝 Envoie un grand message au centre qui s'affiche puis disparaît en fondu :**
 
@@ -2689,7 +2689,7 @@ player.connection.send(new ClientboundSetTitleTextPacket(
     Text.literal("§d§k||§r §5§lROYAUTÉ §d§k||")));
 ```
 
-### 5.2 📊 Action Bar (Au-dessus de la Hotbar)
+### 6.2 📊 Action Bar (Au-dessus de la Hotbar)
 
 **Afficher un message au-dessus de la barre d'objets (persiste et se met à jour)**
 
@@ -2759,7 +2759,7 @@ public void inventoryTick(ItemStack stack, World world, Entity entity, int slotI
 }
 ```
 
-### 5.3 🏆 Toast/Advancement (Popup en Haut à Droite)
+### 6.3 🏆 Toast/Advancement (Popup en Haut à Droite)
 
 **Afficher une notification style achievement qui slide depuis le côté**
 
@@ -2924,7 +2924,7 @@ if (world.isClient()) {
 // Ou utiliser l'advancement system ci-dessus (plus simple)
 ```
 
-### 5.4 🎨 Popup avec Image Personnalisée
+### 6.4 🎨 Popup avec Image Personnalisée
 
 **Créer un écran overlay qui s'affiche temporairement**
 
@@ -3281,7 +3281,7 @@ Coordonnées utiles :
 - Centre Y : (screenHeight - 100) / 2
 ```
 
-### 5.5 📋 Récapitulatif des Méthodes
+### 6.5 📋 Récapitulatif des Méthodes
 
 | Méthode | Position | Durée | Complexité | Usage Recommandé |
 |---------|----------|-------|------------|------------------|
@@ -3290,7 +3290,7 @@ Coordonnées utiles :
 | **Toast** | Haut droite | 5 sec | ⭐⭐ Moyen | Notifications (réussite, déblocage) |
 | **Popup** | Centre écran | Variable | ⭐⭐⭐ Avancé | Events spéciaux avec image |
 
-### 5.6 💡 Exemples d'Utilisation Pratiques
+### 6.6 💡 Exemples d'Utilisation Pratiques
 
 **Lors d'un level up :**
 
@@ -3354,7 +3354,7 @@ public static void completeQuest(ServerPlayerEntity player, String questName) {
 
 ## 6. 🍖 Nourriture et Potions
 
-### 5.1 Nourriture Simple
+### 6.1 Nourriture Simple
 
 **Dans ModFoods.java :**
 
@@ -3378,7 +3378,7 @@ public static final FoodComponent POMME_OR_MEDELIUM = new FoodComponent.Builder(
 public static final Item FROMAGE = registerItem("fromage", new Item(new FabricItemSettings().food(ModFoods.FROMAGE)));
 ```
 
-### 5.2 Nourriture avec Effets
+### 6.2 Nourriture avec Effets
 
 ```java
 import net.minecraft.entity.effect.StatusEffects;
@@ -3427,9 +3427,9 @@ public static final FoodComponent POTION_FORCE = new FoodComponent.Builder()
 
 ---
 
-## 6. 👾 Entités (Mobs)
+## 7. 👾 Entités (Mobs)
 
-### 6.1 Créer une Entité Basique
+### 7.1 Créer une Entité Basique
 
 **Créer :** `src/main/java/com/medelium/entity/ModEntities.java`
 
@@ -3459,7 +3459,7 @@ public class ModEntities {
 ModEntities.register(modEventBus);
 ```
 
-### 6.2 Créer la Classe de l'Entité
+### 7.2 Créer la Classe de l'Entité
 
 **Créer :** `src/main/java/com/medelium/entity/custom/GuardEntity.java`
 
@@ -3496,7 +3496,7 @@ public class GuardEntity extends PathfinderMob {
 }
 ```
 
-### 6.3 🐉 Créer un BOSS
+### 7.3 🐉 Créer un BOSS
 
 > **📖 Différence entre Mob normal et Boss :**
 >
@@ -3554,7 +3554,7 @@ public class GuardEntity extends PathfinderMob {
 >
 > **💡 Astuce :** Commencez simple, puis ajoutez les mécaniques une par une en testant !
 
-#### 6.3.1 Classe de Boss avec Barre de Vie
+#### 7.3.1 Classe de Boss avec Barre de Vie
 
 **📝 Cette classe crée un boss complet avec barre de vie visible :**
 
@@ -3641,7 +3641,7 @@ public class DragonBossEntity extends Monster {
 }
 ```
 
-#### 6.3.2 Boss avec Phases de Combat
+#### 7.3.2 Boss avec Phases de Combat
 
 ```java
 public class DragonBossEntity extends Monster {
@@ -3681,7 +3681,7 @@ public class DragonBossEntity extends Monster {
 }
 ```
 
-#### 6.3.3 Boss avec Attaques Spéciales
+#### 7.3.3 Boss avec Attaques Spéciales
 
 ```java
 private int attackCooldown = 0;
@@ -3721,7 +3721,7 @@ private void specialAttack() {
 }
 ```
 
-### 6.4 🔱 Créer un MINI-BOSS
+### 7.4 🔱 Créer un MINI-BOSS
 
 > **📖 C'est quoi un Mini-Boss ?**
 > Entre un mob normal et un boss complet :
@@ -3826,9 +3826,9 @@ public class MiniBossEntity extends Monster {
 - `BossBarColor`: WHITE, PINK, BLUE, RED, GREEN, YELLOW, PURPLE
 - `BossBarOverlay`: PROGRESS (pleine), NOTCHED_6, NOTCHED_10, NOTCHED_12, NOTCHED_20
 
-### 6.5 💎 Système de Loot Aléatoire
+### 7.5 💎 Système de Loot Aléatoire
 
-#### 6.5.1 Loot Table pour Boss
+#### 7.5.1 Loot Table pour Boss
 
 **Créer :** `src/main/resources/data/medelium/loot_table/entities/dragon_boss.json`
 
@@ -3924,7 +3924,7 @@ public class MiniBossEntity extends Monster {
 }
 ```
 
-#### 6.5.2 Loot Aléatoire dans le Code
+#### 7.5.2 Loot Aléatoire dans le Code
 
 **Ajouter dans l'entité :**
 
@@ -3961,7 +3961,7 @@ public void die(net.minecraft.entity.damage.DamageSource cause) {
 }
 ```
 
-#### 6.5.3 Loot Table Avancé avec Conditions
+#### 7.5.3 Loot Table Avancé avec Conditions
 
 ```json
 {
@@ -4023,7 +4023,7 @@ public void die(net.minecraft.entity.damage.DamageSource cause) {
 }
 ```
 
-### 6.6 Enregistrer les Attributs
+### 7.6 Enregistrer les Attributs
 
 **Dans `Medelium.java` → `onInitialize()` :**
 
@@ -4039,7 +4039,7 @@ FabricDefaultAttributeRegistry.register(ModEntities.GUARD, GuardEntity.createAtt
 
 ---
 
-## 7. 🏰 Structures
+## 8. 🏰 Structures
 
 > **📖 C'est quoi une Structure ?**
 > Une structure = construction qui spawn naturellement dans le monde
@@ -4075,7 +4075,7 @@ FabricDefaultAttributeRegistry.register(ModEntities.GUARD, GuardEntity.createAtt
 > Recommandation : Commencez par des structures simples (petite ruine)
 > Puis augmentez la complexité (grand château avec plusieurs salles)
 
-### 7.1 Créer une Structure Simple avec Template Pools
+### 8.1 Créer une Structure Simple avec Template Pools
 
 **Créer :** `src/main/resources/data/medelium/worldgen/template_pool/castle/start.json`
 
@@ -4097,7 +4097,7 @@ FabricDefaultAttributeRegistry.register(ModEntities.GUARD, GuardEntity.createAtt
 }
 ```
 
-### 7.2 Créer la Configuration de Structure
+### 8.2 Créer la Configuration de Structure
 
 **Créer :** `src/main/resources/data/medelium/worldgen/structure/medieval_castle.json`
 
@@ -4121,7 +4121,7 @@ FabricDefaultAttributeRegistry.register(ModEntities.GUARD, GuardEntity.createAtt
 
 ---
 
-## 8. 🌌 Dimensions
+## 9. 🌌 Dimensions
 
 > **📖 C'est quoi une Dimension ?**
 > Une dimension = monde parallèle complètement séparé
@@ -4167,7 +4167,7 @@ FabricDefaultAttributeRegistry.register(ModEntities.GUARD, GuardEntity.createAtt
 > 2. Puis tentez une dimension simple (juste un monde plat custom)
 > 3. Ensuite compliquez progressivement
 
-### 8.1 Créer une Dimension Personnalisée
+### 9.1 Créer une Dimension Personnalisée
 
 **📝 Ce fichier JSON définit votre dimension et comment le terrain se génère :**
 
@@ -4187,7 +4187,7 @@ FabricDefaultAttributeRegistry.register(ModEntities.GUARD, GuardEntity.createAtt
 }
 ```
 
-### 8.2 Créer un Type de Dimension
+### 9.2 Créer un Type de Dimension
 
 > **📖 Le fichier dimension_type définit les "règles physiques" de votre dimension :**
 >
@@ -4232,7 +4232,7 @@ FabricDefaultAttributeRegistry.register(ModEntities.GUARD, GuardEntity.createAtt
 
 ---
 
-## 9. ✨ Enchantements
+## 10. ✨ Enchantements
 
 > **📖 Comment fonctionnent les enchantements ?**
 > Un enchantement = bonus magique sur un item (comme Tranchant, Fortune, etc.)
@@ -4271,7 +4271,7 @@ FabricDefaultAttributeRegistry.register(ModEntities.GUARD, GuardEntity.createAtt
 > Et checker si l'item a votre enchantement
 > Puis appliquer l'effet custom
 
-### 9.1 Créer un Enchantement Personnalisé
+### 10.1 Créer un Enchantement Personnalisé
 
 **📝 Ce fichier enregistre votre enchantement dans le jeu :**
 
@@ -4293,7 +4293,7 @@ public class ModEnchantments {
 
 ---
 
-## 10. 🧪 Effets de Potion
+## 11. 🧪 Effets de Potion
 
 > **📖 C'est quoi un Effet de Potion ?**
 > Un effet = status temporaire sur le joueur (comme Régénération, Poison, Force)
@@ -4335,7 +4335,7 @@ public class ModEnchantments {
 > - Être touché par un mob → Effet appliqué
 > - Porter une armure → Effet permanent
 
-### 10.1 Créer un Effet Personnalisé
+### 11.1 Créer un Effet Personnalisé
 
 **Créer :** `src/main/java/com/medelium/effect/ModEffects.java`
 
@@ -4393,9 +4393,9 @@ public class BlessingEffect extends StatusEffect {
 
 ---
 
-## 11. 📝 Recettes de Craft
+## 12. 📝 Recettes de Craft
 
-### 11.1 Recette Shaped (Forme Précise)
+### 12.1 Recette Shaped (Forme Précise)
 
 **Créer :** `src/main/resources/data/medelium/recipe/knight_sword.json`
 
@@ -4423,7 +4423,7 @@ public class BlessingEffect extends StatusEffect {
 }
 ```
 
-### 11.2 Recette Shapeless (Forme Libre)
+### 12.2 Recette Shapeless (Forme Libre)
 
 **Créer :** `src/main/resources/data/medelium/recipe/gold_coin.json`
 
@@ -4452,7 +4452,7 @@ public class BlessingEffect extends StatusEffect {
 }
 ```
 
-### 11.3 Recette de Cuisson (Fourneau)
+### 12.3 Recette de Cuisson (Fourneau)
 
 **Créer :** `src/main/resources/data/medelium/recipe/medieval_bread_smelting.json`
 
@@ -4471,7 +4471,7 @@ public class BlessingEffect extends StatusEffect {
 }
 ```
 
-### 11.4 Recette Smithing (Table de Forgeron)
+### 12.4 Recette Smithing (Table de Forgeron)
 
 **Créer :** `src/main/resources/data/medelium/recipe/royal_sword_smithing.json`
 
@@ -4495,9 +4495,9 @@ public class BlessingEffect extends StatusEffect {
 
 ---
 
-## 12. ⛏️ Génération de Minerais
+## 13. ⛏️ Génération de Minerais
 
-### 12.1 Créer un Minerai
+### 13.1 Créer un Minerai
 
 **Dans ModBlocks.java :**
 
@@ -4515,7 +4515,7 @@ public static final Block DEEPSLATE_SILVER_ORE = registerBlock("deepslate_silver
         .sounds(BlockSoundGroup.DEEPSLATE)));
 ```
 
-### 12.2 Configurer la Génération
+### 13.2 Configurer la Génération
 
 **Créer :** `src/main/resources/data/medelium/worldgen/placed_feature/silver_ore_placed.json`
 
@@ -4583,7 +4583,7 @@ public static final Block DEEPSLATE_SILVER_ORE = registerBlock("deepslate_silver
 
 ---
 
-## 13. 🖥️ Interfaces Graphiques (GUI)
+## 14. 🖥️ Interfaces Graphiques (GUI)
 
 > **📖 C'est quoi un GUI (Graphical User Interface) ?**
 > C'est un menu/fenêtre qui s'affiche à l'écran : inventaire, four, table de craft, etc.
@@ -4632,11 +4632,11 @@ public static final Block DEEPSLATE_SILVER_ORE = registerBlock("deepslate_silver
 > Vous modifiez juste l'image PNG pour changer le design !
 > Pas besoin de retoucher le code si vous voulez changer les couleurs ou ajouter des décos.
 
-### 13.1 🎨 GUI Complètement Personnalisé avec Image
+### 14.1 🎨 GUI Complètement Personnalisé avec Image
 
 > **Important :** Cette section montre comment créer un GUI entièrement basé sur UNE IMAGE que vous dessinez vous-même, avec des zones cliquables. Pas besoin de composants classiques !
 
-#### 13.1.1 Créer Votre Image de GUI
+#### 14.1.1 Créer Votre Image de GUI
 
 **Logiciel recommandé :** Paint.NET, GIMP, Photoshop, ou même Paint
 
@@ -4668,7 +4668,7 @@ public static final Block DEEPSLATE_SILVER_ORE = registerBlock("deepslate_silver
 4. Ajoutez des décorations (épées, couronnes, parchemin)
 5. Marquez mentalement où vous voulez les zones cliquables
 
-#### 13.1.2 Créer le Menu (Sans Inventaire)
+#### 14.1.2 Créer le Menu (Sans Inventaire)
 
 **Créer :** `src/main/java/com/medelium/screen/AlchemyTableScreen.java`
 
@@ -4711,7 +4711,7 @@ public class AlchemyTableScreen extends HandledScreen<AlchemyTableMenu> {
 }
 ```
 
-#### 13.1.3 Ajouter des Zones Cliquables sur Votre Image
+#### 14.1.3 Ajouter des Zones Cliquables sur Votre Image
 
 **Voici où vous créez l'interactivité !**
 
@@ -4733,12 +4733,15 @@ public class CustomMenuScreen extends HandledScreen<CustomMenu> {
         
         // Dessiner votre image
         guiGraphics.blit(TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
-        
-        // Surligner Plusieurs Images Superposées
+    }
+}
+```
+
+**Surligner Plusieurs Images Superposées**
 
 **Exemple : Image de fond + overlay qui change**
 
-```java
+```
 private static final Identifier BG_TEXTURE = 
     new Identifier(Medelium.MOD_ID, "textures/gui/menu_background.png");
 private static final Identifier OVERLAY_HOVER = 
@@ -4763,11 +4766,11 @@ protected void renderBg(DrawContext guiGraphics, float partialTick, int mouseX, 
 }
 ```
 
-#### 13.1.5 GUI Animé avec Images
+#### 14.1.5 GUI Animé avec Images
 
 **Créer une animation simple (bouton qui pulse) :**
 
-```java
+```
 private int animationTick = 0;
 
 @Override
@@ -4803,7 +4806,10 @@ protected void renderBg(DrawContext guiGraphics, float partialTick, int mouseX, 
 │ Frame 3 │ 206-225 │
 ├────────────────────┤
 │ Frame 4 │ 226-245 │
-└───────────Ouvrir le GUI avec une Commande ou Objet
+└────────────────────┘
+```
+
+#### 14.1.6 Ouvrir le GUI avec une Commande ou Objet
 
 **Option 1 : Commande pour ouvrir le GUI**
 
@@ -4867,9 +4873,11 @@ public static final Item MENU_OPENER = registerItem("menu_opener", new MenuOpene
 
 ```java
 // Dans le bloc
+```
+
 **Code complet :**
 
-```java
+```
 package com.medelium.currentScreen;
 
 import com.medelium.Medelium;
@@ -5002,9 +5010,9 @@ public class QuestMenuScreen extends HandledScreen<CustomMenu> {
    - Taille : 60 pixels large, 20 pixels haut
    - Code : `mouseX >= x + 20 && mouseX <= x + 80 && mouseY >= y + 40 && mouseY <= y + 60`
 
-#### 13.1.4 GUI avec Éléments Personnalisés
+#### 14.1.4 GUI avec Éléments Personnalisés
 
-```java
+```
 @Override
 protected void renderBg(DrawContext guiGraphics, float partialTick, int mouseX, int mouseY) {
     int x = (this.width - this.imageWidth) / 2;
@@ -5045,9 +5053,9 @@ public void render(DrawContext guiGraphics, int mouseX, int mouseY, float partia
 }
 ```
 
-#### 13.1.5 GUI avec Plusieurs Images
+#### 14.1.5 GUI avec Plusieurs Images
 
-```java
+```
 private static final Identifier BG_TEXTURE = 
     new Identifier(Medelium.MOD_ID, "textures/gui/alchemy_bg.png");
 private static final Identifier OVERLAY_TEXTURE = 
@@ -5071,11 +5079,11 @@ protected void renderBg(DrawContext guiGraphics, float partialTick, int mouseX, 
 }
 ```
 
-#### 13.1.6 Enregistrer le Menu Type
+#### 14.1.6 Enregistrer le Menu Type
 
 **Créer :** `src/main/java/com/medelium/screen/ModMenuTypes.java`
 
-```java
+```
 package com.medelium.currentScreen;
 
 import com.medelium.Medelium;
@@ -5097,15 +5105,15 @@ public class ModMenuTypes {
 ```
 
 **Dans Medelium.java :**
-```java
+```
 ModMenuTypes.register(modEventBus);
 ```
 
-#### 13.1.7 Enregistrer l'Écran (Client)
+#### 14.1.7 Enregistrer l'Écran (Client)
 
 **Dans `MedeliumClient.java` → `onInitializeClient()` :**
 
-```java
+```
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import com.medelium.screen.AlchemyTableScreen;
 import com.medelium.screen.ModMenuTypes;
@@ -5114,9 +5122,9 @@ import com.medelium.screen.ModMenuTypes;
 HandledScreens.register(ModMenuTypes.ALCHEMY_TABLE_MENU, AlchemyTableScreen::new);
 ```
 
-#### 13.1.8 GUI avec Boutons Cliquables
+#### 14.1.8 GUI avec Boutons Cliquables
 
-```java
+```
 public class AlchemyTableScreen extends HandledScreen<AlchemyTableMenu> {
     
     @Override
@@ -5155,11 +5163,11 @@ public class AlchemyTableScreen extends HandledScreen<AlchemyTableMenu> {
 }
 ```
 
-### 13.2 Créer un Bloc avec Inventaire
+### 14.2 Créer un Bloc avec Inventaire
 
 **Créer :** `src/main/java/com/medelium/block/custom/AlchemyTableBlock.java`
 
-```java
+```
 package com.medelium.block.custom;
 
 import com.medelium.block.entity.AlchemyTableBlockEntity;
@@ -5203,13 +5211,13 @@ public class AlchemyTableBlock extends Block implements EntityBlock {
 
 ---
 
-## 14. 🔊 Sons Personnalisés
+## 15. 🔊 Sons Personnalisés
 
-### 14.1 Enregistrer des Sons
+### 15.1 Enregistrer des Sons
 
 **Créer :** `src/main/java/com/medelium/sound/ModSounds.java`
 
-```java
+```
 package com.medelium.sound;
 
 import com.medelium.Medelium;
@@ -5230,11 +5238,11 @@ public class ModSounds {
 }
 ```
 
-### 14.2 Définir les Sons
+### 15.2 Définir les Sons
 
 **Créer :** `src/main/resources/assets/medelium/sounds.json`
 
-```json
+```
 {
   "castle_bell": {
     "sounds": [
@@ -5254,9 +5262,9 @@ public class ModSounds {
 
 ---
 
-## 15. 🎨 Textures et Modèles
+## 16. 🎨 Textures et Modèles
 
-### 15.1 Structure des Fichiers
+### 16.1 Structure des Fichiers
 
 ```
 src/main/resources/assets/medelium/
@@ -5277,11 +5285,11 @@ src/main/resources/assets/medelium/
     └── castle_stone.json
 ```
 
-### 15.2 Modèle d'Objet Simple
+### 16.2 Modèle d'Objet Simple
 
 **Créer :** `src/main/resources/assets/medelium/models/item/silver_coin.json`
 
-```json
+```
 {
   "parent": "minecraft:item/generated",
   "textures": {
@@ -5290,11 +5298,11 @@ src/main/resources/assets/medelium/
 }
 ```
 
-### 15.3 Modèle d'Outil (Épée, Pioche, etc.)
+### 16.3 Modèle d'Outil (Épée, Pioche, etc.)
 
 **Créer :** `src/main/resources/assets/medelium/models/item/knight_sword.json`
 
-```json
+```
 {
   "parent": "minecraft:item/handheld",
   "textures": {
@@ -5303,11 +5311,11 @@ src/main/resources/assets/medelium/
 }
 ```
 
-### 15.4 Modèle de Bloc Simple
+### 16.4 Modèle de Bloc Simple
 
 **Créer :** `src/main/resources/assets/medelium/models/block/castle_stone.json`
 
-```json
+```
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
@@ -5318,17 +5326,17 @@ src/main/resources/assets/medelium/
 
 **Créer :** `src/main/resources/assets/medelium/models/item/castle_stone.json`
 
-```json
+```
 {
   "parent": "medelium:block/castle_stone"
 }
 ```
 
-### 15.5 Blockstate
+### 16.5 Blockstate
 
 **Créer :** `src/main/resources/assets/medelium/blockstates/castle_stone.json`
 
-```json
+```
 {
   "variants": {
     "": {
@@ -5338,7 +5346,7 @@ src/main/resources/assets/medelium/
 }
 ```
 
-### 15.6 Taille des Textures
+### 16.6 Taille des Textures
 
 - **Objets/Blocs :** 16x16 pixels (ou multiples : 32x32, 64x64, 128x128)
 - **Format :** PNG avec transparence
@@ -5346,13 +5354,13 @@ src/main/resources/assets/medelium/
 
 ---
 
-## 16. ⚡ Events et Mécaniques
+## 17. ⚡ Events et Mécaniques
 
-### 16.1 Event de Joueur
+### 17.1 Event de Joueur
 
 **Dans `Medelium.java` → `onInitialize()` :**
 
-```java
+```
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 
@@ -5370,7 +5378,7 @@ ServerLivingEntityEvents.AFTER_DEATH.register((entity, damageSource) -> {
 });
 ```
 
-### 16.2 Events Disponibles (Fabric API)
+### 17.2 Events Disponibles (Fabric API)
 
 **Events Joueur :**
 - `ServerPlayConnectionEvents.JOIN` - Connexion
@@ -5400,13 +5408,13 @@ ServerLivingEntityEvents.AFTER_DEATH.register((entity, damageSource) -> {
 
 ---
 
-## 17. 💻 Commandes Personnalisées
+## 18. 💻 Commandes Personnalisées
 
-### 17.1 Créer une Commande
+### 18.1 Créer une Commande
 
 **Créer :** `src/main/java/com/medelium/command/ModCommands.java`
 
-```java
+```
 package com.medelium.command;
 
 import com.medelium.Medelium;
@@ -5458,7 +5466,7 @@ public class ModCommands {
 
 **Enregistrer dans `Medelium.java` → `onInitialize()` :**
 
-```java
+```
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
 CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
@@ -5468,7 +5476,7 @@ CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environm
 
 ---
 
-## 18. 🔒 Systèmes de Conditions et Dépendances
+## 19. 🔒 Systèmes de Conditions et Dépendances
 
 > **📖 C'est quoi un système de conditions ?**
 > C'est empêcher l'utilisation de quelque chose tant que le joueur n'a pas rempli certains critères.
@@ -5530,17 +5538,17 @@ CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environm
 > - Montent de niveau pour débloquer du contenu
 > - Créé de la progression et de la spécialisation (RP !)
 
-### 18.1 💼 Système de Métiers/Professions
+### 19.1 💼 Système de Métiers/Professions
 
 **📝 On va créer un système complet de métiers avec niveau et XP :**
 
 **Créer un système où les joueurs choisissent un métier qui débloque certaines fonctionnalités**
 
-#### 18.1.1 Créer la Classe de Données de Joueur
+#### 19.1.1 Créer la Classe de Données de Joueur
 
 **Créer :** `src/main/java/com/medelium/capability/PlayerProfession.java`
 
-```java
+```
 package com.medelium.capability;
 
 import net.minecraft.nbt.NbtCompound;
@@ -5612,13 +5620,13 @@ public class PlayerProfession {
 }
 ```
 
-#### 18.1.2 Attacher les Données au Joueur via Mixin
+#### 19.1.2 Attacher les Données au Joueur via Mixin
 
 **En Fabric 1.20.1, on utilise un Mixin + interface pour stocker des données custom sur le joueur.**
 
 **Créer :** `src/main/java/com/medelium/capability/IEntityDataSaver.java`
 
-```java
+```
 package com.medelium.capability;
 
 import net.minecraft.nbt.NbtCompound;
@@ -5630,7 +5638,7 @@ public interface IEntityDataSaver {
 
 **Créer :** `src/main/java/com/medelium/mixin/EntityDataSaverMixin.java`
 
-```java
+```
 package com.medelium.mixin;
 
 import com.medelium.capability.IEntityDataSaver;
@@ -5673,13 +5681,13 @@ public abstract class EntityDataSaverMixin implements IEntityDataSaver {
 ```
 
 **Ajouter au `medelium.mixins.json` :**
-```json
+```
 "mixins": ["ExampleMixin", "EntityDataSaverMixin"]
 ```
 
 **Créer :** `src/main/java/com/medelium/capability/ModCapabilities.java`
 
-```java
+```
 package com.medelium.capability;
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -5708,7 +5716,7 @@ public class ModCapabilities {
 ```
 
 **Copier les données à la mort (dans `onInitialize()`) :**
-```java
+```
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 
 ServerPlayerEvents.COPY_FROM.register((oldPlayer, newPlayer, alive) -> {
@@ -5718,11 +5726,11 @@ ServerPlayerEvents.COPY_FROM.register((oldPlayer, newPlayer, alive) -> {
 });
 ```
 
-#### 18.1.3 Commandes pour Gérer les Métiers
+#### 19.1.3 Commandes pour Gérer les Métiers
 
 **Créer :** `src/main/java/com/medelium/command/ProfessionCommands.java`
 
-```java
+```
 package com.medelium.command;
 
 import com.medelium.Medelium;
@@ -5810,15 +5818,15 @@ public class ProfessionCommands {
 }
 ```
 
-### 18.2 🔒 Bloc avec Conditions d'Utilisation
+### 19.2 🔒 Bloc avec Conditions d'Utilisation
 
 **Créer un bloc (four, table de craft) qui nécessite un métier et un niveau spécifiques**
 
-#### 18.2.1 Four Personnalisé avec Conditions
+#### 19.2.1 Four Personnalisé avec Conditions
 
 **Créer :** `src/main/java/com/medelium/block/custom/BlacksmithForgeBlock.java`
 
-```java
+```
 package com.medelium.block.custom;
 
 import com.medelium.capability.ModCapabilities;
@@ -5886,11 +5894,11 @@ public class BlacksmithForgeBlock extends Block {
 }
 ```
 
-#### 18.2.2 Afficher les Conditions dans le Tooltip du Bloc
+#### 19.2.2 Afficher les Conditions dans le Tooltip du Bloc
 
 **Créer un BlockItem personnalisé :**
 
-```java
+```
 package com.medelium.item.custom;
 
 import net.minecraft.util.Formatting;
@@ -5926,7 +5934,7 @@ public class ConditionalBlockItem extends BlockItem {
 
 **Enregistrer le bloc avec le bon BlockItem :**
 
-```java
+```
 // Dans ModBlocks.java
 public static final Block BLACKSMITH_FORGE = 
     registerBlock("blacksmith_forge", new BlacksmithForgeBlock(
@@ -5942,11 +5950,11 @@ public static final Item BLACKSMITH_FORGE_ITEM =
     ));
 ```
 
-### 18.3 🛠️ Objet avec Conditions d'Utilisation
+### 19.3 🛠️ Objet avec Conditions d'Utilisation
 
 **Outil qui nécessite un métier spécifique**
 
-```java
+```
 package com.medelium.item.custom;
 
 import com.medelium.capability.ModCapabilities;
@@ -6000,11 +6008,11 @@ public class ProfessionalPickaxeItem extends PickaxeItem {
 }
 ```
 
-### 18.4 🎯 GUI avec Vérification de Conditions
+### 19.4 🎯 GUI avec Vérification de Conditions
 
 **Menu qui vérifie les conditions avant de s'ouvrir**
 
-```java
+```
 package com.medelium.block.custom;
 
 import com.medelium.capability.ModCapabilities;
@@ -6058,11 +6066,11 @@ public class AlchemyTableBlock extends Block {
 }
 ```
 
-### 18.5 ⚡ Système Multi-Conditions
+### 19.5 ⚡ Système Multi-Conditions
 
 **Vérifier plusieurs conditions en même temps**
 
-```java
+```
 package com.medelium.util;
 
 import com.medelium.capability.ModCapabilities;
@@ -6157,7 +6165,7 @@ public class ConditionChecker {
 
 **Utiliser le builder :**
 
-```java
+```
 // Dans votre bloc ou item
 PlayerProfession data = ModCapabilities.getProfession(serverPlayer);
 
@@ -6174,11 +6182,11 @@ if (!canUse) {
 }
 ```
 
-### 18.6 📊 Afficher les Conditions au Survol (Advanced)
+### 19.6 📊 Afficher les Conditions au Survol (Advanced)
 
 **Tooltip dynamique selon si le joueur peut utiliser ou non**
 
-```java
+```
 @Override
 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag tooltipFlag) {
     tooltip.add(Text.literal(""));
@@ -6197,7 +6205,7 @@ public void appendHoverText(ItemStack stack, TooltipContext context, List<Compon
 }
 ```
 
-### 18.7 💡 Exemples d'Utilisation Pratiques
+### 19.7 💡 Exemples d'Utilisation Pratiques
 
 **Four de forgeron avancé :**
 - Métier: Forgeron niveau 15
@@ -6216,244 +6224,10 @@ public void appendHoverText(ItemStack stack, TooltipContext context, List<Compon
 
 ---
 
-## 19. 🎓 Systèmes de Compétences
-
-### 18.1 Stocker des Données Joueur (NBT)
-
-**Créer :** `src/main/java/com/medelium/capability/PlayerManaProvider.java`
-
-```java
-package com.medelium.capability;
-
-import net.minecraft.registry.*;
-import net.minecraft.nbt.CompoundTag;
-
-public class PlayerManaProvider implements INBTSerializable<CompoundTag> {
-    private int mana = 0;
-    private final int maxMana = 100;
-
-    public int getMana() {
-        return mana;
-    }
-
-    public void setMana(int mana) {
-        this.mana = Math.min(mana, maxMana);
-    }
-
-    public void addMana(int amount) {
-        this.mana = Math.min(mana + amount, maxMana);
-    }
-
-    public void removeMana(int amount) {
-        this.mana = Math.max(mana - amount, 0);
-    }
-
-    @Override
-    public CompoundTag serializeNBT(RegistryWrapper.WrapperLookup provider) {
-        CompoundTag nbt = new CompoundTag();
-        nbt.putInt("mana", mana);
-        return nbt;
-    }
-
-    @Override
-    public void deserializeNBT(RegistryWrapper.WrapperLookup provider, CompoundTag nbt) {
-        this.mana = nbt.getInt("mana");
-    }
-}
-```
 
 ---
 
-## 📋 Checklist Complète de Développement
-
-### Pour chaque Objet :
-- [ ] Enregistrer dans `ModItems.java`
-- [ ] Ajouter au Creative Tab
-- [ ] Créer la traduction (fr_fr.json, en_us.json)
-- [ ] Créer le modèle JSON (`models/item/`)
-- [ ] Créer la texture PNG (`textures/item/`)
-- [ ] (Optionnel) Créer une recette de craft
-
-### Pour chaque Bloc :
-- [ ] Enregistrer dans `ModBlocks.java`
-- [ ] Ajouter au Creative Tab
-- [ ] Créer la traduction
-- [ ] Créer le modèle de bloc (`models/block/`)
-- [ ] Créer le modèle d'item (`models/item/`)
-- [ ] Créer le blockstate (`blockstates/`)
-- [ ] Créer la texture (`textures/block/`)
-- [ ] Définir le loot table (drop)
-
-### Pour chaque Armure :
-- [ ] Créer le matériau dans `ModArmorMaterials.java`
-- [ ] Enregistrer les 4 pièces dans `ModItems.java`
-- [ ] Ajouter au Creative Tab
-- [ ] Créer les 4 traductions
-- [ ] Créer les 4 modèles JSON
-- [ ] Créer les 4 textures
-- [ ] Créer la texture de l'armure portée (2 fichiers dans `textures/models/armor/`)
-
-### Pour chaque Outil :
-- [ ] Créer le tier dans `ModToolTiers.java`
-- [ ] Enregistrer dans `ModItems.java`
-- [ ] Ajouter au Creative Tab
-- [ ] Créer la traduction
-- [ ] Créer le modèle (parent: `handheld`)
-- [ ] Créer la texture
-
-### Pour chaque Entité :
-- [ ] Enregistrer dans `ModEntities.java`
-- [ ] Créer la classe de l'entité
-- [ ] Enregistrer les attributs dans `ModEventBusEvents`
-- [ ] Créer le renderer
-- [ ] Créer le modèle 3D
-- [ ] Créer la texture
-- [ ] Ajouter la traduction
-- [ ] (Optionnel) Créer l'œuf de spawn
-
----
-
-## 🔧 Compilation et Test
-
-### Commandes Gradle :
-
-```bash
-# Nettoyer le build
-.\gradlew clean
-
-# Compiler le mod
-.\gradlew build
-
-# Lancer le client de test
-.\gradlew runClient
-
-# Lancer le serveur de test
-.\gradlew runServer
-
-# Générer les données (recipes, loot tables, etc.)
-.\gradlew runData
-
-# Actualiser les dépendances
-.\gradlew --refresh-dependencies
-```
-
-### Trouver le Fichier JAR :
-Après `.\gradlew build`, le fichier se trouve dans :
-`build/libs/Medelium-1.0.0.jar`
-
----
-
-## 🎯 Idées de Contenu Médiéval Fantasy
-
-### Objets :
-- Monnaies (cuivre, argent, or, platine)
-- Documents RP (contrats, lettres scellées, cartes au trésor)
-- Bijoux (couronnes, bagues, amulettes)
-- Instruments (luth, flûte, tambour)
-- Drapeaux et bannières
-- Sceaux de différentes maisons nobles
-
-### Blocs :
-- Différents types de pierres de château
-- Mobilier médiéval (trônes, tables, chaises, lits)
-- Décorations (tapisseries, chandeliers, torches murales)
-- Fortifications (créneaux, meurtrières)
-- Éléments de donjon (cellules, chaînes)
-- Autels et statues
-
-### Armes et Armures :
-- Épées (courte, longue, bâtarde, grande)
-- Lances et hallebardes
-- Arcs et arbalètes
-- Boucliers
-- Armures complètes (garde, chevalier, roi, mage)
-- Casques variés
-
-### Entités :
-- Gardes et soldats
-- Marchands ambulants
-- Nobles et rois
-- Paysans
-- Bandits
-- Créatures fantasy (dragons, golems)
-- Chevaux avec armure
-
-### Structures :
-- Châteaux
-- Villages médiévaux
-- Donjons
-- Tours de garde
-- Églises et cathédrales
-- Camps de bandits
-- Ruines anciennes
-
-### Mécaniques RP :
-- Système de monnaie
-- Système de réputation avec factions
-- Quêtes et missions
-- Métiers (forgeron, alchimiste, archer)
-- Système de noblesse/titres
-- Mariages et alliances
-
----
-
-## 🐛 Résolution de Problèmes Courants
-
-### Le jeu crash au démarrage :
-1. Vérifier que Java 21 est installé
-2. Vérifier `fabric.mod.json` (syntaxe correcte)
-3. Regarder les logs dans `logs/latest.log`
-
-### Les textures sont violettes/noires :
-1. Vérifier le chemin dans le JSON
-2. Vérifier que le PNG existe
-3. Vérifier l'orthographe (sensible à la casse)
-
-### L'objet n'apparaît pas en jeu :
-1. Vérifier l'enregistrement dans `ModItems`
-2. Vérifier l'ajout au Creative Tab
-3. Relancer le jeu avec `.\gradlew runClient`
-
-### Les recettes ne fonctionnent pas :
-1. Vérifier la syntaxe JSON (virgules, guillemets)
-2. Vérifier que les IDs d'items sont corrects
-3. Générer les données avec `.\gradlew runData`
-
----
-
-## 📚 Ressources Utiles
-
-### Documentation :
-- Fabric Docs: https://docs.fabricd.net/
-- Minecraft Wiki: https://minecraft.wiki/
-
-### Outils :
-- **Blockbench** - Créer des modèles 3D
-- **GIMP/Photoshop** - Créer des textures
-- **NBTExplorer** - Éditer les données de sauvegarde
-- **MCreator** - Générateur de code (pour apprendre)
-
-### Générateurs en Ligne :
-- Crafting Recipe Generator
-- Loot Table Generator
-- Custom Enchantment Generator
-
----
-
-## ✅ Vous êtes Prêt !
-
-Vous savez maintenant **TOUT** ce qu'il est possible de créer dans votre mod ! 
-
-**Conseils finaux :**
-1. Commencez petit (quelques objets simples)
-2. Testez après chaque ajout
-3. Sauvegardez régulièrement votre code
-4. N'hésitez pas à copier-coller les exemples
-5. Les erreurs sont normales, lisez les logs !
-
----
-
-## 19. 📜 Système de Quêtes Complet
+## 20. 📜 Système de Quêtes Complet
 
 > **📖 Pourquoi un système de quêtes ?**
 > Les quêtes sont le CŒUR d'un mod RP. Elles donnent du sens aux actions, racontent une histoire, et motivent les joueurs.
@@ -6494,11 +6268,11 @@ Vous savez maintenant **TOUT** ce qu'il est possible de créer dans votre mod !
 > Toutes les données de quête doivent être sauvegardées avec le joueur (NBT/Capability)
 > pour survivre aux déconnexions et redémarrages serveur.
 
-### 19.1 Structure de Base d'une Quête
+### 20.1 Structure de Base d'une Quête
 
 **📝 Classe Quest - Représente une quête complète :**
 
-```java
+```
 package com.medelium.quest;
 
 import net.minecraft.text.Text;
@@ -6565,11 +6339,11 @@ public class Quest {
 }
 ```
 
-### 19.2 Objectifs de Quête
+### 20.2 Objectifs de Quête
 
 **📝 Interface QuestObjective - Base pour tous les types d'objectifs :**
 
-```java
+```
 package com.medelium.quest;
 
 import net.minecraft.text.Text;
@@ -6586,7 +6360,7 @@ public interface QuestObjective {
 
 **📝 Objectif : Collecter des Items :**
 
-```java
+```
 package com.medelium.quest.objectives;
 
 import com.medelium.quest.QuestObjective;
@@ -6637,7 +6411,7 @@ public class CollectItemObjective implements QuestObjective {
 
 **📝 Objectif : Tuer des Mobs :**
 
-```java
+```
 package com.medelium.quest.objectives;
 
 import com.medelium.quest.QuestObjective;
@@ -6675,11 +6449,11 @@ public class KillMobObjective implements QuestObjective {
 }
 ```
 
-### 19.3 Gestionnaire de Quêtes
+### 20.3 Gestionnaire de Quêtes
 
 **📝 PlayerQuestData - Stocke les quêtes du joueur :**
 
-```java
+```
 package com.medelium.quest;
 
 import net.minecraft.registry.*;
@@ -6769,7 +6543,7 @@ public class PlayerQuestData {
 
 **📝 QuestProgress - Progression d'une quête :**
 
-```java
+```
 package com.medelium.quest;
 
 import net.minecraft.nbt.CompoundTag;
@@ -6828,11 +6602,11 @@ public class QuestProgress {
 }
 ```
 
-### 19.4 Registre de Quêtes
+### 20.4 Registre de Quêtes
 
 **📝 QuestRegistry - Enregistre toutes les quêtes du mod :**
 
-```java
+```
 package com.medelium.quest;
 
 import com.medelium.item.ModItems;
@@ -6898,11 +6672,11 @@ public class QuestRegistry {
 }
 ```
 
-### 19.5 Récompenses de Quêtes
+### 20.5 Récompenses de Quêtes
 
 **📝 Interface QuestReward :**
 
-```java
+```
 package com.medelium.quest;
 
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -6914,7 +6688,7 @@ public interface QuestReward {
 
 **📝 ItemReward - Donner un item :**
 
-```java
+```
 package com.medelium.quest;
 
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -6940,7 +6714,7 @@ public class ItemReward implements QuestReward {
 
 **📝 XPReward - Donner de l'XP :**
 
-```java
+```
 package com.medelium.quest;
 
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -6959,11 +6733,11 @@ public class XPReward implements QuestReward {
 }
 ```
 
-### 19.6 Événements de Progression
+### 20.6 Événements de Progression
 
 **📝 Écouter les événements pour progresser les quêtes :**
 
-```java
+```
 package com.medelium.event;
 
 import com.medelium.Medelium;
@@ -7060,11 +6834,11 @@ public class QuestEvents {
 }
 ```
 
-### 19.7 Commandes de Quête
+### 20.7 Commandes de Quête
 
 **📝 Commandes pour gérer les quêtes :**
 
-```java
+```
 package com.medelium.command;
 
 import com.medelium.quest.*;
@@ -7192,7 +6966,7 @@ public class QuestCommands {
 
 ---
 
-## 20. 🏛️ Système de Factions & Réputation
+## 21. 🏛️ Système de Factions & Réputation
 
 > **📖 Pourquoi des factions ?**
 > Les factions ajoutent de la profondeur au RP : alliances, ennemis, accès conditionnels.
@@ -7222,11 +6996,11 @@ public class QuestCommands {
 > - Commerce : +1 à +5 par transaction
 > - Donner des items : Variable selon valeur
 
-### 20.1 Structure de Faction
+### 21.1 Structure de Faction
 
 **📝 Classe Faction :**
 
-```java
+```
 package com.medelium.faction;
 
 import net.minecraft.text.Text;
@@ -7308,11 +7082,11 @@ public class Faction {
 }
 ```
 
-### 20.2 Données de Réputation du Joueur
+### 21.2 Données de Réputation du Joueur
 
 **📝 PlayerFactionData - Stocke les réputations :**
 
-```java
+```
 package com.medelium.faction;
 
 import net.minecraft.registry.*;
@@ -7363,11 +7137,11 @@ public class PlayerFactionData {
 }
 ```
 
-### 20.3 Registre de Factions
+### 21.3 Registre de Factions
 
 **📝 FactionRegistry :**
 
-```java
+```
 package com.medelium.faction;
 
 import net.minecraft.text.Text;
@@ -7429,11 +7203,11 @@ public class FactionRegistry {
 }
 ```
 
-### 20.4 Événements de Réputation
+### 21.4 Événements de Réputation
 
 **📝 Gagner de la réputation :**
 
-```java
+```
 package com.medelium.event;
 
 import com.medelium.Medelium;
@@ -7482,11 +7256,11 @@ public class FactionEvents {
 }
 ```
 
-### 20.5 Accès Conditionnels basés sur Réputation
+### 21.5 Accès Conditionnels basés sur Réputation
 
 **📝 Bloc nécessitant une réputation :**
 
-```java
+```
 package com.medelium.block.custom;
 
 import com.medelium.faction.*;
@@ -7536,11 +7310,11 @@ public class FactionDoorBlock extends Block {
 }
 ```
 
-### 20.6 Commandes de Faction
+### 21.6 Commandes de Faction
 
 **📝 Commandes pour gérer les factions :**
 
-```java
+```
 package com.medelium.command;
 
 import com.medelium.faction.*;
@@ -7626,7 +7400,7 @@ public class FactionCommands {
 
 ---
 
-## 21. ⚡ Événements Dynamiques du Monde
+## 22. ⚡ Événements Dynamiques du Monde
 
 > **📖 C'est quoi un événement dynamique ?**
 > Un événement = quelque chose qui se passe automatiquement dans le monde, indépendamment du joueur.
@@ -7663,11 +7437,11 @@ public class FactionCommands {
 > 3. **Effets** : Ce qui se passe
 > 4. **Fin** : Ce qui se passe à la fin
 
-### 21.1 Structure d'Événement
+### 22.1 Structure d'Événement
 
 **📝 Classe WorldEvent - Base pour tous les événements :**
 
-```java
+```
 package com.medelium.worldevent;
 
 import net.minecraft.text.Text;
@@ -7730,11 +7504,11 @@ public abstract class WorldEvent {
 }
 ```
 
-### 21.2 Événement : Invasion de Zombies
+### 22.2 Événement : Invasion de Zombies
 
 **📝 ZombieInvasionEvent - Invasion massive de zombies :**
 
-```java
+```
 package com.medelium.worldevent.events;
 
 import com.medelium.worldevent.WorldEvent;
@@ -7844,11 +7618,11 @@ public class ZombieInvasionEvent extends WorldEvent {
 }
 ```
 
-### 21.3 Événement : Boss Apparition
+### 22.3 Événement : Boss Apparition
 
 **📝 DragonEventSpawn - Dragon spawn aléatoire :**
 
-```java
+```
 package com.medelium.worldevent.events;
 
 import com.medelium.entity.ModEntities;
@@ -7940,11 +7714,11 @@ public class DragonSpawnEvent extends WorldEvent {
 }
 ```
 
-### 21.4 Gestionnaire d'Événements
+### 22.4 Gestionnaire d'Événements
 
 **📝 WorldEventManager - Gère tous les événements :**
 
-```java
+```
 package com.medelium.worldevent;
 
 import com.medelium.worldevent.events.*;
@@ -8013,11 +7787,11 @@ public class WorldEventManager {
 }
 ```
 
-### 21.5 Intégration au Serveur
+### 22.5 Intégration au Serveur
 
 **📝 Ticker pour les événements mondiaux :**
 
-```java
+```
 package com.medelium.event;
 
 import com.medelium.Medelium;
@@ -8044,11 +7818,11 @@ public class WorldEventTicker {
 }
 ```
 
-### 21.6 Commandes pour Événements
+### 22.6 Commandes pour Événements
 
 **📝 Commandes admin pour déclencher événements :**
 
-```java
+```
 package com.medelium.command;
 
 import com.medelium.worldevent.*;
@@ -8146,7 +7920,7 @@ public class EventCommands {
 
 ---
 
-## 22. ⚙️ Performance & Optimisation
+## 23. ⚙️ Performance & Optimisation
 
 > **📖 Pourquoi optimiser ?**
 > Un mod mal optimisé = serveur qui lag, joueurs qui quittent, expérience ruinée.
@@ -8183,11 +7957,11 @@ public class EventCommands {
 > - Créer des objets inutilement dans une boucle
 > - Ignorer les null checks
 
-### 22.1 Optimisation des Ticks
+### 23.1 Optimisation des Ticks
 
 **❌ MAUVAIS - Vérifie TOUTES les entités chaque tick :**
 
-```java
+```
 // NE JAMAIS FAIRE ÇA !
 public static void onServerTick(TickEvent.ServerTickEvent event) {
     for (ServerWorld level : server.getAllLevels()) {
@@ -8201,7 +7975,7 @@ public static void onServerTick(TickEvent.ServerTickEvent event) {
 
 **✅ BON - Limite avec un timer :**
 
-```java
+```
 private static int tickCounter = 0;
 
 public static void onServerTick(TickEvent.ServerTickEvent event) {
@@ -8217,11 +7991,11 @@ public static void onServerTick(TickEvent.ServerTickEvent event) {
 }
 ```
 
-### 22.2 Cache des Calculs Coûteux
+### 23.2 Cache des Calculs Coûteux
 
 **📝 Exemple : Distance entre joueurs (calcul coûteux) :**
 
-```java
+```
 package com.medelium.util;
 
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -8267,11 +8041,11 @@ public class PlayerDistanceCache {
 }
 ```
 
-### 22.3 Limiter les Packets Network
+### 23.3 Limiter les Packets Network
 
 **❌ MAUVAIS - Envoie un packet CHAQUE tick :**
 
-```java
+```
 // NE PAS FAIRE - 20 packets par seconde !
 public void tick() {
     syncToClient(); // Appelé chaque tick
@@ -8280,7 +8054,7 @@ public void tick() {
 
 **✅ BON - Envoie seulement quand nécessaire :**
 
-```java
+```
 private int lastSyncedValue = 0;
 private int ticksSinceLastSync = 0;
 
@@ -8296,11 +8070,11 @@ public void tick() {
 }
 ```
 
-### 22.4 Nettoyage de Mémoire
+### 23.4 Nettoyage de Mémoire
 
 **📝 Nettoyer les données des joueurs déconnectés :**
 
-```java
+```
 package com.medelium.event;
 
 import com.medelium.Medelium;
@@ -8320,11 +8094,11 @@ public class CleanupEvents {
 }
 ```
 
-### 22.5 Profiling - Trouver les Problèmes
+### 23.5 Profiling - Trouver les Problèmes
 
 **📝 Simple profiler pour mesurer le temps :**
 
-```java
+```
 package com.medelium.util;
 
 import com.medelium.Medelium;
@@ -8353,11 +8127,11 @@ PerformanceProfiler.start("Quest Check");
 PerformanceProfiler.end("Quest Check");
 ```
 
-### 22.6 Optimisations Spécifiques
+### 23.6 Optimisations Spécifiques
 
 **📝 Limiter les spawns d'entités :**
 
-```java
+```
 private static final int MAX_CUSTOM_MOBS_PER_CHUNK = 5;
 
 public static boolean canSpawnMob(ServerWorld level, BlockPos pos) {
@@ -8377,7 +8151,7 @@ public static boolean canSpawnMob(ServerWorld level, BlockPos pos) {
 
 **📝 Limiter les particules :**
 
-```java
+```
 private int particleSpawnCooldown = 0;
 
 public void spawnParticles() {
@@ -8395,7 +8169,7 @@ public void spawnParticles() {
 
 ---
 
-## 23. 🔒 Sécurité & Anti-Exploit
+## 24. 🔒 Sécurité & Anti-Exploit
 
 > **📖 Pourquoi la sécurité est CRITIQUE ?**
 > Les joueurs vont TOUJOURS essayer de tricher. Toujours.
@@ -8422,11 +8196,11 @@ public void spawnParticles() {
 > **🔧 Règle ABSOLUE :**
 > **TOUT doit être validé côté SERVEUR, JAMAIS faire confiance au client !**
 
-### 23.1 Validation Serveur Stricte
+### 24.1 Validation Serveur Stricte
 
 **❌ DANGEREUX - Fait confiance au client :**
 
-```java
+```
 // NE JAMAIS FAIRE ÇA !
 public void handleQuestComplete(PlayerEntity player, String questId) {
     // Pas de vérification = le joueur peut prétendre avoir fini n'importe quelle quête
@@ -8437,7 +8211,7 @@ public void handleQuestComplete(PlayerEntity player, String questId) {
 
 **✅ SÉCURISÉ - Valide tout :**
 
-```java
+```
 public void handleQuestComplete(ServerPlayerEntity player, String questId) {
     Quest quest = QuestRegistry.getQuest(questId);
     
@@ -8470,11 +8244,11 @@ public void handleQuestComplete(ServerPlayerEntity player, String questId) {
 }
 ```
 
-### 23.2 Anti-Duplication
+### 24.2 Anti-Duplication
 
 **📝 Vérifier l'inventaire avant donner des items :**
 
-```java
+```
 public static boolean giveItemSafely(ServerPlayerEntity player, ItemStack stack) {
     // Compter combien le joueur a AVANT
     int countBefore = countItem(player, stack.getItem());
@@ -8512,11 +8286,11 @@ private static int countItem(ServerPlayerEntity player, Item item) {
 }
 ```
 
-### 23.3 Cooldowns Anti-Spam
+### 24.3 Cooldowns Anti-Spam
 
 **📝 Empêcher le spam d'actions :**
 
-```java
+```
 package com.medelium.util;
 
 import java.util.HashMap;
@@ -8580,11 +8354,11 @@ CooldownManager.setCooldown(player.getUUID(), "quest_start");
 // ... exécuter l'action ...
 ```
 
-### 23.4 Validation des Permissions
+### 24.4 Validation des Permissions
 
 **📝 System de permissions par niveau :**
 
-```java
+```
 package com.medelium.util;
 
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -8637,11 +8411,11 @@ if (!PermissionChecker.checkAndWarn(player, Permission.MODIFY_QUESTS)) {
 }
 ```
 
-### 23.5 Logs de Sécurité
+### 24.5 Logs de Sécurité
 
 **📝 Logger les actions suspectes :**
 
-```java
+```
 package com.medelium.security;
 
 import com.medelium.Medelium;
@@ -8685,7 +8459,7 @@ public class SecurityLogger {
 
 ---
 
-## 24. 📡 Networking & Packets Custom
+## 25. 📡 Networking & Packets Custom
 
 > **📖 Pourquoi créer des packets custom ?**
 > Minecraft utilise un système client ↔ serveur. Le client affiche, le serveur calcule.
@@ -8718,11 +8492,11 @@ public class SecurityLogger {
 > **TOUJOURS valider les packets côté serveur !**
 > Un joueur peut envoyer N'IMPORTE QUEL packet modifié.
 
-### 24.1 Structure de Base d'un Packet
+### 25.1 Structure de Base d'un Packet
 
 **📝 Fabric utilise `PacketByteBuf` et des `Identifier` comme channel IDs :**
 
-```java
+```
 package com.medelium.network;
 
 import com.medelium.Medelium;
@@ -8738,11 +8512,11 @@ public class ModPackets {
 }
 ```
 
-### 24.2 Enregistrement des Packets (Serveur)
+### 25.2 Enregistrement des Packets (Serveur)
 
 **📝 Dans `Medelium.java` → `onInitialize()` :**
 
-```java
+```
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.PacketByteBuf;
 
@@ -8764,11 +8538,11 @@ ServerPlayNetworking.registerGlobalReceiver(ModPackets.USE_SKILL, (server, playe
 });
 ```
 
-### 24.3 Enregistrement des Packets (Client)
+### 25.3 Enregistrement des Packets (Client)
 
 **📝 Dans `MedeliumClient.java` → `onInitializeClient()` :**
 
-```java
+```
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.network.PacketByteBuf;
@@ -8807,11 +8581,11 @@ ClientPlayNetworking.registerGlobalReceiver(ModPackets.OPEN_DIALOGUE, (client, h
 });
 ```
 
-### 24.4 Méthodes Utilitaires pour Envoyer
+### 25.4 Méthodes Utilitaires pour Envoyer
 
 **📝 ModPackets - Helpers d'envoi :**
 
-```java
+```
 package com.medelium.network;
 
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -8852,11 +8626,11 @@ public class ModPackets {
 }
 ```
 
-### 24.5 Exemples d'Utilisation
+### 25.5 Exemples d'Utilisation
 
 **📝 Synchroniser les stats quand elles changent :**
 
-```java
+```
 public class PlayerStatsManager {
     
     public static void updateMana(ServerPlayerEntity player, int newMana) {
@@ -8873,7 +8647,7 @@ public class PlayerStatsManager {
 
 **📝 Client demande d'utiliser une compétence :**
 
-```java
+```
 // Dans le code client (ex: keybinding)
 public class SkillKeyHandler {
     
@@ -8884,11 +8658,11 @@ public class SkillKeyHandler {
 }
 ```
 
-### 24.6 Packet avec Liste de Données
+### 25.6 Packet avec Liste de Données
 
 **📝 SyncQuestListPacket - Envoyer liste complète :**
 
-```java
+```
 // Côté serveur - Envoyer la liste des quêtes
 public static void sendQuestList(ServerPlayerEntity player, List<QuestData> quests) {
     PacketByteBuf buf = PacketByteBufs.create();
@@ -8920,7 +8694,7 @@ public record QuestData(String id, String title, int progress, int total) {}
 
 ---
 
-## 25. 💰 Économie Serveur Complète
+## 26. 💰 Économie Serveur Complète
 
 > **📖 Pourquoi un système économique ?**
 > L'économie donne de la VALEUR aux actions des joueurs.
@@ -8964,11 +8738,11 @@ public record QuestData(String id, String title, int progress, int total) {}
 > - Prix cohérents et équilibrés
 > - Logs de toutes les transactions
 
-### 25.1 Système de Monnaie
+### 26.1 Système de Monnaie
 
 **📝 PlayerMoneyData - Stocke l'argent du joueur :**
 
-```java
+```
 package com.medelium.economy;
 
 import net.minecraft.registry.*;
@@ -9024,11 +8798,11 @@ public class PlayerMoneyData {
 }
 ```
 
-### 25.2 Shop PNJ - Prix Fixes
+### 26.2 Shop PNJ - Prix Fixes
 
 **📝 ShopItem - Article en vente :**
 
-```java
+```
 package com.medelium.economy.shop;
 
 import net.minecraft.item.Item;
@@ -9065,7 +8839,7 @@ public class ShopItem {
 
 **📝 NPCShop - Boutique complète :**
 
-```java
+```
 package com.medelium.economy.shop;
 
 import com.medelium.economy.PlayerMoneyData;
@@ -9182,11 +8956,11 @@ public class NPCShop {
 }
 ```
 
-### 25.3 Registre de Shops
+### 26.3 Registre de Shops
 
 **📝 ShopRegistry - Tous les shops du mod :**
 
-```java
+```
 package com.medelium.economy.shop;
 
 import net.minecraft.text.Text;
@@ -9232,11 +9006,11 @@ public class ShopRegistry {
 }
 ```
 
-### 25.4 Prix Dynamiques
+### 26.4 Prix Dynamiques
 
 **📝 DynamicPricing - Prix selon offre/demande :**
 
-```java
+```
 package com.medelium.economy;
 
 import net.minecraft.item.Item;
@@ -9283,11 +9057,11 @@ public class DynamicPricing {
 }
 ```
 
-### 25.5 Player Trading Sécurisé
+### 26.5 Player Trading Sécurisé
 
 **📝 TradeOffer - Échange entre joueurs :**
 
-```java
+```
 package com.medelium.economy.trade;
 
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -9405,11 +9179,11 @@ public class TradeOffer {
 }
 ```
 
-### 25.6 Money Sinks (Façons de Dépenser)
+### 26.6 Money Sinks (Façons de Dépenser)
 
 **📝 Exemples de money sinks nécessaires :**
 
-```java
+```
 package com.medelium.economy;
 
 public class MoneySinks {
@@ -9451,11 +9225,11 @@ public class MoneySinks {
 }
 ```
 
-### 25.7 Logs Économiques
+### 26.7 Logs Économiques
 
 **📝 EconomyLogger - Tracer toutes les transactions :**
 
-```java
+```
 package com.medelium.economy;
 
 import com.medelium.Medelium;
@@ -9540,7 +9314,7 @@ public class EconomyLogger {
 
 ---
 
-## 26. 🗣️ Dialogues & PNJ Avancés
+## 27. 🗣️ Dialogues & PNJ Avancés
 
 > **📖 Pourquoi des dialogues ?**
 > Les PNJ avec dialogues = monde VIVANT.
@@ -9574,11 +9348,11 @@ public class EconomyLogger {
 > - Émotions (content, en colère)
 > - Réactions aux actions joueur
 
-### 26.1 Structure de Dialogue
+### 27.1 Structure de Dialogue
 
 **📝 DialogueNode - Nœud d'arbre de dialogue :**
 
-```java
+```
 package com.medelium.dialogue;
 
 import net.minecraft.text.Text;
@@ -9642,7 +9416,7 @@ public class DialogueNode {
 
 **📝 DialogueChoice - Option de réponse :**
 
-```java
+```
 package com.medelium.dialogue;
 
 import net.minecraft.text.Text;
@@ -9678,11 +9452,11 @@ public class DialogueChoice {
 }
 ```
 
-### 26.2 Actions de Dialogue
+### 27.2 Actions de Dialogue
 
 **📝 Interface DialogueAction :**
 
-```java
+```
 package com.medelium.dialogue;
 
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -9731,11 +9505,11 @@ public interface DialogueAction {
 }
 ```
 
-### 26.3 Arbre de Dialogue Complet
+### 27.3 Arbre de Dialogue Complet
 
 **📝 Dialogue - Contient tous les nœuds :**
 
-```java
+```
 package com.medelium.dialogue;
 
 import net.minecraft.text.Text;
@@ -9797,11 +9571,11 @@ public class Dialogue {
 }
 ```
 
-### 26.4 Exemple de Dialogue Complexe
+### 27.4 Exemple de Dialogue Complexe
 
 **📝 DialogueRegistry - Exemples de dialogues :**
 
-```java
+```
 package com.medelium.dialogue;
 
 import net.minecraft.text.Text;
@@ -9951,11 +9725,11 @@ public class DialogueRegistry {
 }
 ```
 
-### 26.5 Mémoire des PNJ
+### 27.5 Mémoire des PNJ
 
 **📝 NPCMemory - Le PNJ se souvient :**
 
-```java
+```
 package com.medelium.dialogue;
 
 import net.minecraft.registry.*;
@@ -10048,11 +9822,11 @@ public class NPCMemory {
 }
 ```
 
-### 26.6 Dialogues Conditionnels avec Mémoire
+### 27.6 Dialogues Conditionnels avec Mémoire
 
 **📝 Dialogue évolutif selon l'historique :**
 
-```java
+```
 // Exemple d'utilisation de la mémoire
 private static void createEvolvingDialogue() {
     Dialogue wizard = new Dialogue("wizard", Text.literal("§5Sorcier Ancien"));
@@ -10106,7 +9880,7 @@ private static void createEvolvingDialogue() {
 
 ---
 
-## 27. ⚔️ Système de Stats RPG Complet
+## 28. ⚔️ Système de Stats RPG Complet
 
 > **📖 Pourquoi un système de stats ?**
 > Les stats transforment Minecraft en vrai RPG.
@@ -10135,11 +9909,11 @@ private static void createEvolvingDialogue() {
 > - Buffs temporaires
 > - Malus de fatigue/blessure
 
-### 27.1 Structure des Stats
+### 28.1 Structure des Stats
 
 **📝 PlayerStats - Stocke toutes les stats :**
 
-```java
+```
 package com.medelium.stats;
 
 import net.minecraft.registry.*;
@@ -10278,11 +10052,11 @@ public class PlayerStats {
 }
 ```
 
-### 27.2 Application des Stats au Joueur
+### 28.2 Application des Stats au Joueur
 
 **📝 StatsEventHandler - Applique les effets des stats :**
 
-```java
+```
 package com.medelium.event;
 
 import com.medelium.Medelium;
@@ -10375,11 +10149,11 @@ public class StatsEventHandler {
 }
 ```
 
-### 27.3 GUI de Gestion des Stats
+### 28.3 GUI de Gestion des Stats
 
 **📝 StatsScreen - Interface pour distribuer points :**
 
-```java
+```
 package com.medelium.client.currentScreen;
 
 import com.medelium.stats.PlayerStats;
@@ -10493,11 +10267,11 @@ public class StatsScreen extends Screen {
 }
 ```
 
-### 27.4 Commandes de Stats
+### 28.4 Commandes de Stats
 
 **📝 StatsCommands - Commandes pour gérer stats :**
 
-```java
+```
 package com.medelium.command;
 
 import com.medelium.stats.PlayerStats;
@@ -10603,7 +10377,7 @@ public class StatsCommands {
 
 ---
 
-## 28. 🎮 Outils Game Master
+## 29. 🎮 Outils Game Master
 
 > **📖 Pourquoi des outils GM ?**
 > Un serveur RP médiéval a besoin d'admins/GMs capables de :
@@ -10627,11 +10401,11 @@ public class StatsCommands {
 > - GUI côté client + validation serveur
 > - Keybind pour ouvrir panel GM (défaut: K)
 
-### 28.1 Panel Principal GM
+### 29.1 Panel Principal GM
 
 **📝 GMPanelScreen - Hub central avec tous les outils :**
 
-```java
+```
 package com.medelium.client.currentScreen;
 
 import com.medelium.network.OpenGMToolPacket;
@@ -10749,11 +10523,11 @@ public class GMPanelScreen extends Screen {
 }
 ```
 
-### 28.2 Création de Quêtes en Jeu
+### 29.2 Création de Quêtes en Jeu
 
 **📝 QuestCreatorScreen - Éditeur de quêtes visuel :**
 
-```java
+```
 package com.medelium.client.currentScreen;
 
 import com.medelium.network.CreateQuestPacket;
@@ -10890,11 +10664,11 @@ public class QuestCreatorScreen extends Screen {
 }
 ```
 
-### 28.3 Spawn d'Entités Custom
+### 29.3 Spawn d'Entités Custom
 
 **📝 EntitySpawnerScreen - Menu spawn avec paramètres :**
 
-```java
+```
 package com.medelium.client.currentScreen;
 
 import com.medelium.network.SpawnCustomEntityPacket;
@@ -11014,11 +10788,11 @@ public class EntitySpawnerScreen extends Screen {
 }
 ```
 
-### 28.4 Gestion des Joueurs
+### 29.4 Gestion des Joueurs
 
 **📝 PlayerManagerScreen - Outils GM pour joueurs :**
 
-```java
+```
 package com.medelium.client.currentScreen;
 
 import com.medelium.network.GMPlayerActionPacket;
@@ -11186,11 +10960,11 @@ public class PlayerManagerScreen extends Screen {
 }
 ```
 
-### 28.5 Outils de Debug
+### 29.5 Outils de Debug
 
 **📝 DebugToolsScreen - Inspecter data en jeu :**
 
-```java
+```
 package com.medelium.client.currentScreen;
 
 import com.medelium.network.RequestDebugDataPacket;
@@ -11281,11 +11055,11 @@ public class DebugToolsScreen extends Screen {
 }
 ```
 
-### 28.6 Logs des Actions GM
+### 29.6 Logs des Actions GM
 
 **📝 GMLogger - Enregistre toutes les actions :**
 
-```java
+```
 package com.medelium.util;
 
 import com.google.gson.Gson;
@@ -11359,7 +11133,7 @@ public class GMLogger {
 
 ---
 
-## 29. 📦 Build & Déploiement
+## 30. 📦 Build & Déploiement
 
 > **📖 Pourquoi maîtriser le build ?**
 > Développer c'est bien, mais il faut :
@@ -11384,11 +11158,11 @@ public class GMLogger {
 > - GitHub Actions : CI/CD automatique
 > - CurseForge/Modrinth : Hébergement
 
-### 29.1 Configuration Gradle
+### 30.1 Configuration Gradle
 
 **📝 gradle.properties - Version et métadonnées :**
 
-```properties
+```
 # Mod Info
 mod_id=medelium
 mod_name=Medelium
@@ -11409,7 +11183,7 @@ org.gradle.parallel=true
 
 **📝 build.gradle - Configuration build :**
 
-```gradle
+```
 plugins {
     id 'java-library'
     id 'eclipse'
@@ -11464,7 +11238,7 @@ task copyJar(type: Copy) {
 build.finalizedBy(copyJar)
 ```
 
-### 29.2 Versionning Sémantique
+### 30.2 Versionning Sémantique
 
 **📝 Système de versions MAJEUR.MINEUR.PATCH :**
 
@@ -11488,7 +11262,7 @@ build.finalizedBy(copyJar)
 
 **📝 Exemple de CHANGELOG.md :**
 
-```markdown
+```
 # Changelog - Medelium
 
 ## [1.2.0] - 2025-01-15
@@ -11520,11 +11294,11 @@ build.finalizedBy(copyJar)
 - Release initiale
 ```
 
-### 29.3 Build du Mod
+### 30.3 Build du Mod
 
 **📝 Commandes essentielles :**
 
-```bash
+```
 # Nettoyer build précédent
 gradlew clean
 
@@ -11542,7 +11316,7 @@ gradlew runServer
 
 **📝 Script de build automatique (build.bat) :**
 
-```batch
+```
 @echo off
 echo ========================================
 echo  BUILD MEDELIUM MOD
@@ -11568,11 +11342,11 @@ echo JAR genere dans releases/
 pause
 ```
 
-### 29.4 Migration de Données
+### 30.4 Migration de Données
 
 **📝 DataMigrationManager - Gestion des migrations :**
 
-```java
+```
 package com.medelium.util;
 
 import net.minecraft.nbt.CompoundTag;
@@ -11624,7 +11398,7 @@ public class DataMigrationManager {
 }
 ```
 
-### 29.5 Publication CurseForge/Modrinth
+### 30.5 Publication CurseForge/Modrinth
 
 **📝 Checklist avant publication :**
 
@@ -11655,7 +11429,7 @@ releases/
 
 **📝 Description CurseForge (exemple) :**
 
-```markdown
+```
 # 🏰 Medelium - Mod RP Médiéval Complet
 
 Transformez Minecraft en véritable RPG médiéval !
@@ -11713,11 +11487,11 @@ Signaler sur GitHub: https://github.com/VotreNom/Medelium/issues
 MIT License - Modifiable et redistribuable
 ```
 
-### 29.6 CI/CD avec GitHub Actions
+### 30.6 CI/CD avec GitHub Actions
 
 **📝 .github/workflows/build.yml - Build automatique :**
 
-```yaml
+```
 name: Build Medelium
 
 on:
@@ -11763,41 +11537,21 @@ jobs:
 
 ---
 
-**🎉 FÉLICITATIONS ! Vous avez maintenant un GUIDE COMPLET de 29 sections couvrant TOUS les aspects d'un mod Minecraft RPG médiéval ! 🏰⚔️✨**
+**🎉 FÉLICITATIONS ! Vous avez maintenant un GUIDE COMPLET de 49 sections couvrant TOUS les aspects d'un mod Minecraft RPG médiéval ! 🏰⚔️✨**
 
-**Récapitulatif des 29 sections :**
-1. Items Custom
-2. Blocs Custom
-3. Armures & Outils
-4. Tooltips & Infobulles
-5. Système de Progression (XP/Niveaux)
-6. Messages & Notifications
-7. Boss Custom
-8. GUI (Interfaces)
-9. Conditions & Prérequis
-10. Creative Tab
-11. Mobs Custom
-12. Structures
-13. Dimensions
-14. Enchantements
-15. Effets de Potion
-16. Recettes
-17. Minerais
-18. Sons
-19. Système de Quêtes Complet
-20. Factions & Réputation
-21. Événements Dynamiques
-22. Performance & Optimisation
-23. Sécurité & Anti-Exploit
-24. Networking & Packets
-25. Économie Serveur
-26. Dialogues & PNJ Avancés
-27. Système de Stats RPG Complet
-28. Outils Game Master
-29. Build & Déploiement
-30. Tags & Data Packs
-31. Loot Tables Avancés
-32. Configuration (TOML)
+**Récapitulatif :**
+1-6. Items, Blocs, Armures, Outils, Messages, Nourriture
+7-9. Entités, Structures, Dimensions
+10-13. Enchantements, Effets, Recettes, Minerais
+14-16. GUI, Sons, Textures
+17-19. Events, Commandes, Conditions
+20-22. Quêtes, Factions, Événements Dynamiques
+23-26. Performance, Sécurité, Networking, Économie
+27-29. Dialogues, Stats RPG, Game Master
+30-33. Build, Tags, Loot Tables, Configuration (JSON)
+34-37. Localisation, Keybindings, Biomes, Particles
+38-41. Advancements, Compatibilité, Villageois, Data Generators
+42-49. Render Types, Fluids, Music Discs, Banner Patterns, Patchouli, Status Effects, Entity AI, Paintings
 
 **Vous êtes maintenant prêt à créer un mod RP médiéval COMPLET et PROFESSIONNEL ! 🚀**
 
@@ -11805,7 +11559,7 @@ jobs:
 
 ---
 
-## 30. 🏷️ Tags & Data Packs
+## 31. 🏷️ Tags & Data Packs
 
 > **📖 Pourquoi les tags ?**
 > Les tags sont des **étiquettes** qui regroupent items/blocs/entités.
@@ -11829,11 +11583,11 @@ jobs:
 > - **Biome tags** : Groupes de biomes
 > - **Enchantment tags** : Groupes d'enchantements
 
-### 30.1 Item Tags
+### 31.1 Item Tags
 
 **📝 Tag pour armes magiques - `data/medelium/tags/item/magic_weapons.json` :**
 
-```json
+```
 {
   "values": [
     "medelium:fire_sword",
@@ -11846,7 +11600,7 @@ jobs:
 
 **📝 Tag pour pièces de monnaie - `data/medelium/tags/item/coins.json` :**
 
-```json
+```
 {
   "values": [
     "medelium:copper_coin",
@@ -11858,7 +11612,7 @@ jobs:
 
 **📝 Utiliser dans une recette :**
 
-```json
+```
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
@@ -11883,7 +11637,7 @@ jobs:
 
 **📝 Utiliser dans le code Java :**
 
-```java
+```
 package com.medelium.util;
 
 import net.minecraft.registry.Registries;
@@ -11933,7 +11687,7 @@ public class ModTags {
 
 **📝 Vérifier si un item est dans un tag :**
 
-```java
+```
 package com.medelium.util;
 
 import net.minecraft.item.ItemStack;
@@ -11954,11 +11708,11 @@ public class TagHelper {
 }
 ```
 
-### 30.2 Block Tags (Mineable)
+### 31.2 Block Tags (Mineable)
 
 **📝 Blocs minables avec pioche - `data/minecraft/tags/block/mineable/pickaxe.json` :**
 
-```json
+```
 {
   "values": [
     "medelium:silver_ore",
@@ -11971,7 +11725,7 @@ public class TagHelper {
 
 **📝 Blocs nécessitant outil en fer - `data/minecraft/tags/block/needs_iron_tool.json` :**
 
-```json
+```
 {
   "values": [
     "medelium:silver_ore",
@@ -11982,7 +11736,7 @@ public class TagHelper {
 
 **📝 Blocs nécessitant outil en diamant - `data/minecraft/tags/block/needs_diamond_tool.json` :**
 
-```json
+```
 {
   "values": [
     "medelium:mythril_ore",
@@ -11993,7 +11747,7 @@ public class TagHelper {
 
 **📝 Blocs custom pour mining level - `data/medelium/tags/block/needs_silver_tool.json` :**
 
-```json
+```
 {
   "values": [
     "medelium:cursed_stone",
@@ -12002,11 +11756,11 @@ public class TagHelper {
 }
 ```
 
-### 30.3 Entity Type Tags
+### 31.3 Entity Type Tags
 
 **📝 Entités hostiles custom - `data/medelium/tags/entity_type/undead_monsters.json` :**
 
-```json
+```
 {
   "values": [
     "medelium:skeleton_knight",
@@ -12018,7 +11772,7 @@ public class TagHelper {
 
 **📝 Boss (immunité knockback) - `data/medelium/tags/entity_type/bosses.json` :**
 
-```json
+```
 {
   "values": [
     "medelium:dragon_boss",
@@ -12030,7 +11784,7 @@ public class TagHelper {
 
 **📝 Utiliser dans le code :**
 
-```java
+```
 package com.medelium.event;
 
 import com.medelium.util.ModTags;
@@ -12059,11 +11813,11 @@ public class EntityTagHandler {
 }
 ```
 
-### 30.4 Damage Type Tags
+### 31.4 Damage Type Tags
 
 **📝 Tag pour dégâts magiques - `data/medelium/tags/damage_type/magic_damage.json` :**
 
-```json
+```
 {
   "values": [
     "medelium:fire_spell",
@@ -12076,7 +11830,7 @@ public class EntityTagHandler {
 
 **📝 Enregistrer les types de dégâts - `data/medelium/damage_type/fire_spell.json` :**
 
-```json
+```
 {
   "message_id": "fire_spell",
   "scaling": "when_caused_by_living_non_player",
@@ -12087,7 +11841,7 @@ public class EntityTagHandler {
 
 **📝 Utiliser dans le code :**
 
-```java
+```
 package com.medelium.util;
 
 import net.minecraft.registry.Registries;
@@ -12119,11 +11873,11 @@ public class ModDamageTypes {
 }
 ```
 
-### 30.5 Biome Tags
+### 31.5 Biome Tags
 
 **📝 Biomes médiévaux - `data/medelium/tags/worldgen/biome/medieval_biomes.json` :**
 
-```json
+```
 {
   "values": [
     "minecraft:plains",
@@ -12137,7 +11891,7 @@ public class ModDamageTypes {
 
 **📝 Utiliser pour spawn structures :**
 
-```json
+```
 {
   "type": "minecraft:random_spread",
   "spacing": 32,
@@ -12150,11 +11904,11 @@ public class ModDamageTypes {
 }
 ```
 
-### 30.6 Tags de Compatibilité (Forge/Fabric Convention)
+### 31.6 Tags de Compatibilité (Forge/Fabric Convention)
 
 **📝 Ores - `data/forge/tags/item/ores/silver.json` :**
 
-```json
+```
 {
   "values": [
     "medelium:silver_ore",
@@ -12165,7 +11919,7 @@ public class ModDamageTypes {
 
 **📝 Ingots - `data/forge/tags/item/ingots/silver.json` :**
 
-```json
+```
 {
   "values": [
     "medelium:silver_ingot"
@@ -12175,7 +11929,7 @@ public class ModDamageTypes {
 
 **📝 Gems - `data/forge/tags/item/gems/ruby.json` :**
 
-```json
+```
 {
   "values": [
     "medelium:ruby"
@@ -12193,7 +11947,7 @@ public class ModDamageTypes {
 
 ---
 
-## 31. 🎁 Loot Tables Avancés
+## 32. 🎁 Loot Tables Avancés
 
 > **📖 Pourquoi les loot tables ?**
 > Les loot tables définissent **CE QUI TOMBE** quand :
@@ -12218,11 +11972,11 @@ public class ModDamageTypes {
 >       └─ FUNCTIONS (modifier l'item)
 > ```
 
-### 31.1 Loot Table de Bloc Basique
+### 32.1 Loot Table de Bloc Basique
 
 **📝 Silver Ore - `data/medelium/loot_table/blocks/silver_ore.json` :**
 
-```json
+```
 {
   "type": "minecraft:block",
   "pools": [
@@ -12278,11 +12032,11 @@ public class ModDamageTypes {
 - **apply_bonus** : Fortune multiplie les drops
 - **explosion_decay** : Explosion réduit les drops
 
-### 31.2 Loot Table de Mob avec Conditions
+### 32.2 Loot Table de Mob avec Conditions
 
 **📝 Skeleton Knight - `data/medelium/loot_table/entities/skeleton_knight.json` :**
 
-```json
+```
 {
   "type": "minecraft:entity",
   "pools": [
@@ -12363,11 +12117,11 @@ public class ModDamageTypes {
 - **Pool 2** : 15% chance (20% avec Looting III) de drop épée (75%) ou casque (25%)
 - **Pool 3** : 5% chance de drop soul fragment (rare)
 
-### 31.3 Loot Table de Boss Épique
+### 32.3 Loot Table de Boss Épique
 
 **📝 Dragon Boss - `data/medelium/loot_table/entities/dragon_boss.json` :**
 
-```json
+```
 {
   "type": "minecraft:entity",
   "pools": [
@@ -12481,11 +12235,11 @@ public class ModDamageTypes {
 - **Pool 2** : 3 à 5 items aléatoires avec poids (scales communs, diamants rares, épée légendaire ultra-rare)
 - **Pool 3** : 20-40 bouteilles d'XP
 
-### 31.4 Loot Table de Coffre (Structure)
+### 32.4 Loot Table de Coffre (Structure)
 
 **📝 Castle Treasure - `data/medelium/loot_table/chests/castle_treasure.json` :**
 
-```json
+```
 {
   "type": "minecraft:chest",
   "pools": [
@@ -12572,11 +12326,11 @@ public class ModDamageTypes {
 - **enchant_randomly** : Enchantement aléatoire
 - **set_damage** : Épée déjà utilisée (10-50% durabilité perdue)
 
-### 31.5 Conditions Avancées
+### 32.5 Conditions Avancées
 
 **📝 Drop seulement la nuit - Condition personnalisée :**
 
-```json
+```
 {
   "condition": "minecraft:time_check",
   "value": {
@@ -12588,7 +12342,7 @@ public class ModDamageTypes {
 
 **📝 Drop seulement sous la pluie :**
 
-```json
+```
 {
   "condition": "minecraft:weather_check",
   "raining": true
@@ -12597,7 +12351,7 @@ public class ModDamageTypes {
 
 **📝 Drop seulement dans certains biomes :**
 
-```json
+```
 {
   "condition": "minecraft:location_check",
   "predicate": {
@@ -12608,7 +12362,7 @@ public class ModDamageTypes {
 
 **📝 Drop seulement si joueur a advancement :**
 
-```json
+```
 {
   "condition": "minecraft:entity_properties",
   "entity": "killer",
@@ -12622,11 +12376,11 @@ public class ModDamageTypes {
 }
 ```
 
-### 31.6 Functions Avancées
+### 32.6 Functions Avancées
 
 **📝 Ajouter NBT custom :**
 
-```json
+```
 {
   "function": "minecraft:set_nbt",
   "tag": "{CustomModelData:1,display:{Lore:['§7Trouvé dans un château']}}"
@@ -12635,7 +12389,7 @@ public class ModDamageTypes {
 
 **📝 Copier nom du tueur sur l'item :**
 
-```json
+```
 {
   "function": "minecraft:copy_name",
   "source": "killer"
@@ -12644,7 +12398,7 @@ public class ModDamageTypes {
 
 **📝 Remplir livre avec texte :**
 
-```json
+```
 {
   "function": "minecraft:set_written_book_pages",
   "pages": [
@@ -12660,11 +12414,11 @@ public class ModDamageTypes {
 }
 ```
 
-### 31.7 Associer Loot Table à un Bloc/Mob
+### 32.7 Associer Loot Table à un Bloc/Mob
 
 **📝 Dans le Bloc Java :**
 
-```java
+```
 @Override
 public Identifier getLootTable() {
     return new Identifier("medelium", "blocks/silver_ore");
@@ -12673,7 +12427,7 @@ public Identifier getLootTable() {
 
 **📝 Dans l'Entité Java :**
 
-```java
+```
 @Override
 protected Identifier getDefaultLootTable() {
     return new Identifier("medelium", "entities/skeleton_knight");
@@ -12682,7 +12436,7 @@ protected Identifier getDefaultLootTable() {
 
 **📝 Placer loot table dans coffre (Structure) :**
 
-```java
+```
 package com.medelium.worldgen;
 
 import net.minecraft.util.math.BlockPos;
@@ -12707,7 +12461,7 @@ public class StructureHelper {
 
 ---
 
-## 32. ⚙️ Configuration (JSON)
+## 33. ⚙️ Configuration (JSON)
 
 > **📖 Pourquoi un système de config ?**
 > Permet aux **joueurs et admins** de personnaliser le mod sans toucher au code :
@@ -12730,11 +12484,11 @@ public class StructureHelper {
 > }
 > ```
 
-### 32.1 Créer la Config
+### 33.1 Créer la Config
 
 **📝 ModConfig.java - Config JSON simple (Fabric n'a pas de ModConfigSpec) :**
 
-```java
+```
 package com.medelium.config;
 
 import com.google.gson.Gson;
@@ -12816,11 +12570,11 @@ public class ModConfig {
 }
 ```
 
-### 32.2 Charger la Config
+### 33.2 Charger la Config
 
 **📝 Medelium.java - Dans onInitialize() :**
 
-```java
+```
 package com.medelium;
 
 import com.medelium.config.ModConfig;
@@ -12839,11 +12593,11 @@ public class Medelium implements ModInitializer {
 }
 ```
 
-### 32.3 Utiliser les Valeurs de Config
+### 33.3 Utiliser les Valeurs de Config
 
 **📝 Exemple dans PlayerManaData :**
 
-```java
+```
 package com.medelium.attachment;
 
 import com.medelium.config.ModConfig;
@@ -12872,7 +12626,7 @@ public class PlayerManaData {
 
 **📝 Exemple dans Boss :**
 
-```java
+```
 package com.medelium.entity;
 
 import com.medelium.config.ModConfig;
@@ -12904,7 +12658,7 @@ public class DragonBoss extends Monster {
 
 **📝 Exemple dans QuestManager :**
 
-```java
+```
 package com.medelium.quest;
 
 import com.medelium.config.ModConfig;
@@ -12939,11 +12693,11 @@ public class QuestManager {
 }
 ```
 
-### 32.4 Fichier Config Généré
+### 33.4 Fichier Config Généré
 
 **📝 Le fichier `config/medelium.json` sera créé automatiquement :**
 
-```json
+```
 {
   "startingMana": 100,
   "maxMana": 200,
@@ -12969,11 +12723,11 @@ public class QuestManager {
 }
 ```
 
-### 32.5 Config Client Séparée
+### 33.5 Config Client Séparée
 
 **📝 ModClientConfig.java - Même principe avec un fichier séparé :**
 
-```java
+```
 package com.medelium.config;
 
 import com.google.gson.Gson;
@@ -13031,16 +12785,16 @@ public class ModClientConfig {
 
 **📝 Charger dans MedeliumClient :**
 
-```java
+```
 // Dans MedeliumClient.onInitializeClient()
 ModClientConfig.load();
 ```
 
-### 32.6 Reload Config en Jeu
+### 33.6 Reload Config en Jeu
 
 **📝 Commande pour recharger config :**
 
-```java
+```
 package com.medelium.command;
 
 import com.medelium.config.ModConfig;
@@ -13111,7 +12865,7 @@ Votre guide est maintenant **VRAIMENT complet** pour créer un mod Minecraft pro
 
 ---
 
-## 33. 🌐 Localisation (i18n)
+## 34. 🌐 Localisation (i18n)
 
 > **📖 Pourquoi la localisation ?**
 > La localisation (i18n = internationalization) permet de traduire votre mod dans **plusieurs langues**.
@@ -13133,11 +12887,11 @@ Votre guide est maintenant **VRAIMENT complet** pour créer un mod Minecraft pro
 >   └── ja_jp.json  (Japonais)
 > ```
 
-### 33.1 Structure des Fichiers de Langue
+### 34.1 Structure des Fichiers de Langue
 
 **📝 `assets/medelium/lang/en_us.json` (Anglais - fichier de base) :**
 
-```json
+```
 {
   "_comment": "Items",
   "item.medelium.silver_coin": "Silver Coin",
@@ -13232,7 +12986,7 @@ Votre guide est maintenant **VRAIMENT complet** pour créer un mod Minecraft pro
 
 **📝 `assets/medelium/lang/fr_fr.json` (Français) :**
 
-```json
+```
 {
   "_comment": "Items",
   "item.medelium.silver_coin": "Pièce d'Argent",
@@ -13325,11 +13079,11 @@ Votre guide est maintenant **VRAIMENT complet** pour créer un mod Minecraft pro
 }
 ```
 
-### 33.2 Utiliser les Traductions dans le Code
+### 34.2 Utiliser les Traductions dans le Code
 
 **📝 Messages traduits :**
 
-```java
+```
 package com.medelium.util;
 
 import net.minecraft.text.Text;
@@ -13367,7 +13121,7 @@ public class TranslationHelper {
 
 **📝 Tooltips traduits :**
 
-```java
+```
 package com.medelium.item;
 
 import net.minecraft.text.Text;
@@ -13402,7 +13156,7 @@ public class MagicSwordItem extends Item {
 
 **📝 GUI avec titre traduit :**
 
-```java
+```
 package com.medelium.client.currentScreen;
 
 import net.minecraft.client.gui.currentScreen.Screen;
@@ -13419,7 +13173,7 @@ public class QuestLogScreen extends Screen {
 
 **📝 Commande avec messages traduits :**
 
-```java
+```
 package com.medelium.command;
 
 import com.mojang.brigadier.context.CommandContext;
@@ -13446,11 +13200,11 @@ public class QuestCommands {
 }
 ```
 
-### 33.3 Traductions Dynamiques avec Variables
+### 34.3 Traductions Dynamiques avec Variables
 
 **📝 Component avec plusieurs paramètres :**
 
-```java
+```
 // EN: "You gained +%s %s with %s faction"
 // FR: "Vous avez gagné +%s %s avec la faction %s"
 
@@ -13464,7 +13218,7 @@ Text.translatable(
 
 **📝 Component avec composants imbriqués :**
 
-```java
+```
 Component questName = Text.translatable("quest.medelium.dragon_slayer.title");
 Component message = Text.translatable("message.medelium.quest_completed", questName);
 
@@ -13472,11 +13226,11 @@ Component message = Text.translatable("message.medelium.quest_completed", questN
 // FR: "Quête terminée : Tueur de Dragons"
 ```
 
-### 33.4 Pluralisation
+### 34.4 Pluralisation
 
 **📝 `en_us.json` avec pluriel :**
 
-```json
+```
 {
   "message.medelium.coins.single": "You received %s coin",
   "message.medelium.coins.multiple": "You received %s coins",
@@ -13487,7 +13241,7 @@ Component message = Text.translatable("message.medelium.quest_completed", questN
 
 **📝 Utiliser selon la quantité :**
 
-```java
+```
 public static void sendCoinsReceived(ServerPlayerEntity player, int amount) {
     String key = amount == 1 
         ? "message.medelium.coins.single" 
@@ -13497,11 +13251,11 @@ public static void sendCoinsReceived(ServerPlayerEntity player, int amount) {
 }
 ```
 
-### 33.5 Formats Spéciaux
+### 34.5 Formats Spéciaux
 
 **📝 Couleurs dans les traductions :**
 
-```json
+```
 {
   "message.medelium.legendary_drop": "§6§l⚡ LEGENDARY ITEM DROPPED! ⚡",
   "message.medelium.critical_hit": "§c§lCRITICAL HIT! §r§7(%s damage)"
@@ -13510,7 +13264,7 @@ public static void sendCoinsReceived(ServerPlayerEntity player, int amount) {
 
 **📝 Caractères spéciaux :**
 
-```json
+```
 {
   "tooltip.medelium.damage_range": "Damage: %s ➜ %s",
   "message.medelium.arrow": "→ Quest updated",
@@ -13518,7 +13272,7 @@ public static void sendCoinsReceived(ServerPlayerEntity player, int amount) {
 }
 ```
 
-### 33.6 Convention de Nommage
+### 34.6 Convention de Nommage
 
 **📝 Structure recommandée :**
 
@@ -13539,7 +13293,7 @@ death.attack.<modid>.<damage_type>
 
 ---
 
-## 34. ⌨️ Keybindings & Overlays HUD
+## 35. ⌨️ Keybindings & Overlays HUD
 
 > **📖 Pourquoi des keybinds custom ?**
 > Permettre au joueur d'appuyer sur une touche pour :
@@ -13561,11 +13315,11 @@ death.attack.<modid>.<damage_type>
 > 4. Serveur renvoie données au client
 > 5. Client update HUD
 
-### 34.1 Enregistrer Keybindings
+### 35.1 Enregistrer Keybindings
 
 **📝 ModKeyBindings.java :**
 
-```java
+```
 package com.medelium.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
@@ -13625,7 +13379,7 @@ public class ModKeyBindings {
 
 **📝 Enregistrer dans le mod (Client only) :**
 
-```java
+```
 package com.medelium.client;
 
 public class ClientModEvents {
@@ -13642,11 +13396,11 @@ public class ClientModEvents {
 }
 ```
 
-### 34.2 Détecter Appui Touche
+### 35.2 Détecter Appui Touche
 
 **📝 KeyInputHandler.java :**
 
-```java
+```
 package com.medelium.client.event;
 
 import com.medelium.Medelium;
@@ -13710,11 +13464,11 @@ public class KeyInputHandler {
 }
 ```
 
-### 34.3 HUD Overlay - Barre de Mana/Stamina
+### 35.3 HUD Overlay - Barre de Mana/Stamina
 
 **📝 HudOverlay.java :**
 
-```java
+```
 package com.medelium.client.hud;
 
 import com.medelium.Medelium;
@@ -13814,11 +13568,11 @@ public class HudOverlay {
 }
 ```
 
-### 34.4 HUD - Indicateur de Quête Active
+### 35.4 HUD - Indicateur de Quête Active
 
 **📝 QuestTrackerOverlay.java :**
 
-```java
+```
 package com.medelium.client.hud;
 
 import com.medelium.Medelium;
@@ -13873,11 +13627,11 @@ public class QuestTrackerOverlay {
 }
 ```
 
-### 34.5 HUD - Boss Bar Custom
+### 35.5 HUD - Boss Bar Custom
 
 **📝 BossHealthOverlay.java :**
 
-```java
+```
 package com.medelium.client.hud;
 
 import net.minecraft.client.DeltaTracker;
@@ -13943,7 +13697,7 @@ public class BossHealthOverlay {
 }
 ```
 
-### 34.6 Texture pour HUD
+### 35.6 Texture pour HUD
 
 **📝 Créer `textures/gui/mana_bar.png` (182x18 pixels) :**
 
@@ -13960,7 +13714,7 @@ Partie basse (9-18px) : Barre pleine (bleu cyan)
 
 ---
 
-## 35. 🌍 Biomes & World Features
+## 36. 🌍 Biomes & World Features
 
 > **📖 Pourquoi créer des biomes ?**
 > Les biomes définissent **l'apparence du monde** :
@@ -13980,11 +13734,11 @@ Partie basse (9-18px) : Barre pleine (bleu cyan)
 > **🔧 Data-Driven (JSON) :**
 > Les biomes sont définis dans `data/<modid>/worldgen/biome/`
 
-### 35.1 Créer un Biome Custom
+### 36.1 Créer un Biome Custom
 
 **📝 `data/medelium/worldgen/biome/cursed_forest.json` :**
 
-```json
+```
 {
   "has_precipitation": true,
   "temperature": 0.4,
@@ -14087,11 +13841,11 @@ Partie basse (9-18px) : Barre pleine (bleu cyan)
 - **spawners.monster** : Mobs hostiles qui spawn
 - **features** : Liste de 11 étapes de génération (ordre important)
 
-### 35.2 Feature - Arbre Custom
+### 36.2 Feature - Arbre Custom
 
 **📝 `data/medelium/worldgen/configured_feature/cursed_tree.json` :**
 
-```json
+```
 {
   "type": "minecraft:tree",
   "config": {
@@ -14148,7 +13902,7 @@ Partie basse (9-18px) : Barre pleine (bleu cyan)
 
 **📝 `data/medelium/worldgen/placed_feature/cursed_tree.json` :**
 
-```json
+```
 {
   "feature": "medelium:cursed_tree",
   "placement": [
@@ -14170,11 +13924,11 @@ Partie basse (9-18px) : Barre pleine (bleu cyan)
 }
 ```
 
-### 35.3 Feature - Minerai Custom
+### 36.3 Feature - Minerai Custom
 
 **📝 `data/medelium/worldgen/configured_feature/ore_silver.json` :**
 
-```json
+```
 {
   "type": "minecraft:ore",
   "config": {
@@ -14206,7 +13960,7 @@ Partie basse (9-18px) : Barre pleine (bleu cyan)
 
 **📝 `data/medelium/worldgen/placed_feature/ore_silver.json` :**
 
-```json
+```
 {
   "feature": "medelium:ore_silver",
   "placement": [
@@ -14242,11 +13996,11 @@ Partie basse (9-18px) : Barre pleine (bleu cyan)
 - **height_range** : Y -64 à Y 32
 - **trapezoid** : Plus fréquent au milieu de la range
 
-### 35.4 Feature - Végétation Custom
+### 36.4 Feature - Végétation Custom
 
 **📝 `data/medelium/worldgen/configured_feature/cursed_vegetation.json` :**
 
-```json
+```
 {
   "type": "minecraft:random_patch",
   "config": {
@@ -14299,11 +14053,11 @@ Partie basse (9-18px) : Barre pleine (bleu cyan)
 }
 ```
 
-### 35.5 Feature - Structure Naturelle
+### 36.5 Feature - Structure Naturelle
 
 **📝 `data/medelium/worldgen/configured_feature/ancient_ruins.json` :**
 
-```json
+```
 {
   "type": "minecraft:random_selector",
   "config": {
@@ -14322,11 +14076,11 @@ Partie basse (9-18px) : Barre pleine (bleu cyan)
 }
 ```
 
-### 35.6 Enregistrer Biome dans Dimension
+### 36.6 Enregistrer Biome dans Dimension
 
 **📝 Ajouter biome à dimension - `data/medelium/dimension_type/abyss.json` :**
 
-```json
+```
 {
   "ultrawarm": false,
   "natural": true,
@@ -14355,11 +14109,11 @@ Partie basse (9-18px) : Barre pleine (bleu cyan)
 }
 ```
 
-### 35.7 Biome Source (Multi-Biomes)
+### 36.7 Biome Source (Multi-Biomes)
 
 **📝 `data/medelium/worldgen/world_preset/abyss_preset.json` :**
 
-```json
+```
 {
   "dimensions": {
     "medelium:abyss": {
@@ -14402,11 +14156,11 @@ Partie basse (9-18px) : Barre pleine (bleu cyan)
 }
 ```
 
-### 35.8 Tags de Biomes
+### 36.8 Tags de Biomes
 
 **📝 `data/medelium/tags/worldgen/biome/has_castle.json` :**
 
-```json
+```
 {
   "values": [
     "minecraft:plains",
@@ -14418,7 +14172,7 @@ Partie basse (9-18px) : Barre pleine (bleu cyan)
 
 **📝 Utiliser dans structure :**
 
-```json
+```
 {
   "type": "minecraft:random_spread",
   "spacing": 32,
@@ -14448,7 +14202,7 @@ Votre guide est maintenant **ULTRA-COMPLET** avec tous les systèmes essentiels 
 
 ---
 
-## 36. ✨ Particles & Animations
+## 37. ✨ Particles & Animations
 
 > **📖 Pourquoi des particles custom ?**
 > Les particules ajoutent **du spectacle visuel** :
@@ -14469,11 +14223,11 @@ Votre guide est maintenant **ULTRA-COMPLET** avec tous les systèmes essentiels 
 > - 💻 ParticleType registration
 > - 🎨 Client-side rendering
 
-### 36.1 Utiliser Particles Vanilla
+### 37.1 Utiliser Particles Vanilla
 
 **📝 Spawner particles vanilla :**
 
-```java
+```
 package com.medelium.util;
 
 import net.minecraft.particle.ParticleTypes;
@@ -14547,11 +14301,11 @@ public class ParticleHelper {
 }
 ```
 
-### 36.2 Créer Particle Type Custom
+### 37.2 Créer Particle Type Custom
 
 **📝 ModParticles.java - Enregistrement :**
 
-```java
+```
 package com.medelium.particle;
 
 import com.medelium.Medelium;
@@ -14578,7 +14332,7 @@ public class ModParticles {
 
 **📝 Enregistrer dans Medelium.java :**
 
-```java
+```
 // Fabric: la classe principale implémente ModInitializer\npublic void onInitialize() {
     // Fabric: pas besoin de event bus
     
@@ -14587,11 +14341,11 @@ public class ModParticles {
 }
 ```
 
-### 36.3 Client-Side Particle Factory
+### 37.3 Client-Side Particle Factory
 
 **📝 MagicSparkParticle.java :**
 
-```java
+```
 package com.medelium.client.particle;
 
 import net.minecraft.client.multiplayer.ClientWorld;
@@ -14657,7 +14411,7 @@ public class MagicSparkParticle extends TextureSheetParticle {
 
 **📝 Enregistrer Factory (Client) :**
 
-```java
+```
 package com.medelium.client;
 
 import com.medelium.Medelium;
@@ -14673,11 +14427,11 @@ public class ParticleRegistry {
 }
 ```
 
-### 36.4 Fichier JSON Particle
+### 37.4 Fichier JSON Particle
 
 **📝 `assets/medelium/particles/magic_spark.json` :**
 
-```json
+```
 {
   "textures": [
     "medelium:particle/magic_spark_0",
@@ -14697,11 +14451,11 @@ assets/medelium/textures/particle/
   └── magic_spark_3.png  (8x8, frame 4)
 ```
 
-### 36.5 Spawner Particle Custom
+### 37.5 Spawner Particle Custom
 
 **📝 Utiliser dans le code :**
 
-```java
+```
 package com.medelium.item;
 
 import com.medelium.particle.ModParticles;
@@ -14741,11 +14495,11 @@ public class MagicWandItem extends Item {
 }
 ```
 
-### 36.6 Animations - Texture Animée
+### 37.6 Animations - Texture Animée
 
 **📝 Item avec texture animée - `magic_sword.png.mcmeta` :**
 
-```json
+```
 {
   "animation": {
     "frametime": 4,
@@ -14778,11 +14532,11 @@ magic_sword.png (16x96 pixels)
   └── Frame 5: pixels 80-95
 ```
 
-### 36.7 Block Animé
+### 37.7 Block Animé
 
 **📝 Bloc avec texture animée - `portal_block.png.mcmeta` :**
 
-```json
+```
 {
   "animation": {
     "frametime": 2,
@@ -14793,7 +14547,7 @@ magic_sword.png (16x96 pixels)
 
 **📝 Portal avec particules :**
 
-```java
+```
 package com.medelium.block;
 
 import com.medelium.particle.ModParticles;
@@ -14825,11 +14579,11 @@ public class PortalBlock extends Block {
 }
 ```
 
-### 36.8 Entity avec Trail de Particules
+### 37.8 Entity avec Trail de Particules
 
 **📝 Projectile magique :**
 
-```java
+```
 package com.medelium.entity;
 
 import com.medelium.particle.ModParticles;
@@ -14867,7 +14621,7 @@ public class MagicBoltEntity extends ThrowableProjectile {
 
 ---
 
-## 37. 🏆 Advancements (Succès)
+## 38. 🏆 Advancements (Succès)
 
 > **📖 Pourquoi des advancements ?**
 > Les advancements (succès) guident le joueur et récompensent la progression :
@@ -14887,11 +14641,11 @@ public class MagicBoltEntity extends ThrowableProjectile {
 > - Display (icône, titre, description)
 > - Parent (advancement précédent)
 
-### 37.1 Premier Advancement
+### 38.1 Premier Advancement
 
 **📝 `data/medelium/advancements/root.json` :**
 
-```json
+```
 {
   "display": {
     "icon": {
@@ -14928,18 +14682,18 @@ public class MagicBoltEntity extends ThrowableProjectile {
 ```
 
 **💡 Traductions dans `en_us.json` :**
-```json
+```
 {
   "advancement.medelium.root.title": "Medieval Adventures",
   "advancement.medelium.root.description": "Obtain your first coin"
 }
 ```
 
-### 37.2 Advancement avec Parent
+### 38.2 Advancement avec Parent
 
 **📝 `data/medelium/advancements/first_sword.json` :**
 
-```json
+```
 {
   "parent": "medelium:root",
   "display": {
@@ -14978,11 +14732,11 @@ public class MagicBoltEntity extends ThrowableProjectile {
 }
 ```
 
-### 37.3 Advancement de Kill
+### 38.3 Advancement de Kill
 
 **📝 `data/medelium/advancements/dragon_slayer.json` :**
 
-```json
+```
 {
   "parent": "medelium:first_sword",
   "display": {
@@ -15020,11 +14774,11 @@ public class MagicBoltEntity extends ThrowableProjectile {
 }
 ```
 
-### 37.4 Advancement avec Critères Multiples
+### 38.4 Advancement avec Critères Multiples
 
 **📝 `data/medelium/advancements/master_blacksmith.json` :**
 
-```json
+```
 {
   "display": {
     "icon": {
@@ -15077,11 +14831,11 @@ public class MagicBoltEntity extends ThrowableProjectile {
 - **requirements** : TOUS les critères doivent être remplis (AND)
 - Sans requirements : UN SEUL critère suffit (OR)
 
-### 37.5 Advancement Location-Based
+### 38.5 Advancement Location-Based
 
 **📝 `data/medelium/advancements/discover_castle.json` :**
 
-```json
+```
 {
   "display": {
     "icon": {
@@ -15111,11 +14865,11 @@ public class MagicBoltEntity extends ThrowableProjectile {
 }
 ```
 
-### 37.6 Advancement Custom Trigger
+### 38.6 Advancement Custom Trigger
 
 **📝 Créer trigger custom - ModAdvancementTriggers.java :**
 
-```java
+```
 package com.medelium.advancement;
 
 import com.medelium.Medelium;
@@ -15136,7 +14890,7 @@ public class ModAdvancementTriggers {
 
 **📝 QuestCompletedTrigger.java :**
 
-```java
+```
 package com.medelium.advancement;
 
 import com.mojang.serialization.Codec;
@@ -15181,7 +14935,7 @@ public class QuestCompletedTrigger extends SimpleCriterionTrigger<QuestCompleted
 
 **📝 Utiliser le trigger custom :**
 
-```json
+```
 {
   "criteria": {
     "complete_first_quest": {
@@ -15196,7 +14950,7 @@ public class QuestCompletedTrigger extends SimpleCriterionTrigger<QuestCompleted
 
 **📝 Déclencher depuis le code :**
 
-```java
+```
 package com.medelium.quest;
 
 import com.medelium.advancement.ModAdvancementTriggers;
@@ -15213,11 +14967,11 @@ public class QuestManager {
 }
 ```
 
-### 37.7 Rewards - Loot Table
+### 38.7 Rewards - Loot Table
 
 **📝 `data/medelium/loot_tables/rewards/first_sword.json` :**
 
-```json
+```
 {
   "type": "minecraft:advancement_reward",
   "pools": [
@@ -15240,7 +14994,7 @@ public class QuestManager {
 }
 ```
 
-### 37.8 Arbre d'Advancements Complet
+### 38.8 Arbre d'Advancements Complet
 
 **📝 Structure recommandée :**
 
@@ -15268,7 +15022,7 @@ data/medelium/advancements/
 
 ---
 
-## 38. 🔌 Compatibilité JEI/Curios
+## 39. 🔌 Compatibilité JEI/Curios
 
 > **📖 Pourquoi l'intégration JEI ?**
 > **JEI** (Just Enough Items) est **l'incontournable** pour voir recettes :
@@ -15286,11 +15040,11 @@ data/medelium/advancements/
 > **🔧 Installation :**
 > Ajouter dans `build.gradle` (dependencies)
 
-### 38.1 Setup JEI
+### 39.1 Setup JEI
 
 **📝 build.gradle - Ajouter dépendance :**
 
-```gradle
+```
 repositories {
     maven {
         name = "Jared's maven"
@@ -15309,15 +15063,15 @@ dependencies {
 
 **📝 gradle.properties :**
 
-```properties
+```
 jei_version=17.3.0.49
 ```
 
-### 38.2 JEI Plugin
+### 39.2 JEI Plugin
 
 **📝 JEIPlugin.java :**
 
-```java
+```
 package com.medelium.compat.jei;
 
 import com.medelium.Medelium;
@@ -15377,11 +15131,11 @@ public class MedeliumJEIPlugin implements IModPlugin {
 }
 ```
 
-### 38.3 JEI Recipe Category Custom
+### 39.3 JEI Recipe Category Custom
 
 **📝 AlchemyTableCategory.java :**
 
-```java
+```
 package com.medelium.compat.jei;
 
 import com.medelium.Medelium;
@@ -15453,11 +15207,11 @@ public class AlchemyTableCategory implements IRecipeCategory<AlchemyRecipe> {
 }
 ```
 
-### 38.4 Setup Curios API
+### 39.4 Setup Curios API
 
 **📝 build.gradle - Ajouter Curios :**
 
-```gradle
+```
 repositories {
     maven {
         name = "Curios"
@@ -15474,15 +15228,15 @@ dependencies {
 
 **📝 gradle.properties :**
 
-```properties
+```
 curios_version=9.1.0+1.21.1
 ```
 
-### 38.5 Item Curio
+### 39.5 Item Curio
 
 **📝 RingItem.java :**
 
-```java
+```
 package com.medelium.item;
 
 import net.minecraft.entity.LivingEntity;
@@ -15528,11 +15282,11 @@ public class RingItem extends Item implements ICurioItem {
 }
 ```
 
-### 38.6 Curios Slot Custom
+### 39.6 Curios Slot Custom
 
 **📝 `data/curios/slots/ring.json` :**
 
-```json
+```
 {
   "replace": false,
   "size": 2,
@@ -15546,11 +15300,11 @@ public class RingItem extends Item implements ICurioItem {
 
 **📝 Créer texture slot : `assets/curios/textures/slot/ring.png` (16x16)**
 
-### 38.7 Item uniquement dans Curios Slot
+### 39.7 Item uniquement dans Curios Slot
 
 **📝 AmuletItem.java :**
 
-```java
+```
 package com.medelium.item;
 
 import net.minecraft.item.Item;
@@ -15591,11 +15345,11 @@ public class AmuletItem extends Item implements ICurioItem {
 }
 ```
 
-### 38.8 Vérifier si Curios est Installé
+### 39.8 Vérifier si Curios est Installé
 
 **📝 CuriosCompat.java :**
 
-```java
+```
 package com.medelium.compat;
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -15632,7 +15386,7 @@ public class CuriosCompat {
 
 ---
 
-## 39. 👨‍🌾 Villageois & Professions
+## 40. 👨‍🌾 Villageois & Professions
 
 > **📖 Pourquoi créer des villageois custom ?**
 > Les villageois sont essentiels pour un RPG médiéval :
@@ -15650,11 +15404,11 @@ public class CuriosCompat {
 > **🔧 Data-Driven :**
 > Les trades sont définis en JSON
 
-### 39.1 Créer POI (Point of Interest)
+### 40.1 Créer POI (Point of Interest)
 
 **📝 ModPOIs.java :**
 
-```java
+```
 package com.medelium.village;
 
 import com.google.common.collect.ImmutableSet;
@@ -15681,11 +15435,11 @@ public static final PointOfInterestType ALCHEMY_TABLE_POI = PointOfInterestHelpe
 }
 ```
 
-### 39.2 Créer Profession
+### 40.2 Créer Profession
 
 **📝 ModVillagerProfessions.java :**
 
-```java
+```
 package com.medelium.village;
 
 import com.google.common.collect.ImmutableSet;
@@ -15718,11 +15472,11 @@ public class ModVillagerProfessions {
 }
 ```
 
-### 39.3 Enregistrer Trades
+### 40.3 Enregistrer Trades
 
 **📝 ModVillagerTrades.java :**
 
-```java
+```
 package com.medelium.village;
 
 import com.medelium.Medelium;
@@ -15827,7 +15581,7 @@ public class ModVillagerTrades {
 }
 ```
 
-### 39.4 VillagerEntity Texture Custom
+### 40.4 VillagerEntity Texture Custom
 
 **📝 Créer texture profession :**
 
@@ -15839,11 +15593,11 @@ assets/minecraft/textures/entity/villager/profession/
 
 **💡 Taille texture :** 64x64 pixels (format vanilla)
 
-### 39.5 Spawn Villageois Custom
+### 40.5 Spawn Villageois Custom
 
 **📝 Commande pour spawn :**
 
-```java
+```
 package com.medelium.command;
 
 import com.medelium.village.ModVillagerProfessions;
@@ -15890,11 +15644,11 @@ public class VillagerCommands {
 }
 ```
 
-### 39.6 Workstation Block
+### 40.6 Workstation Block
 
 **📝 AlchemyTableBlock.java :**
 
-```java
+```
 package com.medelium.block;
 
 import net.minecraft.util.math.BlockPos;
@@ -15928,11 +15682,11 @@ public class AlchemyTableBlock extends Block {
 }
 ```
 
-### 39.7 VillagerEntity Events
+### 40.7 VillagerEntity Events
 
 **📝 VillagerEventHandler.java :**
 
-```java
+```
 package com.medelium.event;
 
 import com.medelium.Medelium;
@@ -15960,7 +15714,7 @@ public class VillagerEventHandler {
 
 ---
 
-## **SECTION 40 : DATA GENERATORS** ⚙️📦
+## 41. ⚙️📦 DATA GENERATORS
 
 ### 📖 **Qu'est-ce que c'est ?**
 
@@ -15989,11 +15743,11 @@ Les **Data Generators** automatisent la création des fichiers JSON (recipes, mo
 
 ---
 
-### **40.1 Configuration build.gradle**
+### 41.1 Configuration build.gradle
 
 Fabric Loom gère les Data Generators automatiquement. Ajoutez dans `build.gradle` :
 
-```gradle
+```
 // build.gradle - Fabric Loom
 
 loom {
@@ -16022,7 +15776,7 @@ sourceSets {
 
 **📝 Ajouter dans `fabric.mod.json` l'entrypoint datagen :**
 
-```json
+```
 {
   "entrypoints": {
     "fabric-datagen": [
@@ -16034,17 +15788,17 @@ sourceSets {
 
 **▶️ Commande pour générer :**
 
-```bash
+```
 ./gradlew runDatagengen
 ```
 
 ---
 
-### **40.2 DataGeneratorEntrypoint - Point d'entrée Fabric**
+### 41.2 DataGeneratorEntrypoint - Point d'entrée Fabric
 
 Créez une classe dédiée pour enregistrer tous vos providers :
 
-```java
+```
 package com.medelium.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
@@ -16081,11 +15835,11 @@ public class MedeliumDataGenerator implements DataGeneratorEntrypoint {
 
 ---
 
-### **40.3 RecipeProvider - Générer les recettes**
+### 41.3 RecipeProvider - Générer les recettes
 
 Créez automatiquement toutes vos recettes de craft :
 
-```java
+```
 package com.medelium.datagen;
 
 import com.medelium.registry.ModBlocks;
@@ -16254,11 +16008,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
 ---
 
-### **40.4 BlockStateProvider - Générer les blockstates**
+### 41.4 BlockStateProvider - Générer les blockstates
 
 Créez automatiquement les fichiers de blockstates et models de blocs :
 
-```java
+```
 package com.medelium.datagen;
 
 import com.medelium.registry.ModBlocks;
@@ -16384,11 +16138,11 @@ public class ModBlockStateProvider /* Fabric: pas d'équivalent direct */ {
 
 ---
 
-### **40.5 ItemModelProvider - Générer les item models**
+### 41.5 ItemModelProvider - Générer les item models
 
 Créez automatiquement les models de vos items :
 
-```java
+```
 package com.medelium.datagen;
 
 import com.medelium.registry.ModItems;
@@ -16508,11 +16262,11 @@ public class ModItemModelProvider /* Fabric: pas d'équivalent direct */ {
 
 ---
 
-### **40.6 LootTableProvider - Générer les loot tables**
+### 41.6 LootTableProvider - Générer les loot tables
 
 Générez automatiquement les drops des blocs et mobs :
 
-```java
+```
 package com.medelium.datagen;
 
 import com.medelium.registry.ModBlocks;
@@ -16536,7 +16290,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
 **Créez la classe `ModBlockLootTables` :**
 
-```java
+```
 package com.medelium.datagen;
 
 import com.medelium.registry.ModBlocks;
@@ -16630,11 +16384,11 @@ public class ModBlockLootTables extends FabricBlockLootTableProvider {
 
 ---
 
-### **40.7 TagsProvider - Générer les tags**
+### 41.7 TagsProvider - Générer les tags
 
 Créez automatiquement les tags pour compatibilité avec autres mods :
 
-```java
+```
 package com.medelium.datagen;
 
 import com.medelium.registry.ModBlocks;
@@ -16689,7 +16443,7 @@ public class ModBlockTagsProvider extends FabricTagProvider.BlockTagProvider {
 
 **Item Tags Provider :**
 
-```java
+```
 package com.medelium.datagen;
 
 import com.medelium.registry.ModItems;
@@ -16740,7 +16494,7 @@ public class ModItemTagsProvider extends FabricTagProvider.ItemTagProvider {
 
 **Classe ModTags :**
 
-```java
+```
 package com.medelium.registry;
 
 import net.minecraft.util.Identifier;
@@ -16774,11 +16528,11 @@ public class ModTags {
 
 ---
 
-### **40.8 LanguageProvider - Générer les fichiers de langue**
+### 41.8 LanguageProvider - Générer les fichiers de langue
 
 Générez `en_us.json` et `fr_fr.json` automatiquement :
 
-```java
+```
 package com.medelium.datagen;
 
 import com.medelium.registry.ModBlocks;
@@ -16842,7 +16596,7 @@ public class ModLanguageProviderEN extends FabricLanguageProvider {
 
 **Version française :**
 
-```java
+```
 package com.medelium.datagen;
 
 import com.medelium.registry.ModBlocks;
@@ -16908,17 +16662,17 @@ public class ModLanguageProviderFR extends FabricLanguageProvider {
 
 ---
 
-### **40.9 Exécuter les Data Generators**
+### 41.9 Exécuter les Data Generators
 
 **📝 Commande pour générer tous les fichiers :**
 
-```bash
+```
 ./gradlew runDatagen
 ```
 
 **Options avancées :**
 
-```bash
+```
 # Générer seulement les données client (models, lang)
 ./gradlew runDatagen --args="--client"
 
@@ -16957,11 +16711,11 @@ Après génération, les fichiers sont dans `src/generated/resources/`. Ils sero
 
 ---
 
-### **40.10 Debugging & Astuces**
+### 41.10 Debugging & Astuces
 
 **❌ Problème : "Task 'runData' not found"**
 
-```gradle
+```
 // Vérifiez que build.gradle contient bien :
 minecraft {
     runs {
@@ -16978,7 +16732,7 @@ Vérifiez que `fabric.mod.json` contient bien l'entrypoint `fabric-datagen` et q
 
 **❌ Fichiers générés mais pas utilisés en jeu**
 
-```gradle
+```
 // Assurez-vous que build.gradle contient :
 sourceSets.main.resources {
     srcDir 'src/generated/resources'
@@ -16994,7 +16748,7 @@ sourceSets.main.resources {
 
 **📝 Fichiers à versionner (Git) :**
 
-```gitignore
+```
 # NE PAS commit les fichiers générés
 src/generated/
 ```
@@ -17011,7 +16765,7 @@ src/generated/
 
 ---
 
-**🎉 RÉSUMÉ SECTION 40 - DATA GENERATORS**
+**🎉 RÉSUMÉ SECTION 41 - DATA GENERATORS**
 
 Vous savez maintenant :
 
@@ -17032,7 +16786,7 @@ Vous savez maintenant :
 
 ---
 
-## **SECTION 41 : RENDER TYPES (TRANSPARENCE)** 🎨✨
+## 42. 🎨✨ RENDER TYPES (TRANSPARENCE)
 
 ### 📖 **Qu'est-ce que c'est ?**
 
@@ -17061,13 +16815,13 @@ Les **Render Types** définissent **comment Minecraft affiche vos blocs** : opaq
 
 ---
 
-### **41.1 Configuration de base - Enregistrer les RenderTypes**
+### 42.1 Configuration de base - Enregistrer les RenderTypes
 
 En **Fabric 1.21+**, vous enregistrez les RenderTypes dans un event client uniquement.
 
 **📁 `ClientSetup.java` :**
 
-```java
+```
 package com.medelium.client;
 
 import com.medelium.registry.ModBlocks;
@@ -17108,13 +16862,13 @@ public static void registerRenderLayers() {
 
 ---
 
-### **41.2 Bloc CUTOUT - Plante avec transparence**
+### 42.2 Bloc CUTOUT - Plante avec transparence
 
 Pour créer une plante avec texture découpée (type fleur, champignon) :
 
 **📁 `MagicFlowerBlock.java` :**
 
-```java
+```
 package com.medelium.block;
 
 import net.minecraft.util.math.BlockPos;
@@ -17143,7 +16897,7 @@ public class MagicFlowerBlock extends BushBlock {
 
 **📁 Registration dans `ModBlocks.java` :**
 
-```java
+```
 public static final Block MAGIC_FLOWER = registerBlock("magic_flower", new MagicFlowerBlock(FabricBlockSettings.create()
         .noCollision()  // On peut passer au travers
         .instabreak()    // Se casse instantanément
@@ -17164,7 +16918,7 @@ public static final Block MAGIC_FLOWER = registerBlock("magic_flower", new Magic
 
 **📁 Model JSON `assets/medelium/models/block/magic_flower.json` :**
 
-```json
+```
 {
   "parent": "minecraft:block/cross",
   "textures": {
@@ -17175,7 +16929,7 @@ public static final Block MAGIC_FLOWER = registerBlock("magic_flower", new Magic
 
 **📁 Blockstate JSON `assets/medelium/blockstates/magic_flower.json` :**
 
-```json
+```
 {
   "variants": {
     "": {
@@ -17189,13 +16943,13 @@ public static final Block MAGIC_FLOWER = registerBlock("magic_flower", new Magic
 
 ---
 
-### **41.3 Bloc CUTOUT_MIPPED - Feuilles d'arbres**
+### 42.3 Bloc CUTOUT_MIPPED - Feuilles d'arbres
 
 Les **feuilles** utilisent `CUTOUT_MIPPED` pour améliorer les performances à distance (Mipmap).
 
 **📁 `MagicLeavesBlock.java` :**
 
-```java
+```
 package com.medelium.block;
 
 import net.minecraft.util.math.BlockPos;
@@ -17250,7 +17004,7 @@ public class MagicLeavesBlock extends LeavesBlock {
 
 **📁 Registration :**
 
-```java
+```
 public static final Block MAGIC_LEAVES = registerBlock("magic_leaves", new MagicLeavesBlock(FabricBlockSettings.create()
         .strength(0.2f)
         .randomTicks()  // Pour les feuilles qui se décomposent
@@ -17273,19 +17027,19 @@ public static final Block MAGIC_LEAVES = registerBlock("magic_leaves", new Magic
 
 **✅ RenderType dans ClientSetup :**
 
-```java
+```
 BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MAGIC_LEAVES, RenderLayer.getCutoutMipped());
 ```
 
 ---
 
-### **41.4 Bloc TRANSLUCENT - Verre transparent**
+### 42.4 Bloc TRANSLUCENT - Verre transparent
 
 Le **verre** utilise `TRANSLUCENT` pour permettre la semi-transparence et le blending alpha.
 
 **📁 `MagicGlassBlock.java` :**
 
-```java
+```
 package com.medelium.block;
 
 import net.minecraft.util.math.BlockPos;
@@ -17333,7 +17087,7 @@ public class MagicGlassBlock extends Block {
 
 **📁 Registration :**
 
-```java
+```
 public static final Block MAGIC_GLASS = registerBlock("magic_glass", new MagicGlassBlock(FabricBlockSettings.create()
         .strength(0.3f)
         .sounds(BlockSoundGroup.GLASS)
@@ -17348,7 +17102,7 @@ public static final Block MAGIC_GLASS = registerBlock("magic_glass", new MagicGl
 
 **📁 RenderType dans ClientSetup :**
 
-```java
+```
 BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MAGIC_GLASS, RenderLayer.getTranslucent());
 ```
 
@@ -17362,7 +17116,7 @@ BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MAGIC_GLASS, RenderLayer.getTran
 
 **📁 Model JSON `models/block/magic_glass.json` :**
 
-```json
+```
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
@@ -17375,13 +17129,13 @@ BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MAGIC_GLASS, RenderLayer.getTran
 
 ---
 
-### **41.5 Porte en verre (CUTOUT)**
+### 42.5 Porte en verre (CUTOUT)
 
 Pour créer une **porte transparente** :
 
 **📁 Registration :**
 
-```java
+```
 public static final DoorBlock GLASS_DOOR = registerBlock("glass_door", new DoorBlock(
         BlockSetType.IRON,  // Son d'ouverture métal
         FabricBlockSettings.create()
@@ -17394,7 +17148,7 @@ public static final DoorBlock GLASS_DOOR = registerBlock("glass_door", new DoorB
 
 **📁 RenderType :**
 
-```java
+```
 BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GLASS_DOOR, RenderLayer.getCutout());
 ```
 
@@ -17410,11 +17164,11 @@ assets/medelium/textures/block/
 
 ---
 
-### **41.6 Trappe en verre (CUTOUT)**
+### 42.6 Trappe en verre (CUTOUT)
 
 **📁 Registration :**
 
-```java
+```
 public static final TrapDoorBlock GLASS_TRAPDOOR = registerBlock("glass_trapdoor", new TrapDoorBlock(
         BlockSetType.IRON,
         FabricBlockSettings.create()
@@ -17428,7 +17182,7 @@ public static final TrapDoorBlock GLASS_TRAPDOOR = registerBlock("glass_trapdoor
 
 **📁 RenderType :**
 
-```java
+```
 BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GLASS_TRAPDOOR, RenderLayer.getCutout());
 ```
 
@@ -17440,13 +17194,13 @@ assets/medelium/textures/block/glass_trapdoor.png (16x16)
 
 ---
 
-### **41.7 Bloc translucide coloré (verre teinté)**
+### 42.7 Bloc translucide coloré (verre teinté)
 
 Pour créer un **verre coloré** avec effet de lumière :
 
 **📁 `StainedMagicGlassBlock.java` :**
 
-```java
+```
 package com.medelium.block;
 
 import net.minecraft.util.math.BlockPos;
@@ -17470,7 +17224,7 @@ public class StainedMagicGlassBlock extends MagicGlassBlock {
 
 **📁 Registration :**
 
-```java
+```
 public static final Block RED_STAINED_GLASS = registerBlock("red_stained_glass", new StainedMagicGlassBlock(
         FabricBlockSettings.create()
             .strength(0.3f)
@@ -17492,7 +17246,7 @@ public static final Block BLUE_STAINED_GLASS = registerBlock("blue_stained_glass
 
 **📁 BlockColor registration (client) :**
 
-```java
+```
 public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
     /* Fabric: voir le callback correspondant */ register(
         (state, level, pos, tintIndex) -> ((StainedMagicGlassBlock) state.getBlock()).getColor(state, level, pos, tintIndex),
@@ -17504,13 +17258,13 @@ public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
 
 ---
 
-### **41.8 Liquide translucide (eau/lave custom)**
+### 42.8 Liquide translucide (eau/lave custom)
 
 Pour créer un **liquide transparent** (section avancée) :
 
 **📁 `MagicWaterBlock.java` :**
 
-```java
+```
 package com.medelium.block;
 
 import net.minecraft.util.math.BlockPos;
@@ -17537,20 +17291,20 @@ public class MagicWaterBlock extends LiquidBlock {
 
 **📁 RenderType pour /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */ (dans ClientSetup) :**
 
-```java
+```
 // Les fluides utilisent un système différent (/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */)
-// Voir Section 42 pour détails complets sur les fluides
+// Voir Section 43 pour détails complets sur les fluides
 ```
 
 ---
 
-### **41.9 Particules avec transparence**
+### 42.9 Particules avec transparence
 
 Les **particules** peuvent aussi utiliser la transparence :
 
 **📁 Dans votre classe `Particle` :**
 
-```java
+```
 @Override
 public ParticleRenderType getRenderType() {
     return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;  // Supporte alpha
@@ -17584,13 +17338,13 @@ assets/medelium/textures/particle/magic_spark.png
 
 ---
 
-### **41.10 Debugging & Problèmes courants**
+### 42.10 Debugging & Problèmes courants
 
 **❌ Problème : Bloc transparent apparaît noir/opaque**
 
 ✅ **Solutions :**
 
-```java
+```
 // 1. Vérifier noOcclusion() dans Properties
 FabricBlockSettings.create().nonOpaque()
 
@@ -17605,7 +17359,7 @@ ItemBlockRenderTypes.setRenderLayer(bloc, RenderType.cutout());
 
 ✅ **Solution :** Implémenter `skipRendering()` :
 
-```java
+```
 @Override
 public boolean skipRendering(BlockState state, BlockState adjacentState, Direction direction) {
     return adjacentState.is(this) || super.skipRendering(state, adjacentState, direction);
@@ -17616,7 +17370,7 @@ public boolean skipRendering(BlockState state, BlockState adjacentState, Directi
 
 ✅ **Solution :** Minecraft trie automatiquement, mais vous pouvez forcer un ordre :
 
-```java
+```
 // Éviter de placer 2 blocs TRANSLUCENT adjacents différents
 // Utiliser plutôt des blockstates du même bloc
 ```
@@ -17629,7 +17383,7 @@ C'est normal ! Les particules utilisent un système de collision différent.
 
 ✅ **Solution :** Vérifier que ClientSetup est bien `// Fabric: @Environment(EnvType.CLIENT)` :
 
-```java
+```
 // Fabric: enregistrer les callbacks dans onInitialize()
 ```
 
@@ -17646,7 +17400,7 @@ C'est normal ! Les particules utilisent un système de collision différent.
 
 **🔧 Template complet pour bloc transparent :**
 
-```java
+```
 // Dans ModBlocks.java
 public static final Block MY_GLASS = registerBlock("my_glass", new Block(FabricBlockSettings.create()
         .strength(0.3f)
@@ -17675,7 +17429,7 @@ BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MY_GLASS, RenderLayer.getTranslu
 
 ---
 
-**🎉 RÉSUMÉ SECTION 41 - RENDER TYPES**
+**🎉 RÉSUMÉ SECTION 42 - RENDER TYPES**
 
 Vous savez maintenant :
 
@@ -17694,7 +17448,7 @@ Vous savez maintenant :
 
 ---
 
-## **SECTION 42 : FLUIDS CUSTOM (LIQUIDES)** 💧🌊
+## 43. 💧🌊 FLUIDS CUSTOM (LIQUIDES)
 
 ### 📖 **Qu'est-ce que c'est ?**
 
@@ -17734,13 +17488,13 @@ assets/medelium/textures/fluid/
 
 ---
 
-### **42.1 /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */ Registration**
+### 43.1 /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */ Registration
 
 Le **/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */** définit les propriétés physiques du fluide (Fabric 1.21+).
 
 **📁 `Mod/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */s.java` :**
 
-```java
+```
 package com.medelium.registry;
 
 import com.medelium.Medelium;
@@ -17855,13 +17609,13 @@ public class Mod/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerR
 
 ---
 
-### **42.2 Fluid Source & Flowing States**
+### 43.2 Fluid Source & Flowing States
 
 Créez les états **statique** (source) et **en mouvement** (flowing).
 
 **📁 `ModFluids.java` :**
 
-```java
+```
 package com.medelium.registry;
 
 import com.medelium.Medelium;
@@ -17924,13 +17678,13 @@ public class ModFluids {
 
 ---
 
-### **42.3 Fluid Block**
+### 43.3 Fluid Block
 
 Créez le **bloc** qui représente le fluide dans le monde.
 
 **📁 `ManaFluidBlock.java` :**
 
-```java
+```
 package com.medelium.block;
 
 import com.medelium.registry.ModFluids;
@@ -17977,7 +17731,7 @@ public class ManaFluidBlock extends LiquidBlock {
 
 **📁 Registration dans `ModBlocks.java` :**
 
-```java
+```
 public static final LiquidBlock MANA_FLUID_BLOCK = registerBlock("mana_fluid_block", new ManaFluidBlock(
         ModFluids.MANA_SOURCE,
         FabricBlockSettings.create()
@@ -18009,13 +17763,13 @@ public static final LiquidBlock BLOOD_FLUID_BLOCK = registerBlock("blood_fluid_b
 
 ---
 
-### **42.4 Bucket Item**
+### 43.4 Bucket Item
 
 Créez le **seau** pour transporter le fluide.
 
 **📁 Registration dans `ModItems.java` :**
 
-```java
+```
 public static final BucketItem MANA_BUCKET = registerItem("mana_bucket", new BucketItem(
         ModFluids.MANA_SOURCE,
         new FabricItemSettings()
@@ -18035,7 +17789,7 @@ public static final BucketItem BLOOD_BUCKET = registerItem("blood_bucket", new B
 
 **📁 Model JSON `assets/medelium/models/item/mana_bucket.json` :**
 
-```json
+```
 {
   "parent": "minecraft:item/generated",
   "textures": {
@@ -18048,7 +17802,7 @@ public static final BucketItem BLOOD_BUCKET = registerItem("blood_bucket", new B
 
 ---
 
-### **42.5 Textures de fluide**
+### 43.5 Textures de fluide
 
 Les fluides nécessitent **3 textures** :
 
@@ -18077,7 +17831,7 @@ assets/medelium/textures/fluid/
 
 **`assets/medelium/textures/fluid/mana_still.png.mcmeta` :**
 
-```json
+```
 {
   "animation": {
     "frametime": 2,
@@ -18088,7 +17842,7 @@ assets/medelium/textures/fluid/
 
 **`assets/medelium/textures/fluid/mana_flowing.png.mcmeta` :**
 
-```json
+```
 {
   "animation": {
     "frametime": 1,
@@ -18107,13 +17861,13 @@ assets/medelium/textures/fluid/
 
 ---
 
-### **42.6 RenderType pour fluide**
+### 43.6 RenderType pour fluide
 
 Les fluides utilisent automatiquement `RenderType.TRANSLUCENT`, mais vous pouvez personnaliser :
 
 **📁 Dans `ClientSetup.java` :**
 
-```java
+```
 // Fabric: dans MedeliumClient.onInitializeClient()
 public static void registerRenderLayers() {
         // Les fluides utilisent automatiquement TRANSLUCENT
@@ -18128,13 +17882,13 @@ public static void registerRenderLayers() {
 
 ---
 
-### **42.7 Exemple complet - Acide corrosif**
+### 43.7 Exemple complet - Acide corrosif
 
 Un fluide qui inflige des dégâts :
 
 **📁 `AcidFluidBlock.java` :**
 
-```java
+```
 package com.medelium.block;
 
 import com.medelium.registry.ModFluids;
@@ -18182,7 +17936,7 @@ public class AcidFluidBlock extends LiquidBlock {
 
 **📁 /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */ avec température élevée :**
 
-```java
+```
 public static final /* Fabric: SimpleFluidRenderHandler */ ACID_FLUID_TYPE = /* Fabric: FluidRenderHandlerRegistry.INSTANCE.register() */ register("acid_fluid",
     () -> new /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */(/* Fabric: pas de /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */, utiliser FluidRenderHandlerRegistry */
         .descriptionId("fluid.medelium.acid")
@@ -18218,11 +17972,11 @@ public static final /* Fabric: SimpleFluidRenderHandler */ ACID_FLUID_TYPE = /* 
 
 ---
 
-### **42.8 Fluide avec interactions spéciales**
+### 43.8 Fluide avec interactions spéciales
 
 **💡 Fluide qui se transforme au contact d'un autre :**
 
-```java
+```
 public class ManaFluidBlock extends LiquidBlock {
     @Override
     public void neighborChanged(BlockState state, World world, BlockPos pos,
@@ -18241,7 +17995,7 @@ public class ManaFluidBlock extends LiquidBlock {
 
 **💧 Fluide qui gèle en bloc solide :**
 
-```java
+```
 @Override
 public void randomTick(BlockState state, ServerWorld level, BlockPos pos, net.minecraft.util.math.random.Random random) {
     super.randomTick(state, level, pos, random);
@@ -18255,11 +18009,11 @@ public void randomTick(BlockState state, ServerWorld level, BlockPos pos, net.mi
 
 ---
 
-### **42.9 Recipe pour remplir le seau**
+### 43.9 Recipe pour remplir le seau
 
 **📁 Data Generator - Recipe pour créer le seau de mana :**
 
-```java
+```
 // Dans RecipeProvider
 ShapelessRecipeBuilder.create(RecipeCategory.MISC, ModItems.MANA_BUCKET)
     .requires(Items.BUCKET)
@@ -18270,7 +18024,7 @@ ShapelessRecipeBuilder.create(RecipeCategory.MISC, ModItems.MANA_BUCKET)
 
 **Ou via Cauldron custom :**
 
-```java
+```
 public class ManaCauldronBlock extends LayeredCauldronBlock {
     @Override
     public ItemActionResult useItemOn(ItemStack stack, BlockState state, World world,
@@ -18292,13 +18046,13 @@ public class ManaCauldronBlock extends LayeredCauldronBlock {
 
 ---
 
-### **42.10 Debugging & Problèmes courants**
+### 43.10 Debugging & Problèmes courants
 
 **❌ Problème : Fluide invisible / texture manquante**
 
 ✅ **Solutions :**
 
-```java
+```
 // 1. Vérifier que les textures existent
 assets/medelium/textures/fluid/
 ├── mana_still.png
@@ -18325,7 +18079,7 @@ Mod/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */s./
 
 ✅ **Solutions :**
 
-```java
+```
 // 1. Vérifier tickRate (plus bas = plus rapide)
 .tickRate(5)  // Comme l'eau
 
@@ -18340,7 +18094,7 @@ ModFluids.MANA_SOURCE  // Utiliser SOURCE pour placer
 
 ✅ **Solutions :**
 
-```java
+```
 // 1. Vérifier que le bucket est lié au fluide
 .bucket(ModItems.MANA_BUCKET)
 
@@ -18355,7 +18109,7 @@ new BucketItem(ModFluids.MANA_SOURCE, ...)
 
 C'est normal avec les fluides ! Utilisez des `Supplier` :
 
-```java
+```
 // ❌ MAUVAIS
 public static final FlowingFluid MANA = ...;
 public static final Block MANA_BLOCK = new LiquidBlock(MANA, ...);
@@ -18372,7 +18126,7 @@ public static final LiquidBlock MANA_BLOCK = BLOCKS.register(
 
 ✅ **Solution :** Les fluides n'émettent pas de lumière dynamique. Utilisez des particules :
 
-```java
+```
 @Override
 public void animateTick(BlockState state, World world, BlockPos pos, net.minecraft.util.math.random.Random random) {
     if (random.nextInt(10) == 0) {
@@ -18410,7 +18164,7 @@ public void animateTick(BlockState state, World world, BlockPos pos, net.minecra
 
 ---
 
-**🎉 RÉSUMÉ SECTION 42 - FLUIDS CUSTOM**
+**🎉 RÉSUMÉ SECTION 43 - FLUIDS CUSTOM**
 
 Vous savez maintenant :
 
@@ -18434,13 +18188,13 @@ Vous savez maintenant :
 Le guide contient maintenant **42 sections exhaustives** couvrant :
 
 **PRIORITÉ 3 (Nice to have) :**
-✅ **Section 36** : Particles & Animations (vanilla particles, custom particles, particle factory, animated textures, entity trails)
-✅ **Section 37** : Advancements (succès task/goal/challenge, critères multiples, triggers custom, rewards, arbre complet)
-✅ **Section 38** : Compatibilité JEI/Curios (JEI plugin, recipe categories, Curios slots, attribute modifiers)
-✅ **Section 39** : Villageois & Professions (POI, professions custom, trades par niveau, textures, workstations)
-✅ **Section 40** : Data Generators (automatiser JSON, RecipeProvider, BlockStateProvider, ItemModelProvider, LootTableProvider, TagsProvider, LanguageProvider)
-✅ **Section 41** : Render Types (CUTOUT pour plantes, TRANSLUCENT pour verre, skipRendering, noOcclusion, transparence partielle)
-✅ **Section 42** : Fluids Custom (/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */, Source/Flowing, LiquidBlock, BucketItem, textures animées, interactions spéciales)
+✅ **Section 37** : Particles & Animations (vanilla particles, custom particles, particle factory, animated textures, entity trails)
+✅ **Section 38** : Advancements (succès task/goal/challenge, critères multiples, triggers custom, rewards, arbre complet)
+✅ **Section 39** : Compatibilité JEI/Curios (JEI plugin, recipe categories, Curios slots, attribute modifiers)
+✅ **Section 40** : Villageois & Professions (POI, professions custom, trades par niveau, textures, workstations)
+✅ **Section 41** : Data Generators (automatiser JSON, RecipeProvider, BlockStateProvider, ItemModelProvider, LootTableProvider, TagsProvider, LanguageProvider)
+✅ **Section 42** : Render Types (CUTOUT pour plantes, TRANSLUCENT pour verre, skipRendering, noOcclusion, transparence partielle)
+✅ **Section 43** : Fluids Custom (/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */, Source/Flowing, LiquidBlock, BucketItem, textures animées, interactions spéciales)
 
 **Le guide couvre LITTÉRALEMENT TOUT ce qu'il est possible de faire dans un mod Minecraft Fabric 1.20.1 !** 🏰⚔️✨
 
@@ -18450,7 +18204,7 @@ Plus de **18 000 lignes** de documentation professionnelle, complète, en franç
 
 ---
 
-## **SECTION 43 : MUSIC DISCS CUSTOM** 🎵💿
+## 44. 🎵💿 MUSIC DISCS CUSTOM
 
 ### 📖 **Qu'est-ce que c'est ?**
 
@@ -18476,7 +18230,7 @@ Les **Music Discs** sont des disques de musique que les joueurs peuvent écouter
 
 ---
 
-### **43.1 Créer le fichier audio .ogg**
+### 44.1 Créer le fichier audio .ogg
 
 **📝 Format requis :**
 
@@ -18497,7 +18251,7 @@ Les **Music Discs** sont des disques de musique que les joueurs peuvent écouter
 
 **Avec ffmpeg (ligne de commande) :**
 
-```bash
+```
 ffmpeg -i your_music.mp3 -c:a libvorbis -q:a 5 tavern_music.ogg
 ```
 
@@ -18520,13 +18274,13 @@ Les fichiers .ogg peuvent être volumineux (3-10 MB). Si votre mod devient lourd
 
 ---
 
-### **43.2 /* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ Registry (Fabric 1.21+)**
+### 44.2 /* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ Registry (Fabric 1.21+)
 
 Le **/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */** est un nouveau registry data-driven.
 
 **📁 `Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */s.java` :**
 
-```java
+```
 package com.medelium.registry;
 
 import com.medelium.Medelium;
@@ -18562,7 +18316,7 @@ public class Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings ave
 
 **📁 Fichier JSON de définition - `data/medelium/jukebox_song/tavern_music.json` :**
 
-```json
+```
 {
   "sound_event": {
     "sound_id": "medelium:music.tavern_music"
@@ -18586,7 +18340,7 @@ public class Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings ave
 
 **`data/medelium/jukebox_song/battle_theme.json` :**
 
-```json
+```
 {
   "sound_event": {
     "sound_id": "medelium:music.battle_theme"
@@ -18601,7 +18355,7 @@ public class Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings ave
 
 **`data/medelium/jukebox_song/boss_dragon.json` :**
 
-```json
+```
 {
   "sound_event": {
     "sound_id": "medelium:music.boss_dragon"
@@ -18616,13 +18370,13 @@ public class Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings ave
 
 ---
 
-### **43.3 SoundEvent Registration**
+### 44.3 SoundEvent Registration
 
 Vous devez créer un **SoundEvent** pour chaque musique.
 
 **📁 `ModSounds.java` :**
 
-```java
+```
 package com.medelium.registry;
 
 import com.medelium.Medelium;
@@ -18655,7 +18409,7 @@ public class ModSounds {
 
 **📁 `sounds.json` - `assets/medelium/sounds.json` :**
 
-```json
+```
 {
   "music.tavern_music": {
     "sounds": [
@@ -18700,13 +18454,13 @@ public class ModSounds {
 
 ---
 
-### **43.4 Music Disc Item**
+### 44.4 Music Disc Item
 
 Créez l'item disque qui utilise le /* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */.
 
 **📁 Dans `ModItems.java` :**
 
-```java
+```
 public static final Item TAVERN_MUSIC_DISC = registerItem("tavern_music_disc", new Item(new FabricItemSettings()
         .maxCount(1)
         .rarity(Rarity.RARE)
@@ -18740,7 +18494,7 @@ public static final Item MEDIEVAL_CALM_DISC = registerItem("medieval_calm_disc",
 
 ---
 
-### **43.5 Textures & Models**
+### 44.5 Textures & Models
 
 **📁 Texture du disque - `assets/medelium/textures/item/tavern_music_disc.png` :**
 
@@ -18751,7 +18505,7 @@ public static final Item MEDIEVAL_CALM_DISC = registerItem("medieval_calm_disc",
 
 **📁 Model JSON - `assets/medelium/models/item/tavern_music_disc.json` :**
 
-```json
+```
 {
   "parent": "minecraft:item/generated",
   "textures": {
@@ -18769,11 +18523,11 @@ public static final Item MEDIEVAL_CALM_DISC = registerItem("medieval_calm_disc",
 
 ---
 
-### **43.6 Traductions**
+### 44.6 Traductions
 
 **📁 `assets/medelium/lang/en_us.json` :**
 
-```json
+```
 {
   "item.medelium.tavern_music_disc": "Music Disc",
   "item.medelium.battle_theme_disc": "Music Disc",
@@ -18794,7 +18548,7 @@ public static final Item MEDIEVAL_CALM_DISC = registerItem("medieval_calm_disc",
 
 **📁 `assets/medelium/lang/fr_fr.json` :**
 
-```json
+```
 {
   "item.medelium.tavern_music_disc": "Disque de Musique",
   "item.medelium.battle_theme_disc": "Disque de Musique",
@@ -18815,13 +18569,13 @@ public static final Item MEDIEVAL_CALM_DISC = registerItem("medieval_calm_disc",
 
 ---
 
-### **43.7 Loot Tables - Disques rares**
+### 44.7 Loot Tables - Disques rares
 
 Ajoutez vos disques dans les loot tables de structures/mobs.
 
 **📁 `data/medelium/loot_table/chests/dungeon_treasure.json` :**
 
-```json
+```
 {
   "type": "minecraft:chest",
   "pools": [
@@ -18851,7 +18605,7 @@ Ajoutez vos disques dans les loot tables de structures/mobs.
 
 **📁 Drop par un boss - `data/medelium/loot_table/entities/ender_dragon.json` :**
 
-```json
+```
 {
   "type": "minecraft:entity",
   "pools": [
@@ -18875,13 +18629,13 @@ Ajoutez vos disques dans les loot tables de structures/mobs.
 
 ---
 
-### **43.8 Recipe de craft (optionnel)**
+### 44.8 Recipe de craft (optionnel)
 
 Vous pouvez rendre certains disques craftables :
 
 **📁 `data/medelium/recipe/tavern_music_disc.json` :**
 
-```json
+```
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
@@ -18906,7 +18660,7 @@ Vous pouvez rendre certains disques craftables :
 
 ---
 
-### **43.9 Tester vos disques**
+### 44.9 Tester vos disques
 
 **🎮 Commandes de test :**
 
@@ -18931,11 +18685,11 @@ Vous pouvez rendre certains disques craftables :
 
 ---
 
-### **43.10 Exemples avancés**
+### 44.10 Exemples avancés
 
 **💡 Disque qui joue automatiquement dans une zone :**
 
-```java
+```
 public class MusicZoneTrigger {
     public static void onPlayerEnter(PlayerEntity player, BlockPos pos) {
         if (player.getWorld().isClient) {
@@ -18950,7 +18704,7 @@ public class MusicZoneTrigger {
 
 **🎵 Disque qui change selon l'heure du jour :**
 
-```java
+```
 public class AdaptiveMusicDisc extends Item {
     public AdaptiveMusicDisc(Properties properties) {
         super(properties);
@@ -18984,7 +18738,7 @@ public class AdaptiveMusicDisc extends Item {
 
 **🎲 Disque mystérieux (random song) :**
 
-```java
+```
 public static final Item MYSTERY_DISC = registerItem("mystery_disc", new Item(new FabricItemSettings()
         .maxCount(1)
         .rarity(Rarity.EPIC)
@@ -19013,13 +18767,13 @@ public static final Item MYSTERY_DISC = registerItem("mystery_disc", new Item(ne
 
 ---
 
-### **43.11 Debugging & Problèmes courants**
+### 44.11 Debugging & Problèmes courants
 
 **❌ Problème : Musique ne joue pas**
 
 ✅ **Solutions :**
 
-```java
+```
 // 1. Vérifier que le fichier .ogg existe
 src/main/resources/assets/medelium/sounds/music/tavern_music.ogg
 
@@ -19062,7 +18816,7 @@ Le nom dans `sounds.json` doit être `"medelium:music/tavern_music"`.
 
 ✅ **Solutions :**
 
-```json
+```
 // Dans sounds.json, TOUJOURS mettre stream: true pour musiques
 {
   "music.tavern_music": {
@@ -19081,7 +18835,7 @@ Le nom dans `sounds.json` doit être `"medelium:music/tavern_music"`.
 
 ✅ **Vérifier :**
 
-```java
+```
 // 1. Le ResourceKey est créé correctement
 ResourceKey.create(Registries.JUKEBOX_SONG, ...)
 
@@ -19118,7 +18872,7 @@ C'est normal ! Les disques de musique ne peuvent jamais s'empiler, même avec `s
 
 ---
 
-**🎉 RÉSUMÉ SECTION 43 - MUSIC DISCS CUSTOM**
+**🎉 RÉSUMÉ SECTION 44 - MUSIC DISCS CUSTOM**
 
 Vous savez maintenant :
 
@@ -19137,7 +18891,7 @@ Vous savez maintenant :
 
 ---
 
-## **SECTION 44 : BANNER PATTERNS CUSTOM** 🏴🎨
+## 45. 🏴🎨 BANNER PATTERNS CUSTOM
 
 ### 📖 **Qu'est-ce que c'est ?**
 
@@ -19169,11 +18923,11 @@ Nous allons créer des **patterns spéciaux** pour votre mod.
 
 ---
 
-### **44.1 BannerPattern Registration**
+### 45.1 BannerPattern Registration
 
 **📁 `ModBannerPatterns.java` :**
 
-```java
+```
 package com.medelium.registry;
 
 import com.medelium.Medelium;
@@ -19215,13 +18969,13 @@ public class ModBannerPatterns {
 
 ---
 
-### **44.2 Pattern Items (consommables pour loom)**
+### 45.2 Pattern Items (consommables pour loom)
 
 Créez les items "pattern" qui sont consommés dans le loom.
 
 **📁 Dans `ModItems.java` :**
 
-```java
+```
 // 👑 CROWN PATTERN ITEM
 public static final Item CROWN_BANNER_PATTERN = registerItem("crown_banner_pattern", new BannerPatternItem(
         ModTags.BannerPatterns.CROWN_PATTERN,  // Tag pour le loom
@@ -19279,13 +19033,13 @@ public static final Item FLEUR_DE_LIS_BANNER_PATTERN = registerItem("fleur_de_li
 
 ---
 
-### **44.3 Tags pour Banner Patterns**
+### 45.3 Tags pour Banner Patterns
 
 Les tags définissent quels patterns sont disponibles dans le loom.
 
 **📁 `ModTags.java` (ajouter une classe interne) :**
 
-```java
+```
 public class ModTags {
     // ... autres tags existants ...
 
@@ -19309,7 +19063,7 @@ public class ModTags {
 
 **📁 Tag JSON - `data/medelium/tags/banner_pattern/pattern_item/crown.json` :**
 
-```json
+```
 {
   "replace": false,
   "values": [
@@ -19322,7 +19076,7 @@ public class ModTags {
 
 **`data/medelium/tags/banner_pattern/pattern_item/crossed_swords.json` :**
 
-```json
+```
 {
   "replace": false,
   "values": [
@@ -19333,7 +19087,7 @@ public class ModTags {
 
 **`data/medelium/tags/banner_pattern/pattern_item/dragon.json` :**
 
-```json
+```
 {
   "replace": false,
   "values": [
@@ -19344,7 +19098,7 @@ public class ModTags {
 
 **`data/medelium/tags/banner_pattern/pattern_item/castle.json` :**
 
-```json
+```
 {
   "replace": false,
   "values": [
@@ -19355,7 +19109,7 @@ public class ModTags {
 
 **`data/medelium/tags/banner_pattern/pattern_item/shield.json` :**
 
-```json
+```
 {
   "replace": false,
   "values": [
@@ -19366,7 +19120,7 @@ public class ModTags {
 
 **`data/medelium/tags/banner_pattern/pattern_item/fleur_de_lis.json` :**
 
-```json
+```
 {
   "replace": false,
   "values": [
@@ -19377,13 +19131,13 @@ public class ModTags {
 
 ---
 
-### **44.4 Pattern Data JSON**
+### 45.4 Pattern Data JSON
 
 Définissez les propriétés de chaque pattern.
 
 **📁 `data/medelium/banner_pattern/crown.json` :**
 
-```json
+```
 {
   "asset_id": "medelium:crown",
   "translation_key": "block.medelium.banner.crown"
@@ -19399,7 +19153,7 @@ Définissez les propriétés de chaque pattern.
 
 **`data/medelium/banner_pattern/crossed_swords.json` :**
 
-```json
+```
 {
   "asset_id": "medelium:crossed_swords",
   "translation_key": "block.medelium.banner.crossed_swords"
@@ -19408,7 +19162,7 @@ Définissez les propriétés de chaque pattern.
 
 **`data/medelium/banner_pattern/dragon.json` :**
 
-```json
+```
 {
   "asset_id": "medelium:dragon",
   "translation_key": "block.medelium.banner.dragon"
@@ -19417,7 +19171,7 @@ Définissez les propriétés de chaque pattern.
 
 **`data/medelium/banner_pattern/castle.json` :**
 
-```json
+```
 {
   "asset_id": "medelium:castle",
   "translation_key": "block.medelium.banner.castle"
@@ -19426,7 +19180,7 @@ Définissez les propriétés de chaque pattern.
 
 **`data/medelium/banner_pattern/shield.json` :**
 
-```json
+```
 {
   "asset_id": "medelium:shield",
   "translation_key": "block.medelium.banner.shield"
@@ -19435,7 +19189,7 @@ Définissez les propriétés de chaque pattern.
 
 **`data/medelium/banner_pattern/fleur_de_lis.json` :**
 
-```json
+```
 {
   "asset_id": "medelium:fleur_de_lis",
   "translation_key": "block.medelium.banner.fleur_de_lis"
@@ -19444,7 +19198,7 @@ Définissez les propriétés de chaque pattern.
 
 ---
 
-### **44.5 Textures de pattern**
+### 45.5 Textures de pattern
 
 Les textures de banner patterns ont des règles strictes :
 
@@ -19498,7 +19252,7 @@ Reste = transparent
 
 ---
 
-### **44.6 Textures d'items (pattern items)**
+### 45.6 Textures d'items (pattern items)
 
 Les items patterns ont leurs propres textures.
 
@@ -19510,7 +19264,7 @@ Les items patterns ont leurs propres textures.
 
 **📁 Models JSON - `assets/medelium/models/item/crown_banner_pattern.json` :**
 
-```json
+```
 {
   "parent": "minecraft:item/generated",
   "textures": {
@@ -19529,11 +19283,11 @@ Les items patterns ont leurs propres textures.
 
 ---
 
-### **44.7 Traductions**
+### 45.7 Traductions
 
 **📁 `assets/medelium/lang/en_us.json` :**
 
-```json
+```
 {
   "item.medelium.crown_banner_pattern": "Banner Pattern",
   "item.medelium.crossed_swords_banner_pattern": "Banner Pattern",
@@ -19560,7 +19314,7 @@ Les items patterns ont leurs propres textures.
 
 **📁 `assets/medelium/lang/fr_fr.json` :**
 
-```json
+```
 {
   "item.medelium.crown_banner_pattern": "Motif de bannière",
   "item.medelium.crossed_swords_banner_pattern": "Motif de bannière",
@@ -19587,13 +19341,13 @@ Les items patterns ont leurs propres textures.
 
 ---
 
-### **44.8 Recipes de craft**
+### 45.8 Recipes de craft
 
 Créez des recettes pour obtenir les pattern items.
 
 **📁 `data/medelium/recipe/crown_banner_pattern.json` :**
 
-```json
+```
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
@@ -19618,7 +19372,7 @@ Créez des recettes pour obtenir les pattern items.
 
 **📁 `data/medelium/recipe/crossed_swords_banner_pattern.json` :**
 
-```json
+```
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
@@ -19643,7 +19397,7 @@ Créez des recettes pour obtenir les pattern items.
 
 **📁 `data/medelium/recipe/dragon_banner_pattern.json` :**
 
-```json
+```
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
@@ -19665,7 +19419,7 @@ Créez des recettes pour obtenir les pattern items.
 
 ---
 
-### **44.9 Utilisation dans le Loom**
+### 45.9 Utilisation dans le Loom
 
 Une fois tous les fichiers créés, voici comment ça fonctionne en jeu :
 
@@ -19686,13 +19440,13 @@ Une fois tous les fichiers créés, voici comment ça fonctionne en jeu :
 
 ---
 
-### **44.10 Exemple avancé - Pattern sans item**
+### 45.10 Exemple avancé - Pattern sans item
 
 Pour créer un pattern **gratuit** (sans item consommable) :
 
 **📁 `data/medelium/banner_pattern/simple_crown.json` :**
 
-```json
+```
 {
   "asset_id": "medelium:simple_crown",
   "translation_key": "block.medelium.banner.simple_crown"
@@ -19708,13 +19462,13 @@ Le pattern sera automatiquement disponible dans le loom gratuitement (comme les 
 
 ---
 
-### **44.11 Debugging & Problèmes courants**
+### 45.11 Debugging & Problèmes courants
 
 **❌ Problème : Pattern n'apparaît pas dans le loom**
 
 ✅ **Solutions :**
 
-```java
+```
 // 1. Vérifier le tag
 data/medelium/tags/banner_pattern/pattern_item/crown.json
 
@@ -19753,7 +19507,7 @@ Les bannières utilisent une résolution 64x64. C'est normal qu'elles soient pix
 
 ✅ **Vérifier :**
 
-```java
+```
 // 1. ResourceKey créé correctement
 ResourceKey.create(Registries.BANNER_PATTERN, ...)
 
@@ -19790,7 +19544,7 @@ data/medelium/banner_pattern/crown.json
 **🎨 Template pour créer un nouveau pattern :**
 
 1. **Code Java :**
-```java
+```
 // ModBannerPatterns.java
 public static final ResourceKey<BannerPattern> MY_PATTERN = create("my_pattern");
 
@@ -19817,7 +19571,7 @@ assets/medelium/models/item/my_banner_pattern.json
 ```
 
 4. **Traductions :**
-```json
+```
 "item.medelium.my_banner_pattern": "Banner Pattern",
 "item.medelium.my_banner_pattern.desc": "My Custom Pattern",
 "block.medelium.banner.my_pattern": "My Custom Pattern"
@@ -19825,7 +19579,7 @@ assets/medelium/models/item/my_banner_pattern.json
 
 ---
 
-**🎉 RÉSUMÉ SECTION 44 - BANNER PATTERNS CUSTOM**
+**🎉 RÉSUMÉ SECTION 45 - BANNER PATTERNS CUSTOM**
 
 Vous savez maintenant :
 
@@ -19849,15 +19603,15 @@ Vous savez maintenant :
 Le guide contient maintenant **44 sections exhaustives** couvrant :
 
 **PRIORITÉ 3 (Nice to have) :**
-✅ **Section 36** : Particles & Animations (vanilla particles, custom particles, particle factory, animated textures, entity trails)
-✅ **Section 37** : Advancements (succès task/goal/challenge, critères multiples, triggers custom, rewards, arbre complet)
-✅ **Section 38** : Compatibilité JEI/Curios (JEI plugin, recipe categories, Curios slots, attribute modifiers)
-✅ **Section 39** : Villageois & Professions (POI, professions custom, trades par niveau, textures, workstations)
-✅ **Section 40** : Data Generators (automatiser JSON, RecipeProvider, BlockStateProvider, ItemModelProvider, LootTableProvider, TagsProvider, LanguageProvider)
-✅ **Section 41** : Render Types (CUTOUT pour plantes, TRANSLUCENT pour verre, skipRendering, noOcclusion, transparence partielle)
-✅ **Section 42** : Fluids Custom (/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */, Source/Flowing, LiquidBlock, BucketItem, textures animées, interactions spéciales)
-✅ **Section 43** : Music Discs Custom (/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ 1.21+, fichiers .ogg, SoundEvent, disques écoutables, loot tables)
-✅ **Section 44** : Banner Patterns Custom (BannerPattern registry, BannerPatternItem, textures 64x64, loom integration, tags)
+✅ **Section 37** : Particles & Animations (vanilla particles, custom particles, particle factory, animated textures, entity trails)
+✅ **Section 38** : Advancements (succès task/goal/challenge, critères multiples, triggers custom, rewards, arbre complet)
+✅ **Section 39** : Compatibilité JEI/Curios (JEI plugin, recipe categories, Curios slots, attribute modifiers)
+✅ **Section 40** : Villageois & Professions (POI, professions custom, trades par niveau, textures, workstations)
+✅ **Section 41** : Data Generators (automatiser JSON, RecipeProvider, BlockStateProvider, ItemModelProvider, LootTableProvider, TagsProvider, LanguageProvider)
+✅ **Section 42** : Render Types (CUTOUT pour plantes, TRANSLUCENT pour verre, skipRendering, noOcclusion, transparence partielle)
+✅ **Section 43** : Fluids Custom (/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */, Source/Flowing, LiquidBlock, BucketItem, textures animées, interactions spéciales)
+✅ **Section 44** : Music Discs Custom (/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ 1.21+, fichiers .ogg, SoundEvent, disques écoutables, loot tables)
+✅ **Section 45** : Banner Patterns Custom (BannerPattern registry, BannerPatternItem, textures 64x64, loom integration, tags)
 
 **Le guide couvre LITTÉRALEMENT TOUT ce qu'il est possible de faire dans un mod Minecraft Fabric 1.20.1 !** 🏰⚔️✨
 
@@ -19867,7 +19621,7 @@ Plus de **20 000 lignes** de documentation professionnelle, complète, en franç
 
 ---
 
-## **SECTION 45 : PATCHOULI / REI / EMI SUPPORT** 📚🔍
+## 46. 📚🔍 PATCHOULI / REI / EMI SUPPORT
 
 ### 📖 **Qu'est-ce que c'est ?**
 
@@ -19893,13 +19647,13 @@ Cette section couvre :
 
 ---
 
-## **PARTIE 1 : PATCHOULI - LIVRE DE DOCUMENTATION** 📖✨
+### 📖✨ PATCHOULI - LIVRE DE DOCUMENTATION
 
-### **45.1 Configuration Patchouli**
+### 46.1 Configuration Patchouli
 
 **📁 Ajouter la dépendance dans `build.gradle` :**
 
-```gradle
+```
 repositories {
     maven {
         name = "Jared's maven"
@@ -19921,17 +19675,17 @@ dependencies {
 
 **📁 Synchroniser Gradle :**
 
-```bash
+```
 ./gradlew --refresh-dependencies
 ```
 
 ---
 
-### **45.2 Créer le livre (Book JSON)**
+### 46.2 Créer le livre (Book JSON)
 
 **📁 `data/medelium/patchouli_books/guide/book.json` :**
 
-```json
+```
 {
   "name": "item.medelium.guide_book",
   "landing_text": "patchouli.medelium.guide.landing_text",
@@ -19975,11 +19729,11 @@ dependencies {
 
 ---
 
-### **45.3 Item du livre**
+### 46.3 Item du livre
 
 **📁 Dans `ModItems.java` :**
 
-```java
+```
 public static final Item GUIDE_BOOK = registerItem("guide_book", new Item(new FabricItemSettings()
         .maxCount(1)
         .rarity(Rarity.UNCOMMON)
@@ -19989,7 +19743,7 @@ public static final Item GUIDE_BOOK = registerItem("guide_book", new Item(new Fa
 
 **📁 Model JSON - `assets/medelium/models/item/medelium_guide.json` :**
 
-```json
+```
 {
   "parent": "minecraft:item/generated",
   "textures": {
@@ -20014,7 +19768,7 @@ public static final Item GUIDE_BOOK = registerItem("guide_book", new Item(new Fa
 
 **📁 Donner le livre au joueur à la première connexion :**
 
-```java
+```
 public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
     PlayerEntity player = player /* Fabric: obtenu via le callback */;
     
@@ -20028,13 +19782,13 @@ public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
 
 ---
 
-### **45.4 Catégories (Chapters)**
+### 46.4 Catégories (Chapters)
 
 Les catégories organisent les pages du livre.
 
 **📁 `data/medelium/patchouli_books/guide/en_us/categories/basics.json` :**
 
-```json
+```
 {
   "name": "Basics",
   "description": "Learn the fundamentals of Medelium",
@@ -20045,7 +19799,7 @@ Les catégories organisent les pages du livre.
 
 **📁 `data/medelium/patchouli_books/guide/en_us/categories/magic.json` :**
 
-```json
+```
 {
   "name": "Magic",
   "description": "Discover the secrets of mana and spells",
@@ -20056,7 +19810,7 @@ Les catégories organisent les pages du livre.
 
 **📁 `data/medelium/patchouli_books/guide/en_us/categories/combat.json` :**
 
-```json
+```
 {
   "name": "Combat",
   "description": "Master weapons and armor",
@@ -20067,7 +19821,7 @@ Les catégories organisent les pages du livre.
 
 **📁 `data/medelium/patchouli_books/guide/en_us/categories/quests.json` :**
 
-```json
+```
 {
   "name": "Quests",
   "description": "Complete epic quests and earn rewards",
@@ -20078,13 +19832,13 @@ Les catégories organisent les pages du livre.
 
 ---
 
-### **45.5 Entrées (Entries) - Pages du livre**
+### 46.5 Entrées (Entries) - Pages du livre
 
 Chaque entrée contient plusieurs pages.
 
 **📁 `data/medelium/patchouli_books/guide/en_us/entries/basics/getting_started.json` :**
 
-```json
+```
 {
   "name": "Getting Started",
   "category": "medelium:basics",
@@ -20110,7 +19864,7 @@ Chaque entrée contient plusieurs pages.
 
 **📁 `data/medelium/patchouli_books/guide/en_us/entries/magic/mana_system.json` :**
 
-```json
+```
 {
   "name": "Mana System",
   "category": "medelium:magic",
@@ -20144,7 +19898,7 @@ Chaque entrée contient plusieurs pages.
 
 **📁 `data/medelium/patchouli_books/guide/en_us/entries/combat/royal_sword.json` :**
 
-```json
+```
 {
   "name": "Royal Sword",
   "category": "medelium:combat",
@@ -20171,7 +19925,7 @@ Chaque entrée contient plusieurs pages.
 
 ---
 
-### **45.6 Types de pages disponibles**
+### 46.6 Types de pages disponibles
 
 **📝 Liste complète des types de pages :**
 
@@ -20192,7 +19946,7 @@ Chaque entrée contient plusieurs pages.
 
 **Page multiblock (structure 3D) :**
 
-```json
+```
 {
   "type": "multiblock",
   "name": "Enchanting Altar",
@@ -20203,7 +19957,7 @@ Chaque entrée contient plusieurs pages.
 
 **Page entity :**
 
-```json
+```
 {
   "type": "entity",
   "entity": "medelium:skeleton_knight",
@@ -20213,7 +19967,7 @@ Chaque entrée contient plusieurs pages.
 
 **Page image :**
 
-```json
+```
 {
   "type": "image",
   "images": [
@@ -20226,7 +19980,7 @@ Chaque entrée contient plusieurs pages.
 
 ---
 
-### **45.7 Formatage du texte**
+### 46.7 Formatage du texte
 
 Patchouli utilise des codes de formatage spéciaux :
 
@@ -20246,7 +20000,7 @@ Patchouli utilise des codes de formatage spéciaux :
 
 **Exemple complet :**
 
-```json
+```
 {
   "type": "text",
   "text": "$(l)$(#8B0000)ATTENTION$(br)$()$(4)Ne jamais utiliser cet item près de la lave !$(br2)$(li)Effet 1: Régénération$(li)Effet 2: Résistance au feu$(br2)Durée: $(l)5 minutes$()"
@@ -20255,11 +20009,11 @@ Patchouli utilise des codes de formatage spéciaux :
 
 ---
 
-### **45.8 Traductions**
+### 46.8 Traductions
 
 **📁 `assets/medelium/lang/en_us.json` :**
 
-```json
+```
 {
   "item.medelium.guide_book": "Medelium Guide",
   "patchouli.medelium.guide.landing_text": "Welcome to the world of Medelium! This guide contains everything you need to become a legendary hero."
@@ -20268,7 +20022,7 @@ Patchouli utilise des codes de formatage spéciaux :
 
 **📁 `assets/medelium/lang/fr_fr.json` :**
 
-```json
+```
 {
   "item.medelium.guide_book": "Guide de Medelium",
   "patchouli.medelium.guide.landing_text": "Bienvenue dans le monde de Medelium ! Ce guide contient tout ce dont vous avez besoin pour devenir un héros légendaire."
@@ -20277,13 +20031,13 @@ Patchouli utilise des codes de formatage spéciaux :
 
 ---
 
-## **PARTIE 2 : REI (ROUGHLY ENOUGH ITEMS)** 🔍
+### 🔍 REI (ROUGHLY ENOUGH ITEMS)
 
-### **45.9 Configuration REI**
+### 46.9 Configuration REI
 
 **📁 `build.gradle` :**
 
-```gradle
+```
 repositories {
     maven {
         name = "Architectury"
@@ -20308,18 +20062,18 @@ dependencies {
 
 **📁 `gradle.properties` :**
 
-```properties
+```
 rei_version=16.0.729
 architectury_version=13.0.6
 ```
 
 ---
 
-### **45.10 REI Plugin**
+### 46.10 REI Plugin
 
 **📁 `MedeliumREIPlugin.java` :**
 
-```java
+```
 package com.medelium.compat.rei;
 
 import com.medelium.registry.ModBlocks;
@@ -20380,7 +20134,7 @@ public class MedeliumREIPlugin implements REIClientPlugin {
 
 **📁 Déclarer le plugin - `resources/META-INF/fabric.mod.json` :**
 
-```toml
+```
 [[dependencies.Medelium]]
     modId="roughlyenoughitems"
     mandatory=false
@@ -20391,13 +20145,13 @@ public class MedeliumREIPlugin implements REIClientPlugin {
 
 ---
 
-## **PARTIE 3 : EMI (EVEN MORE ITEMS)** 🔎
+### 🔎 EMI (EVEN MORE ITEMS)
 
-### **45.11 Configuration EMI**
+### 46.11 Configuration EMI
 
 **📁 `build.gradle` :**
 
-```gradle
+```
 repositories {
     maven {
         name = "TerraformersMC"
@@ -20414,17 +20168,17 @@ dependencies {
 
 **📁 `gradle.properties` :**
 
-```properties
+```
 emi_version=1.1.10+1.21
 ```
 
 ---
 
-### **45.12 EMI Plugin**
+### 46.12 EMI Plugin
 
 **📁 `MedeliumEMIPlugin.java` :**
 
-```java
+```
 package com.medelium.compat.emi;
 
 import com.medelium.registry.ModBlocks;
@@ -20470,11 +20224,11 @@ com.medelium.compat.emi.MedeliumEMIPlugin
 
 ---
 
-### **45.13 Vérifier la compatibilité**
+### 46.13 Vérifier la compatibilité
 
 **📁 Classe utilitaire pour détecter les mods installés :**
 
-```java
+```
 package com.medelium.compat;
 
 
@@ -20503,7 +20257,7 @@ public class ModCompat {
 
 ---
 
-**🎉 RÉSUMÉ SECTION 45 - PATCHOULI / REI / EMI SUPPORT**
+**🎉 RÉSUMÉ SECTION 46 - PATCHOULI / REI / EMI SUPPORT**
 
 Vous savez maintenant :
 
@@ -20537,16 +20291,16 @@ Vous savez maintenant :
 Le guide contient maintenant **45 sections exhaustives** couvrant :
 
 **PRIORITÉ 3 (Nice to have) :**
-✅ **Section 36** : Particles & Animations (vanilla particles, custom particles, particle factory, animated textures, entity trails)
-✅ **Section 37** : Advancements (succès task/goal/challenge, critères multiples, triggers custom, rewards, arbre complet)
-✅ **Section 38** : Compatibilité JEI/Curios (JEI plugin, recipe categories, Curios slots, attribute modifiers)
-✅ **Section 39** : Villageois & Professions (POI, professions custom, trades par niveau, textures, workstations)
-✅ **Section 40** : Data Generators (automatiser JSON, RecipeProvider, BlockStateProvider, ItemModelProvider, LootTableProvider, TagsProvider, LanguageProvider)
-✅ **Section 41** : Render Types (CUTOUT pour plantes, TRANSLUCENT pour verre, skipRendering, noOcclusion, transparence partielle)
-✅ **Section 42** : Fluids Custom (/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */, Source/Flowing, LiquidBlock, BucketItem, textures animées, interactions spéciales)
-✅ **Section 43** : Music Discs Custom (/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ 1.21+, fichiers .ogg, SoundEvent, disques écoutables, loot tables)
-✅ **Section 44** : Banner Patterns Custom (BannerPattern registry, BannerPatternItem, textures 64x64, loom integration, tags)
-✅ **Section 45** : Patchouli/REI/EMI Support (livre de documentation in-game, REI displays, EMI plugin, compatibilité)
+✅ **Section 37** : Particles & Animations (vanilla particles, custom particles, particle factory, animated textures, entity trails)
+✅ **Section 38** : Advancements (succès task/goal/challenge, critères multiples, triggers custom, rewards, arbre complet)
+✅ **Section 39** : Compatibilité JEI/Curios (JEI plugin, recipe categories, Curios slots, attribute modifiers)
+✅ **Section 40** : Villageois & Professions (POI, professions custom, trades par niveau, textures, workstations)
+✅ **Section 41** : Data Generators (automatiser JSON, RecipeProvider, BlockStateProvider, ItemModelProvider, LootTableProvider, TagsProvider, LanguageProvider)
+✅ **Section 42** : Render Types (CUTOUT pour plantes, TRANSLUCENT pour verre, skipRendering, noOcclusion, transparence partielle)
+✅ **Section 43** : Fluids Custom (/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */, Source/Flowing, LiquidBlock, BucketItem, textures animées, interactions spéciales)
+✅ **Section 44** : Music Discs Custom (/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ 1.21+, fichiers .ogg, SoundEvent, disques écoutables, loot tables)
+✅ **Section 45** : Banner Patterns Custom (BannerPattern registry, BannerPatternItem, textures 64x64, loom integration, tags)
+✅ **Section 46** : Patchouli/REI/EMI Support (livre de documentation in-game, REI displays, EMI plugin, compatibilité)
 
 **Le guide couvre LITTÉRALEMENT TOUT ce qu'il est possible de faire dans un mod Minecraft Fabric 1.20.1 !** 🏰⚔️✨
 
@@ -20556,7 +20310,7 @@ Plus de **21 000 lignes** de documentation professionnelle, complète, en franç
 
 ---
 
-## **SECTION 46 : STATUS EFFECTS CUSTOM (EFFETS DE STATUT)** 💊✨
+## 47. 💊✨ STATUS EFFECTS CUSTOM (EFFETS DE STATUT)
 
 ### 📖 **Qu'est-ce que c'est ?**
 
@@ -20578,11 +20332,11 @@ Les **StatusEffect** (Status Effects) sont des effets temporaires appliqués aux
 
 ---
 
-### **46.1 StatusEffect Registration**
+### 47.1 StatusEffect Registration
 
 **📁 `ModEffects.java` :**
 
-```java
+```
 package com.medelium.registry;
 
 import com.medelium.effect.*;
@@ -20638,11 +20392,11 @@ public class ModEffects {
 
 ---
 
-### **46.2 StatusEffect simple - Mana Regeneration**
+### 47.2 StatusEffect simple - Mana Regeneration
 
 **📁 `ManaRegenerationEffect.java` :**
 
-```java
+```
 package com.medelium.effect;
 
 import net.minecraft.entity.effect.StatusEffect;
@@ -20684,11 +20438,11 @@ public class ManaRegenerationEffect extends StatusEffect {
 
 ---
 
-### **46.3 StatusEffect avec dégâts - Bleeding**
+### 47.3 StatusEffect avec dégâts - Bleeding
 
 **📁 `BleedingEffect.java` :**
 
-```java
+```
 package com.medelium.effect;
 
 import net.minecraft.particle.ParticleTypes;
@@ -20737,11 +20491,11 @@ public class BleedingEffect extends StatusEffect {
 
 ---
 
-### **46.4 StatusEffect avec attributs - Super Haste**
+### 47.4 StatusEffect avec attributs - Super Haste
 
 **📁 `SuperHasteEffect.java` :**
 
-```java
+```
 package com.medelium.effect;
 
 import net.minecraft.entity.effect.StatusEffect;
@@ -20784,11 +20538,11 @@ public class SuperHasteEffect extends StatusEffect {
 
 ---
 
-### **46.5 StatusEffect complexe - Blessing (bénédiction)**
+### 47.5 StatusEffect complexe - Blessing (bénédiction)
 
 **📁 `BlessingEffect.java` :**
 
-```java
+```
 package com.medelium.effect;
 
 import net.minecraft.particle.ParticleTypes;
@@ -20861,11 +20615,11 @@ public class BlessingEffect extends StatusEffect {
 
 ---
 
-### **46.6 StatusEffect avec événements - Ghostly**
+### 47.6 StatusEffect avec événements - Ghostly
 
 **📁 `GhostlyEffect.java` :**
 
-```java
+```
 package com.medelium.effect;
 
 import net.minecraft.entity.effect.StatusEffect;
@@ -20900,7 +20654,7 @@ public class GhostlyEffect extends StatusEffect {
 
 **📁 Event Handler pour réduire les dégâts :**
 
-```java
+```
 public static void onLivingHurt(LivingHurtEvent event) {
     LivingEntity living = player /* Fabric: obtenu via le callback */;
     
@@ -20928,7 +20682,7 @@ public static void onLivingHurt(LivingHurtEvent event) {
 
 ---
 
-### **46.7 Icônes des effets**
+### 47.7 Icônes des effets
 
 Les icônes sont affichées dans l'inventaire quand l'effet est actif.
 
@@ -20956,11 +20710,11 @@ assets/medelium/textures/mob_effect/
 
 ---
 
-### **46.8 Appliquer les effets**
+### 47.8 Appliquer les effets
 
 **💊 Via potion :**
 
-```java
+```
 public static final Item MANA_POTION = registerItem("mana_potion", new Item(new FabricItemSettings()
         .food(new FoodComponent.Builder()
             .nutrition(0)
@@ -20980,7 +20734,7 @@ public static final Item MANA_POTION = registerItem("mana_potion", new Item(new 
 
 **⚔️ Via item (épée qui applique bleeding) :**
 
-```java
+```
 @Override
 public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
     // Appliquer bleeding à la cible
@@ -20998,7 +20752,7 @@ public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity atta
 
 **🏰 Via bloc (autel qui donne blessing) :**
 
-```java
+```
 @Override
 public ActionResult useWithoutItem(BlockState state, World world, BlockPos pos,
                                         PlayerEntity player, BlockHitResult hit) {
@@ -21019,7 +20773,7 @@ public ActionResult useWithoutItem(BlockState state, World world, BlockPos pos,
 
 **🎯 Via commande :**
 
-```java
+```
 // Dans un command custom
 player.addStatusEffect(new StatusEffectInstance(
     ModEffects.GHOSTLY.get(),
@@ -21033,13 +20787,13 @@ player.addStatusEffect(new StatusEffectInstance(
 
 ---
 
-### **46.9 Potions brewing (alchimie)**
+### 47.9 Potions brewing (alchimie)
 
 Pour créer des potions craftables dans l'alambic :
 
 **📁 Event pour ajouter brewing recipes :**
 
-```java
+```
 public static void onBrewingRecipeRegister(RegisterBrewingRecipesEvent event) {
     PotionBrewing.Builder builder = event.getBuilder();
     
@@ -21083,11 +20837,11 @@ public static void onBrewingRecipeRegister(RegisterBrewingRecipesEvent event) {
 
 ---
 
-### **46.10 Effets visuels avancés**
+### 47.10 Effets visuels avancés
 
 **🌟 Particules custom autour de l'entité :**
 
-```java
+```
 @Override
 public boolean applyEffectTick(LivingEntity living, int amplifier) {
     if (living.level().isClient) {
@@ -21111,7 +20865,7 @@ public boolean applyEffectTick(LivingEntity living, int amplifier) {
 
 **🎨 Modifier le rendu de l'entité (fog, tint) :**
 
-```java
+```
 public static void onRenderLivingEntity(RenderLivingEvent.Pre<?, ?> event) {
     LivingEntity living = player /* Fabric: obtenu via le callback */;
     
@@ -21137,11 +20891,11 @@ public static void onRenderLivingEntityPost(RenderLivingEvent.Post<?, ?> event) 
 
 ---
 
-### **46.11 Traductions**
+### 47.11 Traductions
 
 **📁 `assets/medelium/lang/en_us.json` :**
 
-```json
+```
 {
   "effect.medelium.mana_regeneration": "Mana Regeneration",
   "effect.medelium.bleeding": "Bleeding",
@@ -21156,7 +20910,7 @@ public static void onRenderLivingEntityPost(RenderLivingEvent.Post<?, ?> event) 
 
 **📁 `assets/medelium/lang/fr_fr.json` :**
 
-```json
+```
 {
   "effect.medelium.mana_regeneration": "Régénération de Mana",
   "effect.medelium.bleeding": "Saignement",
@@ -21171,7 +20925,7 @@ public static void onRenderLivingEntityPost(RenderLivingEvent.Post<?, ?> event) 
 
 ---
 
-### **46.12 Debugging & Problèmes courants**
+### 47.12 Debugging & Problèmes courants
 
 **❌ Problème : Icône ne s'affiche pas**
 
@@ -21191,7 +20945,7 @@ ModEffects.EFFECTS.register(modEventBus);
 
 ✅ **Vérifier :**
 
-```java
+```
 // 1. shouldApplyEffectTickThisTick retourne true
 @Override
 public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
@@ -21211,7 +20965,7 @@ if (living.hasEffect(ModEffects.MANA_REGENERATION.get())) {
 
 ✅ **UUID doit être unique :**
 
-```java
+```
 // Générer un UUID unique pour chaque modificateur
 this.addAttributeModifier(
     Attributes.MAX_HEALTH,
@@ -21225,7 +20979,7 @@ this.addAttributeModifier(
 
 ✅ **Solutions :**
 
-```java
+```
 // Particules serveur = sendParticles
 if (living.level() instanceof ServerWorld serverWorld) {
     serverWorld.spawnParticles(...);
@@ -21261,7 +21015,7 @@ if (living.level().isClient) {
 
 **🔧 Template pour créer un nouvel effet :**
 
-```java
+```
 public class MyCustomEffect extends StatusEffect {
     public MyCustomEffect(StatusEffectCategory category, int color) {
         super(category, color);
@@ -21292,7 +21046,7 @@ public class MyCustomEffect extends StatusEffect {
 
 ---
 
-**🎉 RÉSUMÉ SECTION 46 - STATUS EFFECTS CUSTOM**
+**🎉 RÉSUMÉ SECTION 47 - STATUS EFFECTS CUSTOM**
 
 Vous savez maintenant :
 
@@ -21316,17 +21070,17 @@ Vous savez maintenant :
 Le guide contient maintenant **46 sections exhaustives** couvrant :
 
 **PRIORITÉ 3 (Nice to have) :**
-✅ **Section 36** : Particles & Animations (vanilla particles, custom particles, particle factory, animated textures, entity trails)
-✅ **Section 37** : Advancements (succès task/goal/challenge, critères multiples, triggers custom, rewards, arbre complet)
-✅ **Section 38** : Compatibilité JEI/Curios (JEI plugin, recipe categories, Curios slots, attribute modifiers)
-✅ **Section 39** : Villageois & Professions (POI, professions custom, trades par niveau, textures, workstations)
-✅ **Section 40** : Data Generators (automatiser JSON, RecipeProvider, BlockStateProvider, ItemModelProvider, LootTableProvider, TagsProvider, LanguageProvider)
-✅ **Section 41** : Render Types (CUTOUT pour plantes, TRANSLUCENT pour verre, skipRendering, noOcclusion, transparence partielle)
-✅ **Section 42** : Fluids Custom (/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */, Source/Flowing, LiquidBlock, BucketItem, textures animées, interactions spéciales)
-✅ **Section 43** : Music Discs Custom (/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ 1.21+, fichiers .ogg, SoundEvent, disques écoutables, loot tables)
-✅ **Section 44** : Banner Patterns Custom (BannerPattern registry, BannerPatternItem, textures 64x64, loom integration, tags)
-✅ **Section 45** : Patchouli/REI/EMI Support (livre de documentation in-game, REI displays, EMI plugin, compatibilité)
-✅ **Section 46** : Status Effects Custom (StatusEffect, icônes 18x18, attributs modifiers, brewing recipes, particules, événements)
+✅ **Section 37** : Particles & Animations (vanilla particles, custom particles, particle factory, animated textures, entity trails)
+✅ **Section 38** : Advancements (succès task/goal/challenge, critères multiples, triggers custom, rewards, arbre complet)
+✅ **Section 39** : Compatibilité JEI/Curios (JEI plugin, recipe categories, Curios slots, attribute modifiers)
+✅ **Section 40** : Villageois & Professions (POI, professions custom, trades par niveau, textures, workstations)
+✅ **Section 41** : Data Generators (automatiser JSON, RecipeProvider, BlockStateProvider, ItemModelProvider, LootTableProvider, TagsProvider, LanguageProvider)
+✅ **Section 42** : Render Types (CUTOUT pour plantes, TRANSLUCENT pour verre, skipRendering, noOcclusion, transparence partielle)
+✅ **Section 43** : Fluids Custom (/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */, Source/Flowing, LiquidBlock, BucketItem, textures animées, interactions spéciales)
+✅ **Section 44** : Music Discs Custom (/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ 1.21+, fichiers .ogg, SoundEvent, disques écoutables, loot tables)
+✅ **Section 45** : Banner Patterns Custom (BannerPattern registry, BannerPatternItem, textures 64x64, loom integration, tags)
+✅ **Section 46** : Patchouli/REI/EMI Support (livre de documentation in-game, REI displays, EMI plugin, compatibilité)
+✅ **Section 47** : Status Effects Custom (StatusEffect, icônes 18x18, attributs modifiers, brewing recipes, particules, événements)
 
 **Le guide couvre LITTÉRALEMENT TOUT ce qu'il est possible de faire dans un mod Minecraft Fabric 1.20.1 !** 🏰⚔️✨
 
@@ -21336,7 +21090,7 @@ Plus de **22 000 lignes** de documentation professionnelle, complète, en franç
 
 ---
 
-## **SECTION 47 : ENTITY AI GOALS CUSTOM (COMPORTEMENTS IA)** 🤖🎯
+## 48. 🤖🎯 ENTITY AI GOALS CUSTOM (COMPORTEMENTS IA)
 
 ### 📖 **Qu'est-ce que c'est ?**
 
@@ -21351,7 +21105,7 @@ Les **Goals** (objectifs) définissent le **comportement des entités** : patrou
 
 ### 🔧 **Système de Goals**
 
-```java
+```
 // Dans votre entité (registerGoals)
 this.goalSelector.add(0, new FloatGoal(this));              // Priorité 0 = la plus haute
 this.goalSelector.add(1, new MeleeAttackGoal(this, 1.0, false));
@@ -21373,11 +21127,11 @@ this.targetSelector.add(2, new NearestAttackableTargetGoal<>(this, Player.class,
 
 ---
 
-### **47.1 Structure d'un Goal**
+### 48.1 Structure d'un Goal
 
 **📁 Template de base :**
 
-```java
+```
 package com.medelium.entity.ai;
 
 import net.minecraft.entity.*;
@@ -21432,7 +21186,7 @@ public class MyCustomGoal extends Goal {
 
 **🚩 Flags disponibles :**
 
-```java
+```
 Goal.Control.MOVE      // Contrôle le mouvement (navigation)
 Goal.Control.LOOK      // Contrôle la rotation (regard)
 Goal.Control.JUMP      // Contrôle les sauts
@@ -21441,13 +21195,13 @@ Goal.Control.TARGET    // Contrôle le ciblage (targetSelector)
 
 ---
 
-### **47.2 Goal - Patrol (Patrouille)**
+### 48.2 Goal - Patrol (Patrouille)
 
 Un garde qui patrouille entre plusieurs points.
 
 **📁 `PatrolGoal.java` :**
 
-```java
+```
 package com.medelium.entity.ai;
 
 import net.minecraft.util.math.BlockPos;
@@ -21538,7 +21292,7 @@ public class PatrolGoal extends Goal {
 
 **Usage dans l'entité :**
 
-```java
+```
 @Override
 protected void registerGoals() {
     // Définir les points de patrouille
@@ -21555,13 +21309,13 @@ protected void registerGoals() {
 
 ---
 
-### **47.3 Goal - Ritual (Rituel magique)**
+### 48.3 Goal - Ritual (Rituel magique)
 
 Une entité qui exécute un rituel à intervalle régulier.
 
 **📁 `RitualGoal.java` :**
 
-```java
+```
 package com.medelium.entity.ai;
 
 import net.minecraft.particle.ParticleTypes;
@@ -21703,7 +21457,7 @@ public class RitualGoal extends Goal {
 
 **Dans l'entité :**
 
-```java
+```
 private RitualGoal ritualGoal;
 
 @Override
@@ -21723,13 +21477,13 @@ public void aiStep() {
 
 ---
 
-### **47.4 Goal - Trade (Commerce avec joueur)**
+### 48.4 Goal - Trade (Commerce avec joueur)
 
 Un marchand qui propose des trades quand un joueur s'approche.
 
 **📁 `TradeWithPlayerGoal.java` :**
 
-```java
+```
 package com.medelium.entity.ai;
 
 import net.minecraft.entity.*;
@@ -21848,13 +21602,13 @@ public class TradeWithPlayerGoal extends Goal {
 
 ---
 
-### **47.5 Goal - Follow Leader (Suivre un chef)**
+### 48.5 Goal - Follow Leader (Suivre un chef)
 
 Pour des mobs qui se déplacent en groupe.
 
 **📁 `FollowLeaderGoal.java` :**
 
-```java
+```
 package com.medelium.entity.ai;
 
 import net.minecraft.entity.*;
@@ -21951,11 +21705,11 @@ public class FollowLeaderGoal extends Goal {
 
 ---
 
-### **47.6 Goal - Flee from Entity (Fuir une entité)**
+### 48.6 Goal - Flee from Entity (Fuir une entité)
 
 **📁 `FleeFromEntityGoal.java` :**
 
-```java
+```
 package com.medelium.entity.ai;
 
 import net.minecraft.entity.LivingEntity;
@@ -22061,7 +21815,7 @@ public class FleeFromEntityGoal<T extends LivingEntity> extends Goal {
 
 **Usage :**
 
-```java
+```
 // Fuir les joueurs
 this.goalSelector.add(1, new FleeFromEntityGoal<>(this, Player.class, 10.0, 1.5));
 
@@ -22077,11 +21831,11 @@ this.goalSelector.add(1, new FleeFromEntityGoal<>(
 
 ---
 
-### **47.7 Goal - Special Attack (Attaque spéciale)**
+### 48.7 Goal - Special Attack (Attaque spéciale)
 
 **📁 `SpecialAttackGoal.java` :**
 
-```java
+```
 package com.medelium.entity.ai;
 
 import net.minecraft.particle.ParticleTypes;
@@ -22256,11 +22010,11 @@ public class SpecialAttackGoal extends Goal {
 
 ---
 
-### **47.8 Goal - Summon Allies (Invoquer des alliés)**
+### 48.8 Goal - Summon Allies (Invoquer des alliés)
 
 **📁 `SummonAlliesGoal.java` :**
 
-```java
+```
 package com.medelium.entity.ai;
 
 import net.minecraft.util.math.BlockPos;
@@ -22379,7 +22133,7 @@ public class SummonAlliesGoal extends Goal {
 
 **Usage pour un boss :**
 
-```java
+```
 private SummonAlliesGoal summonGoal;
 
 @Override
@@ -22406,11 +22160,11 @@ public void heal(float healAmount) {
 
 ---
 
-### **47.9 Combinaison de Goals - Boss avec phases**
+### 48.9 Combinaison de Goals - Boss avec phases
 
 **📁 `BossEntity.java` (extrait) :**
 
-```java
+```
 private PhaseAttackGoal phase1Goal;
 private PhaseAttackGoal phase2Goal;
 private PhaseAttackGoal phase3Goal;
@@ -22461,11 +22215,11 @@ class PhaseAttackGoal extends MeleeAttackGoal {
 
 ---
 
-### **47.10 Debugging des Goals**
+### 48.10 Debugging des Goals
 
 **🔍 Afficher les Goals actifs :**
 
-```java
+```
 @Override
 public void aiStep() {
     super.aiStep();
@@ -22482,7 +22236,7 @@ public void aiStep() {
 
 **🎯 Forcer l'activation d'un Goal (test) :**
 
-```java
+```
 // Commande de debug
 if (player.isCreative() && player.isShiftKeyDown()) {
     // Forcer le rituel
@@ -22497,7 +22251,7 @@ if (player.isCreative() && player.isShiftKeyDown()) {
 
 **📊 Profiler les Goals :**
 
-```java
+```
 public class ProfilingGoal extends Goal {
     private final Goal wrappedGoal;
     private long startTime;
@@ -22534,7 +22288,7 @@ public class ProfilingGoal extends Goal {
 
 ---
 
-### **47.11 Checklist complète**
+### 48.11 Checklist complète
 
 ✅ **Créer la classe Goal** qui extends Goal  
 ✅ **Définir les Flags** (MOVE, LOOK, JUMP, TARGET)  
@@ -22550,7 +22304,7 @@ public class ProfilingGoal extends Goal {
 
 ---
 
-**🎉 RÉSUMÉ SECTION 47 - ENTITY AI GOALS CUSTOM**
+**🎉 RÉSUMÉ SECTION 48 - ENTITY AI GOALS CUSTOM**
 
 Vous savez maintenant :
 
@@ -22569,7 +22323,7 @@ Vous savez maintenant :
 
 ---
 
-## **SECTION 48 : PAINTINGS CUSTOM (TABLEAUX DÉCORATIFS)** 🖼️🎨
+## 49. 🖼️🎨 PAINTINGS CUSTOM (TABLEAUX DÉCORATIFS)
 
 ### 📖 **Qu'est-ce que c'est ?**
 
@@ -22592,7 +22346,7 @@ Les **Paintings** (tableaux) sont des entités décoratives que les joueurs peuv
 
 ---
 
-### **48.1 Tailles de tableaux disponibles**
+### 49.1 Tailles de tableaux disponibles
 
 Les tableaux Minecraft utilisent des **blocs** comme unité. Chaque bloc = 16x16 pixels.
 
@@ -22612,7 +22366,7 @@ Les tableaux Minecraft utilisent des **blocs** comme unité. Chaque bloc = 16x16
 
 ---
 
-### **48.2 Créer les textures**
+### 49.2 Créer les textures
 
 **📁 Emplacement :** `assets/minecraft/textures/painting/`
 
@@ -22652,13 +22406,13 @@ src/main/resources/assets/minecraft/textures/painting/
 
 ---
 
-### **48.3 Registry net.minecraft.entity.decoration.painting.PaintingVariant (1.21+)**
+### 49.3 Registry net.minecraft.entity.decoration.painting.PaintingVariant (1.21+)
 
 En 1.21+, les net.minecraft.entity.decoration.painting.PaintingVariants sont **data-driven** (comme les /* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ et BannerPattern).
 
 **📁 `ModPaintings.java` :**
 
-```java
+```
 package com.medelium.registry;
 
 import com.medelium.Medelium;
@@ -22717,11 +22471,11 @@ public class ModPaintings {
 
 ---
 
-### **48.4 Définir les variants (JSON data)**
+### 49.4 Définir les variants (JSON data)
 
 **📁 `data/medelium/painting_variant/king_portrait.json` :**
 
-```json
+```
 {
   "asset_id": "medelium:king_portrait",
   "height": 1,
@@ -22736,7 +22490,7 @@ public class ModPaintings {
 
 **📁 `data/medelium/painting_variant/royal_crest.json` :**
 
-```json
+```
 {
   "asset_id": "medelium:royal_crest",
   "height": 1,
@@ -22746,7 +22500,7 @@ public class ModPaintings {
 
 **📁 `data/medelium/painting_variant/throne_room.json` :**
 
-```json
+```
 {
   "asset_id": "medelium:throne_room",
   "height": 2,
@@ -22756,7 +22510,7 @@ public class ModPaintings {
 
 **📁 `data/medelium/painting_variant/medieval_battle.json` :**
 
-```json
+```
 {
   "asset_id": "medelium:medieval_battle",
   "height": 2,
@@ -22766,7 +22520,7 @@ public class ModPaintings {
 
 **📁 `data/medelium/painting_variant/castle_siege.json` :**
 
-```json
+```
 {
   "asset_id": "medelium:castle_siege",
   "height": 3,
@@ -22776,7 +22530,7 @@ public class ModPaintings {
 
 **📁 `data/medelium/painting_variant/world_map.json` :**
 
-```json
+```
 {
   "asset_id": "medelium:world_map",
   "height": 4,
@@ -22802,11 +22556,11 @@ data/medelium/painting_variant/
 
 ---
 
-### **48.5 Traductions**
+### 49.5 Traductions
 
 **📁 `assets/medelium/lang/en_us.json` :**
 
-```json
+```
 {
   "painting.medelium.king_portrait.title": "King's Portrait",
   "painting.medelium.king_portrait.author": "Royal Painter",
@@ -22842,7 +22596,7 @@ data/medelium/painting_variant/
 
 **📁 `assets/medelium/lang/fr_fr.json` :**
 
-```json
+```
 {
   "painting.medelium.king_portrait.title": "Portrait du Roi",
   "painting.medelium.king_portrait.author": "Peintre Royal",
@@ -22878,7 +22632,7 @@ data/medelium/painting_variant/
 
 ---
 
-### **48.6 Placer les tableaux en jeu**
+### 49.6 Placer les tableaux en jeu
 
 **Option 1 : Utiliser l'item vanilla**
 
@@ -22888,7 +22642,7 @@ Les joueurs peuvent utiliser l'**item vanilla "Painting"** (`Items.PAINTING`) po
 
 Si vous voulez un item qui place UNIQUEMENT vos tableaux custom :
 
-```java
+```
 public class CustomPaintingItem extends Item {
     
     private final ResourceKey<net.minecraft.entity.decoration.painting.PaintingVariant> variant;
@@ -22937,7 +22691,7 @@ public class CustomPaintingItem extends Item {
 
 **Enregistrement de l'item :**
 
-```java
+```
 public static final Item KING_PORTRAIT_ITEM = registerItem("king_portrait_item", new CustomPaintingItem(ModPaintings.KING_PORTRAIT, new FabricItemSettings())
 );
 
@@ -22947,11 +22701,11 @@ public static final Item THRONE_ROOM_ITEM = registerItem("throne_room_item", new
 
 ---
 
-### **48.7 Loot tables - Tableaux dans les coffres**
+### 49.7 Loot tables - Tableaux dans les coffres
 
 **📁 `data/medelium/loot_table/chests/castle_loot.json` :**
 
-```json
+```
 {
   "type": "minecraft:chest",
   "pools": [
@@ -22990,7 +22744,7 @@ public static final Item THRONE_ROOM_ITEM = registerItem("throne_room_item", new
 
 ---
 
-### **48.8 Commandes de debug**
+### 49.8 Commandes de debug
 
 **🎮 Donner des tableaux custom :**
 
@@ -23003,7 +22757,7 @@ public static final Item THRONE_ROOM_ITEM = registerItem("throne_room_item", new
 
 **🔍 Lister tous les variants :**
 
-```java
+```
 // Code debug
 level.getRegistryManager()
     .registryOrThrow(Registries.PAINTING_VARIANT)
@@ -23015,7 +22769,7 @@ level.getRegistryManager()
 
 ---
 
-### **48.9 Exemples thématiques complets**
+### 49.9 Exemples thématiques complets
 
 **🏰 Collection "Royauté" :**
 
@@ -23063,11 +22817,11 @@ level.getRegistryManager()
 
 ---
 
-### **48.10 Data Generator pour tableaux**
+### 49.10 Data Generator pour tableaux
 
 **📁 `net.minecraft.entity.decoration.painting.PaintingVariantProvider.java` :**
 
-```java
+```
 package com.medelium.datagen;
 
 import com.medelium.Medelium;
@@ -23112,7 +22866,7 @@ public class net.minecraft.entity.decoration.painting.PaintingVariantProvider ex
 
 **Enregistrer dans DataGeneratorEntrypoint :**
 
-```java
+```
 public static void gatherData(DataGeneratorEntrypoint event) {
     DataGenerator generator = event.getGenerator();
     FabricDataOutput output = generator.getFabricDataOutput();
@@ -23127,7 +22881,7 @@ public static void gatherData(DataGeneratorEntrypoint event) {
 
 ---
 
-### **48.11 Debugging & Problèmes courants**
+### 49.11 Debugging & Problèmes courants
 
 **❌ Problème : Tableau n'apparaît pas en jeu**
 
@@ -23173,7 +22927,7 @@ Exemples :
 ```
 L'item vanilla "Painting" choisit aléatoirement parmi TOUS les variants.
 Pour forcer un variant spécifique :
-1. Créer un CustomPaintingItem (voir section 48.6)
+1. Créer un CustomPaintingItem (voir section 49.6)
 2. Ou utiliser /summon avec NBT {variant:"..."}
 ```
 
@@ -23181,7 +22935,7 @@ Pour forcer un variant spécifique :
 
 ✅ **Format exact requis :**
 
-```json
+```
 {
   "painting.modid.variant_name.title": "Titre du Tableau",
   "painting.modid.variant_name.author": "Nom de l'Artiste"
@@ -23190,7 +22944,7 @@ Pour forcer un variant spécifique :
 
 ---
 
-### **48.12 Checklist complète**
+### 49.12 Checklist complète
 
 ✅ **Créer les textures PNG** (tailles exactes : 16x16, 32x16, etc.)  
 ✅ **Placer dans** `assets/minecraft/textures/painting/`  
@@ -23223,7 +22977,7 @@ Pour forcer un variant spécifique :
 
 ---
 
-**🎉 RÉSUMÉ SECTION 48 - PAINTINGS CUSTOM**
+**🎉 RÉSUMÉ SECTION 49 - PAINTINGS CUSTOM**
 
 Vous savez maintenant :
 
@@ -23239,5 +22993,196 @@ Vous savez maintenant :
 10. ✅ **Debugger** les problèmes de texture et placement
 
 **🖼️ Décorez vos châteaux médiévaux avec des tableaux épiques : portraits de rois, scènes de bataille, cartes anciennes, légendes de dragons !** 🎨✨
+
+---
+
+---
+
+## 📋 Checklist Complète de Développement
+
+### Pour chaque Objet :
+- [ ] Enregistrer dans `ModItems.java`
+- [ ] Ajouter au Creative Tab
+- [ ] Créer la traduction (fr_fr.json, en_us.json)
+- [ ] Créer le modèle JSON (`models/item/`)
+- [ ] Créer la texture PNG (`textures/item/`)
+- [ ] (Optionnel) Créer une recette de craft
+
+### Pour chaque Bloc :
+- [ ] Enregistrer dans `ModBlocks.java`
+- [ ] Ajouter au Creative Tab
+- [ ] Créer la traduction
+- [ ] Créer le modèle de bloc (`models/block/`)
+- [ ] Créer le modèle d'item (`models/item/`)
+- [ ] Créer le blockstate (`blockstates/`)
+- [ ] Créer la texture (`textures/block/`)
+- [ ] Définir le loot table (drop)
+
+### Pour chaque Armure :
+- [ ] Créer le matériau dans `ModArmorMaterials.java`
+- [ ] Enregistrer les 4 pièces dans `ModItems.java`
+- [ ] Ajouter au Creative Tab
+- [ ] Créer les 4 traductions
+- [ ] Créer les 4 modèles JSON
+- [ ] Créer les 4 textures
+- [ ] Créer la texture de l'armure portée (2 fichiers dans `textures/models/armor/`)
+
+### Pour chaque Outil :
+- [ ] Créer le tier dans `ModToolTiers.java`
+- [ ] Enregistrer dans `ModItems.java`
+- [ ] Ajouter au Creative Tab
+- [ ] Créer la traduction
+- [ ] Créer le modèle (parent: `handheld`)
+- [ ] Créer la texture
+
+### Pour chaque Entité :
+- [ ] Enregistrer dans `ModEntities.java`
+- [ ] Créer la classe de l'entité
+- [ ] Enregistrer les attributs avec `FabricDefaultAttributeRegistry`
+- [ ] Créer le renderer
+- [ ] Créer le modèle 3D
+- [ ] Créer la texture
+- [ ] Ajouter la traduction
+- [ ] (Optionnel) Créer l'œuf de spawn
+
+---
+
+## 🔧 Compilation et Test
+
+### Commandes Gradle :
+
+```
+# Nettoyer le build
+.\gradlew clean
+
+# Compiler le mod
+.\gradlew build
+
+# Lancer le client de test
+.\gradlew runClient
+
+# Lancer le serveur de test
+.\gradlew runServer
+
+# Générer les données (recipes, loot tables, etc.)
+.\gradlew runData
+
+# Actualiser les dépendances
+.\gradlew --refresh-dependencies
+```
+
+### Trouver le Fichier JAR :
+Après `.\gradlew build`, le fichier se trouve dans :
+`build/libs/Medelium-1.0.0.jar`
+
+---
+
+## 🎯 Idées de Contenu Médiéval Fantasy
+
+### Objets :
+- Monnaies (cuivre, argent, or, platine)
+- Documents RP (contrats, lettres scellées, cartes au trésor)
+- Bijoux (couronnes, bagues, amulettes)
+- Instruments (luth, flûte, tambour)
+- Drapeaux et bannières
+- Sceaux de différentes maisons nobles
+
+### Blocs :
+- Différents types de pierres de château
+- Mobilier médiéval (trônes, tables, chaises, lits)
+- Décorations (tapisseries, chandeliers, torches murales)
+- Fortifications (créneaux, meurtrières)
+- Éléments de donjon (cellules, chaînes)
+- Autels et statues
+
+### Armes et Armures :
+- Épées (courte, longue, bâtarde, grande)
+- Lances et hallebardes
+- Arcs et arbalètes
+- Boucliers
+- Armures complètes (garde, chevalier, roi, mage)
+- Casques variés
+
+### Entités :
+- Gardes et soldats
+- Marchands ambulants
+- Nobles et rois
+- Paysans
+- Bandits
+- Créatures fantasy (dragons, golems)
+- Chevaux avec armure
+
+### Structures :
+- Châteaux
+- Villages médiévaux
+- Donjons
+- Tours de garde
+- Églises et cathédrales
+- Camps de bandits
+- Ruines anciennes
+
+### Mécaniques RP :
+- Système de monnaie
+- Système de réputation avec factions
+- Quêtes et missions
+- Métiers (forgeron, alchimiste, archer)
+- Système de noblesse/titres
+- Mariages et alliances
+
+---
+
+## 🐛 Résolution de Problèmes Courants
+
+### Le jeu crash au démarrage :
+1. Vérifier que Java 21 est installé
+2. Vérifier `fabric.mod.json` (syntaxe correcte)
+3. Regarder les logs dans `logs/latest.log`
+
+### Les textures sont violettes/noires :
+1. Vérifier le chemin dans le JSON
+2. Vérifier que le PNG existe
+3. Vérifier l'orthographe (sensible à la casse)
+
+### L'objet n'apparaît pas en jeu :
+1. Vérifier l'enregistrement dans `ModItems`
+2. Vérifier l'ajout au Creative Tab
+3. Relancer le jeu avec `.\gradlew runClient`
+
+### Les recettes ne fonctionnent pas :
+1. Vérifier la syntaxe JSON (virgules, guillemets)
+2. Vérifier que les IDs d'items sont corrects
+3. Générer les données avec `.\gradlew runData`
+
+---
+
+## 📚 Ressources Utiles
+
+### Documentation :
+- Fabric Docs: https://docs.fabricd.net/
+- Minecraft Wiki: https://minecraft.wiki/
+
+### Outils :
+- **Blockbench** - Créer des modèles 3D
+- **GIMP/Photoshop** - Créer des textures
+- **NBTExplorer** - Éditer les données de sauvegarde
+- **MCreator** - Générateur de code (pour apprendre)
+
+### Générateurs en Ligne :
+- Crafting Recipe Generator
+- Loot Table Generator
+- Custom Enchantment Generator
+
+---
+
+## ✅ Vous êtes Prêt !
+
+Vous savez maintenant **TOUT** ce qu'il est possible de créer dans votre mod ! 
+
+**Conseils finaux :**
+1. Commencez petit (quelques objets simples)
+2. Testez après chaque ajout
+3. Sauvegardez régulièrement votre code
+4. N'hésitez pas à copier-coller les exemples
+5. Les erreurs sont normales, lisez les logs !
 
 ---
