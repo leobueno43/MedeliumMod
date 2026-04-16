@@ -35,19 +35,19 @@ Un mod Minecraft NeoForge 1.21.1 pour le roleplay médiéval fantasy.
 
 ### Compiler le mod
 ```bash
-./gradlew build
+.\gradlew build
 ```
 
 Le fichier .jar sera généré dans `build/libs/`
 
 ### Lancer le client de test
 ```bash
-./gradlew runClient
+.\gradlew runClient
 ```
 
 ### Lancer le serveur de test
 ```bash
-./gradlew runServer
+.\gradlew runServer
 ```
 
 ## Configuration
