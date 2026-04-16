@@ -55,7 +55,7 @@ Ce guide vous explique **TOUT** ce que vous pouvez ajouter à votre mod médiév
 36. [Biomes & World Features](#35-biomes--world-features)
 
 ### ✨ **EXPERT LEVEL** (Sections 36-47)
-*Maîtrise totale de NeoForge 1.21.1*
+*Maîtrise totale de Fabric 1.20.1*
 
 37. [Particles & Animations](#36-particles--animations)
 38. [Advancements (Succès)](#37-advancements-succès)
@@ -85,7 +85,7 @@ Trouvez rapidement la section qui couvre un concept spécifique :
 - **Animation** → Section 36
 - **Armor (Custom)** → Section 3
 - **ArmorMaterial** → Section 3
-- **Attachment (NeoForge)** → Sections 18, 19, 27
+- **Attachment (Fabric)** → Sections 18, 19, 27
 
 **B**
 - **Banner Patterns** → Section 44
@@ -101,32 +101,32 @@ Trouvez rapidement la section qui couvre un concept spécifique :
 - **Configuration (TOML)** → Section 32
 - **Creative Tabs** → Section 1
 - **Curios API** → Section 38
-- **CustomPacketPayload** → Section 24
+- **Fabric Networking API** → Section 24
 
 **D**
 - **Data Generators** → Section 40
 - **Data Packs** → Section 30
-- **DeferredRegister** → Sections 1, 2, 3, 4, 46, 47
+- **Registry.register** → Sections 1, 2, 3, 4, 46, 47
 - **Dimensions** → Section 8
 - **Dialogues (NPC)** → Section 26
 
 **E**
 - **Economy System** → Section 25
-- **Effects (MobEffect)** → Sections 10, 46
+- **Effects (StatusEffect)** → Sections 10, 46
 - **EMI Plugin** → Section 45
 - **Enchantments** → Section 9
 - **Entity (Custom)** → Section 6
-- **Events (Forge/NeoForge)** → Section 16
+- **Events (Forge/Fabric)** → Section 16
 
 **F**
 - **Factions** → Section 20
 - **Fluids (Custom)** → Section 42
-- **FluidType** → Section 42
-- **FoodProperties** → Section 6
+- **/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */** → Section 42
+- **FoodComponent** → Section 6
 
 **G**
 - **Game Master Tools** → Section 28
-- **GatherDataEvent** → Section 40
+- **FabricDataGenerator** → Section 40
 - **GUI (Custom)** → Section 13
 
 **H**
@@ -138,7 +138,7 @@ Trouvez rapidement la section qui couvre un concept spécifique :
 
 **J**
 - **JEI Integration** → Section 38
-- **JukeboxSong** → Section 43
+- **/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */** → Section 43
 
 **K**
 - **Keybindings** → Section 34
@@ -148,7 +148,7 @@ Trouvez rapidement la section qui couvre un concept spécifique :
 - **Loot Tables** → Section 31
 
 **M**
-- **MobEffect** → Sections 10, 46
+- **StatusEffect** → Sections 10, 46
 - **Music Discs** → Section 43
 
 **N**
@@ -163,7 +163,7 @@ Trouvez rapidement la section qui couvre un concept spécifique :
 - **Packets (Custom)** → Section 24
 - **Paintings** → Section 48
 - **Particles** → Section 36
-- **PaintingVariant** → Section 48
+- **net.minecraft.entity.decoration.painting.PaintingVariant** → Section 48
 - **Patchouli** → Section 45
 - **Performance** → Section 22
 - **POI (Point of Interest)** → Section 39
@@ -174,7 +174,7 @@ Trouvez rapidement la section qui couvre un concept spécifique :
 
 **R**
 - **Recipes (Crafting)** → Section 11
-- **Registry** → Toutes les sections avec DeferredRegister
+- **Registry** → Toutes les sections avec Registry.register
 - **REI Plugin** → Section 45
 - **RenderType** → Section 41
 - **Reputation** → Section 20
@@ -184,7 +184,7 @@ Trouvez rapidement la section qui couvre un concept spécifique :
 - **Security (Anti-Exploit)** → Section 23
 - **Sounds** → Section 14
 - **Stats (RPG)** → Section 27
-- **StreamCodec** → Section 24
+- **PacketByteBuf** → Section 24
 - **Structures** → Section 7
 
 **T**
@@ -194,7 +194,7 @@ Trouvez rapidement la section qui couvre un concept spécifique :
 - **TOML Config** → Section 32
 - **Tools (Custom)** → Section 4
 - **Tooltips** → Section 1
-- **Trades (Villager)** → Section 39
+- **Trades (VillagerEntity)** → Section 39
 
 **V**
 - **Villagers (Custom)** → Section 39
@@ -264,7 +264,7 @@ Progressez à votre rythme en suivant les sections adaptées à votre niveau :
 - **Section 36** : Particles & Animations - Effets visuels
 - **Section 38** : JEI/Curios - Compatibilité mods
 - **Section 39** : Villageois Custom - Professions et trades
-- **Section 46** : Status Effects Custom - MobEffect from scratch
+- **Section 46** : Status Effects Custom - StatusEffect from scratch
 - **Section 47** : Entity AI Goals - Comportements d'IA
 
 **📌 Temps estimé : 4-8 semaines**
@@ -282,7 +282,7 @@ Progressez à votre rythme en suivant les sections adaptées à votre niveau :
 - **Section 40** : Data Generators - Automatisation JSON
 - **Section 41** : Render Types - Transparence et rendu
 - **Section 42** : Fluids Custom - Liquides personnalisés
-- **Section 43** : Music Discs - Disques avec JukeboxSong
+- **Section 43** : Music Discs - Disques avec /* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */
 - **Section 44** : Banner Patterns - Motifs de bannières
 - **Section 45** : Patchouli/REI/EMI - Documentation in-game
 
@@ -367,15 +367,15 @@ Progressez à votre rythme en suivant les sections adaptées à votre niveau :
 
 ## 📐 **DIAGRAMMES & ARCHITECTURE**
 
-Cette section présente des schémas visuels pour comprendre l'architecture d'un mod NeoForge et le fonctionnement des systèmes complexes.
+Cette section présente des schémas visuels pour comprendre l'architecture d'un mod Fabric et le fonctionnement des systèmes complexes.
 
 ---
 
-### **Diagramme 1 : Architecture Globale d'un Mod NeoForge**
+### **Diagramme 1 : Architecture Globale d'un Mod Fabric**
 
 ```mermaid
 graph TD
-    A[Minecraft 1.21.1] --> B[NeoForge 21.1.73]
+    A[Minecraft 1.21.1] --> B[Fabric Loader + Fabric API]
     B --> C[Votre Mod]
     
     C --> D[Main Class @Mod]
@@ -420,69 +420,69 @@ graph TD
 
 ---
 
-### **Diagramme 2 : Flux de Registration (DeferredRegister)**
+### **Diagramme 2 : Flux de Registration (Registry.register)**
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  PHASE 1: MOD CONSTRUCTION                                  │
+│  PHASE 1: MOD INITIALIZATION                                │
 │  ────────────────────────────────────────────────────────── │
 │                                                              │
-│  @Mod(MedeliumMod.MOD_ID)                                   │
-│  public class MedeliumMod {                                 │
-│      public MedeliumMod(IEventBus modEventBus) {            │
-│          ModItems.register(modEventBus);     ◄────┐        │
-│          ModBlocks.register(modEventBus);         │        │
-│      }                                            │        │
-│  }                                                │        │
-└───────────────────────────────────────────────────┼────────┘
+│  public class Medelium implements ModInitializer {           │
+│      @Override                                               │
+│      public void onInitialize() {                            │
+│          ModItems.registerModItems();        ◄────┐          │
+│          ModBlocks.registerModBlocks();           │          │
+│      }                                            │          │
+│  }                                                │          │
+└───────────────────────────────────────────────────┼──────────┘
                                                     │
-┌───────────────────────────────────────────────────┼────────┐
-│  PHASE 2: DEFERRED REGISTER CREATION             │        │
-│  ────────────────────────────────────────────────┼─────── │
-│                                                   │        │
-│  public class ModItems {                         │        │
-│      public static final DeferredRegister.Items  │        │
-│          ITEMS = DeferredRegister.createItems(   │        │
-│              MedeliumMod.MOD_ID                  │        │
-│          );                                      │        │
-│                                                   │        │
-│      public static void register(IEventBus bus) {│        │
-│          ITEMS.register(bus); ◄──────────────────┘        │
-│      }                                                     │
-│  }                                                         │
-└────────────────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────┼──────────┐
+│  PHASE 2: HELPER METHODS                          │          │
+│  ─────────────────────────────────────────────────┼───────── │
+│                                                   │          │
+│  public class ModItems {                          │          │
+│      private static Item registerItem(            │          │
+│          String name, Item item) {                │          │
+│          return Registry.register(                │          │
+│              Registries.ITEM,                     │          │
+│              new Identifier(Medelium.MOD_ID, name),│         │
+│              item                                 │          │
+│          );                                       │          │
+│      }                                            │          │
+│  }                                                │          │
+└───────────────────────────────────────────────────┼──────────┘
                         │
                         ▼
 ┌────────────────────────────────────────────────────────────┐
 │  PHASE 3: ITEM REGISTRATION                                │
 │  ──────────────────────────────────────────────────────────│
 │                                                             │
-│  public static final DeferredItem<Item> MY_ITEM =          │
-│      ITEMS.register("my_item",                             │
-│          () -> new Item(new Item.Properties())             │
+│  public static final Item MY_ITEM =                        │
+│      registerItem("my_item",                               │
+│          new Item(new FabricItemSettings())                 │
 │      );                                                     │
 │                                                             │
 │      ┌───────────┐                                         │
-│      │ "my_item" │ ──► Registry ID: medeliummod:my_item    │
+│      │ "my_item" │ ──► Registry ID: medelium:my_item       │
 │      └───────────┘                                         │
 │      ┌───────────────────────────────────┐                 │
-│      │ () -> new Item(...)               │                 │
-│      │ (Supplier - création lazy)        │                 │
+│      │ new Item(...)                     │                 │
+│      │ (création directe, pas de Supplier)│                │
 │      └───────────────────────────────────┘                 │
 └────────────────────────────────────────────────────────────┘
                         │
                         ▼
 ┌────────────────────────────────────────────────────────────┐
-│  PHASE 4: FORGE REGISTRY EVENT                             │
+│  PHASE 4: REGISTRY INJECTION                               │
 │  ──────────────────────────────────────────────────────────│
 │                                                             │
-│  RegisterEvent (automatique via NeoForge)                  │
+│  Registry.register() ajoute directement au Registry        │
 │      │                                                      │
 │      ├─► Items Registry                                    │
-│      │    └─► medeliummod:my_item = Item instance          │
+│      │    └─► medelium:my_item = Item instance              │
 │      │                                                      │
 │      ├─► Blocks Registry                                   │
-│      │    └─► medeliummod:my_block = Block instance        │
+│      │    └─► medelium:my_block = Block instance            │
 │      │                                                      │
 │      └─► ... (tous les registries)                         │
 │                                                             │
@@ -512,8 +512,8 @@ graph TD
         │                                               │
         │  2. Envoyer au serveur                       │
         ├──────────────────────────────────────────────►│
-        │   CustomPacketPayload                         │
-        │   + StreamCodec                               │
+        │   Fabric Networking API                         │
+        │   + PacketByteBuf                               │
         │                                               │
         │                                               ▼
         │                                    ┌────────────────────┐
@@ -550,11 +550,11 @@ IMPORTANT :
 
 ---
 
-### **Diagramme 4 : Système d'Attachments (NeoForge 1.21+)**
+### **Diagramme 4 : Système d'Attachments (Fabric 1.21+)**
 
 ```
                     ┌───────────────────────────┐
-                    │   AttachmentType<T>       │
+                    │   IEntityDataSaver (Mixin)<T>       │
                     │   (Registry)              │
                     └───────────────────────────┘
                                 │
@@ -585,8 +585,8 @@ IMPORTANT :
     │  2. ENREGISTREMENT                                          │
     │  ─────────────────────────────────────────────────────────  │
     │                                                              │
-    │  public static final AttachmentType<PlayerMana> MANA =      │
-    │      AttachmentType.builder(() -> new PlayerMana())         │
+    │  public static final IEntityDataSaver (Mixin)<PlayerMana> MANA =      │
+    │      IEntityDataSaver (Mixin).builder(() -> new PlayerMana())         │
     │          .serialize(ManaCodec.INSTANCE)                     │
     │          .build();                                          │
     │                                                              │
@@ -599,7 +599,7 @@ IMPORTANT :
     │  ─────────────────────────────────────────────────────────  │
     │                                                              │
     │  // Lecture                                                 │
-    │  PlayerMana mana = player.getData(ModAttachments.MANA);     │
+    │  PlayerMana mana = ((IEntityDataSaver) player).medelium$getPersistentData();     │
     │  int currentMana = mana.getMana();                          │
     │                                                              │
     │  // Modification                                            │
@@ -711,7 +711,7 @@ IMPORTANT :
 └─────────────────────────────────────────────────────────────┘
 
     ┌────────────────────┐
-    │   MenuProvider     │  ← Fournit le menu au joueur
+    │   NamedScreenHandlerFactory     │  ← Fournit le menu au joueur
     └────────────────────┘
             │
             ▼
@@ -754,101 +754,82 @@ SYNCHRONISATION AUTOMATIQUE:
 
 ---
 
-### **Diagramme 7 : Système d'Events**
+### **Diagramme 7 : Système d'Events (Fabric Callbacks)**
 
 ```
-                        EVENT BUS SYSTEM
+                    FABRIC CALLBACK SYSTEM
                         
 ┌─────────────────────────────────────────────────────────────┐
-│                    MOD EVENT BUS                             │
-│  (IEventBus - fourni au constructeur du mod)                │
+│              MOD ENTRYPOINTS (fabric.mod.json)              │
+│  ModInitializer.onInitialize()                              │
+│  ClientModInitializer.onInitializeClient()                  │
 └─────────────────────────────────────────────────────────────┘
             │
-            ├──► RegisterEvent (registries)
-            ├──► FMLCommonSetupEvent (init commune)
-            ├──► FMLClientSetupEvent (init client)
-            ├──► RegisterCommandsEvent (commandes)
-            ├──► GatherDataEvent (datagen)
-            └──► BuildCreativeModeTabContentsEvent (creative tabs)
+            ├──► Registry.register() (registries - directement)
+            ├──► CommandRegistrationCallback (commandes)
+            ├──► ServerLifecycleEvents.SERVER_STARTING
+            └──► ItemGroupEvents (creative tabs)
 
 ┌─────────────────────────────────────────────────────────────┐
-│                  NEOFORGE EVENT BUS                          │
-│  (NeoForge.EVENT_BUS - global game events)                  │
+│                FABRIC API CALLBACKS                          │
+│  (Events enregistrés via EVENT.register())                  │
 └─────────────────────────────────────────────────────────────┘
             │
-            ├──► ServerStartingEvent (serveur démarre)
-            ├──► ServerStoppingEvent (serveur s'arrête)
+            ├──► ServerLifecycleEvents.SERVER_STARTING
+            ├──► ServerLifecycleEvents.SERVER_STOPPING
             │
             ├──► PLAYER EVENTS:
-            │    ├─► PlayerEvent.PlayerLoggedInEvent
-            │    ├─► PlayerEvent.PlayerLoggedOutEvent
-            │    ├─► PlayerEvent.Clone (respawn)
-            │    ├─► PlayerInteractEvent.RightClickBlock
-            │    └─► PlayerInteractEvent.RightClickItem
+            │    ├─► ServerPlayConnectionEvents.JOIN (connexion)
+            │    ├─► ServerPlayConnectionEvents.DISCONNECT
+            │    ├─► ServerLivingEntityEvents.AFTER_DEATH
+            │    ├─► UseBlockCallback (clic droit sur bloc)
+            │    └─► UseItemCallback (clic droit avec item)
             │
             ├──► LIVING EVENTS:
-            │    ├─► LivingDeathEvent (mort)
-            │    ├─► LivingHurtEvent (dégâts)
-            │    ├─► LivingAttackEvent (attaque)
-            │    └─► LivingChangeTargetEvent (aggro)
+            │    ├─► ServerLivingEntityEvents.ALLOW_DEATH
+            │    ├─► ServerLivingEntityEvents.AFTER_DEATH
+            │    ├─► AttackEntityCallback (attaque)
+            │    └─► (Mixins pour events plus spécifiques)
             │
             ├──► WORLD EVENTS:
-            │    ├─► BlockEvent.BreakEvent (casser bloc)
-            │    ├─► BlockEvent.PlaceEvent (placer bloc)
-            │    └─► ExplosionEvent (explosion)
+            │    ├─► PlayerBlockBreakEvents.BEFORE
+            │    ├─► PlayerBlockBreakEvents.AFTER
+            │    └─► (Mixins pour block place, explosions)
             │
             └──► TICK EVENTS:
-                 ├─► TickEvent.ServerTickEvent
-                 ├─► TickEvent.ClientTickEvent
-                 └─► TickEvent.PlayerTickEvent
+                 ├─► ServerTickEvents.END_SERVER_TICK
+                 ├─► ClientTickEvents.END_CLIENT_TICK
+                 └─► ServerTickEvents.END_WORLD_TICK
 
-ENREGISTREMENT:
+ENREGISTREMENT (dans onInitialize()):
 
-// Mod Event Bus (dans constructeur)
-modEventBus.addListener(this::commonSetup);
+ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+    // Joueur connecté
+});
 
-// NeoForge Event Bus (dans constructeur)
-NeoForge.EVENT_BUS.register(this);
+ServerTickEvents.END_SERVER_TICK.register(server -> {
+    // Tick serveur
+});
 
-// Ou classe dédiée
-NeoForge.EVENT_BUS.register(MyEventHandler.class);
-
-// Méthode d'event handler
-@SubscribeEvent
-public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-    // Logique
-}
+PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, entity) -> {
+    // Bloc cassé
+    return true; // false pour annuler
+});
 ```
 
 ---
 
-### **Diagramme 8 : Lifecycle d'un Mod**
+### **Diagramme 8 : Lifecycle d'un Mod Fabric**
 
 ```
     MINECRAFT STARTUP
             │
             ▼
     ┌───────────────────┐
-    │  1. CONSTRUCTION  │  @Mod constructor appelé
-    │                   │  - Créer DeferredRegisters
-    │                   │  - S'abonner aux events
+    │  1. INITIALIZATION│  onInitialize() appelé
+    │                   │  - Registry.register() (items, blocs)
+    │                   │  - Enregistrer callbacks
     │                   │  - Charger config
-    └───────────────────┘
-            │
-            ▼
-    ┌───────────────────┐
-    │  2. REGISTRATION  │  RegisterEvent (automatique)
-    │                   │  - Items enregistrés
-    │                   │  - Blocks enregistrés
-    │                   │  - Entities, etc.
-    └───────────────────┘
-            │
-            ▼
-    ┌───────────────────┐
-    │  3. COMMON SETUP  │  FMLCommonSetupEvent
-    │                   │  - Logique commune client+server
-    │                   │  - Networking setup
-    │                   │  - Villager trades
     └───────────────────┘
             │
             ├──────────────┬──────────────┐
@@ -856,24 +837,25 @@ public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
             ▼              ▼              ▼
     ┌──────────┐  ┌──────────┐  ┌──────────┐
     │  CLIENT  │  │  SERVER  │  │ DATAGEN  │
-    │  SETUP   │  │  SETUP   │  │  (optionnel)
+    │  INIT    │  │  READY   │  │(optionnel)│
+    │onInitCli │  │          │  │          │
     └──────────┘  └──────────┘  └──────────┘
             │              │
             ▼              ▼
     ┌─────────────────────────┐
-    │  4. GAME READY          │  World loading
+    │  2. GAME READY          │  World loading
     │                         │  Player joining
-    │  Events actifs:         │
-    │  - PlayerLoggedIn       │
-    │  - ServerStarting       │
-    │  - Ticks                │
+    │  Callbacks actifs:      │
+    │  - ServerPlayConnection │
+    │  - ServerTickEvents     │
+    │  - ServerLifecycleEvents│
     └─────────────────────────┘
             │
             │  (gameplay...)
             │
             ▼
     ┌─────────────────────────┐
-    │  5. SHUTDOWN            │  ServerStoppingEvent
+    │  3. SHUTDOWN            │  SERVER_STOPPING
     │                         │  - Sauvegarder données
     │                         │  - Cleanup
     └─────────────────────────┘
@@ -881,16 +863,16 @@ public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
 
 ---
 
-### **Diagramme 9 : Data-Driven Registries (1.21+)**
+### **Diagramme 9 : Data-Driven Registries**
 
 ```
-    ANCIEN SYSTÈME (pre-1.21):
+    SYSTÈME FABRIC 1.20.1:
     ─────────────────────────
-    Code Java ──► DeferredRegister ──► Registry
-                                          │
-                                          └─► Objets en jeu
+    Code Java ──► Registry.register() ──► Registry
+                                              │
+                                              └─► Objets en jeu
     
-    NOUVEAU SYSTÈME (1.21+):
+    SYSTÈME DATA-DRIVEN (certains registries):
     ─────────────────────────
     
     ┌─────────────────────┐
@@ -914,8 +896,8 @@ public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
     
     EXEMPLES 1.21+ DATA-DRIVEN:
     
-    ✨ JukeboxSong (Music Discs)
-       - Code: ResourceKey<JukeboxSong>
+    ✨ /* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ (Music Discs)
+       - Code: ResourceKey</* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */>
        - Data: data/modid/jukebox_song/epic_battle.json
        - Contient: sound_event, description, length
     
@@ -924,8 +906,8 @@ public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
        - Data: data/modid/banner_pattern/crown.json
        - Contient: asset_id, translation_key
     
-    ✨ PaintingVariant
-       - Code: ResourceKey<PaintingVariant>
+    ✨ net.minecraft.entity.decoration.painting.PaintingVariant
+       - Code: ResourceKey<net.minecraft.entity.decoration.painting.PaintingVariant>
        - Data: data/modid/painting_variant/king.json
        - Contient: asset_id, width, height
     
@@ -1025,7 +1007,7 @@ public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
 **🎯 Quand consulter ces diagrammes :**
 
 1. **Architecture Globale** : Au début, pour comprendre la structure
-2. **DeferredRegister** : Avant de créer items/blocs (Sections 1-4)
+2. **Registry.register** : Avant de créer items/blocs (Sections 1-4)
 3. **Networking** : Avant Section 24 (Packets)
 4. **Attachments** : Avant Sections 18, 19, 27 (Systèmes RPG)
 5. **WorldGen** : Avant Sections 12, 35 (Génération monde)
@@ -1066,7 +1048,7 @@ Ce guide ultra-rapide vous permet de créer un mod fonctionnel **IMMÉDIATEMENT*
 ✅ Java 21 installé
    → Vérifier : java -version
    
-✅ Projet NeoForge 1.21.1 créé
+✅ Projet Fabric 1.20.1 créé
    → gradle.properties doit contenir :
       minecraft_version=1.21.1
       neo_version=21.1.73
@@ -1076,32 +1058,34 @@ Ce guide ultra-rapide vous permet de créer un mod fonctionnel **IMMÉDIATEMENT*
    src/main/resources/
 ```
 
-**Si ce n'est pas fait** : Téléchargez le template NeoForge MDK 1.21.1 depuis [https://projects.neoforged.net/](https://projects.neoforged.net/)
+**Si ce n'est pas fait** : Téléchargez le template Fabric MDK 1.21.1 depuis [https://projects.fabricd.net/](https://projects.fabricd.net/)
 
 ---
 
 ### **Étape 2 : Classe Principale (1 min)**
 
-**📁 `src/main/java/com/medelium/MedeliumMod.java` :**
+**📁 `src/main/java/com/medelium/Medelium.java` :**
 
 ```java
 package com.medelium;
 
 import com.medelium.item.ModItems;
 import com.medelium.block.ModBlocks;
-import com.medelium.tab.ModCreativeTabs;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.Mod;
+import com.medelium.item.ModItemGroups;
+import net.fabricmc.api.ModInitializer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Mod(MedeliumMod.MOD_ID)
-public class MedeliumMod {
-    public static final String MOD_ID = "medeliummod";
+public class Medelium implements ModInitializer {
+    public static final String MOD_ID = "medelium";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-    public MedeliumMod(IEventBus modEventBus, ModContainer modContainer) {
-        ModItems.register(modEventBus);
-        ModBlocks.register(modEventBus);
-        ModCreativeTabs.register(modEventBus);
+    @Override
+    public void onInitialize() {
+        ModItems.registerModItems();
+        ModBlocks.registerModBlocks();
+        ModItemGroups.registerItemGroups();
+        LOGGER.info("Initializing Médélium mod!");
     }
 }
 ```
@@ -1115,22 +1099,25 @@ public class MedeliumMod {
 ```java
 package com.medelium.item;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.world.item.Item;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredItem;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import com.medelium.Medelium;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 
 public class ModItems {
-    public static final DeferredRegister.Items ITEMS = 
-        DeferredRegister.createItems(MedeliumMod.MOD_ID);
 
     // ⚔️ Votre premier item !
-    public static final DeferredItem<Item> SILVER_COIN = ITEMS.register("silver_coin",
-        () -> new Item(new Item.Properties()));
+    public static final Item SILVER_COIN = registerItem("silver_coin",
+        new Item(new FabricItemSettings()));
 
-    public static void register(IEventBus eventBus) {
-        ITEMS.register(eventBus);
+    private static Item registerItem(String name, Item item) {
+        return Registry.register(Registries.ITEM, new Identifier(Medelium.MOD_ID, name), item);
+    }
+
+    public static void registerModItems() {
+        Medelium.LOGGER.info("Registering Mod Items for " + Medelium.MOD_ID);
     }
 }
 ```
@@ -1144,42 +1131,38 @@ public class ModItems {
 ```java
 package com.medelium.block;
 
-import com.medelium.MedeliumMod;
-import com.medelium.item.ModItems;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredRegister;
-
-import java.util.function.Supplier;
+import com.medelium.Medelium;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.Identifier;
 
 public class ModBlocks {
-    public static final DeferredRegister.Blocks BLOCKS = 
-        DeferredRegister.createBlocks(MedeliumMod.MOD_ID);
 
     // 🏰 Votre premier bloc !
-    public static final DeferredBlock<Block> CASTLE_STONE = registerBlock("castle_stone",
-        () -> new Block(BlockBehaviour.Properties.of()
+    public static final Block CASTLE_STONE = registerBlock("castle_stone",
+        new Block(FabricBlockSettings.create()
             .strength(2.0f)
-            .requiresCorrectToolForDrops()
-            .sound(SoundType.STONE)));
+            .requiresTool()
+            .sounds(BlockSoundGroup.STONE)));
 
-    private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
-        DeferredBlock<T> toReturn = BLOCKS.register(name, block);
-        registerBlockItem(name, toReturn);
-        return toReturn;
+    private static Block registerBlock(String name, Block block) {
+        registerBlockItem(name, block);
+        return Registry.register(Registries.BLOCK, new Identifier(Medelium.MOD_ID, name), block);
     }
 
-    private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+    private static Item registerBlockItem(String name, Block block) {
+        return Registry.register(Registries.ITEM, new Identifier(Medelium.MOD_ID, name),
+            new BlockItem(block, new FabricItemSettings()));
     }
 
-    public static void register(IEventBus eventBus) {
-        BLOCKS.register(eventBus);
+    public static void registerModBlocks() {
+        Medelium.LOGGER.info("Registering Mod Blocks for " + Medelium.MOD_ID);
     }
 }
 ```
@@ -1191,34 +1174,31 @@ public class ModBlocks {
 **📁 `src/main/java/com/medelium/tab/ModCreativeTabs.java` :**
 
 ```java
-package com.medelium.tab;
+package com.medelium.item;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.medelium.block.ModBlocks;
-import com.medelium.item.ModItems;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 
-public class ModCreativeTabs {
-    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = 
-        DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MedeliumMod.MOD_ID);
-
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MEDELIUM_TAB = 
-        CREATIVE_MODE_TABS.register("medelium_tab", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.medeliummod.medelium_tab"))
-            .icon(() -> new ItemStack(ModItems.SILVER_COIN.get()))
-            .displayItems((parameters, output) -> {
-                output.accept(ModItems.SILVER_COIN.get());
-                output.accept(ModBlocks.CASTLE_STONE.get());
+public class ModItemGroups {
+    public static final ItemGroup MEDELIUM_GROUP = Registry.register(Registries.ITEM_GROUP,
+        new Identifier(Medelium.MOD_ID, "medelium_tab"),
+        FabricItemGroup.builder()
+            .displayName(Text.translatable("itemGroup.medelium.medelium_tab"))
+            .icon(() -> new ItemStack(ModItems.SILVER_COIN))
+            .entries((context, entries) -> {
+                entries.add(ModItems.SILVER_COIN);
+                entries.add(ModBlocks.CASTLE_STONE);
             }).build());
 
-    public static void register(IEventBus eventBus) {
-        CREATIVE_MODE_TABS.register(eventBus);
+    public static void registerItemGroups() {
+        Medelium.LOGGER.info("Registering Item Groups for " + Medelium.MOD_ID);
     }
 }
 ```
@@ -1227,25 +1207,25 @@ public class ModCreativeTabs {
 
 ### **Étape 6 : Traductions (3 min)**
 
-**📁 `src/main/resources/assets/medeliummod/lang/en_us.json` :**
+**📁 `src/main/resources/assets/medelium/lang/en_us.json` :**
 
 ```json
 {
-  "itemGroup.medeliummod.medelium_tab": "Medelium - Medieval Fantasy",
+  "itemGroup.medelium.medelium_tab": "Medelium - Medieval Fantasy",
   
-  "item.medeliummod.silver_coin": "Silver Coin",
-  "block.medeliummod.castle_stone": "Castle Stone"
+  "item.medelium.silver_coin": "Silver Coin",
+  "block.medelium.castle_stone": "Castle Stone"
 }
 ```
 
-**📁 `src/main/resources/assets/medeliummod/lang/fr_fr.json` :**
+**📁 `src/main/resources/assets/medelium/lang/fr_fr.json` :**
 
 ```json
 {
-  "itemGroup.medeliummod.medelium_tab": "Medelium - Fantasy Médiévale",
+  "itemGroup.medelium.medelium_tab": "Medelium - Fantasy Médiévale",
   
-  "item.medeliummod.silver_coin": "Pièce d'Argent",
-  "block.medeliummod.castle_stone": "Pierre de Château"
+  "item.medelium.silver_coin": "Pièce d'Argent",
+  "block.medelium.castle_stone": "Pierre de Château"
 }
 ```
 
@@ -1269,7 +1249,7 @@ public class ModCreativeTabs {
 
 **✅ Succès si vous voyez :**
 ```
-[main/INFO] [medeliummod]: Medelium Mod loading...
+[main/INFO] [Medelium]: Medelium Mod loading...
 [main/INFO] [minecraft/Minecraft]: Successfully loaded X mods
 ```
 
@@ -1298,13 +1278,13 @@ Cochez au fur et à mesure :
 
 #### **🔧 Structure de Base**
 ```
-☐ Projet NeoForge 1.21.1 créé
+☐ Projet Fabric 1.20.1 créé
 ☐ gradle.properties configuré
-☐ Classe @Mod créée (MedeliumMod.java)
+☐ Classe @Mod créée (Medelium.java)
 ☐ Structure de dossiers :
    ☐ src/main/java/com/medelium/
-   ☐ src/main/resources/assets/medeliummod/
-   ☐ src/main/resources/data/medeliummod/
+   ☐ src/main/resources/assets/medelium/
+   ☐ src/main/resources/data/medelium/
 ```
 
 #### **📦 Contenu Minimum**
@@ -1371,7 +1351,7 @@ Vos items sont invisibles (cubes roses) ? Normal ! Il faut des textures.
 **❌ Erreur : "Registry object not present"**
 ```
 ✅ Solution : Vérifiez que vous appelez .register(modEventBus)
-   dans le constructeur de MedeliumMod
+   dans le constructeur de Medelium
 ```
 
 **❌ Jeu crash au démarrage**
@@ -1398,9 +1378,9 @@ Vos items sont invisibles (cubes roses) ? Normal ! Il faut des textures.
 ```
 ✅ Solution :
    1. Vérifiez que les fichiers sont dans :
-      assets/medeliummod/lang/
+      assets/medelium/lang/
    2. Vérifiez le format JSON (virgules, guillemets)
-   3. Clé doit être : "item.medeliummod.nom_item"
+   3. Clé doit être : "item.medelium.nom_item"
 ```
 
 ---
@@ -1425,18 +1405,17 @@ Mais : la compilation est plus rapide après la première fois (30-60 secondes)
 **📝 Template pour nouveaux items :**
 ```java
 // Copiez-collez ce template pour chaque nouvel item
-public static final DeferredItem<Item> MON_ITEM = ITEMS.register("mon_item",
-    () -> new Item(new Item.Properties()));
+public static final Item MON_ITEM = registerItem("mon_item", new Item(new FabricItemSettings()));
 ```
 
 **📝 Template pour nouveaux blocs :**
 ```java
 // Copiez-collez ce template pour chaque nouveau bloc
-public static final DeferredBlock<Block> MON_BLOC = registerBlock("mon_bloc",
-    () -> new Block(BlockBehaviour.Properties.of()
+public static final Block MON_BLOC = registerBlock("mon_bloc",
+    new Block(FabricBlockSettings.create()
         .strength(2.0f)
-        .requiresCorrectToolForDrops()
-        .sound(SoundType.STONE)));
+        .requiresTool()
+        .sounds(BlockSoundGroup.STONE)));
 ```
 
 ---
@@ -1445,8 +1424,8 @@ public static final DeferredBlock<Block> MON_BLOC = registerBlock("mon_bloc",
 
 En 15 minutes, vous avez compris :
 
-1. ✅ **Structure d'un mod NeoForge** (package, classes)
-2. ✅ **DeferredRegister** (système de registry moderne)
+1. ✅ **Structure d'un mod Fabric** (package, classes)
+2. ✅ **Registry.register** (système d'enregistrement Fabric)
 3. ✅ **Items** (création basique)
 4. ✅ **Blocs** (création + BlockItem automatique)
 5. ✅ **Creative Tabs** (onglet personnalisé)
@@ -1476,20 +1455,15 @@ En 15 minutes, vous avez compris :
 Ajoutez ces 5 items à `ModItems.java` :
 
 ```java
-public static final DeferredItem<Item> GOLD_COIN = ITEMS.register("gold_coin",
-    () -> new Item(new Item.Properties()));
+public static final Item GOLD_COIN = registerItem("gold_coin", new Item(new FabricItemSettings()));
 
-public static final DeferredItem<Item> ROYAL_SEAL = ITEMS.register("royal_seal",
-    () -> new Item(new Item.Properties()));
+public static final Item ROYAL_SEAL = registerItem("royal_seal", new Item(new FabricItemSettings()));
 
-public static final DeferredItem<Item> ANCIENT_SCROLL = ITEMS.register("ancient_scroll",
-    () -> new Item(new Item.Properties()));
+public static final Item ANCIENT_SCROLL = registerItem("ancient_scroll", new Item(new FabricItemSettings()));
 
-public static final DeferredItem<Item> MAGIC_CRYSTAL = ITEMS.register("magic_crystal",
-    () -> new Item(new Item.Properties().stacksTo(16)));
+public static final Item MAGIC_CRYSTAL = registerItem("magic_crystal", new Item(new FabricItemSettings().maxCount(16)));
 
-public static final DeferredItem<Item> KNIGHT_EMBLEM = ITEMS.register("knight_emblem",
-    () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
+public static final Item KNIGHT_EMBLEM = registerItem("knight_emblem", new Item(new FabricItemSettings().rarity(Rarity.RARE)));
 ```
 
 **N'oubliez pas :**
@@ -1537,8 +1511,8 @@ public static final DeferredItem<Item> KNIGHT_EMBLEM = ITEMS.register("knight_em
 
 ```java
 // Ajouter dans la classe ModItems
-public static final DeferredItem<Item> MON_OBJET = ITEMS.register("mon_objet",
-    () -> new Item(new Item.Properties()));
+public static final Item MON_OBJET = registerItem("mon_objet",
+    new Item(new FabricItemSettings()));
 ```
 
 **Types d'objets simples à créer :**
@@ -1553,39 +1527,39 @@ public static final DeferredItem<Item> MON_OBJET = ITEMS.register("mon_objet",
 
 ```java
 // Objet qui brille dans l'inventaire
-public static final DeferredItem<Item> GEMME_MAGIQUE = ITEMS.register("gemme_magique",
-    () -> new Item(new Item.Properties()
-        .stacksTo(16)  // Max 16 par stack au lieu de 64
+public static final Item GEMME_MAGIQUE = registerItem("gemme_magique",
+    new Item(new FabricItemSettings()
+        .maxCount(16)  // Max 16 par stack au lieu de 64
         .rarity(Rarity.RARE)  // Couleur rare (cyan)
-        .fireResistant()  // Ne brûle pas dans la lave
+        .fireproof()  // Ne brûle pas dans la lave
     ));
 ```
 
 **Propriétés disponibles :**
-- `.stacksTo(nombre)` - Combien peut-on empiler
+- `.maxCount(nombre)` - Combien peut-on empiler
 - `.rarity(Rarity.X)` - Couleur du nom (COMMON, UNCOMMON, RARE, EPIC)
-- `.fireResistant()` - Résistant au feu
-- `.durability(nombre)` - Durabilité (pour outils)
+- `.fireproof()` - Résistant au feu
+- `.maxDamage(nombre)` - Durabilité (pour outils)
 
 ### 1.3 Ajouter les Traductions
 
 > **📖 Pourquoi les traductions sont OBLIGATOIRES ?**
-> Sans fichier de traduction, votre item s'affiche comme : `item.medeliummod.mon_objet`
+> Sans fichier de traduction, votre item s'affiche comme : `item.medelium.mon_objet`
 > Avec traduction, il s'affiche : `Mon Super Objet` ✨
 >
 > **🎯 Comment ça marche :**
 > - Minecraft lit le fichier `fr_fr.json` (français) ou `en_us.json` (anglais)
-> - La clé `item.medeliummod.mon_objet` correspond à votre item
+> - La clé `item.medelium.mon_objet` correspond à votre item
 > - La valeur est le nom affiché en jeu
 >
 > **💡 Astuce :** Créez les deux fichiers (fr_fr.json ET en_us.json) pour supporter multi-langues !
 
-**Fichier :** `src/main/resources/assets/medeliummod/lang/fr_fr.json`
+**Fichier :** `src/main/resources/assets/medelium/lang/fr_fr.json`
 
 ```json
 {
-  "item.medeliummod.mon_objet": "Mon Super Objet",
-  "item.medeliummod.gemme_magique": "Gemme Magique"
+  "item.medelium.mon_objet": "Mon Super Objet",
+  "item.medelium.gemme_magique": "Gemme Magique"
 }
 ```
 
@@ -1610,8 +1584,8 @@ public static final DeferredItem<Item> GEMME_MAGIQUE = ITEMS.register("gemme_mag
 **Fichier :** `src/main/java/com/medelium/tab/ModCreativeTabs.java`
 
 ```java
-// Dans displayItems, ajouter :
-output.accept(ModItems.MON_OBJET.get());
+// Dans les entries du ItemGroup, ajouter :
+entries.add(ModItems.MON_OBJET);
 ```
 
 ### 1.5 📝 Descriptions Personnalisées (Tooltips)
@@ -1647,38 +1621,40 @@ output.accept(ModItems.MON_OBJET.get());
 ```java
 package com.medelium.item.custom;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class CustomTooltipItem extends Item {
     
-    public CustomTooltipItem(Properties properties) {
-        super(properties);
+    public CustomTooltipItem(Settings settings) {
+        super(settings);
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         // Ajouter des lignes de description
-        tooltipComponents.add(Component.literal("§7Description normale en gris"));
-        tooltipComponents.add(Component.literal("§6Texte en or doré"));
-        tooltipComponents.add(Component.literal("§cTexte en rouge"));
-        tooltipComponents.add(Component.literal("§b§oTexte cyan italique"));
-        tooltipComponents.add(Component.literal(""));
-        tooltipComponents.add(Component.literal("§8Lore: §fObjet légendaire"));
+        tooltip.add(Text.literal("§7Description normale en gris"));
+        tooltip.add(Text.literal("§6Texte en or doré"));
+        tooltip.add(Text.literal("§cTexte en rouge"));
+        tooltip.add(Text.literal("§b§oTexte cyan italique"));
+        tooltip.add(Text.literal(""));
+        tooltip.add(Text.literal("§8Lore: §fObjet légendaire"));
         
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        super.appendTooltip(stack, world, tooltip, context);
     }
 }
 ```
 
 **Utiliser dans ModItems.java :**
 ```java
-public static final DeferredItem<Item> EPEE_LEGENDAIRE = ITEMS.register("epee_legendaire",
-    () -> new CustomTooltipItem(new Item.Properties().rarity(Rarity.EPIC)));
+public static final Item EPEE_LEGENDAIRE = registerItem("epee_legendaire",
+    new CustomTooltipItem(new FabricItemSettings().rarity(Rarity.EPIC)));
 ```
 
 #### 1.5.2 Codes Couleur Disponibles
@@ -1713,29 +1689,29 @@ public static final DeferredItem<Item> EPEE_LEGENDAIRE = ITEMS.register("epee_le
 
 ```java
 @Override
-public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
     // Récupérer des données NBT
-    if (stack.hasTag()) {
-        int level = stack.getTag().getInt("power_level");
-        tooltipComponents.add(Component.literal("§6Niveau de Puissance: §f" + level));
+    if (stack.hasNbt()) {
+        int level = stack.getNbt().getInt("power_level");
+        tooltip.add(Text.literal("§6Niveau de Puissance: §f" + level));
     }
     
     // Afficher seulement si SHIFT est pressé
     if (Screen.hasShiftDown()) {
-        tooltipComponents.add(Component.literal("§7Informations détaillées:"));
-        tooltipComponents.add(Component.literal("§8- Propriété 1"));
-        tooltipComponents.add(Component.literal("§8- Propriété 2"));
+        tooltip.add(Text.literal("§7Informations détaillées:"));
+        tooltip.add(Text.literal("§8- Propriété 1"));
+        tooltip.add(Text.literal("§8- Propriété 2"));
     } else {
-        tooltipComponents.add(Component.literal("§7[SHIFT pour plus d'infos]"));
+        tooltip.add(Text.literal("§7[SHIFT pour plus d'infos]"));
     }
     
-    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+    super.appendTooltip(stack, world, tooltip, context);
 }
 ```
 
 **Importer Screen :**
 ```java
-import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.currentScreen.Screen;
 ```
 
 #### 1.5.4 Tooltip sur Bloc
@@ -1745,51 +1721,48 @@ import net.minecraft.client.gui.screens.Screen;
 ```java
 package com.medelium.block.custom;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.block.Block;
-
-import java.util.List;
+import net.minecraft.block.Block;
 
 public class CustomTooltipBlock extends Block {
     
-    public CustomTooltipBlock(Properties properties) {
-        super(properties);
+    public CustomTooltipBlock(Settings settings) {
+        super(settings);
     }
 }
 
 // Créer aussi le BlockItem personnalisé
 package com.medelium.item.custom;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.block.Block;
+import net.minecraft.text.Text;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class CustomTooltipBlockItem extends BlockItem {
     
-    public CustomTooltipBlockItem(Block block, Properties properties) {
-        super(block, properties);
+    public CustomTooltipBlockItem(Block block, Settings settings) {
+        super(block, settings);
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        tooltipComponents.add(Component.literal("§7Bloc spécial médiéval"));
-        tooltipComponents.add(Component.literal("§6Résistance: §fÉlevée"));
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        tooltip.add(Text.literal("§7Bloc spécial médiéval"));
+        tooltip.add(Text.literal("§6Résistance: §fÉlevée"));
+        super.appendTooltip(stack, world, tooltip, context);
     }
 }
 ```
 
 **Dans ModBlocks.java :**
 ```java
-private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
-    ModItems.ITEMS.register(name, () -> new CustomTooltipBlockItem(block.get(), new Item.Properties()));
+private static Item registerBlockItem(String name, Block block) {
+    return Registry.register(Registries.ITEM, new Identifier(Medelium.MOD_ID, name),
+        new CustomTooltipBlockItem(block, new FabricItemSettings()));
 }
 ```
 
@@ -1799,18 +1772,18 @@ Au lieu de texte codé en dur, utiliser des traductions :
 
 ```java
 @Override
-public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-    tooltipComponents.add(Component.translatable("tooltip.medeliummod.royal_sword.line1"));
-    tooltipComponents.add(Component.translatable("tooltip.medeliummod.royal_sword.line2"));
-    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+    tooltip.add(Text.translatable("tooltip.medelium.royal_sword.line1"));
+    tooltip.add(Text.translatable("tooltip.medelium.royal_sword.line2"));
+    super.appendTooltip(stack, world, tooltip, context);
 }
 ```
 
 **Dans fr_fr.json :**
 ```json
 {
-  "tooltip.medeliummod.royal_sword.line1": "§6Épée légendaire des rois",
-  "tooltip.medeliummod.royal_sword.line2": "§7Tranche tout ce qui se dresse sur son chemin"
+  "tooltip.medelium.royal_sword.line1": "§6Épée légendaire des rois",
+  "tooltip.medelium.royal_sword.line2": "§7Tranche tout ce qui se dresse sur son chemin"
 }
 ```
 
@@ -1863,80 +1836,81 @@ public void appendHoverText(ItemStack stack, TooltipContext context, List<Compon
 ```java
 package com.medelium.item.custom;
 
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.client.gui.currentScreen.Screen;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ToolMaterial;
+import net.minecraft.text.Text;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class LevelablePickaxeItem extends PickaxeItem {
     
-    public LevelablePickaxeItem(Tier tier, Properties properties) {
-        super(tier, properties);
+    public LevelablePickaxeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
+        super(material, attackDamage, attackSpeed, settings);
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         // Récupérer les données NBT
         int blocksBreaking = getBlocksBroken(stack);
         int level = getLevel(stack);
-        int blocksNeeded = getBlocksNeededForNextLevel(level);
+        int blocksNeeded = getBlocksNeededForNextLevel(world);
         int currentProgress = blocksBreaking % blocksNeeded;
         
         // Afficher le niveau avec couleur dynamique
-        String levelColor = getLevelColor(level);
-        tooltipComponents.add(Component.literal(levelColor + "⚡ Niveau: " + level));
+        String levelColor = getLevelColor(world);
+        tooltip.add(Text.literal(levelColor + "⚡ Niveau: " + level));
         
         // Barre de progression visuelle
         String progressBar = createProgressBar(currentProgress, blocksNeeded);
-        tooltipComponents.add(Component.literal("§7" + progressBar));
-        tooltipComponents.add(Component.literal("§7Blocs cassés: §f" + currentProgress + "§7/§f" + blocksNeeded));
+        tooltip.add(Text.literal("§7" + progressBar));
+        tooltip.add(Text.literal("§7Blocs cassés: §f" + currentProgress + "§7/§f" + blocksNeeded));
         
         // Ligne vide
-        tooltipComponents.add(Component.literal(""));
+        tooltip.add(Text.literal(""));
         
         // Avantages actuels
-        tooltipComponents.add(Component.literal("§6Avantages actifs:"));
-        if (level >= 5) {
-            tooltipComponents.add(Component.literal("§a✓ Rapidité I"));
+        tooltip.add(Text.literal("§6Avantages actifs:"));
+        if (world >= 5) {
+            tooltip.add(Text.literal("§a✓ Rapidité I"));
         }
-        if (level >= 10) {
-            tooltipComponents.add(Component.literal("§a✓ Efficacité II"));
+        if (world >= 10) {
+            tooltip.add(Text.literal("§a✓ Efficacité II"));
         }
-        if (level >= 15) {
-            tooltipComponents.add(Component.literal("§a✓ Fortune I"));
+        if (world >= 15) {
+            tooltip.add(Text.literal("§a✓ Fortune I"));
         }
-        if (level >= 20) {
-            tooltipComponents.add(Component.literal("§a✓ Rapidité III"));
-            tooltipComponents.add(Component.literal("§d✓ Mode Dieu"));
+        if (world >= 20) {
+            tooltip.add(Text.literal("§a✓ Rapidité III"));
+            tooltip.add(Text.literal("§d✓ Mode Dieu"));
         }
         
         // Informations détaillées avec SHIFT
         if (Screen.hasShiftDown()) {
-            tooltipComponents.add(Component.literal(""));
-            tooltipComponents.add(Component.literal("§8Prochain niveau:"));
+            tooltip.add(Text.literal(""));
+            tooltip.add(Text.literal("§8Prochain niveau:"));
             
-            if (level < 5) {
-                tooltipComponents.add(Component.literal("§7Niveau 5: §aRapidité I"));
-            } else if (level < 10) {
-                tooltipComponents.add(Component.literal("§7Niveau 10: §aEfficacité II"));
-            } else if (level < 15) {
-                tooltipComponents.add(Component.literal("§7Niveau 15: §aFortune I"));
-            } else if (level < 20) {
-                tooltipComponents.add(Component.literal("§7Niveau 20: §d§lMode Dieu"));
+            if (world < 5) {
+                tooltip.add(Text.literal("§7Niveau 5: §aRapidité I"));
+            } else if (world < 10) {
+                tooltip.add(Text.literal("§7Niveau 10: §aEfficacité II"));
+            } else if (world < 15) {
+                tooltip.add(Text.literal("§7Niveau 15: §aFortune I"));
+            } else if (world < 20) {
+                tooltip.add(Text.literal("§7Niveau 20: §d§lMode Dieu"));
             } else {
-                tooltipComponents.add(Component.literal("§6§l★ NIVEAU MAX ★"));
+                tooltip.add(Text.literal("§6§l★ NIVEAU MAX ★"));
             }
         } else {
-            tooltipComponents.add(Component.literal(""));
-            tooltipComponents.add(Component.literal("§8[SHIFT pour voir les prochains déblocages]"));
+            tooltip.add(Text.literal(""));
+            tooltip.add(Text.literal("§8[SHIFT pour voir les prochains déblocages]"));
         }
         
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        super.appendTooltip(stack, world, tooltip, context);
     }
     
     // Créer une barre de progression visuelle
@@ -1959,42 +1933,42 @@ public class LevelablePickaxeItem extends PickaxeItem {
     
     // Couleur selon le niveau
     private String getLevelColor(int level) {
-        if (level >= 20) return "§d§l";  // Rose gras (légendaire)
-        if (level >= 15) return "§6§l";  // Or gras (épique)
-        if (level >= 10) return "§5";    // Violet (rare)
-        if (level >= 5) return "§b";     // Cyan (peu commun)
+        if (world >= 20) return "§d§l";  // Rose gras (légendaire)
+        if (world >= 15) return "§6§l";  // Or gras (épique)
+        if (world >= 10) return "§5";    // Violet (rare)
+        if (world >= 5) return "§b";     // Cyan (peu commun)
         return "§f";                      // Blanc (commun)
     }
     
     // Blocs nécessaires pour level up (augmente avec le niveau)
     private int getBlocksNeededForNextLevel(int level) {
-        return 100 + (level * 50);  // 100 au début, +50 par niveau
+        return 100 + (world * 50);  // 100 au début, +50 par niveau
     }
     
     // Récupérer le nombre de blocs cassés
     public static int getBlocksBroken(ItemStack stack) {
-        if (stack.hasTag()) {
-            return stack.getTag().getInt("blocks_broken");
+        if (stack.hasNbt()) {
+            return stack.getNbt().getInt("blocks_broken");
         }
         return 0;
     }
     
     // Récupérer le niveau
     public static int getLevel(ItemStack stack) {
-        if (stack.hasTag()) {
-            return stack.getTag().getInt("level");
+        if (stack.hasNbt()) {
+            return stack.getNbt().getInt("level");
         }
         return 1;  // Niveau de départ
     }
     
     // Définir les blocs cassés
     public static void setBlocksBroken(ItemStack stack, int amount) {
-        stack.getOrCreateTag().putInt("blocks_broken", amount);
+        stack.getOrCreateNbt().putInt("blocks_broken", amount);
     }
     
     // Définir le niveau
     public static void setLevel(ItemStack stack, int level) {
-        stack.getOrCreateTag().putInt("level", level);
+        stack.getOrCreateNbt().putInt("level", level);
     }
 }
 ```
@@ -2006,78 +1980,70 @@ public class LevelablePickaxeItem extends PickaxeItem {
 ```java
 package com.medelium.event;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.medelium.item.custom.LevelablePickaxeItem;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.level.BlockEvent;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
 public class LevelingEvents {
-    
-    @SubscribeEvent
-    public static void onBlockBreak(BlockEvent.BreakEvent event) {
-        Player player = event.getPlayer();
-        ItemStack heldItem = player.getMainHandItem();
-        
-        // Vérifier si c'est notre pioche qui level
-        if (heldItem.getItem() instanceof LevelablePickaxeItem) {
-            // Augmenter le compteur de blocs cassés
-            int blocksBroken = LevelablePickaxeItem.getBlocksBroken(heldItem);
-            int currentLevel = LevelablePickaxeItem.getLevel(heldItem);
-            
-            blocksBroken++;
-            LevelablePickaxeItem.setBlocksBroken(heldItem, blocksBroken);
-            
-            // Calculer les blocs nécessaires pour level up
-            int blocksNeeded = 100 + (currentLevel * 50);
-            int progress = blocksBroken % blocksNeeded;
-            
-            // Vérifier si on doit level up
-            if (progress == 0 && blocksBroken > 0) {
-                levelUp(player, heldItem, currentLevel);
+
+    // Appeler cette méthode dans Medelium.onInitialize()
+    public static void register() {
+        PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, entity) -> {
+            ItemStack heldItem = player.getMainHandStack();
+
+            if (heldItem.getItem() instanceof LevelablePickaxeItem) {
+                int blocksBroken = LevelablePickaxeItem.getBlocksBroken(heldItem);
+                int currentLevel = LevelablePickaxeItem.getLevel(heldItem);
+
+                blocksBroken++;
+                LevelablePickaxeItem.setBlocksBroken(heldItem, blocksBroken);
+
+                int blocksNeeded = 100 + (currentLevel * 50);
+                int progress = blocksBroken % blocksNeeded;
+
+                if (progress == 0 && blocksBroken > 0) {
+                    levelUp(player, heldItem, currentLevel);
+                }
             }
-        }
+            return true; // true = ne pas annuler le break
+        });
     }
-    
-    private static void levelUp(Player player, ItemStack item, int oldLevel) {
+
+    private static void levelUp(PlayerEntity player, ItemStack item, int oldLevel) {
         int newLevel = oldLevel + 1;
         LevelablePickaxeItem.setLevel(item, newLevel);
-        
-        // Message de level up
-        player.sendSystemMessage(Component.literal("§6§l⬆ NIVEAU AUGMENTÉ !"));
-        player.sendSystemMessage(Component.literal("§7Pioche niveau §f" + oldLevel + " §7→ §a" + newLevel));
-        
-        // Son de level up
-        player.level().playSound(null, player.blockPosition(), 
-            SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 1.0F, 1.0F);
-        
-        // Particules
-        if (player instanceof ServerPlayer serverPlayer) {
-            serverPlayer.level().sendParticles(
-                net.minecraft.core.particles.ParticleTypes.TOTEM_OF_UNDYING,
+
+        player.sendMessage(Text.literal("§6§l⬆ NIVEAU AUGMENTÉ !"), false);
+        player.sendMessage(Text.literal("§7Pioche niveau §f" + oldLevel + " §7→ §a" + newLevel), false);
+
+        player.getWorld().playSound(null, player.getBlockPos(),
+            SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
+
+        if (player instanceof ServerPlayerEntity serverPlayer) {
+            serverPlayer.getServerWorld().spawnParticles(
+                ParticleTypes.TOTEM_OF_UNDYING,
                 player.getX(), player.getY() + 1, player.getZ(),
                 50, 0.5, 0.5, 0.5, 0.1
             );
         }
-        
-        // Déblocages spéciaux
+
         if (newLevel == 5) {
-            player.sendSystemMessage(Component.literal("§a✓ Débloqué: Rapidité I"));
+            player.sendMessage(Text.literal("§a✓ Débloqué: Rapidité I"), false);
         } else if (newLevel == 10) {
-            player.sendSystemMessage(Component.literal("§a✓ Débloqué: Efficacité II"));
+            player.sendMessage(Text.literal("§a✓ Débloqué: Efficacité II"), false);
         } else if (newLevel == 15) {
-            player.sendSystemMessage(Component.literal("§a✓ Débloqué: Fortune I"));
+            player.sendMessage(Text.literal("§a✓ Débloqué: Fortune I"), false);
         } else if (newLevel == 20) {
-            player.sendSystemMessage(Component.literal("§d§l✓ DÉBLOQUÉ: MODE DIEU !"));
-            player.level().playSound(null, player.blockPosition(), 
-                SoundEvents.END_PORTAL_SPAWN, SoundSource.PLAYERS, 1.0F, 1.0F);
+            player.sendMessage(Text.literal("§d§l✓ DÉBLOQUÉ: MODE DIEU !"), false);
+            player.getWorld().playSound(null, player.getBlockPos(),
+                SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.PLAYERS, 1.0F, 1.0F);
         }
     }
 }
@@ -2088,46 +2054,46 @@ public class LevelingEvents {
 **Ajouter dans LevelablePickaxeItem.java :**
 
 ```java
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 // Méthode appelée quand l'objet est dans la main
 @Override
-public void inventoryTick(ItemStack stack, Level level, net.minecraft.world.entity.Entity entity, int slotId, boolean isSelected) {
+public void inventoryTick(ItemStack stack, World world, net.minecraft.entity.Entity entity, int slotId, boolean isSelected) {
     if (isSelected && entity instanceof LivingEntity living) {
         int itemLevel = getLevel(stack);
         
         // Niveau 5+ : Rapidité I
         if (itemLevel >= 5) {
-            living.addEffect(new net.minecraft.world.effect.MobEffectInstance(
-                net.minecraft.world.effect.MobEffects.DIG_SPEED, 20, 0, false, false));
+            living.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(
+                net.minecraft.entity.effect.StatusEffects.HASTE, 20, 0, false, false));
         }
         
         // Niveau 10+ : Efficacité II
         if (itemLevel >= 10) {
-            living.addEffect(new net.minecraft.world.effect.MobEffectInstance(
-                net.minecraft.world.effect.MobEffects.DIG_SPEED, 20, 1, false, false));
+            living.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(
+                net.minecraft.entity.effect.StatusEffects.HASTE, 20, 1, false, false));
         }
         
         // Niveau 15+ : Chance (simule Fortune)
         if (itemLevel >= 15) {
-            living.addEffect(new net.minecraft.world.effect.MobEffectInstance(
-                net.minecraft.world.effect.MobEffects.LUCK, 20, 0, false, false));
+            living.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(
+                net.minecraft.entity.effect.StatusEffects.LUCK, 20, 0, false, false));
         }
         
         // Niveau 20+ : Mode Dieu
         if (itemLevel >= 20) {
-            living.addEffect(new net.minecraft.world.effect.MobEffectInstance(
-                net.minecraft.world.effect.MobEffects.DIG_SPEED, 20, 2, false, false));
-            living.addEffect(new net.minecraft.world.effect.MobEffectInstance(
-                net.minecraft.world.effect.MobEffects.DAMAGE_BOOST, 20, 1, false, false));
-            living.addEffect(new net.minecraft.world.effect.MobEffectInstance(
-                net.minecraft.world.effect.MobEffects.REGENERATION, 20, 0, false, false));
+            living.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(
+                net.minecraft.entity.effect.StatusEffects.HASTE, 20, 2, false, false));
+            living.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(
+                net.minecraft.entity.effect.StatusEffects.STRENGTH, 20, 1, false, false));
+            living.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(
+                net.minecraft.entity.effect.StatusEffects.REGENERATION, 20, 0, false, false));
         }
     }
     
-    super.inventoryTick(stack, level, entity, slotId, isSelected);
+    super.inventoryTick(stack, world, entity, slotId, isSelected);
 }
 ```
 
@@ -2146,32 +2112,32 @@ Créer plusieurs pioches : `levelable_pickaxe_1.png`, `levelable_pickaxe_2.png`,
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "medeliummod:item/levelable_pickaxe_1"
+    "layer0": "medelium:item/levelable_pickaxe_1"
   },
   "overrides": [
     {
       "predicate": {
-        "medeliummod:level": 5
+        "medelium:level": 5
       },
-      "model": "medeliummod:item/levelable_pickaxe_5"
+      "model": "medelium:item/levelable_pickaxe_5"
     },
     {
       "predicate": {
-        "medeliummod:level": 10
+        "medelium:level": 10
       },
-      "model": "medeliummod:item/levelable_pickaxe_10"
+      "model": "medelium:item/levelable_pickaxe_10"
     },
     {
       "predicate": {
-        "medeliummod:level": 15
+        "medelium:level": 15
       },
-      "model": "medeliummod:item/levelable_pickaxe_15"
+      "model": "medelium:item/levelable_pickaxe_15"
     },
     {
       "predicate": {
-        "medeliummod:level": 20
+        "medelium:level": 20
       },
-      "model": "medeliummod:item/levelable_pickaxe_20"
+      "model": "medelium:item/levelable_pickaxe_20"
     }
   ]
 }
@@ -2180,22 +2146,19 @@ Créer plusieurs pioches : `levelable_pickaxe_1.png`, `levelable_pickaxe_2.png`,
 **Enregistrer le predicate personnalisé :**
 
 ```java
-// Dans un event client
-@SubscribeEvent
-public static void registerItemProperties(RegisterEvent event) {
-    if (event.getRegistryKey().equals(Registries.ITEM)) {
-        ItemProperties.register(ModItems.LEVELABLE_PICKAXE.get(),
-            ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "level"),
-            (stack, level, entity, seed) -> {
-                int itemLevel = LevelablePickaxeItem.getLevel(stack);
-                if (itemLevel >= 20) return 20;
-                if (itemLevel >= 15) return 15;
-                if (itemLevel >= 10) return 10;
-                if (itemLevel >= 5) return 5;
-                return 1;
-            });
-    }
-}
+// Dans MedeliumClient.onInitializeClient()
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
+
+ModelPredicateProviderRegistry.register(ModItems.LEVELABLE_PICKAXE,
+    new Identifier(Medelium.MOD_ID, "level"),
+    (stack, world, entity, seed) -> {
+        int itemLevel = LevelablePickaxeItem.getLevel(stack);
+        if (itemLevel >= 20) return 20;
+        if (itemLevel >= 15) return 15;
+        if (itemLevel >= 10) return 10;
+        if (itemLevel >= 5) return 5;
+        return 1;
+    });
 ```
 
 **Créer les différents modèles :**
@@ -2211,38 +2174,38 @@ public static void registerItemProperties(RegisterEvent event) {
 
 ```java
 // Dans le tooltip
-tooltipComponents.add(Component.literal("§6Récompenses débloquées:"));
+tooltip.add(Text.literal("§6Récompenses débloquées:"));
 
 // Récompenses de vitesse
-if (level >= 3) {
-    tooltipComponents.add(Component.literal("§a✓ Vitesse de minage +10%"));
+if (world >= 3) {
+    tooltip.add(Text.literal("§a✓ Vitesse de minage +10%"));
 }
-if (level >= 7) {
-    tooltipComponents.add(Component.literal("§a✓ Vitesse de minage +25%"));
+if (world >= 7) {
+    tooltip.add(Text.literal("§a✓ Vitesse de minage +25%"));
 }
 
 // Récompenses de butin
-if (level >= 5) {
-    tooltipComponents.add(Component.literal("§a✓ Chance de double drop: 10%"));
+if (world >= 5) {
+    tooltip.add(Text.literal("§a✓ Chance de double drop: 10%"));
 }
-if (level >= 12) {
-    tooltipComponents.add(Component.literal("§a✓ Chance de double drop: 25%"));
+if (world >= 12) {
+    tooltip.add(Text.literal("§a✓ Chance de double drop: 25%"));
 }
 
 // Récompenses spéciales
-if (level >= 10) {
-    tooltipComponents.add(Component.literal("§b✓ Auto-réparation"));
+if (world >= 10) {
+    tooltip.add(Text.literal("§b✓ Auto-réparation"));
 }
-if (level >= 15) {
-    tooltipComponents.add(Component.literal("§d✓ Veine miner (mine 3x3)"));
+if (world >= 15) {
+    tooltip.add(Text.literal("§d✓ Veine miner (mine 3x3)"));
 }
-if (level >= 20) {
-    tooltipComponents.add(Component.literal("§6§l✓ PIOCHE DIVINE"));
+if (world >= 20) {
+    tooltip.add(Text.literal("§6§l✓ PIOCHE DIVINE"));
 }
 
 // Statistiques totales
-tooltipComponents.add(Component.literal(""));
-tooltipComponents.add(Component.literal("§8Total blocs cassés: §7" + getBlocksBroken(stack)));
+tooltip.add(Text.literal(""));
+tooltip.add(Text.literal("§8Total blocs cassés: §7" + getBlocksBroken(stack)));
 ```
 
 #### 1.6.6 Sauvegarder la Progression (Persistance)
@@ -2254,14 +2217,14 @@ Le système NBT sauvegarde automatiquement, mais vous pouvez aussi :
 ```java
 // Quand l'objet est craftée/obtenu
 @Override
-public void onCraftedBy(ItemStack stack, Level level, Player player) {
+public void onCraftedBy(ItemStack stack, World world, PlayerEntity player) {
     // Initialiser avec niveau 1
     setLevel(stack, 1);
     setBlocksBroken(stack, 0);
     
     // Ajouter un UUID unique
-    stack.getOrCreateTag().putString("owner", player.getStringUUID());
-    stack.getOrCreateTag().putLong("created_time", level.getGameTime());
+    stack.getOrCreateNbt().putString("owner", player.getStringUUID());
+    stack.getOrCreateNbt().putLong("created_time", level.getGameTime());
     
     super.onCraftedBy(stack, level, player);
 }
@@ -2271,16 +2234,16 @@ public void onCraftedBy(ItemStack stack, Level level, Player player) {
 
 ```java
 if (Screen.hasShiftDown()) {
-    if (stack.hasTag() && stack.getTag().contains("owner")) {
-        tooltipComponents.add(Component.literal(""));
-        tooltipComponents.add(Component.literal("§8Propriétaire: §7" + getPlayerName(stack)));
+    if (stack.hasNbt() && stack.getNbt().contains("owner")) {
+        tooltip.add(Text.literal(""));
+        tooltip.add(Text.literal("§8Propriétaire: §7" + getPlayerName(stack)));
         
-        long createdTime = stack.getTag().getLong("created_time");
+        long createdTime = stack.getNbt().getLong("created_time");
         long currentTime = minecraft.level.getGameTime();
         long ticksExisted = currentTime - createdTime;
         long secondsExisted = ticksExisted / 20;
         
-        tooltipComponents.add(Component.literal("§8Âge: §7" + formatTime(secondsExisted)));
+        tooltip.add(Text.literal("§8Âge: §7" + formatTime(secondsExisted)));
     }
 }
 ```
@@ -2321,11 +2284,11 @@ if (Screen.hasShiftDown()) {
 **Où :** `src/main/java/com/medelium/block/ModBlocks.java`
 
 ```java
-public static final DeferredBlock<Block> MON_BLOC = registerBlock("mon_bloc",
-    () -> new Block(BlockBehaviour.Properties.of()
+public static final Block MON_BLOC = registerBlock("mon_bloc",
+    () -> new Block(FabricBlockSettings.create()
         .strength(3.0f, 6.0f)  // dureté, résistance explosion
-        .requiresCorrectToolForDrops()  // Nécessite bon outil
-        .sound(SoundType.STONE)  // Son de pierre
+        .requiresTool()  // Nécessite bon outil
+        .sounds(BlockSoundGroup.STONE)  // Son de pierre
     ));
 ```
 
@@ -2341,11 +2304,11 @@ public static final DeferredBlock<Block> MON_BLOC = registerBlock("mon_bloc",
 ### 2.2 Bloc Lumineux
 
 ```java
-public static final DeferredBlock<Block> TORCHE_MAGIQUE = registerBlock("torche_magique",
-    () -> new Block(BlockBehaviour.Properties.of()
+public static final Block TORCHE_MAGIQUE = registerBlock("torche_magique",
+    () -> new Block(FabricBlockSettings.create()
         .strength(0.5f)
         .lightLevel((state) -> 15)  // Lumière max (15)
-        .sound(SoundType.WOOD)
+        .sounds(BlockSoundGroup.WOOD)
     ));
 ```
 
@@ -2354,21 +2317,21 @@ public static final DeferredBlock<Block> TORCHE_MAGIQUE = registerBlock("torche_
 ### 2.3 Bloc Transparent
 
 ```java
-public static final DeferredBlock<Block> VITRAIL = registerBlock("vitrail",
-    () -> new Block(BlockBehaviour.Properties.of()
+public static final Block VITRAIL = registerBlock("vitrail",
+    () -> new Block(FabricBlockSettings.create()
         .strength(0.3f)
-        .sound(SoundType.GLASS)
-        .noOcclusion()  // Transparent
+        .sounds(BlockSoundGroup.GLASS)
+        .nonOpaque()  // Transparent
     ));
 ```
 
 ### 2.4 Bloc qui Ne Peut Pas Être Cassé en Survie
 
 ```java
-public static final DeferredBlock<Block> PIERRE_INDESTRUCTIBLE = registerBlock("pierre_indestructible",
-    () -> new Block(BlockBehaviour.Properties.of()
+public static final Block PIERRE_INDESTRUCTIBLE = registerBlock("pierre_indestructible",
+    () -> new Block(FabricBlockSettings.create()
         .strength(-1.0f, 3600000.0f)  // Incassable
-        .requiresCorrectToolForDrops()
+        .requiresTool()
     ));
 ```
 
@@ -2376,19 +2339,19 @@ public static final DeferredBlock<Block> PIERRE_INDESTRUCTIBLE = registerBlock("
 
 ```java
 // Escalier
-public static final DeferredBlock<StairBlock> ESCALIER_CHATEAU = registerBlock("escalier_chateau",
+public static final StairBlock ESCALIER_CHATEAU = registerBlock("escalier_chateau",
     () -> new StairBlock(
-        ModBlocks.CASTLE_STONE.get().defaultBlockState(),
-        BlockBehaviour.Properties.of().strength(2.0f)
+        ModBlocks.CASTLE_STONE.getDefaultState(),
+        FabricBlockSettings.create().strength(2.0f)
     ));
 
 // Dalle
-public static final DeferredBlock<SlabBlock> DALLE_CHATEAU = registerBlock("dalle_chateau",
-    () -> new SlabBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+public static final SlabBlock DALLE_CHATEAU = registerBlock("dalle_chateau",
+    () -> new SlabBlock(FabricBlockSettings.create().strength(2.0f)));
 
 // Mur
-public static final DeferredBlock<WallBlock> MUR_CHATEAU = registerBlock("mur_chateau",
-    () -> new WallBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+public static final WallBlock MUR_CHATEAU = registerBlock("mur_chateau",
+    () -> new WallBlock(FabricBlockSettings.create().strength(2.0f)));
 ```
 
 ---
@@ -2429,17 +2392,17 @@ public static final DeferredBlock<WallBlock> MUR_CHATEAU = registerBlock("mur_ch
 ```java
 package com.medelium.item;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import net.minecraft.Util;
-import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.registry.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.*;
+import net.minecraft.util.Identifier;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.*;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -2458,9 +2421,9 @@ public class ModArmorMaterials {
         }),
         15,  // Enchantabilité
         SoundEvents.ARMOR_EQUIP_IRON,  // Son équipement
-        () -> Ingredient.of(ModItems.SILVER_COIN.get()),  // Matériau réparation
+        () -> Ingredient.ofItems(ModItems.SILVER_COIN),  // Matériau réparation
         List.of(new ArmorMaterial.Layer(
-            ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "knight")
+            new Identifier(Medelium.MOD_ID, "knight")
         )),
         0.0F,  // Ténacité
         0.0F   // Résistance recul
@@ -2476,8 +2439,8 @@ public class ModArmorMaterials {
             enummap.put(type, defense.get(type));
         }
         
-        return Registry.registerForHolder(BuiltInRegistries.ARMOR_MATERIAL,
-            ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, name),
+        return Registry.registerForHolder(Registries.ARMOR_MATERIAL,
+            new Identifier(Medelium.MOD_ID, name),
             new ArmorMaterial(enummap, enchantmentValue, equipSound, repairIngredient, layers,
                 toughness, knockbackResistance));
     }
@@ -2490,41 +2453,37 @@ public class ModArmorMaterials {
 
 ```java
 // Importer en haut du fichier
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.item.ArmorItem;
 
 // Armure de Chevalier
-public static final DeferredItem<ArmorItem> KNIGHT_HELMET = ITEMS.register("knight_helmet",
-    () -> new ArmorItem(ModArmorMaterials.KNIGHT, ArmorItem.Type.HELMET,
-        new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(15))));
+public static final ArmorItem KNIGHT_HELMET = registerItem("knight_helmet", new ArmorItem(ModArmorMaterials.KNIGHT, ArmorItem.Type.HELMET,
+        new FabricItemSettings().maxDamage(ArmorItem.Type.HELMET.getDurability(15))));
 
-public static final DeferredItem<ArmorItem> KNIGHT_CHESTPLATE = ITEMS.register("knight_chestplate",
-    () -> new ArmorItem(ModArmorMaterials.KNIGHT, ArmorItem.Type.CHESTPLATE,
-        new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(15))));
+public static final ArmorItem KNIGHT_CHESTPLATE = registerItem("knight_chestplate", new ArmorItem(ModArmorMaterials.KNIGHT, ArmorItem.Type.CHESTPLATE,
+        new FabricItemSettings().maxDamage(ArmorItem.Type.CHESTPLATE.getDurability(15))));
 
-public static final DeferredItem<ArmorItem> KNIGHT_LEGGINGS = ITEMS.register("knight_leggings",
-    () -> new ArmorItem(ModArmorMaterials.KNIGHT, ArmorItem.Type.LEGGINGS,
-        new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(15))));
+public static final ArmorItem KNIGHT_LEGGINGS = registerItem("knight_leggings", new ArmorItem(ModArmorMaterials.KNIGHT, ArmorItem.Type.LEGGINGS,
+        new FabricItemSettings().maxDamage(ArmorItem.Type.LEGGINGS.getDurability(15))));
 
-public static final DeferredItem<ArmorItem> KNIGHT_BOOTS = ITEMS.register("knight_boots",
-    () -> new ArmorItem(ModArmorMaterials.KNIGHT, ArmorItem.Type.BOOTS,
-        new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(15))));
+public static final ArmorItem KNIGHT_BOOTS = registerItem("knight_boots", new ArmorItem(ModArmorMaterials.KNIGHT, ArmorItem.Type.BOOTS,
+        new FabricItemSettings().maxDamage(ArmorItem.Type.BOOTS.getDurability(15))));
 ```
 
 **Ajouter au Creative Tab :**
 ```java
-output.accept(ModItems.KNIGHT_HELMET.get());
-output.accept(ModItems.KNIGHT_CHESTPLATE.get());
-output.accept(ModItems.KNIGHT_LEGGINGS.get());
-output.accept(ModItems.KNIGHT_BOOTS.get());
+output.accept(ModItems.KNIGHT_HELMET);
+output.accept(ModItems.KNIGHT_CHESTPLATE);
+output.accept(ModItems.KNIGHT_LEGGINGS);
+output.accept(ModItems.KNIGHT_BOOTS);
 ```
 
 **Traductions :**
 ```json
 {
-  "item.medeliummod.knight_helmet": "Casque de Chevalier",
-  "item.medeliummod.knight_chestplate": "Plastron de Chevalier",
-  "item.medeliummod.knight_leggings": "Jambières de Chevalier",
-  "item.medeliummod.knight_boots": "Bottes de Chevalier"
+  "item.medelium.knight_helmet": "Casque de Chevalier",
+  "item.medelium.knight_chestplate": "Plastron de Chevalier",
+  "item.medelium.knight_leggings": "Jambières de Chevalier",
+  "item.medelium.knight_boots": "Bottes de Chevalier"
 }
 ```
 
@@ -2587,10 +2546,9 @@ output.accept(ModItems.KNIGHT_BOOTS.get());
 ```java
 package com.medelium.item;
 
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.neoforged.neoforge.common.SimpleTier;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.*;
 
 public class ModToolTiers {
     // Outils en Argent
@@ -2600,7 +2558,7 @@ public class ModToolTiers {
         6.0F,  // Vitesse de minage
         2.0F,  // Dégâts d'attaque bonus
         14,  // Enchantabilité
-        () -> Ingredient.of(ModItems.SILVER_COIN.get())  // Matériau réparation
+        () -> Ingredient.ofItems(ModItems.SILVER_COIN)  // Matériau réparation
     );
 }
 ```
@@ -2610,26 +2568,22 @@ public class ModToolTiers {
 **Dans ModItems.java :**
 
 ```java
-import net.minecraft.world.item.*;
+import net.minecraft.item.*;
 
 // Pioche
-public static final DeferredItem<PickaxeItem> SILVER_PICKAXE = ITEMS.register("silver_pickaxe",
-    () -> new PickaxeItem(ModToolTiers.SILVER, new Item.Properties()
+public static final PickaxeItem SILVER_PICKAXE = registerItem("silver_pickaxe", new PickaxeItem(ModToolTiers.SILVER, new FabricItemSettings()
         .attributes(PickaxeItem.createAttributes(ModToolTiers.SILVER, 1.0F, -2.8F))));
 
 // Hache
-public static final DeferredItem<AxeItem> SILVER_AXE = ITEMS.register("silver_axe",
-    () -> new AxeItem(ModToolTiers.SILVER, new Item.Properties()
+public static final AxeItem SILVER_AXE = registerItem("silver_axe", new AxeItem(ModToolTiers.SILVER, new FabricItemSettings()
         .attributes(AxeItem.createAttributes(ModToolTiers.SILVER, 6.0F, -3.1F))));
 
 // Pelle
-public static final DeferredItem<ShovelItem> SILVER_SHOVEL = ITEMS.register("silver_shovel",
-    () -> new ShovelItem(ModToolTiers.SILVER, new Item.Properties()
+public static final ShovelItem SILVER_SHOVEL = registerItem("silver_shovel", new ShovelItem(ModToolTiers.SILVER, new FabricItemSettings()
         .attributes(ShovelItem.createAttributes(ModToolTiers.SILVER, 1.5F, -3.0F))));
 
 // Houe
-public static final DeferredItem<HoeItem> SILVER_HOE = ITEMS.register("silver_hoe",
-    () -> new HoeItem(ModToolTiers.SILVER, new Item.Properties()
+public static final HoeItem SILVER_HOE = registerItem("silver_hoe", new HoeItem(ModToolTiers.SILVER, new FabricItemSettings()
         .attributes(HoeItem.createAttributes(ModToolTiers.SILVER, -2.0F, -1.0F))));
 ```
 
@@ -2691,19 +2645,19 @@ public static final DeferredItem<HoeItem> SILVER_HOE = ITEMS.register("silver_ho
 import net.minecraft.network.protocol.game.ClientboundSetTitlesAnimationPacket;
 import net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket;
 import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.network.chat.Component;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 
 // Dans votre code (événement, commande, etc.)
-public static void showTitle(ServerPlayer player, String title, String subtitle) {
+public static void showTitle(ServerPlayerEntity player, String title, String subtitle) {
     // Texte du titre
     player.connection.send(new ClientboundSetTitleTextPacket(
-        Component.literal("§6§l" + title)
+        Text.literal("§6§l" + title)
     ));
     
     // Texte du sous-titre
     player.connection.send(new ClientboundSetSubtitleTextPacket(
-        Component.literal("§7" + subtitle)
+        Text.literal("§7" + subtitle)
     ));
     
     // Durée d'affichage (fadeIn, stay, fadeOut en ticks)
@@ -2726,13 +2680,13 @@ showTitle(player, "✓ SUCCÈS !", "Quête terminée");
 
 // Titre d'avertissement
 player.connection.send(new ClientboundSetTitleTextPacket(
-    Component.literal("§c§l⚠ ATTENTION !")));
+    Text.literal("§c§l⚠ ATTENTION !")));
 player.connection.send(new ClientboundSetSubtitleTextPacket(
-    Component.literal("§7Un boss approche...")));
+    Text.literal("§7Un boss approche...")));
 
 // Titre animé avec couleurs
 player.connection.send(new ClientboundSetTitleTextPacket(
-    Component.literal("§d§k||§r §5§lROYAUTÉ §d§k||")));
+    Text.literal("§d§k||§r §5§lROYAUTÉ §d§k||")));
 ```
 
 ### 5.2 📊 Action Bar (Au-dessus de la Hotbar)
@@ -2743,9 +2697,9 @@ player.connection.send(new ClientboundSetTitleTextPacket(
 import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 
 // Message simple
-public static void showActionBar(ServerPlayer player, String message) {
+public static void showActionBar(ServerPlayerEntity player, String message) {
     player.connection.send(new ClientboundSetActionBarTextPacket(
-        Component.literal(message)
+        Text.literal(message)
     ));
 }
 
@@ -2757,10 +2711,9 @@ showActionBar(player, "§aBlocs cassés: §f50§7/§f100");
 
 ```java
 // Dans votre event de casse de bloc
-@SubscribeEvent
-public static void onBlockBreak(BlockEvent.BreakEvent event) {
-    if (event.getPlayer() instanceof ServerPlayer player) {
-        ItemStack item = player.getMainHandItem();
+public static void onBlockBreak(PlayerBlockBreakEvents.Before event) {
+    if (event.getPlayer() instanceof ServerPlayerEntity player) {
+        ItemStack item = player.getMainHandStack();
         
         int progress = getBlocksBroken(item);
         int needed = getBlocksNeeded(item);
@@ -2795,8 +2748,8 @@ private static String createProgressBar(int current, int max) {
 ```java
 // Dans inventoryTick de votre item
 @Override
-public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-    if (!level.isClientSide() && isSelected && entity instanceof ServerPlayer player) {
+public void inventoryTick(ItemStack stack, World world, Entity entity, int slotId, boolean isSelected) {
+    if (!world.isClient() && isSelected && entity instanceof ServerPlayerEntity player) {
         // Mettre à jour l'action bar chaque seconde
         if (level.getGameTime() % 20 == 0) {
             int blocksLeft = getBlocksNeeded(stack) - (getBlocksBroken(stack) % getBlocksNeeded(stack));
@@ -2814,21 +2767,21 @@ public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotI
 
 ```java
 import net.minecraft.advancements.AdvancementType;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.text.Text;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 // Créer un toast personnalisé
-public static void showToast(ServerPlayer player, String title, String description, ItemStack icon) {
+public static void showToast(ServerPlayerEntity player, String title, String description, ItemStack icon) {
     // Utiliser le système de chat pour simuler (méthode simple)
-    player.sendSystemMessage(Component.literal("§6[Notification] §f" + title));
-    player.sendSystemMessage(Component.literal("§7" + description));
+    player.sendMessage(Text.literal("§6[Notification] §f" + title));
+    player.sendMessage(Text.literal("§7" + description));
 }
 ```
 
 #### 5.3.2 Advancement Personnalisé (Vrai Toast)
 
-**Créer :** `src/main/resources/data/medeliummod/advancements/notifications/level_up.json`
+**Créer :** `src/main/resources/data/medelium/advancements/notifications/level_up.json`
 
 ```json
 {
@@ -2864,10 +2817,10 @@ public static void showToast(ServerPlayer player, String title, String descripti
 ```java
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementProgress;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Identifier;
 
-public static void grantAdvancement(ServerPlayer player, String advancementId) {
-    ResourceLocation id = ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, advancementId);
+public static void grantAdvancement(ServerPlayerEntity player, String advancementId) {
+    Identifier id = new Identifier(Medelium.MOD_ID, advancementId);
     AdvancementHolder advancement = player.server.getAdvancements().get(id);
     
     if (advancement != null) {
@@ -2892,16 +2845,16 @@ grantAdvancement(player, "notifications/level_up");
 package com.medelium.client.toast;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.components.toasts.Toast;
 import net.minecraft.client.gui.components.toasts.ToastComponent;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
+import net.minecraft.item.ItemStack;
 
 public class CustomToast implements Toast {
-    private static final ResourceLocation BACKGROUND_IMAGE = 
-        ResourceLocation.fromNamespaceAndPath("medeliummod", "textures/gui/toast.png");
+    private static final Identifier BACKGROUND_IMAGE = 
+        new Identifier("medelium", "textures/gui/toast.png");
     
     private final Component title;
     private final Component description;
@@ -2916,7 +2869,7 @@ public class CustomToast implements Toast {
     }
 
     @Override
-    public Visibility render(GuiGraphics guiGraphics, ToastComponent toastComponent, long timeSinceLastVisible) {
+    public Visibility render(DrawContext guiGraphics, ToastComponent toastComponent, long timeSinceLastVisible) {
         if (this.newDisplay) {
             this.firstDisplay = timeSinceLastVisible;
             this.newDisplay = false;
@@ -2942,7 +2895,7 @@ public class CustomToast implements Toast {
 
     // Afficher le toast
     public static void show(Component title, Component description, ItemStack icon) {
-        net.minecraft.client.Minecraft.getInstance().getToasts().addToast(
+        net.minecraft.client.MinecraftClient.getInstance().getToasts().addToast(
             new CustomToast(title, description, icon)
         );
     }
@@ -2955,11 +2908,11 @@ public class CustomToast implements Toast {
 
 ```java
 // Côté client uniquement !
-if (level.isClientSide()) {
+if (world.isClient()) {
     CustomToast.show(
-        Component.literal("§6§lNiveau 5 Atteint !"),
-        Component.literal("§7Rapidité débloquée"),
-        new ItemStack(ModItems.ROYAL_SWORD.get())
+        Text.literal("§6§lNiveau 5 Atteint !"),
+        Text.literal("§7Rapidité débloquée"),
+        new ItemStack(ModItems.ROYAL_SWORD)
     );
 }
 ```
@@ -2978,18 +2931,18 @@ if (level.isClientSide()) {
 #### 5.4.1 Popup avec Position Personnalisable
 
 ```java
-package com.medelium.client.screen;
+package com.medelium.client.currentScreen;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import com.medelium.Medelium;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.currentScreen.Screen;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 
 public class PopupScreen extends Screen {
-    private static final ResourceLocation POPUP_TEXTURE = 
-        ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/popup.png");
+    private static final Identifier POPUP_TEXTURE = 
+        new Identifier(Medelium.MOD_ID, "textures/gui/popup.png");
     
     private final int displayTime;
     private int ticksDisplayed = 0;
@@ -3029,7 +2982,7 @@ public class PopupScreen extends Screen {
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    public void render(DrawContext guiGraphics, int mouseX, int mouseY, float partialTick) {
         // Calculer la position selon le choix
         int x = calculateX();
         int y = calculateY();
@@ -3087,7 +3040,7 @@ public class PopupScreen extends Screen {
     
     // Méthodes statiques pour afficher facilement
     public static void show(int durationTicks, PopupPosition position) {
-        Minecraft.getInstance().setScreen(new PopupScreen(durationTicks, position));
+        MinecraftClient.getInstance().setScreen(new PopupScreen(durationTicks, position));
     }
     
     public static void showCenter(int durationTicks) {
@@ -3104,7 +3057,7 @@ public class PopupScreen extends Screen {
     
     // Position personnalisée (coordonnées exactes)
     public static void showCustom(int durationTicks, int x, int y) {
-        Minecraft.getInstance().setScreen(new PopupScreen(durationTicks, x, y));
+        MinecraftClient.getInstance().setScreen(new PopupScreen(durationTicks, x, y));
     }
 }
 ```
@@ -3134,8 +3087,8 @@ PopupScreen.showCustom(60, 100, 50);
 
 ```java
 public class AnimatedPopupScreen extends Screen {
-    private static final ResourceLocation POPUP_TEXTURE = 
-        ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/popup.png");
+    private static final Identifier POPUP_TEXTURE = 
+        new Identifier(Medelium.MOD_ID, "textures/gui/popup.png");
     
     private final int displayTime;
     private int ticksDisplayed = 0;
@@ -3154,7 +3107,7 @@ public class AnimatedPopupScreen extends Screen {
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    public void render(DrawContext guiGraphics, int mouseX, int mouseY, float partialTick) {
         // Position finale (centre droit par exemple)
         int targetX = this.width - popupWidth - 10;
         int targetY = (this.height - popupHeight) / 2;
@@ -3208,7 +3161,7 @@ public class AnimatedPopupScreen extends Screen {
     }
     
     public static void slideFromRight(int durationTicks) {
-        Minecraft.getInstance().setScreen(
+        MinecraftClient.getInstance().setScreen(
             new AnimatedPopupScreen(durationTicks, SlideDirection.FROM_RIGHT));
     }
 }
@@ -3221,19 +3174,13 @@ public class AnimatedPopupScreen extends Screen {
 ```java
 package com.medelium.client.overlay;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.RenderGuiOverlayEvent;
-
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID, bus = EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+import com.medelium.Medelium;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
+import net.minecraft.util.Identifier;
 public class PopupOverlay {
-    private static final ResourceLocation POPUP_TEXTURE = 
-        ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/popup.png");
+    private static final Identifier POPUP_TEXTURE = 
+        new Identifier(Medelium.MOD_ID, "textures/gui/popup.png");
     
     private static boolean isVisible = false;
     private static int ticksRemaining = 0;
@@ -3242,11 +3189,10 @@ public class PopupOverlay {
     private static String title = "";
     private static String subtitle = "";
     
-    @SubscribeEvent
-    public static void onRenderGui(RenderGuiOverlayEvent.Post event) {
+        public static void onRenderGui(RenderGuiOverlayEvent.Post event) {
         if (isVisible && ticksRemaining > 0) {
-            GuiGraphics guiGraphics = event.getGuiGraphics();
-            Minecraft mc = Minecraft.getInstance();
+            DrawContext guiGraphics = event.getGuiGraphics();
+            Minecraft mc = MinecraftClient.getInstance();
             
             // Dessiner la popup
             guiGraphics.blit(POPUP_TEXTURE, popupX, popupY, 0, 0, 200, 100, 256, 256);
@@ -3277,19 +3223,19 @@ public class PopupOverlay {
     
     // Méthodes pratiques
     public static void showTopRight(String title, String subtitle, int durationTicks) {
-        Minecraft mc = Minecraft.getInstance();
+        Minecraft mc = MinecraftClient.getInstance();
         show(title, subtitle, mc.getWindow().getGuiScaledWidth() - 210, 10, durationTicks);
     }
     
     public static void showBottomCenter(String title, String subtitle, int durationTicks) {
-        Minecraft mc = Minecraft.getInstance();
+        Minecraft mc = MinecraftClient.getInstance();
         int x = (mc.getWindow().getGuiScaledWidth() - 200) / 2;
         int y = mc.getWindow().getGuiScaledHeight() - 110;
         show(title, subtitle, x, y, durationTicks);
     }
     
     public static void showCenter(String title, String subtitle, int durationTicks) {
-        Minecraft mc = Minecraft.getInstance();
+        Minecraft mc = MinecraftClient.getInstance();
         int x = (mc.getWindow().getGuiScaledWidth() - 200) / 2;
         int y = (mc.getWindow().getGuiScaledHeight() - 100) / 2;
         show(title, subtitle, x, y, durationTicks);
@@ -3349,8 +3295,8 @@ Coordonnées utiles :
 **Lors d'un level up :**
 
 ```java
-private static void levelUp(Player player, ItemStack item, int newLevel) {
-    if (player instanceof ServerPlayer serverPlayer) {
+private static void levelUp(PlayerEntity player, ItemStack item, int newLevel) {
+    if (player instanceof ServerPlayerEntity serverPlayer) {
         // 1. Action bar pour confirmation rapide
         showActionBar(serverPlayer, "§a✓ Niveau " + newLevel + " atteint !");
         
@@ -3361,8 +3307,8 @@ private static void levelUp(Player player, ItemStack item, int newLevel) {
         grantAdvancement(serverPlayer, "notifications/level_up");
         
         // 4. Son + Particules
-        serverPlayer.level().playSound(null, serverPlayer.blockPosition(), 
-            SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 1.0F, 1.0F);
+        serverplayer.getWorld().playSound(null, serverplayer.getBlockPos(), 
+            SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
     }
 }
 ```
@@ -3372,8 +3318,8 @@ private static void levelUp(Player player, ItemStack item, int newLevel) {
 ```java
 // Mise à jour continue dans action bar
 @Override
-public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-    if (!level.isClientSide() && isSelected && entity instanceof ServerPlayer player) {
+public void inventoryTick(ItemStack stack, World world, Entity entity, int slotId, boolean isSelected) {
+    if (!world.isClient() && isSelected && entity instanceof ServerPlayerEntity player) {
         if (level.getGameTime() % 10 == 0) {  // Update toutes les 0.5 sec
             int progress = getBlocksBroken(stack) % getBlocksNeeded(stack);
             int needed = getBlocksNeeded(stack);
@@ -3388,19 +3334,19 @@ public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotI
 **Système de quêtes :**
 
 ```java
-public static void completeQuest(ServerPlayer player, String questName) {
+public static void completeQuest(ServerPlayerEntity player, String questName) {
     // Titre
     showTitle(player, "✓ QUÊTE TERMINÉE", questName);
     
     // Toast
     CustomToast.show(
-        Component.literal("§aQuête terminée !"),
-        Component.literal("§7" + questName),
+        Text.literal("§aQuête terminée !"),
+        Text.literal("§7" + questName),
         new ItemStack(Items.EMERALD)
     );
     
     // Récompense dans chat
-    player.sendSystemMessage(Component.literal("§6+100 pièces d'or"));
+    player.sendMessage(Text.literal("§6+100 pièces d'or"));
 }
 ```
 
@@ -3413,13 +3359,13 @@ public static void completeQuest(ServerPlayer player, String questName) {
 **Dans ModFoods.java :**
 
 ```java
-public static final FoodProperties FROMAGE = new FoodProperties.Builder()
+public static final FoodComponent FROMAGE = new FoodComponent.Builder()
     .nutrition(4)  // Points de nourriture (1 = demi-cuisse)
     .saturationModifier(0.3f)  // Saturation
     .build();
 
 // Nourriture rapide à manger
-public static final FoodProperties POMME_OR_MEDELIUM = new FoodProperties.Builder()
+public static final FoodComponent POMME_OR_MEDELIUM = new FoodComponent.Builder()
     .nutrition(4)
     .saturationModifier(1.2f)
     .fast()  // Mange rapidement
@@ -3429,21 +3375,20 @@ public static final FoodProperties POMME_OR_MEDELIUM = new FoodProperties.Builde
 
 **Dans ModItems.java :**
 ```java
-public static final DeferredItem<Item> FROMAGE = ITEMS.register("fromage",
-    () -> new Item(new Item.Properties().food(ModFoods.FROMAGE)));
+public static final Item FROMAGE = registerItem("fromage", new Item(new FabricItemSettings().food(ModFoods.FROMAGE)));
 ```
 
 ### 5.2 Nourriture avec Effets
 
 ```java
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.effect.StatusEffectInstance;
 
-public static final FoodProperties POTION_FORCE = new FoodProperties.Builder()
+public static final FoodComponent POTION_FORCE = new FoodComponent.Builder()
     .nutrition(2)
     .saturationModifier(0.1f)
-    .effect(() -> new MobEffectInstance(
-        MobEffects.DAMAGE_BOOST,  // Effet Force
+    .effect(() -> new StatusEffectInstance(
+        StatusEffects.STRENGTH,  // Effet Force
         600,  // Durée en ticks (20 ticks = 1 seconde)
         1     // Niveau (0 = niveau 1, 1 = niveau 2, etc.)
     ), 1.0f)  // Probabilité (1.0 = 100%)
@@ -3491,32 +3436,25 @@ public static final FoodProperties POTION_FORCE = new FoodProperties.Builder()
 ```java
 package com.medelium.entity;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.medelium.entity.custom.GuardEntity;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
-
+import net.minecraft.registry.Registries;
+import net.minecraft.entity.*;
+import net.minecraft.entity.*;
 public class ModEntities {
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
-        DeferredRegister.create(Registries.ENTITY_TYPE, MedeliumMod.MOD_ID);
+    // Les entités sont enregistrées via Registry.register(Registries.ENTITY_TYPE, ...)
 
-    public static final DeferredHolder<EntityType<?>, EntityType<GuardEntity>> GUARD =
+    public static final ItemGroup, EntityType<GuardEntity>> GUARD =
         ENTITY_TYPES.register("guard", () -> EntityType.Builder.of(
             GuardEntity::new, MobCategory.CREATURE)
             .sized(0.6f, 1.8f)  // Taille (largeur, hauteur)
             .build("guard"));
 
-    public static void register(IEventBus eventBus) {
-        ENTITY_TYPES.register(eventBus);
-    }
+    // Fabric: pas besoin de register(bus), les Registry.register() sont appelés au chargement de la classe
 }
 ```
 
-**Dans MedeliumMod.java, ajouter :**
+**Dans Medelium.java, ajouter :**
 ```java
 ModEntities.register(modEventBus);
 ```
@@ -3528,28 +3466,25 @@ ModEntities.register(modEventBus);
 ```java
 package com.medelium.entity.custom;
 
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.World;
 
 public class GuardEntity extends PathfinderMob {
     
-    public GuardEntity(EntityType<? extends PathfinderMob> entityType, Level level) {
+    public GuardEntity(EntityType<? extends PathfinderMob> entityType, World world) {
         super(entityType, level);
     }
 
     @Override
     protected void registerGoals() {
         // Objectifs de l'entité
-        this.goalSelector.addGoal(0, new FloatGoal(this));  // Nager
-        this.goalSelector.addGoal(1, new PanicGoal(this, 1.25));  // Paniquer si attaqué
-        this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 6.0F));  // Regarder joueur
-        this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));  // Regarder autour
-        this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0));  // Se promener
+        this.goalSelector.add(0, new FloatGoal(this));  // Nager
+        this.goalSelector.add(1, new PanicGoal(this, 1.25));  // Paniquer si attaqué
+        this.goalSelector.add(2, new LookAtPlayerGoal(this, Player.class, 6.0F));  // Regarder joueur
+        this.goalSelector.add(3, new RandomLookAroundGoal(this));  // Regarder autour
+        this.goalSelector.add(4, new WaterAvoidingRandomStrollGoal(this, 1.0));  // Se promener
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -3610,7 +3545,7 @@ public class GuardEntity extends PathfinderMob {
 >
 > **🔧 Comment créer un boss (étapes) :**
 > 1. Créer la classe qui hérite de Monster (pas PathfinderMob)
-> 2. Créer le ServerBossEvent (barre de vie)
+> 2. Créer le ServerBossBar (barre de vie)
 > 3. Définir les attributs (HP, dégâts, armure)
 > 4. Programmer les phases de combat
 > 5. Ajouter les attaques spéciales
@@ -3628,30 +3563,25 @@ public class GuardEntity extends PathfinderMob {
 ```java
 package com.medelium.entity.custom;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerBossEvent;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.BossEvent;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
+import net.minecraft.text.Text;
+import net.minecraft.server.level.ServerBossBar;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.entity.boss.BossBar;
+import net.minecraft.entity.*;
+import net.minecraft.entity.mob.*;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.World;
 
 public class DragonBossEntity extends Monster {
-    private final ServerBossEvent bossEvent;
+    private final ServerBossBar bossEvent;
 
-    public DragonBossEntity(EntityType<? extends Monster> entityType, Level level) {
+    public DragonBossEntity(EntityType<? extends Monster> entityType, World world) {
         super(entityType, level);
         // Créer la barre de boss
-        this.bossEvent = new ServerBossEvent(
-            Component.literal("§4§l⚔ Dragon des Ténèbres ⚔"),
-            BossEvent.BossBarColor.RED,
-            BossEvent.BossBarOverlay.PROGRESS
+        this.bossEvent = new ServerBossBar(
+            Text.literal("§4§l⚔ Dragon des Ténèbres ⚔"),
+            BossBar.BossBarColor.RED,
+            BossBar.BossBarOverlay.PROGRESS
         );
         this.xpReward = 500;  // XP donné à la mort
     }
@@ -3659,15 +3589,15 @@ public class DragonBossEntity extends Monster {
     @Override
     protected void registerGoals() {
         // Objectifs agressifs
-        this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 0.8));
-        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 24.0F));
-        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+        this.goalSelector.add(0, new FloatGoal(this));
+        this.goalSelector.add(1, new MeleeAttackGoal(this, 1.2, false));
+        this.goalSelector.add(2, new WaterAvoidingRandomStrollGoal(this, 0.8));
+        this.goalSelector.add(3, new LookAtPlayerGoal(this, Player.class, 24.0F));
+        this.goalSelector.add(4, new RandomLookAroundGoal(this));
         
         // Cibler les joueurs
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.targetSelector.add(1, new HurtByTargetGoal(this));
+        this.targetSelector.add(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -3681,13 +3611,13 @@ public class DragonBossEntity extends Monster {
     }
 
     @Override
-    public void startSeenByPlayer(ServerPlayer player) {
+    public void startSeenByPlayer(ServerPlayerEntity player) {
         super.startSeenByPlayer(player);
         this.bossEvent.addPlayer(player);  // Afficher la barre de boss
     }
 
     @Override
-    public void stopSeenByPlayer(ServerPlayer player) {
+    public void stopSeenByPlayer(ServerPlayerEntity player) {
         super.stopSeenByPlayer(player);
         this.bossEvent.removePlayer(player);  // Cacher la barre
     }
@@ -3700,10 +3630,10 @@ public class DragonBossEntity extends Monster {
     }
 
     @Override
-    public boolean canBeAffected(net.minecraft.world.effect.MobEffectInstance effect) {
+    public boolean canBeAffected(net.minecraft.entity.effect.StatusEffectInstance effect) {
         // Boss immunisé à certains effets
-        if (effect.getEffect() == net.minecraft.world.effect.MobEffects.WITHER ||
-            effect.getEffect() == net.minecraft.world.effect.MobEffects.POISON) {
+        if (effect.getEffect() == net.minecraft.entity.effect.StatusEffects.WITHER ||
+            effect.getEffect() == net.minecraft.entity.effect.StatusEffects.POISON) {
             return false;
         }
         return super.canBeAffected(effect);
@@ -3726,8 +3656,8 @@ public class DragonBossEntity extends Monster {
         // Phase 2 : 50% de vie
         if (healthPercentage <= 0.5f && phase == 1) {
             phase = 2;
-            this.bossEvent.setName(Component.literal("§4§l⚔ Dragon Enragé ⚔"));
-            this.bossEvent.setColor(BossEvent.BossBarColor.PURPLE);
+            this.bossEvent.setName(Text.literal("§4§l⚔ Dragon Enragé ⚔"));
+            this.bossEvent.setColor(BossBar.BossBarColor.PURPLE);
             
             // Augmenter les stats
             this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.45);
@@ -3741,8 +3671,8 @@ public class DragonBossEntity extends Monster {
         // Phase 3 : 25% de vie
         if (healthPercentage <= 0.25f && phase == 2) {
             phase = 3;
-            this.bossEvent.setName(Component.literal("§c§l§k⚔§r §4Dragon Furieux §c§l§k⚔"));
-            this.bossEvent.setColor(BossEvent.BossBarColor.RED);
+            this.bossEvent.setName(Text.literal("§c§l§k⚔§r §4Dragon Furieux §c§l§k⚔"));
+            this.bossEvent.setColor(BossBar.BossBarColor.RED);
             this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(35.0);
         }
         
@@ -3760,7 +3690,7 @@ private int attackCooldown = 0;
 public void aiStep() {
     super.aiStep();
     
-    if (!this.level().isClientSide && this.getTarget() != null) {
+    if (!this.level().isClient && this.getTarget() != null) {
         attackCooldown--;
         
         if (attackCooldown <= 0) {
@@ -3772,18 +3702,18 @@ public void aiStep() {
 }
 
 private void specialAttack() {
-    Player target = (Player) this.getTarget();
+    Player target = (PlayerEntity) this.getTarget();
     if (target != null) {
         // Projectile de feu
-        net.minecraft.world.entity.projectile.SmallFireball fireball = 
-            new net.minecraft.world.entity.projectile.SmallFireball(
+        net.minecraft.entity.projectile.SmallFireball fireball = 
+            new net.minecraft.entity.projectile.SmallFireball(
                 this.level(), this, 
                 target.getX() - this.getX(),
                 target.getY() - this.getY(),
                 target.getZ() - this.getZ()
             );
         fireball.setPos(this.getX(), this.getY() + 1, this.getZ());
-        this.level().addFreshEntity(fireball);
+        this.level().spawnEntity(fireball);
         
         // Son et effet
         this.playSound(net.minecraft.sounds.SoundEvents.GHAST_SHOOT, 1.0F, 1.0F);
@@ -3841,26 +3771,24 @@ private void specialAttack() {
 ```java
 package com.medelium.entity.custom;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerBossEvent;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.BossEvent;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.level.Level;
+import net.minecraft.text.Text;
+import net.minecraft.server.level.ServerBossBar;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.entity.boss.BossBar;
+import net.minecraft.entity.*;
+import net.minecraft.entity.mob.*;
+import net.minecraft.world.World;
 
 public class MiniBossEntity extends Monster {
-    private final ServerBossEvent bossEvent;
+    private final ServerBossBar bossEvent;
 
-    public MiniBossEntity(EntityType<? extends Monster> entityType, Level level) {
+    public MiniBossEntity(EntityType<? extends Monster> entityType, World world) {
         super(entityType, level);
         // Barre de boss plus petite
-        this.bossEvent = new ServerBossEvent(
-            Component.literal("§6Capitaine des Gardes"),
-            BossEvent.BossBarColor.YELLOW,
-            BossEvent.BossBarOverlay.NOTCHED_10  // 10 encoches
+        this.bossEvent = new ServerBossBar(
+            Text.literal("§6Capitaine des Gardes"),
+            BossBar.BossBarColor.YELLOW,
+            BossBar.BossBarOverlay.NOTCHED_10  // 10 encoches
         );
         this.xpReward = 100;
     }
@@ -3875,13 +3803,13 @@ public class MiniBossEntity extends Monster {
     }
 
     @Override
-    public void startSeenByPlayer(ServerPlayer player) {
+    public void startSeenByPlayer(ServerPlayerEntity player) {
         super.startSeenByPlayer(player);
         this.bossEvent.addPlayer(player);
     }
 
     @Override
-    public void stopSeenByPlayer(ServerPlayer player) {
+    public void stopSeenByPlayer(ServerPlayerEntity player) {
         super.stopSeenByPlayer(player);
         this.bossEvent.removePlayer(player);
     }
@@ -3902,7 +3830,7 @@ public class MiniBossEntity extends Monster {
 
 #### 6.5.1 Loot Table pour Boss
 
-**Créer :** `src/main/resources/data/medeliummod/loot_table/entities/dragon_boss.json`
+**Créer :** `src/main/resources/data/medelium/loot_table/entities/dragon_boss.json`
 
 ```json
 {
@@ -3935,7 +3863,7 @@ public class MiniBossEntity extends Monster {
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "medeliummod:royal_sword",
+          "name": "medelium:royal_sword",
           "weight": 5,
           "functions": [
             {
@@ -3949,7 +3877,7 @@ public class MiniBossEntity extends Monster {
         },
         {
           "type": "minecraft:item",
-          "name": "medeliummod:gold_coin",
+          "name": "medelium:gold_coin",
           "weight": 20,
           "functions": [
             {
@@ -3982,7 +3910,7 @@ public class MiniBossEntity extends Monster {
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "medeliummod:dragon_scale",
+          "name": "medelium:dragon_scale",
           "weight": 100,
           "conditions": [
             {
@@ -4002,29 +3930,29 @@ public class MiniBossEntity extends Monster {
 
 ```java
 @Override
-public void die(net.minecraft.world.damagesource.DamageSource cause) {
+public void die(net.minecraft.entity.damage.DamageSource cause) {
     super.die(cause);
     
-    if (!this.level().isClientSide && cause.getEntity() instanceof Player player) {
+    if (!this.level().isClient && cause.getEntity() instanceof PlayerEntity player) {
         // Drop garanti
-        this.spawnAtLocation(ModItems.ROYAL_SEAL.get(), 1);
+        this.spawnAtLocation(ModItems.ROYAL_SEAL, 1);
         
         // Drop avec probabilité
         if (this.random.nextFloat() < 0.5f) {  // 50% de chance
-            this.spawnAtLocation(ModItems.ROYAL_SWORD.get(), 1);
+            this.spawnAtLocation(ModItems.ROYAL_SWORD, 1);
         }
         
         // Drop rare
         if (this.random.nextFloat() < 0.05f) {  // 5% de chance
-            ItemStack rareItem = new ItemStack(ModItems.ANCIENT_SCROLL.get());
+            ItemStack rareItem = new ItemStack(ModItems.ANCIENT_SCROLL);
             // Ajouter enchantement
-            rareItem.enchant(net.minecraft.world.item.enchantment.Enchantments.SHARPNESS, 5);
+            rareItem.enchant(net.minecraft.enchantment.Enchantments.SHARPNESS, 5);
             this.spawnAtLocation(rareItem);
         }
         
         // Drop aléatoire entre 5 et 15 pièces d'or
         int coinAmount = 5 + this.random.nextInt(11);
-        this.spawnAtLocation(ModItems.GOLD_COIN.get(), coinAmount);
+        this.spawnAtLocation(ModItems.GOLD_COIN, coinAmount);
         
         // Effet à la mort
         this.level().explode(this, this.getX(), this.getY(), this.getZ(), 
@@ -4044,7 +3972,7 @@ public void die(net.minecraft.world.damagesource.DamageSource cause) {
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "medeliummod:legendary_helmet",
+          "name": "medelium:legendary_helmet",
           "weight": 1,
           "conditions": [
             {
@@ -4097,26 +4025,16 @@ public void die(net.minecraft.world.damagesource.DamageSource cause) {
 
 ### 6.6 Enregistrer les Attributs
 
-**Créer :** `src/main/java/com/medelium/event/ModEventBusEvents.java`
+**Dans `Medelium.java` → `onInitialize()` :**
 
 ```java
-package com.medelium.event;
-
-import com.medelium.MedeliumMod;
+// Enregistrer les attributs d'entité
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import com.medelium.entity.ModEntities;
 import com.medelium.entity.custom.GuardEntity;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
-public class ModEventBusEvents {
-    
-    @SubscribeEvent
-    public static void registerAttributes(EntityAttributeCreationEvent event) {
-        event.put(ModEntities.GUARD.get(), GuardEntity.createAttributes().build());
-    }
-}
+// Dans onInitialize() :
+FabricDefaultAttributeRegistry.register(ModEntities.GUARD, GuardEntity.createAttributes());
 ```
 
 ---
@@ -4143,7 +4061,7 @@ public class ModEventBusEvents {
 > - Sauvegardez la structure (.nbt)
 >
 > **2. Exporter le fichier**
-> - Le fichier .nbt va dans `resources/data/medeliummod/structures/`
+> - Le fichier .nbt va dans `resources/data/medelium/structures/`
 >
 > **3. Créer le système de spawn**
 > - Code Java qui dit OÙ et QUAND la structure spawn
@@ -4159,17 +4077,17 @@ public class ModEventBusEvents {
 
 ### 7.1 Créer une Structure Simple avec Template Pools
 
-**Créer :** `src/main/resources/data/medeliummod/worldgen/template_pool/castle/start.json`
+**Créer :** `src/main/resources/data/medelium/worldgen/template_pool/castle/start.json`
 
 ```json
 {
-  "name": "medeliummod:castle/start",
+  "name": "medelium:castle/start",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
-        "location": "medeliummod:castle/main_hall",
+        "location": "medelium:castle/main_hall",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -4181,12 +4099,12 @@ public class ModEventBusEvents {
 
 ### 7.2 Créer la Configuration de Structure
 
-**Créer :** `src/main/resources/data/medeliummod/worldgen/structure/medieval_castle.json`
+**Créer :** `src/main/resources/data/medelium/worldgen/structure/medieval_castle.json`
 
 ```json
 {
   "type": "minecraft:jigsaw",
-  "start_pool": "medeliummod:castle/start",
+  "start_pool": "medelium:castle/start",
   "size": 7,
   "max_distance_from_center": 80,
   "biomes": "#minecraft:is_overworld",
@@ -4253,7 +4171,7 @@ public class ModEventBusEvents {
 
 **📝 Ce fichier JSON définit votre dimension et comment le terrain se génère :**
 
-**Créer :** `src/main/resources/data/medeliummod/dimension/medieval_realm.json`
+**Créer :** `src/main/resources/data/medelium/dimension/medieval_realm.json`
 
 ```json
 {
@@ -4282,7 +4200,7 @@ public class ModEventBusEvents {
 >
 > **💡 Exemple :** Royaume Féerique = natural:true, ambient_light:0.8 (toujours lumineux)
 
-**Créer :** `src/main/resources/data/medeliummod/dimension_type/medieval_realm.json`
+**Créer :** `src/main/resources/data/medelium/dimension_type/medieval_realm.json`
 
 ```json
 {
@@ -4362,21 +4280,14 @@ public class ModEventBusEvents {
 ```java
 package com.medelium.enchantment;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.entity.EquipmentSlotGroup;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
-
+import com.medelium.Medelium;
+import net.minecraft.registry.Registries;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
 public class ModEnchantments {
-    public static final DeferredRegister<Enchantment> ENCHANTMENTS =
-        DeferredRegister.create(Registries.ENCHANTMENT, MedeliumMod.MOD_ID);
+    // Les enchantements sont enregistrés via Registry.register(Registries.ENCHANTMENT, ...)
 
-    public static void register(IEventBus eventBus) {
-        ENCHANTMENTS.register(eventBus);
-    }
+    // Fabric: pas besoin de register(bus), les Registry.register() sont appelés au chargement de la classe
 }
 ```
 
@@ -4416,7 +4327,7 @@ public class ModEnchantments {
 > 1. Créer la classe de l'effet (ce qui se passe chaque tick)
 > 2. L'enregistrer dans le jeu
 > 3. Créer une icône 18x18 pixels
-> 4. Appliquer l'effet via code : `player.addEffect(new MobEffectInstance(...))`
+> 4. Appliquer l'effet via code : `player.addStatusEffect(new StatusEffectInstance(...))`
 >
 > **🎮 Application automatique :**
 > - Manger une nourriture → Donne l'effet
@@ -4431,24 +4342,17 @@ public class ModEnchantments {
 ```java
 package com.medelium.effect;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
-
+import com.medelium.Medelium;
+import net.minecraft.registry.Registries;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
 public class ModEffects {
-    public static final DeferredRegister<MobEffect> MOB_EFFECTS =
-        DeferredRegister.create(Registries.MOB_EFFECT, MedeliumMod.MOD_ID);
+    // Les effets sont enregistrés via Registry.register(Registries.STATUS_EFFECT, ...)
 
-    public static final DeferredHolder<MobEffect, MobEffect> BLESSING = MOB_EFFECTS.register("blessing",
-        () -> new BlessingEffect(MobEffectCategory.BENEFICIAL, 0xFFD700));
+    public static final ItemGroup BLESSING = Registry.register(Registries.STATUS_EFFECT, new Identifier(Medelium.MOD_ID,("blessing",
+        () -> new BlessingEffect(StatusEffectCategory.BENEFICIAL, 0xFFD700));
 
-    public static void register(IEventBus eventBus) {
-        MOB_EFFECTS.register(eventBus);
-    }
+    // Fabric: pas besoin de register(bus), les Registry.register() sont appelés au chargement de la classe
 }
 ```
 
@@ -4457,20 +4361,20 @@ public class ModEffects {
 ```java
 package com.medelium.effect;
 
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.LivingEntity;
 
-public class BlessingEffect extends MobEffect {
+public class BlessingEffect extends StatusEffect {
     
-    public BlessingEffect(MobEffectCategory category, int color) {
+    public BlessingEffect(StatusEffectCategory category, int color) {
         super(category, color);
     }
 
     @Override
     public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         // Code qui s'exécute chaque tick
-        if (!entity.level().isClientSide()) {
+        if (!entity.getWorld().isClient()) {
             // Exemple : soigner l'entité
             if (entity.getHealth() < entity.getMaxHealth()) {
                 entity.heal(0.5F);
@@ -4493,7 +4397,7 @@ public class BlessingEffect extends MobEffect {
 
 ### 11.1 Recette Shaped (Forme Précise)
 
-**Créer :** `src/main/resources/data/medeliummod/recipe/knight_sword.json`
+**Créer :** `src/main/resources/data/medelium/recipe/knight_sword.json`
 
 ```json
 {
@@ -4506,14 +4410,14 @@ public class BlessingEffect extends MobEffect {
   ],
   "key": {
     "S": {
-      "item": "medeliummod:silver_coin"
+      "item": "medelium:silver_coin"
     },
     "T": {
       "item": "minecraft:stick"
     }
   },
   "result": {
-    "id": "medeliummod:knight_sword",
+    "id": "medelium:knight_sword",
     "count": 1
   }
 }
@@ -4521,7 +4425,7 @@ public class BlessingEffect extends MobEffect {
 
 ### 11.2 Recette Shapeless (Forme Libre)
 
-**Créer :** `src/main/resources/data/medeliummod/recipe/gold_coin.json`
+**Créer :** `src/main/resources/data/medelium/recipe/gold_coin.json`
 
 ```json
 {
@@ -4529,20 +4433,20 @@ public class BlessingEffect extends MobEffect {
   "category": "misc",
   "ingredients": [
     {
-      "item": "medeliummod:silver_coin"
+      "item": "medelium:silver_coin"
     },
     {
-      "item": "medeliummod:silver_coin"
+      "item": "medelium:silver_coin"
     },
     {
-      "item": "medeliummod:silver_coin"
+      "item": "medelium:silver_coin"
     },
     {
-      "item": "medeliummod:silver_coin"
+      "item": "medelium:silver_coin"
     }
   ],
   "result": {
-    "id": "medeliummod:gold_coin",
+    "id": "medelium:gold_coin",
     "count": 1
   }
 }
@@ -4550,7 +4454,7 @@ public class BlessingEffect extends MobEffect {
 
 ### 11.3 Recette de Cuisson (Fourneau)
 
-**Créer :** `src/main/resources/data/medeliummod/recipe/medieval_bread_smelting.json`
+**Créer :** `src/main/resources/data/medelium/recipe/medieval_bread_smelting.json`
 
 ```json
 {
@@ -4562,29 +4466,29 @@ public class BlessingEffect extends MobEffect {
     "item": "minecraft:wheat"
   },
   "result": {
-    "id": "medeliummod:medieval_bread"
+    "id": "medelium:medieval_bread"
   }
 }
 ```
 
 ### 11.4 Recette Smithing (Table de Forgeron)
 
-**Créer :** `src/main/resources/data/medeliummod/recipe/royal_sword_smithing.json`
+**Créer :** `src/main/resources/data/medelium/recipe/royal_sword_smithing.json`
 
 ```json
 {
   "type": "minecraft:smithing_transform",
   "template": {
-    "item": "medeliummod:royal_seal"
+    "item": "medelium:royal_seal"
   },
   "base": {
-    "item": "medeliummod:knight_sword"
+    "item": "medelium:knight_sword"
   },
   "addition": {
     "item": "minecraft:diamond"
   },
   "result": {
-    "id": "medeliummod:royal_sword"
+    "id": "medelium:royal_sword"
   }
 }
 ```
@@ -4598,26 +4502,26 @@ public class BlessingEffect extends MobEffect {
 **Dans ModBlocks.java :**
 
 ```java
-public static final DeferredBlock<Block> SILVER_ORE = registerBlock("silver_ore",
-    () -> new Block(BlockBehaviour.Properties.of()
+public static final Block SILVER_ORE = registerBlock("silver_ore",
+    () -> new Block(FabricBlockSettings.create()
         .strength(3.0f)
-        .requiresCorrectToolForDrops()
-        .sound(SoundType.STONE)));
+        .requiresTool()
+        .sounds(BlockSoundGroup.STONE)));
 
-public static final DeferredBlock<Block> DEEPSLATE_SILVER_ORE = registerBlock("deepslate_silver_ore",
-    () -> new Block(BlockBehaviour.Properties.of()
+public static final Block DEEPSLATE_SILVER_ORE = registerBlock("deepslate_silver_ore",
+    () -> new Block(FabricBlockSettings.create()
         .strength(4.5f)
-        .requiresCorrectToolForDrops()
-        .sound(SoundType.DEEPSLATE)));
+        .requiresTool()
+        .sounds(BlockSoundGroup.DEEPSLATE)));
 ```
 
 ### 12.2 Configurer la Génération
 
-**Créer :** `src/main/resources/data/medeliummod/worldgen/placed_feature/silver_ore_placed.json`
+**Créer :** `src/main/resources/data/medelium/worldgen/placed_feature/silver_ore_placed.json`
 
 ```json
 {
-  "feature": "medeliummod:silver_ore",
+  "feature": "medelium:silver_ore",
   "placement": [
     {
       "type": "minecraft:count",
@@ -4645,7 +4549,7 @@ public static final DeferredBlock<Block> DEEPSLATE_SILVER_ORE = registerBlock("d
 }
 ```
 
-**Créer :** `src/main/resources/data/medeliummod/worldgen/configured_feature/silver_ore.json`
+**Créer :** `src/main/resources/data/medelium/worldgen/configured_feature/silver_ore.json`
 
 ```json
 {
@@ -4660,7 +4564,7 @@ public static final DeferredBlock<Block> DEEPSLATE_SILVER_ORE = registerBlock("d
           "tag": "minecraft:stone_ore_replaceables"
         },
         "state": {
-          "Name": "medeliummod:silver_ore"
+          "Name": "medelium:silver_ore"
         }
       },
       {
@@ -4669,7 +4573,7 @@ public static final DeferredBlock<Block> DEEPSLATE_SILVER_ORE = registerBlock("d
           "tag": "minecraft:deepslate_ore_replaceables"
         },
         "state": {
-          "Name": "medeliummod:deepslate_silver_ore"
+          "Name": "medelium:deepslate_silver_ore"
         }
       }
     ]
@@ -4736,7 +4640,7 @@ public static final DeferredBlock<Block> DEEPSLATE_SILVER_ORE = registerBlock("d
 
 **Logiciel recommandé :** Paint.NET, GIMP, Photoshop, ou même Paint
 
-**Emplacement :** `src/main/resources/assets/medeliummod/textures/gui/custom_menu.png`
+**Emplacement :** `src/main/resources/assets/medelium/textures/gui/custom_menu.png`
 
 **Dimensions :** 256x256 pixels (taille de l'image complète)
 
@@ -4769,19 +4673,19 @@ public static final DeferredBlock<Block> DEEPSLATE_SILVER_ORE = registerBlock("d
 **Créer :** `src/main/java/com/medelium/screen/AlchemyTableScreen.java`
 
 ```java
-package com.medelium.screen;
+package com.medelium.currentScreen;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Inventory;
+import com.medelium.Medelium;
+import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.screens.inventory.HandledScreen;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
+import net.minecraft.entity.*;
 
-public class AlchemyTableScreen extends AbstractContainerScreen<AlchemyTableMenu> {
+public class AlchemyTableScreen extends HandledScreen<AlchemyTableMenu> {
     // Chemin vers votre texture de GUI
-    private static final ResourceLocation TEXTURE = 
-        ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/alchemy_table.png");
+    private static final Identifier TEXTURE = 
+        new Identifier(Medelium.MOD_ID, "textures/gui/alchemy_table.png");
 
     public AlchemyTableScreen(AlchemyTableMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
@@ -4790,7 +4694,7 @@ public class AlchemyTableScreen extends AbstractContainerScreen<AlchemyTableMenu
     }
 
     @Override
-    protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+    protected void renderBg(DrawContext guiGraphics, float partialTick, int mouseX, int mouseY) {
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
         
@@ -4799,7 +4703,7 @@ public class AlchemyTableScreen extends AbstractContainerScreen<AlchemyTableMenu
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    public void render(DrawContext guiGraphics, int mouseX, int mouseY, float partialTick) {
         this.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
         super.render(guiGraphics, mouseX, mouseY, partialTick);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
@@ -4812,9 +4716,9 @@ public class AlchemyTableScreen extends AbstractContainerScreen<AlchemyTableMenu
 **Voici où vous créez l'interactivité !**
 
 ```java
-public class CustomMenuScreen extends AbstractContainerScreen<CustomMenu> {
-    private static final ResourceLocation TEXTURE = 
-        ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/custom_menu.png");
+public class CustomMenuScreen extends HandledScreen<CustomMenu> {
+    private static final Identifier TEXTURE = 
+        new Identifier(Medelium.MOD_ID, "textures/gui/custom_menu.png");
 
     public CustomMenuScreen(CustomMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
@@ -4823,7 +4727,7 @@ public class CustomMenuScreen extends AbstractContainerScreen<CustomMenu> {
     }
 
     @Override
-    protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+    protected void renderBg(DrawContext guiGraphics, float partialTick, int mouseX, int mouseY) {
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
         
@@ -4835,13 +4739,13 @@ public class CustomMenuScreen extends AbstractContainerScreen<CustomMenu> {
 **Exemple : Image de fond + overlay qui change**
 
 ```java
-private static final ResourceLocation BG_TEXTURE = 
-    ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/menu_background.png");
-private static final ResourceLocation OVERLAY_HOVER = 
-    ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/button_hover.png");
+private static final Identifier BG_TEXTURE = 
+    new Identifier(Medelium.MOD_ID, "textures/gui/menu_background.png");
+private static final Identifier OVERLAY_HOVER = 
+    new Identifier(Medelium.MOD_ID, "textures/gui/button_hover.png");
 
 @Override
-protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+protected void renderBg(DrawContext guiGraphics, float partialTick, int mouseX, int mouseY) {
     int x = (this.width - this.imageWidth) / 2;
     int y = (this.height - this.imageHeight) / 2;
     
@@ -4867,7 +4771,7 @@ protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, 
 private int animationTick = 0;
 
 @Override
-protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+protected void renderBg(DrawContext guiGraphics, float partialTick, int mouseX, int mouseY) {
     int x = (this.width - this.imageWidth) / 2;
     int y = (this.height - this.imageHeight) / 2;
     
@@ -4905,12 +4809,12 @@ protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, 
 
 ```java
 // Dans ModCommands.java
-dispatcher.register(Commands.literal("openmenu")
+dispatcher.register(CommandManager.literal("openmenu")
     .executes(context -> {
-        if (context.getSource().getEntity() instanceof ServerPlayer player) {
-            player.openMenu(new SimpleMenuProvider(
+        if (context.getSource().getEntity() instanceof ServerPlayerEntity player) {
+            player.openMenu(new SimpleNamedScreenHandlerFactory(
                 (id, playerInv, p) -> new CustomMenu(id, playerInv),
-                Component.literal("Menu Médiéval")
+                Text.literal("Menu Médiéval")
             ));
         }
         return 1;
@@ -4922,17 +4826,17 @@ dispatcher.register(Commands.literal("openmenu")
 ```java
 package com.medelium.item.custom;
 
-import com.medelium.screen.CustomMenu;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleMenuProvider;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import com.medelium.currentScreen.CustomMenu;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.currentScreen.NamedScreenHandlerFactory;
+import net.minecraft.currentScreen.SimpleNamedScreenHandlerFactory;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class MenuOpenerItem extends Item {
     
@@ -4941,14 +4845,14 @@ public class MenuOpenerItem extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
-            serverPlayer.openMenu(new SimpleMenuProvider(
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        if (!world.isClient() && player instanceof ServerPlayerEntity serverPlayer) {
+            serverPlayer.openMenu(new SimpleNamedScreenHandlerFactory(
                 (id, playerInv, p) -> new CustomMenu(id, playerInv),
-                Component.literal("§6Menu Médiéval")
+                Text.literal("§6Menu Médiéval")
             ));
         }
-        return InteractionResultHolder.success(player.getItemInHand(hand));
+        return TypedActionResult.success(player.getStackInHand(hand));
     }
 }
 ```
@@ -4956,8 +4860,7 @@ public class MenuOpenerItem extends Item {
 **Enregistrer l'objet :**
 ```java
 // Dans ModItems.java
-public static final DeferredItem<Item> MENU_OPENER = ITEMS.register("menu_opener",
-    () -> new MenuOpenerItem(new Item.Properties()));
+public static final Item MENU_OPENER = registerItem("menu_opener", new MenuOpenerItem(new FabricItemSettings()));
 ```
 
 **Option 3 : Bloc qui ouvre le GUI**
@@ -4967,18 +4870,18 @@ public static final DeferredItem<Item> MENU_OPENER = ITEMS.register("menu_opener
 **Code complet :**
 
 ```java
-package com.medelium.screen;
+package com.medelium.currentScreen;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Inventory;
+import com.medelium.Medelium;
+import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.screens.inventory.HandledScreen;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
+import net.minecraft.entity.*;
 
-public class QuestMenuScreen extends AbstractContainerScreen<CustomMenu> {
-    private static final ResourceLocation TEXTURE = 
-        ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/quest_menu.png");
+public class QuestMenuScreen extends HandledScreen<CustomMenu> {
+    private static final Identifier TEXTURE = 
+        new Identifier(Medelium.MOD_ID, "textures/gui/quest_menu.png");
 
     public QuestMenuScreen(CustomMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
@@ -4987,7 +4890,7 @@ public class QuestMenuScreen extends AbstractContainerScreen<CustomMenu> {
     }
 
     @Override
-    protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+    protected void renderBg(DrawContext guiGraphics, float partialTick, int mouseX, int mouseY) {
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
         
@@ -5016,21 +4919,21 @@ public class QuestMenuScreen extends AbstractContainerScreen<CustomMenu> {
         
         // Quête 1 cliquée
         if (isOverQuest1(mouseX, mouseY, x, y)) {
-            minecraft.player.sendSystemMessage(Component.literal("§aQuête 1 : Tuer le Dragon"));
+            minecraft.player.sendMessage(Text.literal("§aQuête 1 : Tuer le Dragon"));
             playDownSound(minecraft.getSoundManager());
             return true;
         }
         
         // Quête 2 cliquée
         if (isOverQuest2(mouseX, mouseY, x, y)) {
-            minecraft.player.sendSystemMessage(Component.literal("§aQuête 2 : Récupérer l'épée"));
+            minecraft.player.sendMessage(Text.literal("§aQuête 2 : Récupérer l'épée"));
             playDownSound(minecraft.getSoundManager());
             return true;
         }
         
         // Quête 3 cliquée
         if (isOverQuest3(mouseX, mouseY, x, y)) {
-            minecraft.player.sendSystemMessage(Component.literal("§aQuête 3 : Sauver le village"));
+            minecraft.player.sendMessage(Text.literal("§aQuête 3 : Sauver le village"));
             playDownSound(minecraft.getSoundManager());
             return true;
         }
@@ -5062,7 +4965,7 @@ public class QuestMenuScreen extends AbstractContainerScreen<CustomMenu> {
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    public void render(DrawContext guiGraphics, int mouseX, int mouseY, float partialTick) {
         super.render(guiGraphics, mouseX, mouseY, partialTick);
         
         int x = (this.width - this.imageWidth) / 2;
@@ -5071,12 +4974,12 @@ public class QuestMenuScreen extends AbstractContainerScreen<CustomMenu> {
         // Tooltips
         if (isOverQuest1(mouseX, mouseY, x, y)) {
             guiGraphics.renderTooltip(this.font, 
-                Component.literal("§6Récompense: 100 pièces d'or"), mouseX, mouseY);
+                Text.literal("§6Récompense: 100 pièces d'or"), mouseX, mouseY);
         }
     }
     
     @Override
-    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+    protected void renderLabels(DrawContext guiGraphics, int mouseX, int mouseY) {
         // Vide = votre image contient déjà tout
     }
 }
@@ -5103,7 +5006,7 @@ public class QuestMenuScreen extends AbstractContainerScreen<CustomMenu> {
 
 ```java
 @Override
-protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+protected void renderBg(DrawContext guiGraphics, float partialTick, int mouseX, int mouseY) {
     int x = (this.width - this.imageWidth) / 2;
     int y = (this.height - this.imageHeight) / 2;
     
@@ -5124,7 +5027,7 @@ protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, 
 }
 
 @Override
-public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+public void render(DrawContext guiGraphics, int mouseX, int mouseY, float partialTick) {
     this.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
     super.render(guiGraphics, mouseX, mouseY, partialTick);
     this.renderTooltip(guiGraphics, mouseX, mouseY);
@@ -5137,7 +5040,7 @@ public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partia
     
     // Tooltip personnalisé au survol
     if (mouseX >= x + 79 && mouseX <= x + 103 && mouseY >= y + 35 && mouseY <= y + 51) {
-        guiGraphics.renderTooltip(this.font, Component.literal("Progression: " + menu.getProgress() + "%"), mouseX, mouseY);
+        guiGraphics.renderTooltip(this.font, Text.literal("Progression: " + menu.getProgress() + "%"), mouseX, mouseY);
     }
 }
 ```
@@ -5145,15 +5048,15 @@ public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partia
 #### 13.1.5 GUI avec Plusieurs Images
 
 ```java
-private static final ResourceLocation BG_TEXTURE = 
-    ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/alchemy_bg.png");
-private static final ResourceLocation OVERLAY_TEXTURE = 
-    ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/alchemy_overlay.png");
-private static final ResourceLocation ICONS_TEXTURE = 
-    ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/icons.png");
+private static final Identifier BG_TEXTURE = 
+    new Identifier(Medelium.MOD_ID, "textures/gui/alchemy_bg.png");
+private static final Identifier OVERLAY_TEXTURE = 
+    new Identifier(Medelium.MOD_ID, "textures/gui/alchemy_overlay.png");
+private static final Identifier ICONS_TEXTURE = 
+    new Identifier(Medelium.MOD_ID, "textures/gui/icons.png");
 
 @Override
-protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+protected void renderBg(DrawContext guiGraphics, float partialTick, int mouseX, int mouseY) {
     int x = (this.width - this.imageWidth) / 2;
     int y = (this.height - this.imageHeight) / 2;
     
@@ -5173,21 +5076,15 @@ protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, 
 **Créer :** `src/main/java/com/medelium/screen/ModMenuTypes.java`
 
 ```java
-package com.medelium.screen;
+package com.medelium.currentScreen;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.inventory.MenuType;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
-
+import com.medelium.Medelium;
+import net.minecraft.registry.Registries;
+import net.minecraft.currentScreen.*;
 public class ModMenuTypes {
-    public static final DeferredRegister<MenuType<?>> MENUS =
-        DeferredRegister.create(Registries.MENU, MedeliumMod.MOD_ID);
+    // Les menus sont enregistrés via Registry.register(Registries.SCREEN_HANDLER, ...)
 
-    public static final DeferredHolder<MenuType<?>, MenuType<AlchemyTableMenu>> ALCHEMY_TABLE_MENU =
+    public static final ItemGroup, MenuType<AlchemyTableMenu>> ALCHEMY_TABLE_MENU =
         MENUS.register("alchemy_table_menu", () ->
             IMenuTypeExtension.create((windowId, inv, data) -> {
                 // Logique de création du menu
@@ -5195,46 +5092,32 @@ public class ModMenuTypes {
                     ContainerLevelAccess.NULL);
             }));
 
-    public static void register(IEventBus eventBus) {
-        MENUS.register(eventBus);
-    }
+    // Fabric: pas besoin de register(bus), les Registry.register() sont appelés au chargement de la classe
 }
 ```
 
-**Dans MedeliumMod.java :**
+**Dans Medelium.java :**
 ```java
 ModMenuTypes.register(modEventBus);
 ```
 
 #### 13.1.7 Enregistrer l'Écran (Client)
 
-**Créer :** `src/main/java/com/medelium/event/ModClientEvents.java`
+**Dans `MedeliumClient.java` → `onInitializeClient()` :**
 
 ```java
-package com.medelium.event;
-
-import com.medelium.MedeliumMod;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import com.medelium.screen.AlchemyTableScreen;
 import com.medelium.screen.ModMenuTypes;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class ModClientEvents {
-    
-    @SubscribeEvent
-    public static void registerScreens(RegisterMenuScreensEvent event) {
-        event.register(ModMenuTypes.ALCHEMY_TABLE_MENU.get(), AlchemyTableScreen::new);
-    }
-}
+// Dans onInitializeClient() :
+HandledScreens.register(ModMenuTypes.ALCHEMY_TABLE_MENU, AlchemyTableScreen::new);
 ```
 
 #### 13.1.8 GUI avec Boutons Cliquables
 
 ```java
-public class AlchemyTableScreen extends AbstractContainerScreen<AlchemyTableMenu> {
+public class AlchemyTableScreen extends HandledScreen<AlchemyTableMenu> {
     
     @Override
     protected void init() {
@@ -5245,14 +5128,14 @@ public class AlchemyTableScreen extends AbstractContainerScreen<AlchemyTableMenu
         
         // Ajouter un bouton
         this.addRenderableWidget(Button.builder(
-            Component.literal("Transmuter"),
+            Text.literal("Transmuter"),
             button -> onTransmuteClicked()
         ).bounds(x + 70, y + 60, 60, 20).build());
     }
     
     private void onTransmuteClicked() {
         // Envoyer packet au serveur
-        MedeliumMod.LOGGER.info("Bouton Transmuter cliqué!");
+        Medelium.LOGGER.info("Bouton Transmuter cliqué!");
     }
     
     @Override
@@ -5280,16 +5163,16 @@ public class AlchemyTableScreen extends AbstractContainerScreen<AlchemyTableMenu
 package com.medelium.block.custom;
 
 import com.medelium.block.entity.AlchemyTableBlockEntity;
-import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.ActionResult;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.World;
+import net.minecraft.block.Block;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.*;
+import net.minecraft.util.hit.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
 public class AlchemyTableBlock extends Block implements EntityBlock {
@@ -5299,15 +5182,15 @@ public class AlchemyTableBlock extends Block implements EntityBlock {
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos,
-                                               Player player, BlockHitResult hitResult) {
-        if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
+    protected ActionResult useWithoutItem(BlockState state, World world, BlockPos pos,
+                                               PlayerEntity player, BlockHitResult hitResult) {
+        if (!world.isClient() && player instanceof ServerPlayerEntity serverPlayer) {
             BlockEntity entity = level.getBlockEntity(pos);
             if (entity instanceof AlchemyTableBlockEntity alchemyTable) {
                 serverPlayer.openMenu(alchemyTable, pos);
             }
         }
-        return InteractionResult.sidedSuccess(level.isClientSide());
+        return ActionResult.sidedSuccess(world.isClient());
     }
 
     @Nullable
@@ -5329,52 +5212,45 @@ public class AlchemyTableBlock extends Block implements EntityBlock {
 ```java
 package com.medelium.sound;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import com.medelium.Medelium;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
 import net.minecraft.sounds.SoundEvent;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
-
 public class ModSounds {
-    public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
-        DeferredRegister.create(Registries.SOUND_EVENT, MedeliumMod.MOD_ID);
+    // Les sons sont enregistrés via Registry.register(Registries.SOUND_EVENT, ...)
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> CASTLE_BELL = registerSound("castle_bell");
+    public static final ItemGroup CASTLE_BELL = registerSound("castle_bell");
 
-    private static DeferredHolder<SoundEvent, SoundEvent> registerSound(String name) {
-        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, name);
+    private static ItemGroup registerSound(String name) {
+        Identifier id = new Identifier(Medelium.MOD_ID, name);
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(id));
     }
 
-    public static void register(IEventBus eventBus) {
-        SOUND_EVENTS.register(eventBus);
-    }
+    // Fabric: pas besoin de register(bus), les Registry.register() sont appelés au chargement de la classe
 }
 ```
 
 ### 14.2 Définir les Sons
 
-**Créer :** `src/main/resources/assets/medeliummod/sounds.json`
+**Créer :** `src/main/resources/assets/medelium/sounds.json`
 
 ```json
 {
   "castle_bell": {
     "sounds": [
       {
-        "name": "medeliummod:castle_bell",
+        "name": "medelium:castle_bell",
         "stream": false
       }
     ],
-    "subtitle": "sound.medeliummod.castle_bell"
+    "subtitle": "sound.medelium.castle_bell"
   }
 }
 ```
 
 **Placer le fichier son :**
 - Format : `.ogg`
-- Emplacement : `src/main/resources/assets/medeliummod/sounds/castle_bell.ogg`
+- Emplacement : `src/main/resources/assets/medelium/sounds/castle_bell.ogg`
 
 ---
 
@@ -5383,7 +5259,7 @@ public class ModSounds {
 ### 15.1 Structure des Fichiers
 
 ```
-src/main/resources/assets/medeliummod/
+src/main/resources/assets/medelium/
 ├── textures/
 │   ├── item/
 │   │   ├── knight_sword.png
@@ -5403,60 +5279,60 @@ src/main/resources/assets/medeliummod/
 
 ### 15.2 Modèle d'Objet Simple
 
-**Créer :** `src/main/resources/assets/medeliummod/models/item/silver_coin.json`
+**Créer :** `src/main/resources/assets/medelium/models/item/silver_coin.json`
 
 ```json
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "medeliummod:item/silver_coin"
+    "layer0": "medelium:item/silver_coin"
   }
 }
 ```
 
 ### 15.3 Modèle d'Outil (Épée, Pioche, etc.)
 
-**Créer :** `src/main/resources/assets/medeliummod/models/item/knight_sword.json`
+**Créer :** `src/main/resources/assets/medelium/models/item/knight_sword.json`
 
 ```json
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "medeliummod:item/knight_sword"
+    "layer0": "medelium:item/knight_sword"
   }
 }
 ```
 
 ### 15.4 Modèle de Bloc Simple
 
-**Créer :** `src/main/resources/assets/medeliummod/models/block/castle_stone.json`
+**Créer :** `src/main/resources/assets/medelium/models/block/castle_stone.json`
 
 ```json
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "medeliummod:block/castle_stone"
+    "all": "medelium:block/castle_stone"
   }
 }
 ```
 
-**Créer :** `src/main/resources/assets/medeliummod/models/item/castle_stone.json`
+**Créer :** `src/main/resources/assets/medelium/models/item/castle_stone.json`
 
 ```json
 {
-  "parent": "medeliummod:block/castle_stone"
+  "parent": "medelium:block/castle_stone"
 }
 ```
 
 ### 15.5 Blockstate
 
-**Créer :** `src/main/resources/assets/medeliummod/blockstates/castle_stone.json`
+**Créer :** `src/main/resources/assets/medelium/blockstates/castle_stone.json`
 
 ```json
 {
   "variants": {
     "": {
-      "model": "medeliummod:block/castle_stone"
+      "model": "medelium:block/castle_stone"
     }
   }
 }
@@ -5474,56 +5350,53 @@ src/main/resources/assets/medeliummod/
 
 ### 16.1 Event de Joueur
 
-**Créer :** `src/main/java/com/medelium/event/ModEvents.java`
+**Dans `Medelium.java` → `onInitialize()` :**
 
 ```java
-package com.medelium.event;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 
-import com.medelium.MedeliumMod;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+// Quand un joueur se connecte
+ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+    var player = handler.getPlayer();
+    Medelium.LOGGER.info("Joueur {} a rejoint le serveur", player.getName().getString());
+});
 
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
-public class ModEvents {
-    
-    // Quand un joueur se connecte
-    @SubscribeEvent
-    public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-        // Code ici
-        MedeliumMod.LOGGER.info("Joueur {} a rejoint le serveur", event.getEntity().getName().getString());
+// Quand une entité meurt
+ServerLivingEntityEvents.AFTER_DEATH.register((entity, damageSource) -> {
+    if (entity instanceof net.minecraft.server.network.ServerPlayerEntity player) {
+        // Le joueur est mort
     }
-    
-    // Quand une entité meurt
-    @SubscribeEvent
-    public static void onLivingDeath(LivingDeathEvent event) {
-        if (event.getEntity() instanceof net.minecraft.world.entity.player.Player player) {
-            // Le joueur est mort
-        }
-    }
-}
+});
 ```
 
-### 16.2 Events Disponibles
+### 16.2 Events Disponibles (Fabric API)
 
 **Events Joueur :**
-- `PlayerEvent.PlayerLoggedInEvent` - Connexion
-- `PlayerEvent.PlayerLoggedOutEvent` - Déconnexion
-- `PlayerEvent.PlayerRespawnEvent` - Respawn
-- `PlayerInteractEvent.RightClickBlock` - Clic droit sur bloc
-- `PlayerInteractEvent.RightClickItem` - Clic droit avec objet
-- `AttackEntityEvent` - Attaque entité
+- `ServerPlayConnectionEvents.JOIN` - Connexion
+- `ServerPlayConnectionEvents.DISCONNECT` - Déconnexion
+- `UseBlockCallback.EVENT` - Clic droit sur bloc
+- `UseItemCallback.EVENT` - Clic droit avec item
+- `AttackEntityCallback.EVENT` - Attaque entité
+- `AttackBlockCallback.EVENT` - Attaque bloc
 
 **Events Entité :**
-- `LivingDeathEvent` - Mort
-- `LivingHurtEvent` - Dégâts
-- `LivingFallEvent` - Chute
-- `LivingEntityUseItemEvent` - Utilisation objet
+- `ServerLivingEntityEvents.ALLOW_DEATH` - Avant mort (annulable)
+- `ServerLivingEntityEvents.AFTER_DEATH` - Après mort
+- `ServerEntityCombatEvents.AFTER_KILLED_OTHER_ENTITY` - Après kill
 
 **Events Bloc :**
-- `BlockEvent.BreakEvent` - Bloc cassé
-- `BlockEvent.PlaceEvent` - Bloc placé
+- `PlayerBlockBreakEvents.BEFORE` - Avant casser bloc (annulable)
+- `PlayerBlockBreakEvents.AFTER` - Après casser bloc
+
+**Events Tick :**
+- `ServerTickEvents.START_SERVER_TICK` / `END_SERVER_TICK`
+- `ServerTickEvents.START_WORLD_TICK` / `END_WORLD_TICK`
+- `ClientTickEvents.START_CLIENT_TICK` / `END_CLIENT_TICK`
+
+**Events Lifecycle :**
+- `ServerLifecycleEvents.SERVER_STARTING` / `SERVER_STARTED`
+- `ServerLifecycleEvents.SERVER_STOPPING` / `SERVER_STOPPED`
 
 ---
 
@@ -5536,48 +5409,43 @@ public class ModEvents {
 ```java
 package com.medelium.command;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
-import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.Component;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.command.argument.EntityArgumentType;
 
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
 public class ModCommands {
     
-    @SubscribeEvent
-    public static void onRegisterCommands(RegisterCommandsEvent event) {
-        CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
-        
+    public static void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher) {
         // Commande simple : /medelium
-        dispatcher.register(Commands.literal("medelium")
+        dispatcher.register(CommandManager.literal("medelium")
             .executes(ModCommands::executeMedelium));
         
         // Commande avec argument : /heal <joueur>
-        dispatcher.register(Commands.literal("heal")
-            .requires(source -> source.hasPermission(2))  // Niveau OP 2
-            .then(Commands.argument("player", net.minecraft.commands.arguments.EntityArgument.player())
+        dispatcher.register(CommandManager.literal("heal")
+            .requires(source -> source.hasPermissionLevel(2))  // Niveau OP 2
+            .then(CommandManager.argument("player", EntityArgumentType.player())
                 .executes(ModCommands::executeHeal)));
     }
     
-    private static int executeMedelium(CommandContext<CommandSourceStack> context) {
-        context.getSource().sendSuccess(
-            () -> Component.literal("§6Bienvenue dans Medelium Mod!"),
+    private static int executeMedelium(CommandContext<ServerCommandSource> context) {
+        context.getSource().sendFeedback(
+            () -> Text.literal("§6Bienvenue dans Medelium Mod!"),
             false
         );
         return 1;
     }
     
-    private static int executeHeal(CommandContext<CommandSourceStack> context) {
+    private static int executeHeal(CommandContext<ServerCommandSource> context) {
         try {
-            var player = net.minecraft.commands.arguments.EntityArgument.getPlayer(context, "player");
+            ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
             player.setHealth(player.getMaxHealth());
-            context.getSource().sendSuccess(
-                () -> Component.literal("§a" + player.getName().getString() + " a été soigné!"),
+            context.getSource().sendFeedback(
+                () -> Text.literal("§a" + player.getName().getString() + " a été soigné!"),
                 true
             );
             return 1;
@@ -5586,6 +5454,16 @@ public class ModCommands {
         }
     }
 }
+```
+
+**Enregistrer dans `Medelium.java` → `onInitialize()` :**
+
+```java
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+
+CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+    ModCommands.registerCommands(dispatcher);
+});
 ```
 
 ---
@@ -5618,7 +5496,7 @@ public class ModCommands {
 > **🔧 Comment implémenter techniquement :**
 >
 > **1. Stocker les données du joueur**
-> Utiliser le système d'Attachments de NeoForge
+> Utiliser le système d'Attachments de Fabric
 > → Sauvegarder : métier, niveau, XP, statistiques
 > → Ces données survivent à la mort et déconnexion
 >
@@ -5665,11 +5543,9 @@ public class ModCommands {
 ```java
 package com.medelium.capability;
 
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
-import net.neoforged.neoforge.common.util.INBTSerializable;
+import net.minecraft.nbt.NbtCompound;
 
-public class PlayerProfession implements INBTSerializable<CompoundTag> {
+public class PlayerProfession {
     private String profession = "none";  // forgeron, alchimiste, mineur, etc.
     private int level = 1;
     private int experience = 0;
@@ -5721,17 +5597,14 @@ public class PlayerProfession implements INBTSerializable<CompoundTag> {
         return this.level >= minimumLevel;
     }
 
-    @Override
-    public CompoundTag serializeNBT(HolderLookup.Provider provider) {
-        CompoundTag nbt = new CompoundTag();
+    public NbtCompound writeNbt(NbtCompound nbt) {
         nbt.putString("profession", profession);
         nbt.putInt("level", level);
         nbt.putInt("experience", experience);
         return nbt;
     }
 
-    @Override
-    public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
+    public void readNbt(NbtCompound nbt) {
         this.profession = nbt.getString("profession");
         this.level = nbt.getInt("level");
         this.experience = nbt.getInt("experience");
@@ -5739,58 +5612,110 @@ public class PlayerProfession implements INBTSerializable<CompoundTag> {
 }
 ```
 
-#### 18.1.2 Attacher les Données au Joueur
+#### 18.1.2 Attacher les Données au Joueur via Mixin
+
+**En Fabric 1.20.1, on utilise un Mixin + interface pour stocker des données custom sur le joueur.**
+
+**Créer :** `src/main/java/com/medelium/capability/IEntityDataSaver.java`
+
+```java
+package com.medelium.capability;
+
+import net.minecraft.nbt.NbtCompound;
+
+public interface IEntityDataSaver {
+    NbtCompound medelium$getPersistentData();
+}
+```
+
+**Créer :** `src/main/java/com/medelium/mixin/EntityDataSaverMixin.java`
+
+```java
+package com.medelium.mixin;
+
+import com.medelium.capability.IEntityDataSaver;
+import net.minecraft.entity.Entity;
+import net.minecraft.nbt.NbtCompound;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+@Mixin(Entity.class)
+public abstract class EntityDataSaverMixin implements IEntityDataSaver {
+    @Unique
+    private NbtCompound medelium$persistentData;
+
+    @Override
+    public NbtCompound medelium$getPersistentData() {
+        if (this.medelium$persistentData == null) {
+            this.medelium$persistentData = new NbtCompound();
+        }
+        return this.medelium$persistentData;
+    }
+
+    @Inject(method = "writeNbt", at = @At("HEAD"))
+    protected void writeNbt(NbtCompound nbt, CallbackInfoReturnable<NbtCompound> cir) {
+        if (medelium$persistentData != null) {
+            nbt.put("medelium.data", medelium$persistentData);
+        }
+    }
+
+    @Inject(method = "readNbt", at = @At("HEAD"))
+    protected void readNbt(NbtCompound nbt, CallbackInfo ci) {
+        if (nbt.contains("medelium.data")) {
+            medelium$persistentData = nbt.getCompound("medelium.data");
+        }
+    }
+}
+```
+
+**Ajouter au `medelium.mixins.json` :**
+```json
+"mixins": ["ExampleMixin", "EntityDataSaverMixin"]
+```
 
 **Créer :** `src/main/java/com/medelium/capability/ModCapabilities.java`
 
 ```java
 package com.medelium.capability;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.attachment.AttachmentType;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.NbtCompound;
 
-import java.util.function.Supplier;
-
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
 public class ModCapabilities {
-    public static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = 
-        DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, MedeliumMod.MOD_ID);
 
-    public static final Supplier<AttachmentType<PlayerProfession>> PLAYER_PROFESSION = 
-        ATTACHMENT_TYPES.register("player_profession", 
-            () -> AttachmentType.serializable(PlayerProfession::new).build());
-
-    // Récupérer les données d'un joueur
-    public static PlayerProfession getProfession(Player player) {
-        return player.getData(PLAYER_PROFESSION);
+    // Récupérer les données de profession d'un joueur
+    public static PlayerProfession getProfession(PlayerEntity player) {
+        NbtCompound data = ((IEntityDataSaver) player).medelium$getPersistentData();
+        PlayerProfession profession = new PlayerProfession();
+        if (data.contains("profession")) {
+            profession.readNbt(data.getCompound("profession"));
+        }
+        return profession;
     }
 
-    // Copier les données à la mort
-    @SubscribeEvent
-    public static void onPlayerClone(PlayerEvent.Clone event) {
-        if (event.isWasDeath()) {
-            PlayerProfession oldData = event.getOriginal().getData(PLAYER_PROFESSION);
-            PlayerProfession newData = event.getEntity().getData(PLAYER_PROFESSION);
-            
-            newData.setProfession(oldData.getProfession());
-            newData.setLevel(oldData.getLevel());
-        }
+    // Sauvegarder les données de profession
+    public static void saveProfession(PlayerEntity player, PlayerProfession profession) {
+        NbtCompound data = ((IEntityDataSaver) player).medelium$getPersistentData();
+        NbtCompound profNbt = new NbtCompound();
+        profession.writeNbt(profNbt);
+        data.put("profession", profNbt);
     }
 }
 ```
 
-**Enregistrer dans MedeliumMod.java :**
+**Copier les données à la mort (dans `onInitialize()`) :**
 ```java
-ModCapabilities.ATTACHMENT_TYPES.register(modEventBus);
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+
+ServerPlayerEvents.COPY_FROM.register((oldPlayer, newPlayer, alive) -> {
+    NbtCompound oldData = ((IEntityDataSaver) oldPlayer).medelium$getPersistentData();
+    NbtCompound newData = ((IEntityDataSaver) newPlayer).medelium$getPersistentData();
+    newData.copyFrom(oldData);
+});
 ```
 
 #### 18.1.3 Commandes pour Gérer les Métiers
@@ -5800,32 +5725,25 @@ ModCapabilities.ATTACHMENT_TYPES.register(modEventBus);
 ```java
 package com.medelium.command;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.medelium.capability.ModCapabilities;
 import com.medelium.capability.PlayerProfession;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
-import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
 
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
 public class ProfessionCommands {
     
-    @SubscribeEvent
-    public static void onRegisterCommands(RegisterCommandsEvent event) {
-        CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
-        
+    public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         // /profession set <métier>
-        dispatcher.register(Commands.literal("profession")
-            .then(Commands.literal("set")
-                .then(Commands.argument("profession", StringArgumentType.word())
+        dispatcher.register(CommandManager.literal("profession")
+            .then(CommandManager.literal("set")
+                .then(CommandManager.argument("profession", StringArgumentType.word())
                     .suggests((context, builder) -> {
                         builder.suggest("forgeron");
                         builder.suggest("alchimiste");
@@ -5837,42 +5755,42 @@ public class ProfessionCommands {
                     .executes(ProfessionCommands::setProfession)))
             
             // /profession info
-            .then(Commands.literal("info")
+            .then(CommandManager.literal("info")
                 .executes(ProfessionCommands::showInfo))
             
             // /profession addxp <montant>
-            .then(Commands.literal("addxp")
-                .then(Commands.argument("amount", IntegerArgumentType.integer(1))
+            .then(CommandManager.literal("addxp")
+                .then(CommandManager.argument("amount", IntegerArgumentType.integer(1))
                     .executes(ProfessionCommands::addXP))));
     }
     
-    private static int setProfession(CommandContext<CommandSourceStack> context) {
-        if (context.getSource().getEntity() instanceof ServerPlayer player) {
+    private static int setProfession(CommandContext<ServerCommandSource> context) {
+        if (context.getSource().getEntity() instanceof ServerPlayerEntity player) {
             String profession = StringArgumentType.getString(context, "profession");
             PlayerProfession data = ModCapabilities.getProfession(player);
             
             data.setProfession(profession);
             
-            player.sendSystemMessage(Component.literal("§6Métier choisi: §f" + profession));
-            player.sendSystemMessage(Component.literal("§7Vous commencez au niveau 1"));
+            player.sendMessage(Text.literal("§6Métier choisi: §f" + profession));
+            player.sendMessage(Text.literal("§7Vous commencez au niveau 1"));
         }
         return 1;
     }
     
-    private static int showInfo(CommandContext<CommandSourceStack> context) {
-        if (context.getSource().getEntity() instanceof ServerPlayer player) {
+    private static int showInfo(CommandContext<ServerCommandSource> context) {
+        if (context.getSource().getEntity() instanceof ServerPlayerEntity player) {
             PlayerProfession data = ModCapabilities.getProfession(player);
             
-            player.sendSystemMessage(Component.literal("§6=== Informations Métier ==="));
-            player.sendSystemMessage(Component.literal("§7Métier: §f" + data.getProfession()));
-            player.sendSystemMessage(Component.literal("§7Niveau: §a" + data.getLevel()));
-            player.sendSystemMessage(Component.literal("§7Expérience: §e" + data.getExperience()));
+            player.sendMessage(Text.literal("§6=== Informations Métier ==="));
+            player.sendMessage(Text.literal("§7Métier: §f" + data.getProfession()));
+            player.sendMessage(Text.literal("§7Niveau: §a" + data.getLevel()));
+            player.sendMessage(Text.literal("§7Expérience: §e" + data.getExperience()));
         }
         return 1;
     }
     
-    private static int addXP(CommandContext<CommandSourceStack> context) {
-        if (context.getSource().getEntity() instanceof ServerPlayer player) {
+    private static int addXP(CommandContext<ServerCommandSource> context) {
+        if (context.getSource().getEntity() instanceof ServerPlayerEntity player) {
             int amount = IntegerArgumentType.getInteger(context, "amount");
             PlayerProfession data = ModCapabilities.getProfession(player);
             
@@ -5880,11 +5798,11 @@ public class ProfessionCommands {
             data.addExperience(amount);
             int newLevel = data.getLevel();
             
-            player.sendSystemMessage(Component.literal("§a+§e" + amount + " XP"));
+            player.sendMessage(Text.literal("§a+§e" + amount + " XP"));
             
             if (newLevel > oldLevel) {
-                player.sendSystemMessage(Component.literal("§6§l⬆ NIVEAU AUGMENTÉ !"));
-                player.sendSystemMessage(Component.literal("§7Niveau §f" + oldLevel + " §7→ §a" + newLevel));
+                player.sendMessage(Text.literal("§6§l⬆ NIVEAU AUGMENTÉ !"));
+                player.sendMessage(Text.literal("§7Niveau §f" + oldLevel + " §7→ §a" + newLevel));
             }
         }
         return 1;
@@ -5905,17 +5823,17 @@ package com.medelium.block.custom;
 
 import com.medelium.capability.ModCapabilities;
 import com.medelium.capability.PlayerProfession;
-import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.util.ActionResult;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.World;
+import net.minecraft.block.Block;
+import net.minecraft.block.*;
+import net.minecraft.util.hit.BlockHitResult;
 
 public class BlacksmithForgeBlock extends Block {
     
@@ -5927,39 +5845,39 @@ public class BlacksmithForgeBlock extends Block {
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos,
-                                               Player player, BlockHitResult hitResult) {
-        if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
+    protected ActionResult useWithoutItem(BlockState state, World world, BlockPos pos,
+                                               PlayerEntity player, BlockHitResult hitResult) {
+        if (!world.isClient() && player instanceof ServerPlayerEntity serverPlayer) {
             // Vérifier les conditions
             if (!checkConditions(serverPlayer)) {
-                return InteractionResult.FAIL;
+                return ActionResult.FAIL;
             }
             
             // Conditions remplies, ouvrir le GUI ou faire l'action
-            serverPlayer.sendSystemMessage(Component.literal("§aForge utilisée avec succès !"));
-            level.playSound(null, pos, SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
+            serverplayer.sendMessage(Text.literal("§aForge utilisée avec succès !"));
+            level.playSound(null, pos, SoundEvents.ANVIL_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
             
             // Ici, ouvrir votre GUI de forge
             // serverPlayer.openMenu(...);
         }
-        return InteractionResult.sidedSuccess(level.isClientSide());
+        return ActionResult.sidedSuccess(world.isClient());
     }
     
-    private boolean checkConditions(ServerPlayer player) {
+    private boolean checkConditions(ServerPlayerEntity player) {
         PlayerProfession data = ModCapabilities.getProfession(player);
         
         // Vérifier le métier
         if (!data.hasProfession(REQUIRED_PROFESSION)) {
-            player.sendSystemMessage(Component.literal("§c✗ Métier requis: §f" + REQUIRED_PROFESSION));
-            player.playNotifySound(SoundEvents.VILLAGER_NO, SoundSource.PLAYERS, 1.0F, 1.0F);
+            player.sendMessage(Text.literal("§c✗ Métier requis: §f" + REQUIRED_PROFESSION));
+            player.playNotifySound(SoundEvents.VILLAGER_NO, SoundCategory.PLAYERS, 1.0F, 1.0F);
             return false;
         }
         
         // Vérifier le niveau
         if (!data.hasLevel(REQUIRED_LEVEL)) {
-            player.sendSystemMessage(Component.literal("§c✗ Niveau requis: §f" + REQUIRED_LEVEL + 
+            player.sendMessage(Text.literal("§c✗ Niveau requis: §f" + REQUIRED_LEVEL + 
                 " §7(Vous êtes niveau " + data.getLevel() + ")"));
-            player.playNotifySound(SoundEvents.VILLAGER_NO, SoundSource.PLAYERS, 1.0F, 1.0F);
+            player.playNotifySound(SoundEvents.VILLAGER_NO, SoundCategory.PLAYERS, 1.0F, 1.0F);
             return false;
         }
         
@@ -5975,12 +5893,12 @@ public class BlacksmithForgeBlock extends Block {
 ```java
 package com.medelium.item.custom;
 
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.util.Formatting;
+import net.minecraft.text.Text;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.block.Block;
 
 import java.util.List;
 
@@ -5995,13 +5913,13 @@ public class ConditionalBlockItem extends BlockItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        tooltipComponents.add(Component.literal(""));
-        tooltipComponents.add(Component.literal("§cConditions requises:"));
-        tooltipComponents.add(Component.literal("§7• Métier: §f" + requiredProfession));
-        tooltipComponents.add(Component.literal("§7• Niveau: §f" + requiredLevel));
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag tooltipFlag) {
+        tooltip.add(Text.literal(""));
+        tooltip.add(Text.literal("§cConditions requises:"));
+        tooltip.add(Text.literal("§7• Métier: §f" + requiredProfession));
+        tooltip.add(Text.literal("§7• Niveau: §f" + requiredLevel));
         
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        super.appendHoverText(stack, context, tooltip, tooltipFlag);
     }
 }
 ```
@@ -6010,15 +5928,15 @@ public class ConditionalBlockItem extends BlockItem {
 
 ```java
 // Dans ModBlocks.java
-public static final DeferredBlock<Block> BLACKSMITH_FORGE = 
-    BLOCKS.register("blacksmith_forge", () -> new BlacksmithForgeBlock(
-        BlockBehaviour.Properties.of().strength(3.0f).requiresCorrectToolForDrops()));
+public static final Block BLACKSMITH_FORGE = 
+    registerBlock("blacksmith_forge", new BlacksmithForgeBlock(
+        FabricBlockSettings.create().strength(3.0f).requiresTool()));
 
 // Dans ModItems.java - enregistrer le BlockItem spécial
-public static final DeferredItem<Item> BLACKSMITH_FORGE_ITEM = 
-    ITEMS.register("blacksmith_forge", () -> new ConditionalBlockItem(
-        ModBlocks.BLACKSMITH_FORGE.get(), 
-        new Item.Properties(),
+public static final Item BLACKSMITH_FORGE_ITEM = 
+    registerItem("blacksmith_forge", new ConditionalBlockItem(
+        ModBlocks.BLACKSMITH_FORGE, 
+        new FabricItemSettings(),
         "forgeron",
         5
     ));
@@ -6033,17 +5951,17 @@ package com.medelium.item.custom;
 
 import com.medelium.capability.ModCapabilities;
 import com.medelium.capability.PlayerProfession;
-import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
+import net.minecraft.text.Text;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ToolMaterial;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.world.World;
 
 import java.util.List;
 
@@ -6056,28 +5974,28 @@ public class ProfessionalPickaxeItem extends PickaxeItem {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        if (!level.isClientSide()) {
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        if (!world.isClient()) {
             PlayerProfession data = ModCapabilities.getProfession(player);
             
             if (!data.hasProfession(REQUIRED_PROFESSION) || !data.hasLevel(REQUIRED_LEVEL)) {
-                player.sendSystemMessage(Component.literal("§c✗ Vous ne pouvez pas utiliser cet outil !"));
-                player.sendSystemMessage(Component.literal("§7Requis: §f" + REQUIRED_PROFESSION + " niveau " + REQUIRED_LEVEL));
-                level.playSound(null, player.blockPosition(), 
-                    SoundEvents.VILLAGER_NO, SoundSource.PLAYERS, 1.0F, 1.0F);
-                return InteractionResultHolder.fail(player.getItemInHand(hand));
+                player.sendMessage(Text.literal("§c✗ Vous ne pouvez pas utiliser cet outil !"));
+                player.sendMessage(Text.literal("§7Requis: §f" + REQUIRED_PROFESSION + " niveau " + REQUIRED_LEVEL));
+                level.playSound(null, player.getBlockPos(), 
+                    SoundEvents.VILLAGER_NO, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                return TypedActionResult.fail(player.getStackInHand(hand));
             }
         }
-        return super.use(level, player, hand);
+        return super.use(world, player, hand);
     }
     
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        tooltipComponents.add(Component.literal(""));
-        tooltipComponents.add(Component.literal("§6Pioche Professionnelle"));
-        tooltipComponents.add(Component.literal("§cRequis: §f" + REQUIRED_PROFESSION + " Niv." + REQUIRED_LEVEL));
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag tooltipFlag) {
+        tooltip.add(Text.literal(""));
+        tooltip.add(Text.literal("§6Pioche Professionnelle"));
+        tooltip.add(Text.literal("§cRequis: §f" + REQUIRED_PROFESSION + " Niv." + REQUIRED_LEVEL));
         
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        super.appendHoverText(stack, context, tooltip, tooltipFlag);
     }
 }
 ```
@@ -6091,18 +6009,18 @@ package com.medelium.block.custom;
 
 import com.medelium.capability.ModCapabilities;
 import com.medelium.capability.PlayerProfession;
-import com.medelium.screen.AlchemyTableMenu;
-import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleMenuProvider;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
+import com.medelium.currentScreen.AlchemyTableMenu;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.ActionResult;
+import net.minecraft.currentScreen.NamedScreenHandlerFactory;
+import net.minecraft.currentScreen.SimpleNamedScreenHandlerFactory;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.World;
+import net.minecraft.block.Block;
+import net.minecraft.block.*;
+import net.minecraft.util.hit.BlockHitResult;
 
 public class AlchemyTableBlock extends Block {
     
@@ -6111,31 +6029,31 @@ public class AlchemyTableBlock extends Block {
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos,
-                                               Player player, BlockHitResult hitResult) {
-        if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
+    protected ActionResult useWithoutItem(BlockState state, World world, BlockPos pos,
+                                               PlayerEntity player, BlockHitResult hitResult) {
+        if (!world.isClient() && player instanceof ServerPlayerEntity serverPlayer) {
             PlayerProfession data = ModCapabilities.getProfession(serverPlayer);
             
             // Vérifier métier
             if (!data.hasProfession("alchimiste")) {
-                serverPlayer.sendSystemMessage(Component.literal("§c✗ Seuls les alchimistes peuvent utiliser cette table !"));
-                return InteractionResult.FAIL;
+                serverplayer.sendMessage(Text.literal("§c✗ Seuls les alchimistes peuvent utiliser cette table !"));
+                return ActionResult.FAIL;
             }
             
             // Vérifier niveau
             if (!data.hasLevel(3)) {
-                serverPlayer.sendSystemMessage(Component.literal("§c✗ Niveau d'alchimie insuffisant !"));
-                serverPlayer.sendSystemMessage(Component.literal("§7Niveau requis: §f3 §7(Vous: §f" + data.getLevel() + "§7)"));
-                return InteractionResult.FAIL;
+                serverplayer.sendMessage(Text.literal("§c✗ Niveau d'alchimie insuffisant !"));
+                serverplayer.sendMessage(Text.literal("§7Niveau requis: §f3 §7(Vous: §f" + data.getLevel() + "§7)"));
+                return ActionResult.FAIL;
             }
             
             // Ouvrir le GUI
-            serverPlayer.openMenu(new SimpleMenuProvider(
+            serverPlayer.openMenu(new SimpleNamedScreenHandlerFactory(
                 (id, playerInv, p) -> new AlchemyTableMenu(id, playerInv),
-                Component.literal("§5Table d'Alchimie")
+                Text.literal("§5Table d'Alchimie")
             ));
         }
-        return InteractionResult.sidedSuccess(level.isClientSide());
+        return ActionResult.sidedSuccess(world.isClient());
     }
 }
 ```
@@ -6149,9 +6067,9 @@ package com.medelium.util;
 
 import com.medelium.capability.ModCapabilities;
 import com.medelium.capability.PlayerProfession;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6172,12 +6090,12 @@ public class ConditionChecker {
     }
     
     // Vérifier toutes les conditions et afficher le résultat
-    public static boolean checkConditions(ServerPlayer player, List<Condition> conditions) {
+    public static boolean checkConditions(ServerPlayerEntity player, List<Condition> conditions) {
         boolean allMet = true;
         
         for (Condition condition : conditions) {
             if (!condition.isMet()) {
-                player.sendSystemMessage(Component.literal("§c✗ " + condition.getDescription()));
+                player.sendMessage(Text.literal("§c✗ " + condition.getDescription()));
                 allMet = false;
             }
         }
@@ -6187,10 +6105,10 @@ public class ConditionChecker {
     
     // Builder pour créer des conditions facilement
     public static class Builder {
-        private final ServerPlayer player;
+        private final ServerPlayerEntity player;
         private final List<Condition> conditions = new ArrayList<>();
         
-        public Builder(ServerPlayer player) {
+        public Builder(ServerPlayerEntity player) {
             this.player = player;
         }
         
@@ -6251,8 +6169,8 @@ boolean canUse = new ConditionChecker.Builder(serverPlayer)
     .check();
 
 if (!canUse) {
-    serverPlayer.sendSystemMessage(Component.literal("§cConditions non remplies !"));
-    return InteractionResult.FAIL;
+    serverplayer.sendMessage(Text.literal("§cConditions non remplies !"));
+    return ActionResult.FAIL;
 }
 ```
 
@@ -6262,20 +6180,20 @@ if (!canUse) {
 
 ```java
 @Override
-public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-    tooltipComponents.add(Component.literal(""));
-    tooltipComponents.add(Component.literal("§6Conditions:"));
+public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag tooltipFlag) {
+    tooltip.add(Text.literal(""));
+    tooltip.add(Text.literal("§6Conditions:"));
     
     // Note: Côté client, on ne peut pas accéder aux données serveur facilement
     // Donc soit on affiche juste les requis, soit on utilise un système de sync
     
-    tooltipComponents.add(Component.literal("§7• Forgeron niveau 10"));
-    tooltipComponents.add(Component.literal("§7• 3 diamants dans l'inventaire"));
+    tooltip.add(Text.literal("§7• Forgeron niveau 10"));
+    tooltip.add(Text.literal("§7• 3 diamants dans l'inventaire"));
     
     // Si on veut afficher si c'est rempli ou non, il faut synchroniser les données
     // avec un packet réseau (système avancé)
     
-    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+    super.appendHoverText(stack, context, tooltip, tooltipFlag);
 }
 ```
 
@@ -6307,9 +6225,8 @@ public void appendHoverText(ItemStack stack, TooltipContext context, List<Compon
 ```java
 package com.medelium.capability;
 
-import net.minecraft.core.HolderLookup;
+import net.minecraft.registry.*;
 import net.minecraft.nbt.CompoundTag;
-import net.neoforged.neoforge.common.util.INBTSerializable;
 
 public class PlayerManaProvider implements INBTSerializable<CompoundTag> {
     private int mana = 0;
@@ -6332,14 +6249,14 @@ public class PlayerManaProvider implements INBTSerializable<CompoundTag> {
     }
 
     @Override
-    public CompoundTag serializeNBT(HolderLookup.Provider provider) {
+    public CompoundTag serializeNBT(RegistryWrapper.WrapperLookup provider) {
         CompoundTag nbt = new CompoundTag();
         nbt.putInt("mana", mana);
         return nbt;
     }
 
     @Override
-    public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
+    public void deserializeNBT(RegistryWrapper.WrapperLookup provider, CompoundTag nbt) {
         this.mana = nbt.getInt("mana");
     }
 }
@@ -6422,7 +6339,7 @@ public class PlayerManaProvider implements INBTSerializable<CompoundTag> {
 
 ### Trouver le Fichier JAR :
 Après `.\gradlew build`, le fichier se trouve dans :
-`build/libs/medeliummod-1.0.0.jar`
+`build/libs/Medelium-1.0.0.jar`
 
 ---
 
@@ -6484,7 +6401,7 @@ Après `.\gradlew build`, le fichier se trouve dans :
 
 ### Le jeu crash au démarrage :
 1. Vérifier que Java 21 est installé
-2. Vérifier `neoforge.mods.toml` (syntaxe correcte)
+2. Vérifier `fabric.mod.json` (syntaxe correcte)
 3. Regarder les logs dans `logs/latest.log`
 
 ### Les textures sont violettes/noires :
@@ -6507,7 +6424,7 @@ Après `.\gradlew build`, le fichier se trouve dans :
 ## 📚 Ressources Utiles
 
 ### Documentation :
-- NeoForge Docs: https://docs.neoforged.net/
+- Fabric Docs: https://docs.fabricd.net/
 - Minecraft Wiki: https://minecraft.wiki/
 
 ### Outils :
@@ -6584,9 +6501,9 @@ Vous savez maintenant **TOUT** ce qu'il est possible de créer dans votre mod !
 ```java
 package com.medelium.quest;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6626,8 +6543,8 @@ public class Quest {
     public List<QuestReward> getRewards() { return rewards; }
     
     // Vérifier si toutes les objectifs sont complétés
-    public boolean isCompleted(ServerPlayer player) {
-        PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+    public boolean isCompleted(ServerPlayerEntity player) {
+        PlayerQuestData data = ((IEntityDataSaver) player).medelium$getPersistentData();
         QuestProgress progress = data.getProgress(this.id);
         if (progress == null) return false;
         
@@ -6640,7 +6557,7 @@ public class Quest {
     }
     
     // Donner les récompenses
-    public void giveRewards(ServerPlayer player) {
+    public void giveRewards(ServerPlayerEntity player) {
         for (QuestReward reward : rewards) {
             reward.grant(player);
         }
@@ -6655,15 +6572,15 @@ public class Quest {
 ```java
 package com.medelium.quest;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public interface QuestObjective {
     Component getDescription();
     int getRequiredAmount();
     
     // Vérifier si cet événement fait progresser l'objectif
-    boolean checkProgress(ServerPlayer player, Object eventData);
+    boolean checkProgress(ServerPlayerEntity player, Object eventData);
 }
 ```
 
@@ -6673,10 +6590,10 @@ public interface QuestObjective {
 package com.medelium.quest.objectives;
 
 import com.medelium.quest.QuestObjective;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class CollectItemObjective implements QuestObjective {
     private final Item item;
@@ -6689,7 +6606,7 @@ public class CollectItemObjective implements QuestObjective {
     
     @Override
     public Component getDescription() {
-        return Component.literal("Collecter " + amount + "x " + item.getDescription().getString());
+        return Text.literal("Collecter " + amount + "x " + item.getDescription().getString());
     }
     
     @Override
@@ -6698,7 +6615,7 @@ public class CollectItemObjective implements QuestObjective {
     }
     
     @Override
-    public boolean checkProgress(ServerPlayer player, Object eventData) {
+    public boolean checkProgress(ServerPlayerEntity player, Object eventData) {
         if (eventData instanceof ItemStack stack) {
             return stack.is(item);
         }
@@ -6706,7 +6623,7 @@ public class CollectItemObjective implements QuestObjective {
     }
     
     // Compter combien le joueur en a dans son inventaire
-    public int countInInventory(ServerPlayer player) {
+    public int countInInventory(ServerPlayerEntity player) {
         int count = 0;
         for (ItemStack stack : player.getInventory().items) {
             if (stack.is(item)) {
@@ -6724,10 +6641,10 @@ public class CollectItemObjective implements QuestObjective {
 package com.medelium.quest.objectives;
 
 import com.medelium.quest.QuestObjective;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.entity.*;
+import net.minecraft.entity.LivingEntity;
 
 public class KillMobObjective implements QuestObjective {
     private final EntityType<?> entityType;
@@ -6740,7 +6657,7 @@ public class KillMobObjective implements QuestObjective {
     
     @Override
     public Component getDescription() {
-        return Component.literal("Tuer " + amount + "x " + entityType.getDescription().getString());
+        return Text.literal("Tuer " + amount + "x " + entityType.getDescription().getString());
     }
     
     @Override
@@ -6749,7 +6666,7 @@ public class KillMobObjective implements QuestObjective {
     }
     
     @Override
-    public boolean checkProgress(ServerPlayer player, Object eventData) {
+    public boolean checkProgress(ServerPlayerEntity player, Object eventData) {
         if (eventData instanceof LivingEntity entity) {
             return entity.getType() == entityType;
         }
@@ -6765,7 +6682,7 @@ public class KillMobObjective implements QuestObjective {
 ```java
 package com.medelium.quest;
 
-import net.minecraft.core.HolderLookup;
+import net.minecraft.registry.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
@@ -6809,7 +6726,7 @@ public class PlayerQuestData {
     }
     
     // Sauvegarde NBT
-    public CompoundTag save(HolderLookup.Provider provider) {
+    public CompoundTag save(RegistryWrapper.WrapperLookup provider) {
         CompoundTag tag = new CompoundTag();
         
         // Quêtes actives
@@ -6830,7 +6747,7 @@ public class PlayerQuestData {
     }
     
     // Chargement NBT
-    public void load(CompoundTag tag, HolderLookup.Provider provider) {
+    public void load(CompoundTag tag, RegistryWrapper.WrapperLookup provider) {
         activeQuests.clear();
         completedQuests.clear();
         
@@ -6921,9 +6838,9 @@ package com.medelium.quest;
 import com.medelium.item.ModItems;
 import com.medelium.quest.objectives.CollectItemObjective;
 import com.medelium.quest.objectives.KillMobObjective;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.Items;
+import net.minecraft.text.Text;
+import net.minecraft.entity.*;
+import net.minecraft.item.Items;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6935,38 +6852,38 @@ public class QuestRegistry {
         // Quête 1 : Première collecte
         Quest firstQuest = new Quest(
             "first_collection",
-            Component.literal("§6Première Collecte"),
-            Component.literal("§7Le forgeron a besoin de fer pour forger."),
+            Text.literal("§6Première Collecte"),
+            Text.literal("§7Le forgeron a besoin de fer pour forger."),
             1
         );
         firstQuest.addObjective(new CollectItemObjective(Items.IRON_INGOT, 10));
-        firstQuest.addReward(new ItemReward(ModItems.GOLD_COIN.get(), 50));
+        firstQuest.addReward(new ItemReward(ModItems.GOLD_COIN, 50));
         firstQuest.addReward(new XPReward(100));
         QUESTS.put(firstQuest.getId(), firstQuest);
         
         // Quête 2 : Chasse aux zombies
         Quest zombieHunt = new Quest(
             "zombie_hunt",
-            Component.literal("§6Menace Zombie"),
-            Component.literal("§7Des zombies menacent le village !"),
+            Text.literal("§6Menace Zombie"),
+            Text.literal("§7Des zombies menacent le village !"),
             3
         );
         zombieHunt.addObjective(new KillMobObjective(EntityType.ZOMBIE, 20));
-        zombieHunt.addReward(new ItemReward(ModItems.SILVER_SWORD.get(), 1));
+        zombieHunt.addReward(new ItemReward(ModItems.SILVER_SWORD, 1));
         zombieHunt.addReward(new XPReward(250));
         QUESTS.put(zombieHunt.getId(), zombieHunt);
         
         // Quête 3 : Multi-objectifs
         Quest epicQuest = new Quest(
             "epic_journey",
-            Component.literal("§6§lVoyage Épique"),
-            Component.literal("§7Une quête légendaire vous attend..."),
+            Text.literal("§6§lVoyage Épique"),
+            Text.literal("§7Une quête légendaire vous attend..."),
             10
         );
         epicQuest.addObjective(new CollectItemObjective(Items.DIAMOND, 5));
         epicQuest.addObjective(new KillMobObjective(EntityType.ENDER_DRAGON, 1));
         epicQuest.addObjective(new CollectItemObjective(Items.NETHER_STAR, 1));
-        epicQuest.addReward(new ItemReward(ModItems.LEGENDARY_SWORD.get(), 1));
+        epicQuest.addReward(new ItemReward(ModItems.LEGENDARY_SWORD, 1));
         epicQuest.addReward(new XPReward(5000));
         QUESTS.put(epicQuest.getId(), epicQuest);
     }
@@ -6988,10 +6905,10 @@ public class QuestRegistry {
 ```java
 package com.medelium.quest;
 
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public interface QuestReward {
-    void grant(ServerPlayer player);
+    void grant(ServerPlayerEntity player);
 }
 ```
 
@@ -7000,9 +6917,9 @@ public interface QuestReward {
 ```java
 package com.medelium.quest;
 
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class ItemReward implements QuestReward {
     private final Item item;
@@ -7014,7 +6931,7 @@ public class ItemReward implements QuestReward {
     }
     
     @Override
-    public void grant(ServerPlayer player) {
+    public void grant(ServerPlayerEntity player) {
         ItemStack stack = new ItemStack(item, amount);
         player.addItem(stack);
     }
@@ -7026,7 +6943,7 @@ public class ItemReward implements QuestReward {
 ```java
 package com.medelium.quest;
 
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public class XPReward implements QuestReward {
     private final int amount;
@@ -7036,7 +6953,7 @@ public class XPReward implements QuestReward {
     }
     
     @Override
-    public void grant(ServerPlayer player) {
+    public void grant(ServerPlayerEntity player) {
         player.giveExperiencePoints(amount);
     }
 }
@@ -7049,25 +6966,18 @@ public class XPReward implements QuestReward {
 ```java
 package com.medelium.event;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.medelium.quest.*;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.LivingEntity;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.entity.LivingEntity;
 public class QuestEvents {
     
     // Quand un joueur tue une entité
-    @SubscribeEvent
-    public static void onEntityKilled(LivingDeathEvent event) {
-        if (event.getSource().getEntity() instanceof ServerPlayer player) {
-            LivingEntity killed = event.getEntity();
+        public static void onEntityKilled(LivingDeathEvent event) {
+        if (event.getSource().getEntity() instanceof ServerPlayerEntity player) {
+            LivingEntity killed = player /* Fabric: obtenu via le callback */;
             
-            PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+            PlayerQuestData data = ((IEntityDataSaver) player).medelium$getPersistentData();
             
             // Vérifier toutes les quêtes actives
             for (String questId : data.getActiveQuests().keySet()) {
@@ -7089,8 +6999,8 @@ public class QuestEvents {
                             QuestProgress progress = data.getProgress(questId);
                             int current = progress.getObjectiveProgress(i);
                             int required = objective.getRequiredAmount();
-                            player.displayClientMessage(
-                                Component.literal("§aQuête: " + current + "/" + required + " " + objective.getDescription().getString()),
+                            player.sendMessage(
+                                Text.literal("§aQuête: " + current + "/" + required + " " + objective.getDescription().getString()),
                                 true
                             );
                         }
@@ -7101,12 +7011,11 @@ public class QuestEvents {
     }
     
     // Quand un joueur ramasse un item
-    @SubscribeEvent
-    public static void onItemPickup(PlayerEvent.ItemPickupEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
+        public static void onItemPickup(PlayerEvent.ItemPickupEvent event) {
+        if (player /* Fabric: obtenu via le callback */ instanceof ServerPlayerEntity player) {
             ItemStack pickedUp = event.getStack();
             
-            PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+            PlayerQuestData data = ((IEntityDataSaver) player).medelium$getPersistentData();
             
             for (String questId : data.getActiveQuests().keySet()) {
                 Quest quest = QuestRegistry.getQuest(questId);
@@ -7132,8 +7041,8 @@ public class QuestEvents {
         }
     }
     
-    private static void completeQuest(ServerPlayer player, Quest quest) {
-        PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+    private static void completeQuest(ServerPlayerEntity player, Quest quest) {
+        PlayerQuestData data = ((IEntityDataSaver) player).medelium$getPersistentData();
         
         // Donner les récompenses
         quest.giveRewards(player);
@@ -7142,11 +7051,11 @@ public class QuestEvents {
         data.completeQuest(quest.getId());
         
         // Message de réussite
-        player.sendSystemMessage(Component.literal("§6§l✔ QUÊTE TERMINÉE !"));
-        player.sendSystemMessage(Component.literal("§e" + quest.getTitle().getString()));
+        player.sendMessage(Text.literal("§6§l✔ QUÊTE TERMINÉE !"));
+        player.sendMessage(Text.literal("§e" + quest.getTitle().getString()));
         
         // Son de succès
-        player.playSound(SoundEvents.PLAYER_LEVELUP, 1.0F, 1.0F);
+        player.playSound(SoundEvents.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
     }
 }
 ```
@@ -7162,72 +7071,72 @@ import com.medelium.quest.*;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
-import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public class QuestCommands {
     
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        dispatcher.register(Commands.literal("quest")
-            .then(Commands.literal("start")
-                .then(Commands.argument("questId", StringArgumentType.string())
+    public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
+        dispatcher.register(CommandManager.literal("quest")
+            .then(CommandManager.literal("start")
+                .then(CommandManager.argument("questId", StringArgumentType.string())
                     .executes(QuestCommands::startQuest)))
-            .then(Commands.literal("list")
+            .then(CommandManager.literal("list")
                 .executes(QuestCommands::listQuests))
-            .then(Commands.literal("progress")
+            .then(CommandManager.literal("progress")
                 .executes(QuestCommands::showProgress))
-            .then(Commands.literal("complete")
-                .then(Commands.argument("questId", StringArgumentType.string())
-                    .requires(source -> source.hasPermission(2))
+            .then(CommandManager.literal("complete")
+                .then(CommandManager.argument("questId", StringArgumentType.string())
+                    .requires(source -> source.hasPermissionLevel(2))
                     .executes(QuestCommands::forceComplete)))
         );
     }
     
-    private static int startQuest(CommandContext<CommandSourceStack> context) {
-        ServerPlayer player = context.getSource().getPlayer();
+    private static int startQuest(CommandContext<ServerCommandSource> context) {
+        ServerPlayerEntity player = context.getSource().getPlayer();
         String questId = StringArgumentType.getString(context, "questId");
         
         Quest quest = QuestRegistry.getQuest(questId);
         if (quest == null) {
-            player.sendSystemMessage(Component.literal("§cQuête introuvable !"));
+            player.sendMessage(Text.literal("§cQuête introuvable !"));
             return 0;
         }
         
-        PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+        PlayerQuestData data = ((IEntityDataSaver) player).medelium$getPersistentData();
         
         if (data.isQuestCompleted(questId)) {
-            player.sendSystemMessage(Component.literal("§cVous avez déjà complété cette quête !"));
+            player.sendMessage(Text.literal("§cVous avez déjà complété cette quête !"));
             return 0;
         }
         
         if (data.isQuestActive(questId)) {
-            player.sendSystemMessage(Component.literal("§cCette quête est déjà en cours !"));
+            player.sendMessage(Text.literal("§cCette quête est déjà en cours !"));
             return 0;
         }
         
         data.startQuest(questId);
-        player.sendSystemMessage(Component.literal("§a§lNOUVELLE QUÊTE !"));
-        player.sendSystemMessage(quest.getTitle());
-        player.sendSystemMessage(quest.getDescription());
+        player.sendMessage(Text.literal("§a§lNOUVELLE QUÊTE !"));
+        player.sendMessage(quest.getTitle());
+        player.sendMessage(quest.getDescription());
         
         return 1;
     }
     
-    private static int listQuests(CommandContext<CommandSourceStack> context) {
-        ServerPlayer player = context.getSource().getPlayer();
-        PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+    private static int listQuests(CommandContext<ServerCommandSource> context) {
+        ServerPlayerEntity player = context.getSource().getPlayer();
+        PlayerQuestData data = ((IEntityDataSaver) player).medelium$getPersistentData();
         
-        player.sendSystemMessage(Component.literal("§6§l=== QUÊTES ACTIVES ==="));
+        player.sendMessage(Text.literal("§6§l=== QUÊTES ACTIVES ==="));
         
         if (data.getActiveQuests().isEmpty()) {
-            player.sendSystemMessage(Component.literal("§7Aucune quête en cours"));
+            player.sendMessage(Text.literal("§7Aucune quête en cours"));
         } else {
             for (String questId : data.getActiveQuests().keySet()) {
                 Quest quest = QuestRegistry.getQuest(questId);
                 if (quest != null) {
-                    player.sendSystemMessage(Component.literal("§e- " + quest.getTitle().getString()));
+                    player.sendMessage(Text.literal("§e- " + quest.getTitle().getString()));
                 }
             }
         }
@@ -7235,9 +7144,9 @@ public class QuestCommands {
         return 1;
     }
     
-    private static int showProgress(CommandContext<CommandSourceStack> context) {
-        ServerPlayer player = context.getSource().getPlayer();
-        PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+    private static int showProgress(CommandContext<ServerCommandSource> context) {
+        ServerPlayerEntity player = context.getSource().getPlayer();
+        PlayerQuestData data = ((IEntityDataSaver) player).medelium$getPersistentData();
         
         for (String questId : data.getActiveQuests().keySet()) {
             Quest quest = QuestRegistry.getQuest(questId);
@@ -7245,14 +7154,14 @@ public class QuestCommands {
             
             QuestProgress progress = data.getProgress(questId);
             
-            player.sendSystemMessage(Component.literal("§6" + quest.getTitle().getString()));
+            player.sendMessage(Text.literal("§6" + quest.getTitle().getString()));
             for (int i = 0; i < quest.getObjectives().size(); i++) {
                 QuestObjective obj = quest.getObjectives().get(i);
                 int current = progress.getObjectiveProgress(i);
                 int required = obj.getRequiredAmount();
                 
                 String status = current >= required ? "§a✔" : "§7○";
-                player.sendSystemMessage(Component.literal(
+                player.sendMessage(Text.literal(
                     status + " " + obj.getDescription().getString() + " (" + current + "/" + required + ")"
                 ));
             }
@@ -7261,21 +7170,21 @@ public class QuestCommands {
         return 1;
     }
     
-    private static int forceComplete(CommandContext<CommandSourceStack> context) {
-        ServerPlayer player = context.getSource().getPlayer();
+    private static int forceComplete(CommandContext<ServerCommandSource> context) {
+        ServerPlayerEntity player = context.getSource().getPlayer();
         String questId = StringArgumentType.getString(context, "questId");
         
         Quest quest = QuestRegistry.getQuest(questId);
         if (quest == null) {
-            player.sendSystemMessage(Component.literal("§cQuête introuvable !"));
+            player.sendMessage(Text.literal("§cQuête introuvable !"));
             return 0;
         }
         
-        PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+        PlayerQuestData data = ((IEntityDataSaver) player).medelium$getPersistentData();
         quest.giveRewards(player);
         data.completeQuest(questId);
         
-        player.sendSystemMessage(Component.literal("§aQuête complétée de force !"));
+        player.sendMessage(Text.literal("§aQuête complétée de force !"));
         return 1;
     }
 }
@@ -7320,9 +7229,9 @@ public class QuestCommands {
 ```java
 package com.medelium.faction;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.Item;
+import net.minecraft.text.Text;
+import net.minecraft.entity.*;
+import net.minecraft.item.Item;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7406,7 +7315,7 @@ public class Faction {
 ```java
 package com.medelium.faction;
 
-import net.minecraft.core.HolderLookup;
+import net.minecraft.registry.*;
 import net.minecraft.nbt.CompoundTag;
 
 import java.util.HashMap;
@@ -7437,7 +7346,7 @@ public class PlayerFactionData {
     }
     
     // Sauvegarde NBT
-    public CompoundTag save(HolderLookup.Provider provider) {
+    public CompoundTag save(RegistryWrapper.WrapperLookup provider) {
         CompoundTag tag = new CompoundTag();
         for (Map.Entry<String, Integer> entry : reputations.entrySet()) {
             tag.putInt(entry.getKey(), entry.getValue());
@@ -7445,7 +7354,7 @@ public class PlayerFactionData {
         return tag;
     }
     
-    public void load(CompoundTag tag, HolderLookup.Provider provider) {
+    public void load(CompoundTag tag, RegistryWrapper.WrapperLookup provider) {
         reputations.clear();
         for (String key : tag.getAllKeys()) {
             reputations.put(key, tag.getInt(key));
@@ -7461,9 +7370,9 @@ public class PlayerFactionData {
 ```java
 package com.medelium.faction;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.Items;
+import net.minecraft.text.Text;
+import net.minecraft.entity.*;
+import net.minecraft.item.Items;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7475,8 +7384,8 @@ public class FactionRegistry {
         // Garde Royale
         Faction royalGuard = new Faction(
             "royal_guard",
-            Component.literal("§6Garde Royale"),
-            Component.literal("§7Protecteurs du royaume et de la couronne")
+            Text.literal("§6Garde Royale"),
+            Text.literal("§7Protecteurs du royaume et de la couronne")
         );
         royalGuard.addEnemyMob(EntityType.ZOMBIE, 5);
         royalGuard.addEnemyMob(EntityType.SKELETON, 5);
@@ -7488,8 +7397,8 @@ public class FactionRegistry {
         // Ordre des Mages
         Faction mageOrder = new Faction(
             "mage_order",
-            Component.literal("§5Ordre des Mages"),
-            Component.literal("§7Gardiens de la connaissance arcanique")
+            Text.literal("§5Ordre des Mages"),
+            Text.literal("§7Gardiens de la connaissance arcanique")
         );
         mageOrder.addEnemyMob(EntityType.WITCH, 10);
         mageOrder.addEnemyMob(EntityType.EVOKER, 20);
@@ -7500,8 +7409,8 @@ public class FactionRegistry {
         // Guilde des Mercenaires
         Faction mercenaries = new Faction(
             "mercenaries",
-            Component.literal("§cGuilde des Mercenaires"),
-            Component.literal("§7Combattants à louer pour le plus offrant")
+            Text.literal("§cGuilde des Mercenaires"),
+            Text.literal("§7Combattants à louer pour le plus offrant")
         );
         mercenaries.addEnemyMob(EntityType.CREEPER, 8);
         mercenaries.addEnemyMob(EntityType.ENDERMAN, 12);
@@ -7527,23 +7436,17 @@ public class FactionRegistry {
 ```java
 package com.medelium.event;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.medelium.faction.*;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.LivingEntity;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
-
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.entity.LivingEntity;
 public class FactionEvents {
     
-    @SubscribeEvent
-    public static void onMobKilled(LivingDeathEvent event) {
-        if (event.getSource().getEntity() instanceof ServerPlayer player) {
-            LivingEntity killed = event.getEntity();
-            PlayerFactionData data = player.getData(ModAttachments.FACTION_DATA);
+        public static void onMobKilled(LivingDeathEvent event) {
+        if (event.getSource().getEntity() instanceof ServerPlayerEntity player) {
+            LivingEntity killed = player /* Fabric: obtenu via le callback */;
+            PlayerFactionData data = ((IEntityDataSaver) player).medelium$getPersistentData();
             
             // Vérifier toutes les factions
             for (Faction faction : FactionRegistry.getAllFactions().values()) {
@@ -7559,18 +7462,18 @@ public class FactionEvents {
                     Faction.ReputationLevel newLevel = Faction.getReputationLevel(newRep);
                     
                     // Message de gain
-                    player.displayClientMessage(
-                        Component.literal("§a+" + reputationGain + " §7réputation avec §f" + faction.getName().getString()),
+                    player.sendMessage(
+                        Text.literal("§a+" + reputationGain + " §7réputation avec §f" + faction.getName().getString()),
                         true
                     );
                     
                     // Si changement de niveau
                     if (oldLevel != newLevel) {
-                        player.sendSystemMessage(Component.literal("§6§l✦ NOUVEAU RANG !"));
-                        player.sendSystemMessage(Component.literal(
+                        player.sendMessage(Text.literal("§6§l✦ NOUVEAU RANG !"));
+                        player.sendMessage(Text.literal(
                             "§e" + faction.getName().getString() + " : " + newLevel.getDisplayName()
                         ));
-                        player.playSound(SoundEvents.PLAYER_LEVELUP, 1.0F, 1.5F);
+                        player.playSound(SoundEvents.ENTITY_PLAYER_LEVELUP, 1.0F, 1.5F);
                     }
                 }
             }
@@ -7587,15 +7490,15 @@ public class FactionEvents {
 package com.medelium.block.custom;
 
 import com.medelium.faction.*;
-import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.ActionResult;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.World;
+import net.minecraft.block.Block;
+import net.minecraft.block.*;
+import net.minecraft.util.hit.BlockHitResult;
 
 public class FactionDoorBlock extends Block {
     private final String requiredFaction;
@@ -7608,27 +7511,27 @@ public class FactionDoorBlock extends Block {
     }
     
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, 
-                                               Player player, BlockHitResult hitResult) {
-        if (player instanceof ServerPlayer serverPlayer) {
-            PlayerFactionData data = serverPlayer.getData(ModAttachments.FACTION_DATA);
+    protected ActionResult useWithoutItem(BlockState state, World world, BlockPos pos, 
+                                               PlayerEntity player, BlockHitResult hitResult) {
+        if (player instanceof ServerPlayerEntity serverPlayer) {
+            PlayerFactionData data = ((IEntityDataSaver) serverPlayer).medelium$getPersistentData();
             int reputation = data.getReputation(requiredFaction);
             
             if (reputation < minimumReputation) {
                 Faction faction = FactionRegistry.getFaction(requiredFaction);
-                player.displayClientMessage(Component.literal(
+                player.sendMessage(Text.literal(
                     "§cAccès refusé ! Réputation " + faction.getName().getString() + 
                     " requise : " + minimumReputation + " (vous: " + reputation + ")"
                 ), true);
-                return InteractionResult.FAIL;
+                return ActionResult.FAIL;
             }
             
             // Ouvrir la porte ou accès autorisé
-            player.displayClientMessage(Component.literal("§aAccès autorisé"), true);
-            return InteractionResult.SUCCESS;
+            player.sendMessage(Text.literal("§aAccès autorisé"), true);
+            return ActionResult.SUCCESS;
         }
         
-        return InteractionResult.PASS;
+        return ActionResult.PASS;
     }
 }
 ```
@@ -7645,50 +7548,50 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
-import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public class FactionCommands {
     
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        dispatcher.register(Commands.literal("faction")
-            .then(Commands.literal("list")
+    public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
+        dispatcher.register(CommandManager.literal("faction")
+            .then(CommandManager.literal("list")
                 .executes(FactionCommands::listFactions))
-            .then(Commands.literal("reputation")
+            .then(CommandManager.literal("reputation")
                 .executes(FactionCommands::showReputations))
-            .then(Commands.literal("set")
-                .requires(source -> source.hasPermission(2))
-                .then(Commands.argument("factionId", StringArgumentType.string())
-                    .then(Commands.argument("amount", IntegerArgumentType.integer(-1000, 1000))
+            .then(CommandManager.literal("set")
+                .requires(source -> source.hasPermissionLevel(2))
+                .then(CommandManager.argument("factionId", StringArgumentType.string())
+                    .then(CommandManager.argument("amount", IntegerArgumentType.integer(-1000, 1000))
                         .executes(FactionCommands::setReputation))))
         );
     }
     
-    private static int listFactions(CommandContext<CommandSourceStack> context) {
-        ServerPlayer player = context.getSource().getPlayer();
+    private static int listFactions(CommandContext<ServerCommandSource> context) {
+        ServerPlayerEntity player = context.getSource().getPlayer();
         
-        player.sendSystemMessage(Component.literal("§6§l=== FACTIONS ==="));
+        player.sendMessage(Text.literal("§6§l=== FACTIONS ==="));
         for (Faction faction : FactionRegistry.getAllFactions().values()) {
-            player.sendSystemMessage(Component.literal("§e- " + faction.getName().getString()));
-            player.sendSystemMessage(Component.literal("  §7" + faction.getDescription().getString()));
+            player.sendMessage(Text.literal("§e- " + faction.getName().getString()));
+            player.sendMessage(Text.literal("  §7" + faction.getDescription().getString()));
         }
         
         return 1;
     }
     
-    private static int showReputations(CommandContext<CommandSourceStack> context) {
-        ServerPlayer player = context.getSource().getPlayer();
-        PlayerFactionData data = player.getData(ModAttachments.FACTION_DATA);
+    private static int showReputations(CommandContext<ServerCommandSource> context) {
+        ServerPlayerEntity player = context.getSource().getPlayer();
+        PlayerFactionData data = ((IEntityDataSaver) player).medelium$getPersistentData();
         
-        player.sendSystemMessage(Component.literal("§6§l=== VOS RÉPUTATIONS ==="));
+        player.sendMessage(Text.literal("§6§l=== VOS RÉPUTATIONS ==="));
         
         for (Faction faction : FactionRegistry.getAllFactions().values()) {
             int rep = data.getReputation(faction.getId());
             Faction.ReputationLevel level = Faction.getReputationLevel(rep);
             
-            player.sendSystemMessage(Component.literal(
+            player.sendMessage(Text.literal(
                 level.getDisplayName() + " §f" + faction.getName().getString() + " §7(" + rep + ")"
             ));
         }
@@ -7696,21 +7599,21 @@ public class FactionCommands {
         return 1;
     }
     
-    private static int setReputation(CommandContext<CommandSourceStack> context) {
-        ServerPlayer player = context.getSource().getPlayer();
+    private static int setReputation(CommandContext<ServerCommandSource> context) {
+        ServerPlayerEntity player = context.getSource().getPlayer();
         String factionId = StringArgumentType.getString(context, "factionId");
         int amount = IntegerArgumentType.getInteger(context, "amount");
         
         Faction faction = FactionRegistry.getFaction(factionId);
         if (faction == null) {
-            player.sendSystemMessage(Component.literal("§cFaction introuvable !"));
+            player.sendMessage(Text.literal("§cFaction introuvable !"));
             return 0;
         }
         
-        PlayerFactionData data = player.getData(ModAttachments.FACTION_DATA);
+        PlayerFactionData data = ((IEntityDataSaver) player).medelium$getPersistentData();
         data.setReputation(factionId, amount);
         
-        player.sendSystemMessage(Component.literal(
+        player.sendMessage(Text.literal(
             "§aRéputation " + faction.getName().getString() + " définie à " + amount
         ));
         
@@ -7767,8 +7670,8 @@ public class FactionCommands {
 ```java
 package com.medelium.worldevent;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.text.Text;
+import net.minecraft.server.world.ServerWorld;
 
 public abstract class WorldEvent {
     private final String id;
@@ -7788,42 +7691,42 @@ public abstract class WorldEvent {
     public boolean isActive() { return active; }
     
     // Démarrer l'événement
-    public void start(ServerLevel level) {
+    public void start(ServerWorld level) {
         if (!active) {
             active = true;
             ticksActive = 0;
-            onStart(level);
+            onStart(world);
         }
     }
     
     // Tick de l'événement (appelé chaque tick tant qu'actif)
-    public void tick(ServerLevel level) {
+    public void tick(ServerWorld level) {
         if (!active) return;
         
         ticksActive++;
-        onTick(level);
+        onTick(world);
         
         // Vérifier si l'événement doit se terminer
         if (ticksActive >= durationTicks) {
-            end(level);
+            end(world);
         }
     }
     
     // Terminer l'événement
-    public void end(ServerLevel level) {
+    public void end(ServerWorld level) {
         if (active) {
             active = false;
-            onEnd(level);
+            onEnd(world);
         }
     }
     
     // Méthodes à override dans les sous-classes
-    protected abstract void onStart(ServerLevel level);
-    protected abstract void onTick(ServerLevel level);
-    protected abstract void onEnd(ServerLevel level);
+    protected abstract void onStart(ServerWorld level);
+    protected abstract void onTick(ServerWorld level);
+    protected abstract void onEnd(ServerWorld level);
     
     // Vérifier si l'événement peut démarrer
-    public abstract boolean canStart(ServerLevel level);
+    public abstract boolean canStart(ServerWorld level);
 }
 ```
 
@@ -7835,14 +7738,14 @@ public abstract class WorldEvent {
 package com.medelium.worldevent.events;
 
 import com.medelium.worldevent.WorldEvent;
-import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.text.Text;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.entity.*;
+import net.minecraft.entity.mob.*;
 
 public class ZombieInvasionEvent extends WorldEvent {
     private int zombiesSpawned = 0;
@@ -7851,63 +7754,63 @@ public class ZombieInvasionEvent extends WorldEvent {
     public ZombieInvasionEvent() {
         super(
             "zombie_invasion",
-            Component.literal("§4§lINVASION ZOMBIE !"),
+            Text.literal("§4§lINVASION ZOMBIE !"),
             20 * 60 * 5 // 5 minutes
         );
     }
     
     @Override
-    public boolean canStart(ServerLevel level) {
+    public boolean canStart(ServerWorld level) {
         // Peut démarrer seulement la nuit
         long time = level.getDayTime() % 24000;
         return time >= 13000 && time <= 23000;
     }
     
     @Override
-    protected void onStart(ServerLevel level) {
+    protected void onStart(ServerWorld level) {
         // Annoncer à tous les joueurs
-        for (ServerPlayer player : level.players()) {
-            player.sendSystemMessage(Component.literal("§4§l━━━━━━━━━━━━━━━━━━━━"));
-            player.sendSystemMessage(Component.literal("§c§l   INVASION ZOMBIE !"));
-            player.sendSystemMessage(Component.literal("§7Une horde massive approche..."));
-            player.sendSystemMessage(Component.literal("§4§l━━━━━━━━━━━━━━━━━━━━"));
+        for (ServerPlayerEntity player : level.players()) {
+            player.sendMessage(Text.literal("§4§l━━━━━━━━━━━━━━━━━━━━"));
+            player.sendMessage(Text.literal("§c§l   INVASION ZOMBIE !"));
+            player.sendMessage(Text.literal("§7Une horde massive approche..."));
+            player.sendMessage(Text.literal("§4§l━━━━━━━━━━━━━━━━━━━━"));
             
-            player.playNotifySound(SoundEvents.WITHER_SPAWN, SoundSource.MASTER, 1.0F, 0.8F);
+            player.playNotifySound(SoundEvents.WITHER_SPAWN, SoundCategory.MASTER, 1.0F, 0.8F);
         }
         
         zombiesSpawned = 0;
     }
     
     @Override
-    protected void onTick(ServerLevel level) {
+    protected void onTick(ServerWorld level) {
         // Spawn des zombies toutes les 2 secondes
         if (ticksActive % 40 == 0 && zombiesSpawned < maxZombies) {
-            for (ServerPlayer player : level.players()) {
+            for (ServerPlayerEntity player : level.players()) {
                 // Spawn 2-5 zombies autour de chaque joueur
-                int amount = 2 + level.random.nextInt(4);
+                int amount = 2 + world.random.nextInt(4);
                 
                 for (int i = 0; i < amount && zombiesSpawned < maxZombies; i++) {
                     // Position aléatoire autour du joueur (rayon 15-30 blocs)
-                    double angle = level.random.nextDouble() * Math.PI * 2;
-                    double distance = 15 + level.random.nextDouble() * 15;
+                    double angle = world.random.nextDouble() * Math.PI * 2;
+                    double distance = 15 + world.random.nextDouble() * 15;
                     
                     double x = player.getX() + Math.cos(angle) * distance;
                     double z = player.getZ() + Math.sin(angle) * distance;
-                    double y = level.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.WORLD_SURFACE, (int)x, (int)z);
+                    double y = level.getHeight(net.minecraft.world.Heightmap.Types.WORLD_SURFACE, (int)x, (int)z);
                     
                     BlockPos spawnPos = new BlockPos((int)x, (int)y, (int)z);
                     
                     // Créer le zombie
-                    Zombie zombie = EntityType.ZOMBIE.create(level);
+                    Zombie zombie = EntityType.ZOMBIE.create(world);
                     if (zombie != null) {
                         zombie.setPos(x, y, z);
                         
                         // Zombie plus fort pendant l'invasion
-                        zombie.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH).setBaseValue(30.0);
+                        zombie.getAttribute(net.minecraft.entity.ai.attributes.Attributes.MAX_HEALTH).setBaseValue(30.0);
                         zombie.setHealth(30.0F);
-                        zombie.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE).setBaseValue(5.0);
+                        zombie.getAttribute(net.minecraft.entity.ai.attributes.Attributes.ATTACK_DAMAGE).setBaseValue(5.0);
                         
-                        level.addFreshEntity(zombie);
+                        level.spawnEntity(zombie);
                         zombiesSpawned++;
                     }
                 }
@@ -7917,9 +7820,9 @@ public class ZombieInvasionEvent extends WorldEvent {
         // Message de progression toutes les minutes
         if (ticksActive % (20 * 60) == 0) {
             int minutesLeft = (durationTicks - ticksActive) / (20 * 60);
-            for (ServerPlayer player : level.players()) {
-                player.displayClientMessage(
-                    Component.literal("§cInvasion: " + minutesLeft + " minute(s) restante(s)"),
+            for (ServerPlayerEntity player : level.players()) {
+                player.sendMessage(
+                    Text.literal("§cInvasion: " + minutesLeft + " minute(s) restante(s)"),
                     true
                 );
             }
@@ -7927,12 +7830,12 @@ public class ZombieInvasionEvent extends WorldEvent {
     }
     
     @Override
-    protected void onEnd(ServerLevel level) {
-        for (ServerPlayer player : level.players()) {
-            player.sendSystemMessage(Component.literal("§a§l✔ L'invasion est terminée !"));
-            player.sendSystemMessage(Component.literal("§7Les zombies se retirent..."));
+    protected void onEnd(ServerWorld level) {
+        for (ServerPlayerEntity player : level.players()) {
+            player.sendMessage(Text.literal("§a§l✔ L'invasion est terminée !"));
+            player.sendMessage(Text.literal("§7Les zombies se retirent..."));
             
-            player.playNotifySound(SoundEvents.PLAYER_LEVELUP, SoundSource.MASTER, 1.0F, 1.0F);
+            player.playNotifySound(SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.MASTER, 1.0F, 1.0F);
             
             // Récompense de survie
             player.giveExperiencePoints(500);
@@ -7950,13 +7853,13 @@ package com.medelium.worldevent.events;
 
 import com.medelium.entity.ModEntities;
 import com.medelium.worldevent.WorldEvent;
-import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.text.Text;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.entity.Entity;
 
 public class DragonSpawnEvent extends WorldEvent {
     private Entity spawnedDragon = null;
@@ -7964,73 +7867,73 @@ public class DragonSpawnEvent extends WorldEvent {
     public DragonSpawnEvent() {
         super(
             "dragon_spawn",
-            Component.literal("§4§l⚠ APPARITION DU DRAGON"),
+            Text.literal("§4§l⚠ APPARITION DU DRAGON"),
             20 * 60 * 30 // 30 minutes
         );
     }
     
     @Override
-    public boolean canStart(ServerLevel level) {
+    public boolean canStart(ServerWorld level) {
         // 5% de chance chaque jour
-        return level.random.nextInt(100) < 5;
+        return world.random.nextInt(100) < 5;
     }
     
     @Override
-    protected void onStart(ServerLevel level) {
+    protected void onStart(ServerWorld level) {
         // Trouver un joueur aléatoire pour spawn le dragon près de lui
         if (!level.players().isEmpty()) {
-            ServerPlayer randomPlayer = level.players().get(level.random.nextInt(level.players().size()));
+            ServerPlayerEntity randomPlayer = level.players().get(world.random.nextInt(level.players().size()));
             
             // Position dans le ciel
-            double x = randomPlayer.getX() + (level.random.nextDouble() - 0.5) * 100;
+            double x = randomPlayer.getX() + (world.random.nextDouble() - 0.5) * 100;
             double y = 150;
-            double z = randomPlayer.getZ() + (level.random.nextDouble() - 0.5) * 100;
+            double z = randomPlayer.getZ() + (world.random.nextDouble() - 0.5) * 100;
             
             BlockPos spawnPos = new BlockPos((int)x, (int)y, (int)z);
             
             // Spawn du dragon
-            Entity dragon = ModEntities.DRAGON_BOSS.get().create(level);
+            Entity dragon = ModEntities.DRAGON_BOSS.create(world);
             if (dragon != null) {
                 dragon.setPos(x, y, z);
-                level.addFreshEntity(dragon);
+                level.spawnEntity(dragon);
                 spawnedDragon = dragon;
                 
                 // Annonce mondiale
-                for (ServerPlayer player : level.players()) {
-                    player.sendSystemMessage(Component.literal("§4§l━━━━━━━━━━━━━━━━━━━━"));
-                    player.sendSystemMessage(Component.literal("§c§l  ⚠ DRAGON DÉTECTÉ !"));
-                    player.sendSystemMessage(Component.literal("§7Un dragon ancien s'est réveillé !"));
-                    player.sendSystemMessage(Component.literal("§ePosition: " + (int)x + ", " + (int)y + ", " + (int)z));
-                    player.sendSystemMessage(Component.literal("§4§l━━━━━━━━━━━━━━━━━━━━"));
+                for (ServerPlayerEntity player : level.players()) {
+                    player.sendMessage(Text.literal("§4§l━━━━━━━━━━━━━━━━━━━━"));
+                    player.sendMessage(Text.literal("§c§l  ⚠ DRAGON DÉTECTÉ !"));
+                    player.sendMessage(Text.literal("§7Un dragon ancien s'est réveillé !"));
+                    player.sendMessage(Text.literal("§ePosition: " + (int)x + ", " + (int)y + ", " + (int)z));
+                    player.sendMessage(Text.literal("§4§l━━━━━━━━━━━━━━━━━━━━"));
                     
-                    player.playNotifySound(SoundEvents.ENDER_DRAGON_GROWL, SoundSource.MASTER, 2.0F, 0.8F);
+                    player.playNotifySound(SoundEvents.ENDER_DRAGON_GROWL, SoundCategory.MASTER, 2.0F, 0.8F);
                 }
             }
         }
     }
     
     @Override
-    protected void onTick(ServerLevel level) {
+    protected void onTick(ServerWorld level) {
         // Vérifier si le dragon est mort
         if (spawnedDragon != null && !spawnedDragon.isAlive()) {
             // Dragon tué !
-            for (ServerPlayer player : level.players()) {
-                player.sendSystemMessage(Component.literal("§a§l✔ LE DRAGON A ÉTÉ VAINCU !"));
-                player.sendSystemMessage(Component.literal("§6Récompense: 1000 XP"));
+            for (ServerPlayerEntity player : level.players()) {
+                player.sendMessage(Text.literal("§a§l✔ LE DRAGON A ÉTÉ VAINCU !"));
+                player.sendMessage(Text.literal("§6Récompense: 1000 XP"));
                 player.giveExperiencePoints(1000);
             }
-            end(level);
+            end(world);
         }
     }
     
     @Override
-    protected void onEnd(ServerLevel level) {
+    protected void onEnd(ServerWorld level) {
         if (spawnedDragon != null && spawnedDragon.isAlive()) {
             // Le dragon s'enfuit
             spawnedDragon.discard();
             
-            for (ServerPlayer player : level.players()) {
-                player.sendSystemMessage(Component.literal("§7Le dragon s'est enfui..."));
+            for (ServerPlayerEntity player : level.players()) {
+                player.sendMessage(Text.literal("§7Le dragon s'est enfui..."));
             }
         }
     }
@@ -8045,7 +7948,7 @@ public class DragonSpawnEvent extends WorldEvent {
 package com.medelium.worldevent;
 
 import com.medelium.worldevent.events.*;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.world.ServerWorld;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8053,9 +7956,9 @@ import java.util.List;
 public class WorldEventManager {
     private final List<WorldEvent> registeredEvents = new ArrayList<>();
     private final List<WorldEvent> activeEvents = new ArrayList<>();
-    private final ServerLevel level;
+    private final ServerWorld level;
     
-    public WorldEventManager(ServerLevel level) {
+    public WorldEventManager(ServerWorld level) {
         this.level = level;
         registerEvents();
     }
@@ -8069,7 +7972,7 @@ public class WorldEventManager {
     public void tick() {
         // Tick des événements actifs
         for (WorldEvent event : new ArrayList<>(activeEvents)) {
-            event.tick(level);
+            event.tick(world);
             
             if (!event.isActive()) {
                 activeEvents.remove(event);
@@ -8080,9 +7983,9 @@ public class WorldEventManager {
         // (seulement toutes les 10 secondes pour optimiser)
         if (level.getGameTime() % 200 == 0) {
             for (WorldEvent event : registeredEvents) {
-                if (!event.isActive() && event.canStart(level)) {
+                if (!event.isActive() && event.canStart(world)) {
                     // Chance aléatoire de démarrer (10%)
-                    if (level.random.nextInt(100) < 10) {
+                    if (world.random.nextInt(100) < 10) {
                         startEvent(event);
                     }
                 }
@@ -8092,14 +7995,14 @@ public class WorldEventManager {
     
     public void startEvent(WorldEvent event) {
         if (!activeEvents.contains(event)) {
-            event.start(level);
+            event.start(world);
             activeEvents.add(event);
         }
     }
     
     public void stopAllEvents() {
         for (WorldEvent event : new ArrayList<>(activeEvents)) {
-            event.end(level);
+            event.end(world);
         }
         activeEvents.clear();
     }
@@ -8117,26 +8020,20 @@ public class WorldEventManager {
 ```java
 package com.medelium.event;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.medelium.worldevent.WorldEventManager;
-import net.minecraft.server.level.ServerLevel;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.tick.LevelTickEvent;
+import net.minecraft.server.world.ServerWorld;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
 public class WorldEventTicker {
-    private static final Map<ServerLevel, WorldEventManager> MANAGERS = new HashMap<>();
+    private static final Map<ServerWorld, WorldEventManager> MANAGERS = new HashMap<>();
     
-    @SubscribeEvent
-    public static void onLevelTick(LevelTickEvent.Post event) {
-        if (event.getLevel() instanceof ServerLevel serverLevel) {
+        // Fabric: ServerTickEvents.END_WORLD_TICK.register((world) -> { ... })\n    public static void onWorldTick(ServerWorld world) { {
             // Créer le manager si n'existe pas
             WorldEventManager manager = MANAGERS.computeIfAbsent(
-                serverLevel, 
+                serverWorld, 
                 WorldEventManager::new
             );
             
@@ -8158,91 +8055,91 @@ import com.medelium.worldevent.*;
 import com.medelium.worldevent.events.*;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
-import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.text.Text;
+import net.minecraft.server.world.ServerWorld;
 
 public class EventCommands {
     
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        dispatcher.register(Commands.literal("worldevent")
-            .requires(source -> source.hasPermission(2))
-            .then(Commands.literal("start")
-                .then(Commands.literal("zombie_invasion")
+    public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
+        dispatcher.register(CommandManager.literal("worldevent")
+            .requires(source -> source.hasPermissionLevel(2))
+            .then(CommandManager.literal("start")
+                .then(CommandManager.literal("zombie_invasion")
                     .executes(ctx -> startZombieInvasion(ctx)))
-                .then(Commands.literal("dragon_spawn")
+                .then(CommandManager.literal("dragon_spawn")
                     .executes(ctx -> startDragonSpawn(ctx))))
-            .then(Commands.literal("stop")
+            .then(CommandManager.literal("stop")
                 .executes(EventCommands::stopAllEvents))
-            .then(Commands.literal("list")
+            .then(CommandManager.literal("list")
                 .executes(EventCommands::listActiveEvents))
         );
     }
     
-    private static int startZombieInvasion(CommandContext<CommandSourceStack> ctx) {
-        ServerLevel level = ctx.getSource().getLevel();
-        WorldEventManager manager = getManager(level);
+    private static int startZombieInvasion(CommandContext<ServerCommandSource> ctx) {
+        ServerWorld level = ctx.getSource().getWorld();
+        WorldEventManager manager = getManager(world);
         
         WorldEvent event = new ZombieInvasionEvent();
         manager.startEvent(event);
         
-        ctx.getSource().sendSuccess(() -> 
-            Component.literal("§aInvasion zombie démarrée !"), true);
+        ctx.getSource().sendFeedback(() -> 
+            Text.literal("§aInvasion zombie démarrée !"), true);
         
         return 1;
     }
     
-    private static int startDragonSpawn(CommandContext<CommandSourceStack> ctx) {
-        ServerLevel level = ctx.getSource().getLevel();
-        WorldEventManager manager = getManager(level);
+    private static int startDragonSpawn(CommandContext<ServerCommandSource> ctx) {
+        ServerWorld level = ctx.getSource().getWorld();
+        WorldEventManager manager = getManager(world);
         
         WorldEvent event = new DragonSpawnEvent();
         manager.startEvent(event);
         
-        ctx.getSource().sendSuccess(() -> 
-            Component.literal("§aDragon invoqué !"), true);
+        ctx.getSource().sendFeedback(() -> 
+            Text.literal("§aDragon invoqué !"), true);
         
         return 1;
     }
     
-    private static int stopAllEvents(CommandContext<CommandSourceStack> ctx) {
-        ServerLevel level = ctx.getSource().getLevel();
-        WorldEventManager manager = getManager(level);
+    private static int stopAllEvents(CommandContext<ServerCommandSource> ctx) {
+        ServerWorld level = ctx.getSource().getWorld();
+        WorldEventManager manager = getManager(world);
         
         manager.stopAllEvents();
         
-        ctx.getSource().sendSuccess(() -> 
-            Component.literal("§aTous les événements arrêtés"), true);
+        ctx.getSource().sendFeedback(() -> 
+            Text.literal("§aTous les événements arrêtés"), true);
         
         return 1;
     }
     
-    private static int listActiveEvents(CommandContext<CommandSourceStack> ctx) {
-        ServerLevel level = ctx.getSource().getLevel();
-        WorldEventManager manager = getManager(level);
+    private static int listActiveEvents(CommandContext<ServerCommandSource> ctx) {
+        ServerWorld level = ctx.getSource().getWorld();
+        WorldEventManager manager = getManager(world);
         
         List<WorldEvent> active = manager.getActiveEvents();
         
         if (active.isEmpty()) {
-            ctx.getSource().sendSuccess(() -> 
-                Component.literal("§7Aucun événement actif"), false);
+            ctx.getSource().sendFeedback(() -> 
+                Text.literal("§7Aucun événement actif"), false);
         } else {
-            ctx.getSource().sendSuccess(() -> 
-                Component.literal("§6§lÉvénements actifs:"), false);
+            ctx.getSource().sendFeedback(() -> 
+                Text.literal("§6§lÉvénements actifs:"), false);
             
             for (WorldEvent event : active) {
-                ctx.getSource().sendSuccess(() -> 
-                    Component.literal("§e- " + event.getName().getString()), false);
+                ctx.getSource().sendFeedback(() -> 
+                    Text.literal("§e- " + event.getName().getString()), false);
             }
         }
         
         return 1;
     }
     
-    private static WorldEventManager getManager(ServerLevel level) {
+    private static WorldEventManager getManager(ServerWorld level) {
         // Récupérer depuis WorldEventTicker.MANAGERS
-        return WorldEventTicker.MANAGERS.computeIfAbsent(level, WorldEventManager::new);
+        return WorldEventTicker.MANAGERS.computeIfAbsent(world, WorldEventManager::new);
     }
 }
 ```
@@ -8292,9 +8189,8 @@ public class EventCommands {
 
 ```java
 // NE JAMAIS FAIRE ÇA !
-@SubscribeEvent
 public static void onServerTick(TickEvent.ServerTickEvent event) {
-    for (ServerLevel level : server.getAllLevels()) {
+    for (ServerWorld level : server.getAllLevels()) {
         for (Entity entity : level.getAllEntities()) {
             // Calculs coûteux sur chaque entité...
             // 1000 entités × 20 ticks = 20,000 calculs par seconde !
@@ -8308,7 +8204,6 @@ public static void onServerTick(TickEvent.ServerTickEvent event) {
 ```java
 private static int tickCounter = 0;
 
-@SubscribeEvent
 public static void onServerTick(TickEvent.ServerTickEvent event) {
     tickCounter++;
     
@@ -8329,7 +8224,7 @@ public static void onServerTick(TickEvent.ServerTickEvent event) {
 ```java
 package com.medelium.util;
 
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8338,7 +8233,7 @@ public class PlayerDistanceCache {
     private static long lastUpdateTime = 0;
     private static final long UPDATE_INTERVAL = 100; // Update toutes les 5 secondes
     
-    public static double getDistance(ServerPlayer player1, ServerPlayer player2) {
+    public static double getDistance(ServerPlayerEntity player1, ServerPlayerEntity player2) {
         long currentTime = player1.level().getGameTime();
         
         // Clé unique pour cette paire de joueurs
@@ -8357,7 +8252,7 @@ public class PlayerDistanceCache {
         return distance;
     }
     
-    private static String getCacheKey(ServerPlayer p1, ServerPlayer p2) {
+    private static String getCacheKey(ServerPlayerEntity p1, ServerPlayerEntity p2) {
         // Ordre cohérent pour la clé
         if (p1.getId() < p2.getId()) {
             return p1.getUUID() + "_" + p2.getUUID();
@@ -8408,18 +8303,12 @@ public void tick() {
 ```java
 package com.medelium.event;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.server.level.ServerPlayer;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
+import com.medelium.Medelium;
+import net.minecraft.server.network.ServerPlayerEntity;
 public class CleanupEvents {
     
-    @SubscribeEvent
-    public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
+        public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+        if (player /* Fabric: obtenu via le callback */ instanceof ServerPlayerEntity player) {
             // Nettoyer TOUTES les références au joueur
             PlayerDistanceCache.clearForPlayer(player);
             QuestTracker.removePlayer(player.getUUID());
@@ -8438,7 +8327,7 @@ public class CleanupEvents {
 ```java
 package com.medelium.util;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 
 public class PerformanceProfiler {
     private static long startTime = 0;
@@ -8453,7 +8342,7 @@ public class PerformanceProfiler {
         
         // Log si ça prend plus de 1ms (signe de problème)
         if (milliseconds > 1.0) {
-            MedeliumMod.LOGGER.warn("[PERF] {} took {}ms", label, String.format("%.2f", milliseconds));
+            Medelium.LOGGER.warn("[PERF] {} took {}ms", label, String.format("%.2f", milliseconds));
         }
     }
 }
@@ -8471,7 +8360,7 @@ PerformanceProfiler.end("Quest Check");
 ```java
 private static final int MAX_CUSTOM_MOBS_PER_CHUNK = 5;
 
-public static boolean canSpawnMob(ServerLevel level, BlockPos pos) {
+public static boolean canSpawnMob(ServerWorld level, BlockPos pos) {
     // Compter les mobs custom dans le chunk
     ChunkPos chunkPos = new ChunkPos(pos);
     int count = 0;
@@ -8539,7 +8428,7 @@ public void spawnParticles() {
 
 ```java
 // NE JAMAIS FAIRE ÇA !
-public void handleQuestComplete(Player player, String questId) {
+public void handleQuestComplete(PlayerEntity player, String questId) {
     // Pas de vérification = le joueur peut prétendre avoir fini n'importe quelle quête
     Quest quest = QuestRegistry.getQuest(questId);
     quest.giveRewards(player);
@@ -8549,28 +8438,28 @@ public void handleQuestComplete(Player player, String questId) {
 **✅ SÉCURISÉ - Valide tout :**
 
 ```java
-public void handleQuestComplete(ServerPlayer player, String questId) {
+public void handleQuestComplete(ServerPlayerEntity player, String questId) {
     Quest quest = QuestRegistry.getQuest(questId);
     
     // VÉRIFICATION 1 : La quête existe ?
     if (quest == null) {
-        MedeliumMod.LOGGER.warn("Player {} tried to complete invalid quest {}", 
+        Medelium.LOGGER.warn("Player {} tried to complete invalid quest {}", 
             player.getName().getString(), questId);
         return;
     }
     
-    PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+    PlayerQuestData data = ((IEntityDataSaver) player).medelium$getPersistentData();
     
     // VÉRIFICATION 2 : Le joueur a cette quête active ?
     if (!data.isQuestActive(questId)) {
-        MedeliumMod.LOGGER.warn("Player {} tried to complete inactive quest {}", 
+        Medelium.LOGGER.warn("Player {} tried to complete inactive quest {}", 
             player.getName().getString(), questId);
         return;
     }
     
     // VÉRIFICATION 3 : TOUS les objectifs sont vraiment complétés ?
     if (!quest.isCompleted(player)) {
-        MedeliumMod.LOGGER.warn("Player {} tried to complete unfinished quest {}", 
+        Medelium.LOGGER.warn("Player {} tried to complete unfinished quest {}", 
             player.getName().getString(), questId);
         return;
     }
@@ -8586,7 +8475,7 @@ public void handleQuestComplete(ServerPlayer player, String questId) {
 **📝 Vérifier l'inventaire avant donner des items :**
 
 ```java
-public static boolean giveItemSafely(ServerPlayer player, ItemStack stack) {
+public static boolean giveItemSafely(ServerPlayerEntity player, ItemStack stack) {
     // Compter combien le joueur a AVANT
     int countBefore = countItem(player, stack.getItem());
     
@@ -8601,7 +8490,7 @@ public static boolean giveItemSafely(ServerPlayer player, ItemStack stack) {
     int actualDifference = countAfter - countBefore;
     
     if (actualDifference != expectedDifference) {
-        MedeliumMod.LOGGER.error("Item duplication detected for player {}!", 
+        Medelium.LOGGER.error("Item duplication detected for player {}!", 
             player.getName().getString());
         
         // Rollback : retirer les items en trop
@@ -8612,7 +8501,7 @@ public static boolean giveItemSafely(ServerPlayer player, ItemStack stack) {
     return success;
 }
 
-private static int countItem(ServerPlayer player, Item item) {
+private static int countItem(ServerPlayerEntity player, Item item) {
     int count = 0;
     for (ItemStack stack : player.getInventory().items) {
         if (stack.is(item)) {
@@ -8681,7 +8570,7 @@ public class CooldownManager {
 // Utilisation:
 if (CooldownManager.isOnCooldown(player.getUUID(), "quest_start")) {
     long remaining = CooldownManager.getRemainingCooldown(player.getUUID(), "quest_start");
-    player.sendSystemMessage(Component.literal(
+    player.sendMessage(Text.literal(
         "§cCooldown: " + (remaining / 1000) + " secondes restantes"
     ));
     return;
@@ -8698,7 +8587,7 @@ CooldownManager.setCooldown(player.getUUID(), "quest_start");
 ```java
 package com.medelium.util;
 
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public class PermissionChecker {
     
@@ -8721,19 +8610,19 @@ public class PermissionChecker {
         }
     }
     
-    public static boolean hasPermission(ServerPlayer player, Permission permission) {
+    public static boolean hasPermission(ServerPlayerEntity player, Permission permission) {
         // Vérifier le niveau d'opérateur
         int playerLevel = player.getServer().getProfilePermissions(player.getGameProfile());
         return playerLevel >= permission.getRequiredLevel();
     }
     
-    public static boolean checkAndWarn(ServerPlayer player, Permission permission) {
+    public static boolean checkAndWarn(ServerPlayerEntity player, Permission permission) {
         if (!hasPermission(player, permission)) {
-            player.sendSystemMessage(Component.literal(
+            player.sendMessage(Text.literal(
                 "§cVous n'avez pas la permission pour cette action !"
             ));
             
-            MedeliumMod.LOGGER.warn("Player {} tried to use {} without permission", 
+            Medelium.LOGGER.warn("Player {} tried to use {} without permission", 
                 player.getName().getString(), permission.name());
             
             return false;
@@ -8755,38 +8644,38 @@ if (!PermissionChecker.checkAndWarn(player, Permission.MODIFY_QUESTS)) {
 ```java
 package com.medelium.security;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.server.level.ServerPlayer;
+import com.medelium.Medelium;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public class SecurityLogger {
     
-    public static void logSuspiciousActivity(ServerPlayer player, String activity, String details) {
-        MedeliumMod.LOGGER.warn("[SECURITY] Player: {} | Activity: {} | Details: {}", 
+    public static void logSuspiciousActivity(ServerPlayerEntity player, String activity, String details) {
+        Medelium.LOGGER.warn("[SECURITY] Player: {} | Activity: {} | Details: {}", 
             player.getName().getString(),
             activity,
             details
         );
         
         // Optionnel : Notifier les admins en ligne
-        for (ServerPlayer admin : player.getServer().getPlayerList().getPlayers()) {
+        for (ServerPlayerEntity admin : player.getServer().getPlayerList().getPlayers()) {
             if (admin.hasPermissions(3)) {
-                admin.sendSystemMessage(Component.literal(
+                admin.sendMessage(Text.literal(
                     "§c[SECURITY] " + player.getName().getString() + " : " + activity
                 ));
             }
         }
     }
     
-    public static void logItemGiven(ServerPlayer player, ItemStack stack) {
-        MedeliumMod.LOGGER.info("[ITEM] Given to {}: {}x {}", 
+    public static void logItemGiven(ServerPlayerEntity player, ItemStack stack) {
+        Medelium.LOGGER.info("[ITEM] Given to {}: {}x {}", 
             player.getName().getString(),
             stack.getCount(),
             stack.getDisplayName().getString()
         );
     }
     
-    public static void logQuestComplete(ServerPlayer player, String questId) {
-        MedeliumMod.LOGGER.info("[QUEST] Player {} completed quest {}", 
+    public static void logQuestComplete(ServerPlayerEntity player, String questId) {
+        Medelium.LOGGER.info("[QUEST] Player {} completed quest {}", 
             player.getName().getString(),
             questId
         );
@@ -8810,10 +8699,10 @@ public class SecurityLogger {
 > - 📜 **Mettre à jour le journal de quêtes** (serveur → client)
 > - 💬 **Dialogues PNJ** (serveur envoie les options)
 >
-> **🔧 Architecture NeoForge :**
+> **🔧 Architecture Fabric :**
 >
 > **1. Créer la classe Packet**
-> - Implémenter `CustomPacketPayload`
+> - Implémenter `Fabric Networking API`
 > - Définir les données à envoyer
 > - Encoder/Décoder
 >
@@ -8831,252 +8720,134 @@ public class SecurityLogger {
 
 ### 24.1 Structure de Base d'un Packet
 
-**📝 Packet Simple - Synchroniser du Texte :**
-
-```java
-package com.medelium.network.packet;
-
-import com.medelium.MedeliumMod;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
-
-public record SyncTextPacket(String text) implements CustomPacketPayload {
-    
-    public static final Type<SyncTextPacket> TYPE = 
-        new Type<>(ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "sync_text"));
-    
-    // Codec pour encoder/décoder
-    public static final StreamCodec<FriendlyByteBuf, SyncTextPacket> STREAM_CODEC = 
-        StreamCodec.composite(
-            ByteBufCodecs.STRING_UTF8,
-            SyncTextPacket::text,
-            SyncTextPacket::new
-        );
-    
-    @Override
-    public Type<? extends CustomPacketPayload> type() {
-        return TYPE;
-    }
-}
-```
-
-### 24.2 Packet Complexe - Données Multiples
-
-**📝 SyncPlayerStatsPacket - Envoyer plusieurs valeurs :**
-
-```java
-package com.medelium.network.packet;
-
-import com.medelium.MedeliumMod;
-import io.netty.buffer.ByteBuf;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
-
-public record SyncPlayerStatsPacket(
-    int mana,
-    int maxMana,
-    int stamina,
-    int maxStamina,
-    float magicPower
-) implements CustomPacketPayload {
-    
-    public static final Type<SyncPlayerStatsPacket> TYPE = 
-        new Type<>(ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "sync_stats"));
-    
-    public static final StreamCodec<ByteBuf, SyncPlayerStatsPacket> STREAM_CODEC = 
-        StreamCodec.composite(
-            ByteBufCodecs.INT,
-            SyncPlayerStatsPacket::mana,
-            ByteBufCodecs.INT,
-            SyncPlayerStatsPacket::maxMana,
-            ByteBufCodecs.INT,
-            SyncPlayerStatsPacket::stamina,
-            ByteBufCodecs.INT,
-            SyncPlayerStatsPacket::maxStamina,
-            ByteBufCodecs.FLOAT,
-            SyncPlayerStatsPacket::magicPower,
-            SyncPlayerStatsPacket::new
-        );
-    
-    @Override
-    public Type<? extends CustomPacketPayload> type() {
-        return TYPE;
-    }
-}
-```
-
-### 24.3 Enregistrement des Packets
-
-**📝 ModPackets - Registre central :**
+**📝 Fabric utilise `PacketByteBuf` et des `Identifier` comme channel IDs :**
 
 ```java
 package com.medelium.network;
 
-import com.medelium.MedeliumMod;
-import com.medelium.network.packet.*;
-import net.minecraft.server.level.ServerPlayer;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.network.PacketDistributor;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+import com.medelium.Medelium;
+import net.minecraft.util.Identifier;
 
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class ModPackets {
-    
-    @SubscribeEvent
-    public static void register(RegisterPayloadHandlersEvent event) {
-        final PayloadRegistrar registrar = event.registrar("1");
-        
-        // Packet Serveur → Client (sync stats)
-        registrar.playToClient(
-            SyncPlayerStatsPacket.TYPE,
-            SyncPlayerStatsPacket.STREAM_CODEC,
-            ClientPacketHandler::handleStatsSync
-        );
-        
-        // Packet Client → Serveur (utiliser compétence)
-        registrar.playToServer(
-            UseSkillPacket.TYPE,
-            UseSkillPacket.STREAM_CODEC,
-            ServerPacketHandler::handleSkillUse
-        );
-        
-        // Packet bidirectionnel
-        registrar.playBidirectional(
-            OpenDialoguePacket.TYPE,
-            OpenDialoguePacket.STREAM_CODEC,
-            ClientPacketHandler::handleDialogue,
-            ServerPacketHandler::handleDialogue
-        );
-    }
-    
-    // Méthodes utilitaires pour envoyer
-    public static void sendToPlayer(ServerPlayer player, CustomPacketPayload packet) {
-        PacketDistributor.sendToPlayer(player, packet);
-    }
-    
-    public static void sendToAllPlayers(CustomPacketPayload packet) {
-        PacketDistributor.sendToAllPlayers(packet);
-    }
-    
-    public static void sendToServer(CustomPacketPayload packet) {
-        PacketDistributor.sendToServer(packet);
-    }
+    // Identifiants des channels
+    public static final Identifier SYNC_TEXT = new Identifier(Medelium.MOD_ID, "sync_text");
+    public static final Identifier SYNC_STATS = new Identifier(Medelium.MOD_ID, "sync_stats");
+    public static final Identifier USE_SKILL = new Identifier(Medelium.MOD_ID, "use_skill");
+    public static final Identifier OPEN_DIALOGUE = new Identifier(Medelium.MOD_ID, "open_dialogue");
+    public static final Identifier SYNC_QUESTS = new Identifier(Medelium.MOD_ID, "sync_quests");
 }
 ```
 
-### 24.4 Handlers Client & Serveur
+### 24.2 Enregistrement des Packets (Serveur)
 
-**📝 ClientPacketHandler - Gérer réception côté client :**
-
-```java
-package com.medelium.network;
-
-import com.medelium.client.ClientData;
-import com.medelium.network.packet.*;
-import net.minecraft.client.Minecraft;
-import net.neoforged.neoforge.network.handling.IPayloadContext;
-
-public class ClientPacketHandler {
-    
-    public static void handleStatsSync(SyncPlayerStatsPacket packet, IPayloadContext context) {
-        context.enqueueWork(() -> {
-            // Code s'exécute sur le thread client
-            ClientData.mana = packet.mana();
-            ClientData.maxMana = packet.maxMana();
-            ClientData.stamina = packet.stamina();
-            ClientData.maxStamina = packet.maxStamina();
-            ClientData.magicPower = packet.magicPower();
-            
-            // Mettre à jour l'UI
-            Minecraft.getInstance().gui.setOverlayMessage(
-                Component.literal("Stats synchronisées !"),
-                false
-            );
-        });
-    }
-    
-    public static void handleDialogue(OpenDialoguePacket packet, IPayloadContext context) {
-        context.enqueueWork(() -> {
-            // Ouvrir l'écran de dialogue
-            Minecraft.getInstance().setScreen(
-                new DialogueScreen(packet.npcName(), packet.dialogueOptions())
-            );
-        });
-    }
-}
-```
-
-**📝 ServerPacketHandler - Gérer réception côté serveur :**
+**📝 Dans `Medelium.java` → `onInitialize()` :**
 
 ```java
-package com.medelium.network;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.network.PacketByteBuf;
 
-import com.medelium.network.packet.*;
-import net.minecraft.server.level.ServerPlayer;
-import net.neoforged.neoforge.network.handling.IPayloadContext;
-
-public class ServerPacketHandler {
+// Recevoir packet Client → Serveur (utiliser compétence)
+ServerPlayNetworking.registerGlobalReceiver(ModPackets.USE_SKILL, (server, player, handler, buf, responseSender) -> {
+    // Lire les données du buffer (sur le network thread)
+    String skillId = buf.readString();
     
-    public static void handleSkillUse(UseSkillPacket packet, IPayloadContext context) {
-        ServerPlayer player = (ServerPlayer) context.player();
-        
-        context.enqueueWork(() -> {
-            // VALIDATION CRITIQUE !
-            if (player == null) return;
-            
-            String skillId = packet.skillId();
-            
-            // Vérifier que le joueur a cette compétence
-            PlayerSkillData data = player.getData(ModAttachments.SKILL_DATA);
-            if (!data.hasSkill(skillId)) {
-                MedeliumMod.LOGGER.warn("Player {} tried to use skill {} they don't have!", 
-                    player.getName().getString(), skillId);
-                return;
-            }
-            
-            // Vérifier cooldown
-            if (data.isOnCooldown(skillId)) {
-                player.displayClientMessage(
-                    Component.literal("§cCompétence en cooldown !"),
-                    true
-                );
-                return;
-            }
-            
-            // Vérifier coût (mana, stamina, etc.)
-            Skill skill = SkillRegistry.getSkill(skillId);
-            if (!skill.canAfford(player)) {
-                player.displayClientMessage(
-                    Component.literal("§cPas assez de ressources !"),
-                    true
-                );
-                return;
-            }
-            
-            // OK, utiliser la compétence
+    // Exécuter sur le server thread (IMPORTANT !)
+    server.execute(() -> {
+        // VALIDATION CRITIQUE !
+        // Vérifier que le joueur a cette compétence
+        // Vérifier cooldown, coût, etc.
+        Skill skill = SkillRegistry.getSkill(skillId);
+        if (skill != null && skill.canAfford(player)) {
             skill.use(player);
-            data.setCooldown(skillId);
-        });
+        }
+    });
+});
+```
+
+### 24.3 Enregistrement des Packets (Client)
+
+**📝 Dans `MedeliumClient.java` → `onInitializeClient()` :**
+
+```java
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.minecraft.network.PacketByteBuf;
+
+// Recevoir packet Serveur → Client (sync stats)
+ClientPlayNetworking.registerGlobalReceiver(ModPackets.SYNC_STATS, (client, handler, buf, responseSender) -> {
+    // Lire les données (sur le network thread)
+    int mana = buf.readInt();
+    int maxMana = buf.readInt();
+    int stamina = buf.readInt();
+    int maxStamina = buf.readInt();
+    float magicPower = buf.readFloat();
+    
+    // Exécuter sur le client thread
+    client.execute(() -> {
+        ClientData.mana = mana;
+        ClientData.maxMana = maxMana;
+        ClientData.stamina = stamina;
+        ClientData.maxStamina = maxStamina;
+        ClientData.magicPower = magicPower;
+    });
+});
+
+// Recevoir dialogue
+ClientPlayNetworking.registerGlobalReceiver(ModPackets.OPEN_DIALOGUE, (client, handler, buf, responseSender) -> {
+    String npcName = buf.readString();
+    int optionCount = buf.readInt();
+    List<String> options = new ArrayList<>();
+    for (int i = 0; i < optionCount; i++) {
+        options.add(buf.readString());
     }
     
-    public static void handleDialogue(OpenDialoguePacket packet, IPayloadContext context) {
-        // Validation serveur pour dialogues
-        ServerPlayer player = (ServerPlayer) context.player();
-        
-        context.enqueueWork(() -> {
-            if (player == null) return;
-            
-            // Vérifier que le joueur est proche du PNJ
-            // Enregistrer le choix du joueur
-            // etc.
-        });
+    client.execute(() -> {
+        client.setScreen(new DialogueScreen(npcName, options));
+    });
+});
+```
+
+### 24.4 Méthodes Utilitaires pour Envoyer
+
+**📝 ModPackets - Helpers d'envoi :**
+
+```java
+package com.medelium.network;
+
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.server.network.ServerPlayerEntity;
+
+public class ModPackets {
+    // ... (identifiants définis plus haut)
+    
+    // Envoyer au serveur (depuis le client)
+    public static void sendSkillUseToServer(String skillId) {
+        PacketByteBuf buf = PacketByteBufs.create();
+        buf.writeString(skillId);
+        ClientPlayNetworking.send(USE_SKILL, buf);
+    }
+    
+    // Envoyer au client (depuis le serveur)
+    public static void sendStatsToPlayer(ServerPlayerEntity player, int mana, int maxMana, 
+                                          int stamina, int maxStamina, float magicPower) {
+        PacketByteBuf buf = PacketByteBufs.create();
+        buf.writeInt(mana);
+        buf.writeInt(maxMana);
+        buf.writeInt(stamina);
+        buf.writeInt(maxStamina);
+        buf.writeFloat(magicPower);
+        ServerPlayNetworking.send(player, SYNC_STATS, buf);
+    }
+    
+    // Envoyer à tous les joueurs
+    public static void sendToAllPlayers(net.minecraft.server.MinecraftServer server, 
+                                         net.minecraft.util.Identifier channel, PacketByteBuf buf) {
+        for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
+            ServerPlayNetworking.send(player, channel, buf);
+        }
     }
 }
 ```
@@ -9088,20 +8859,14 @@ public class ServerPacketHandler {
 ```java
 public class PlayerStatsManager {
     
-    public static void updateMana(ServerPlayer player, int newMana) {
-        PlayerStatsData data = player.getData(ModAttachments.STATS_DATA);
-        data.setMana(newMana);
+    public static void updateMana(ServerPlayerEntity player, int newMana) {
+        // Mettre à jour côté serveur
+        NbtCompound data = ((IEntityDataSaver) player).medelium$getPersistentData();
+        data.putInt("mana", newMana);
         
         // Envoyer au client pour mise à jour UI
-        SyncPlayerStatsPacket packet = new SyncPlayerStatsPacket(
-            data.getMana(),
-            data.getMaxMana(),
-            data.getStamina(),
-            data.getMaxStamina(),
-            data.getMagicPower()
-        );
-        
-        ModPackets.sendToPlayer(player, packet);
+        ModPackets.sendStatsToPlayer(player, newMana, getMaxMana(player), 
+            getStamina(player), getMaxStamina(player), getMagicPower(player));
     }
 }
 ```
@@ -9114,8 +8879,7 @@ public class SkillKeyHandler {
     
     public static void onSkillKeyPressed(String skillId) {
         // Envoyer au serveur
-        UseSkillPacket packet = new UseSkillPacket(skillId);
-        ModPackets.sendToServer(packet);
+        ModPackets.sendSkillUseToServer(skillId);
     }
 }
 ```
@@ -9125,52 +8889,33 @@ public class SkillKeyHandler {
 **📝 SyncQuestListPacket - Envoyer liste complète :**
 
 ```java
-package com.medelium.network.packet;
-
-import com.medelium.MedeliumMod;
-import io.netty.buffer.ByteBuf;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
-
-import java.util.List;
-
-public record SyncQuestListPacket(List<QuestData> quests) implements CustomPacketPayload {
-    
-    public static final Type<SyncQuestListPacket> TYPE = 
-        new Type<>(ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "sync_quests"));
-    
-    public static final StreamCodec<ByteBuf, SyncQuestListPacket> STREAM_CODEC = 
-        StreamCodec.composite(
-            QuestData.STREAM_CODEC.apply(ByteBufCodecs.list()),
-            SyncQuestListPacket::quests,
-            SyncQuestListPacket::new
-        );
-    
-    @Override
-    public Type<? extends CustomPacketPayload> type() {
-        return TYPE;
+// Côté serveur - Envoyer la liste des quêtes
+public static void sendQuestList(ServerPlayerEntity player, List<QuestData> quests) {
+    PacketByteBuf buf = PacketByteBufs.create();
+    buf.writeInt(quests.size());
+    for (QuestData quest : quests) {
+        buf.writeString(quest.id());
+        buf.writeString(quest.title());
+        buf.writeInt(quest.progress());
+        buf.writeInt(quest.total());
     }
-    
-    // Classe interne pour les données de quête
-    public record QuestData(String id, String title, int progress, int total) {
-        
-        public static final StreamCodec<ByteBuf, QuestData> STREAM_CODEC = 
-            StreamCodec.composite(
-                ByteBufCodecs.STRING_UTF8,
-                QuestData::id,
-                ByteBufCodecs.STRING_UTF8,
-                QuestData::title,
-                ByteBufCodecs.INT,
-                QuestData::progress,
-                ByteBufCodecs.INT,
-                QuestData::total,
-                QuestData::new
-            );
-    }
+    ServerPlayNetworking.send(player, ModPackets.SYNC_QUESTS, buf);
 }
+
+// Côté client - Recevoir (dans onInitializeClient)
+ClientPlayNetworking.registerGlobalReceiver(ModPackets.SYNC_QUESTS, (client, handler, buf, sender) -> {
+    int count = buf.readInt();
+    List<QuestData> quests = new ArrayList<>();
+    for (int i = 0; i < count; i++) {
+        quests.add(new QuestData(buf.readString(), buf.readString(), buf.readInt(), buf.readInt()));
+    }
+    client.execute(() -> {
+        ClientQuestData.quests = quests;
+    });
+});
+
+// Record pour les données
+public record QuestData(String id, String title, int progress, int total) {}
 ```
 
 ---
@@ -9226,7 +8971,7 @@ public record SyncQuestListPacket(List<QuestData> quests) implements CustomPacke
 ```java
 package com.medelium.economy;
 
-import net.minecraft.core.HolderLookup;
+import net.minecraft.registry.*;
 import net.minecraft.nbt.CompoundTag;
 
 public class PlayerMoneyData {
@@ -9267,13 +9012,13 @@ public class PlayerMoneyData {
     }
     
     // Sauvegarde
-    public CompoundTag save(HolderLookup.Provider provider) {
+    public CompoundTag save(RegistryWrapper.WrapperLookup provider) {
         CompoundTag tag = new CompoundTag();
         tag.putLong("Money", money);
         return tag;
     }
     
-    public void load(CompoundTag tag, HolderLookup.Provider provider) {
+    public void load(CompoundTag tag, RegistryWrapper.WrapperLookup provider) {
         money = tag.getLong("Money");
     }
 }
@@ -9286,8 +9031,8 @@ public class PlayerMoneyData {
 ```java
 package com.medelium.economy.shop;
 
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class ShopItem {
     private final Item item;
@@ -9324,9 +9069,9 @@ public class ShopItem {
 package com.medelium.economy.shop;
 
 import com.medelium.economy.PlayerMoneyData;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9354,18 +9099,18 @@ public class NPCShop {
     }
     
     // Acheter un item
-    public boolean buyItem(ServerPlayer player, int itemIndex) {
+    public boolean buyItem(ServerPlayerEntity player, int itemIndex) {
         if (itemIndex < 0 || itemIndex >= items.size()) {
             return false;
         }
         
         ShopItem shopItem = items.get(itemIndex);
-        PlayerMoneyData money = player.getData(ModAttachments.MONEY_DATA);
+        PlayerMoneyData money = ((IEntityDataSaver) player).medelium$getPersistentData();
         
         // Vérifier l'argent
         if (!money.canAfford(shopItem.getPrice())) {
-            player.displayClientMessage(
-                Component.literal("§cVous n'avez pas assez d'argent ! (" + shopItem.getPrice() + " pièces requis)"),
+            player.sendMessage(
+                Text.literal("§cVous n'avez pas assez d'argent ! (" + shopItem.getPrice() + " pièces requis)"),
                 true
             );
             return false;
@@ -9374,8 +9119,8 @@ public class NPCShop {
         // Vérifier l'espace dans l'inventaire
         ItemStack stack = shopItem.createStack();
         if (!player.getInventory().add(stack)) {
-            player.displayClientMessage(
-                Component.literal("§cInventaire plein !"),
+            player.sendMessage(
+                Text.literal("§cInventaire plein !"),
                 true
             );
             return false;
@@ -9385,8 +9130,8 @@ public class NPCShop {
         money.removeMoney(shopItem.getPrice());
         
         // Message de succès
-        player.displayClientMessage(
-            Component.literal("§aAcheté " + shopItem.getQuantity() + "x " + 
+        player.sendMessage(
+            Text.literal("§aAcheté " + shopItem.getQuantity() + "x " + 
                 stack.getDisplayName().getString() + " pour " + shopItem.getPrice() + " pièces"),
             false
         );
@@ -9398,7 +9143,7 @@ public class NPCShop {
     }
     
     // Vendre un item au PNJ
-    public boolean sellItem(ServerPlayer player, ItemStack stack) {
+    public boolean sellItem(ServerPlayerEntity player, ItemStack stack) {
         // Trouver l'item dans le shop
         ShopItem shopItem = null;
         for (ShopItem item : items) {
@@ -9409,8 +9154,8 @@ public class NPCShop {
         }
         
         if (shopItem == null) {
-            player.displayClientMessage(
-                Component.literal("§cCe marchand n'achète pas cet item"),
+            player.sendMessage(
+                Text.literal("§cCe marchand n'achète pas cet item"),
                 true
             );
             return false;
@@ -9422,11 +9167,11 @@ public class NPCShop {
         stack.shrink(shopItem.getQuantity());
         
         // Donner l'argent
-        PlayerMoneyData money = player.getData(ModAttachments.MONEY_DATA);
+        PlayerMoneyData money = ((IEntityDataSaver) player).medelium$getPersistentData();
         money.addMoney(sellPrice);
         
-        player.displayClientMessage(
-            Component.literal("§aVendu pour " + sellPrice + " pièces"),
+        player.sendMessage(
+            Text.literal("§aVendu pour " + sellPrice + " pièces"),
             false
         );
         
@@ -9444,8 +9189,8 @@ public class NPCShop {
 ```java
 package com.medelium.economy.shop;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Items;
+import net.minecraft.text.Text;
+import net.minecraft.item.Items;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9455,7 +9200,7 @@ public class ShopRegistry {
     
     public static void register() {
         // Shop du Forgeron
-        NPCShop blacksmith = new NPCShop("blacksmith", Component.literal("§7Forgeron"));
+        NPCShop blacksmith = new NPCShop("blacksmith", Text.literal("§7Forgeron"));
         blacksmith.addItem(new ShopItem(Items.IRON_SWORD, 1, 100, false));
         blacksmith.addItem(new ShopItem(Items.IRON_CHESTPLATE, 1, 200, false));
         blacksmith.addItem(new ShopItem(Items.DIAMOND_SWORD, 1, 1000, false));
@@ -9463,14 +9208,14 @@ public class ShopRegistry {
         SHOPS.put(blacksmith.getId(), blacksmith);
         
         // Shop de l'Alchimiste
-        NPCShop alchemist = new NPCShop("alchemist", Component.literal("§5Alchimiste"));
+        NPCShop alchemist = new NPCShop("alchemist", Text.literal("§5Alchimiste"));
         alchemist.addItem(new ShopItem(Items.POTION, 1, 50, false));
         alchemist.addItem(new ShopItem(Items.ENDER_PEARL, 1, 200, false));
         alchemist.addItem(new ShopItem(Items.NETHER_STAR, 1, 10000, true));
         SHOPS.put(alchemist.getId(), alchemist);
         
         // Shop du Marchand
-        NPCShop merchant = new NPCShop("merchant", Component.literal("§6Marchand"));
+        NPCShop merchant = new NPCShop("merchant", Text.literal("§6Marchand"));
         merchant.addItem(new ShopItem(Items.BREAD, 16, 20, false));
         merchant.addItem(new ShopItem(Items.APPLE, 8, 15, false));
         merchant.addItem(new ShopItem(Items.COOKED_BEEF, 16, 40, false));
@@ -9494,7 +9239,7 @@ public class ShopRegistry {
 ```java
 package com.medelium.economy;
 
-import net.minecraft.world.item.Item;
+import net.minecraft.item.Item;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9545,8 +9290,8 @@ public class DynamicPricing {
 ```java
 package com.medelium.economy.trade;
 
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9605,7 +9350,7 @@ public class TradeOffer {
         return player1Accepted && player2Accepted;
     }
     
-    public boolean completeTrade(ServerPlayer p1, ServerPlayer p2) {
+    public boolean completeTrade(ServerPlayerEntity p1, ServerPlayerEntity p2) {
         if (!canComplete()) return false;
         
         // Vérifier que les joueurs ont toujours les items/argent
@@ -9640,7 +9385,7 @@ public class TradeOffer {
         return true;
     }
     
-    private boolean validateTrade(ServerPlayer p1, ServerPlayer p2) {
+    private boolean validateTrade(ServerPlayerEntity p1, ServerPlayerEntity p2) {
         // Vérifier items
         for (ItemStack stack : player1Items) {
             if (!p1.getInventory().contains(stack)) {
@@ -9713,10 +9458,10 @@ public class MoneySinks {
 ```java
 package com.medelium.economy;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.medelium.economy.shop.ShopItem;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9727,7 +9472,7 @@ import java.util.List;
 public class EconomyLogger {
     private static final String LOG_FILE = "medelium_economy.log";
     
-    public static void logPurchase(ServerPlayer player, ShopItem item, long price) {
+    public static void logPurchase(ServerPlayerEntity player, ShopItem item, long price) {
         log(String.format("[PURCHASE] %s bought %dx %s for %d coins",
             player.getName().getString(),
             item.getQuantity(),
@@ -9736,7 +9481,7 @@ public class EconomyLogger {
         ));
     }
     
-    public static void logSale(ServerPlayer player, ShopItem item, long price) {
+    public static void logSale(ServerPlayerEntity player, ShopItem item, long price) {
         log(String.format("[SALE] %s sold %dx %s for %d coins",
             player.getName().getString(),
             item.getQuantity(),
@@ -9745,7 +9490,7 @@ public class EconomyLogger {
         ));
     }
     
-    public static void logTrade(ServerPlayer p1, ServerPlayer p2, 
+    public static void logTrade(ServerPlayerEntity p1, ServerPlayerEntity p2, 
                                 List<ItemStack> p1Items, List<ItemStack> p2Items,
                                 long p1Money, long p2Money) {
         log(String.format("[TRADE] %s <-> %s | Items: %d <-> %d | Money: %d <-> %d",
@@ -9758,7 +9503,7 @@ public class EconomyLogger {
         ));
     }
     
-    public static void logMoneyGiven(ServerPlayer player, long amount, String reason) {
+    public static void logMoneyGiven(ServerPlayerEntity player, long amount, String reason) {
         log(String.format("[MONEY_GIVEN] %s received %d coins (%s)",
             player.getName().getString(),
             amount,
@@ -9766,14 +9511,14 @@ public class EconomyLogger {
         ));
     }
     
-    public static void logSuspiciousActivity(ServerPlayer player, String activity) {
+    public static void logSuspiciousActivity(ServerPlayerEntity player, String activity) {
         log(String.format("[SUSPICIOUS] %s : %s",
             player.getName().getString(),
             activity
         ));
         
         // Aussi logger dans les logs principaux
-        MedeliumMod.LOGGER.warn("[ECONOMY] Suspicious: {} - {}", 
+        Medelium.LOGGER.warn("[ECONOMY] Suspicious: {} - {}", 
             player.getName().getString(), activity);
     }
     
@@ -9787,7 +9532,7 @@ public class EconomyLogger {
         try (FileWriter writer = new FileWriter(LOG_FILE, true)) {
             writer.write(logMessage + "\n");
         } catch (IOException e) {
-            MedeliumMod.LOGGER.error("Failed to write economy log", e);
+            Medelium.LOGGER.error("Failed to write economy log", e);
         }
     }
 }
@@ -9836,8 +9581,8 @@ public class EconomyLogger {
 ```java
 package com.medelium.dialogue;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9873,11 +9618,11 @@ public class DialogueNode {
         return this;
     }
     
-    public boolean canShow(ServerPlayer player) {
+    public boolean canShow(ServerPlayerEntity player) {
         return condition.test(player);
     }
     
-    public List<DialogueChoice> getAvailableChoices(ServerPlayer player) {
+    public List<DialogueChoice> getAvailableChoices(ServerPlayerEntity player) {
         List<DialogueChoice> available = new ArrayList<>();
         for (DialogueChoice choice : choices) {
             if (choice.canShow(player)) {
@@ -9887,7 +9632,7 @@ public class DialogueNode {
         return available;
     }
     
-    public void executeActions(ServerPlayer player) {
+    public void executeActions(ServerPlayerEntity player) {
         for (DialogueAction action : actions) {
             action.execute(player);
         }
@@ -9900,8 +9645,8 @@ public class DialogueNode {
 ```java
 package com.medelium.dialogue;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.function.Predicate;
 
@@ -9923,7 +9668,7 @@ public class DialogueChoice {
         return this;
     }
     
-    public boolean canShow(ServerPlayer player) {
+    public boolean canShow(ServerPlayerEntity player) {
         return condition.test(player);
     }
     
@@ -9940,11 +9685,11 @@ public class DialogueChoice {
 ```java
 package com.medelium.dialogue;
 
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 @FunctionalInterface
 public interface DialogueAction {
-    void execute(ServerPlayer player);
+    void execute(ServerPlayerEntity player);
     
     // Actions prédéfinies
     static DialogueAction giveItem(ItemStack stack) {
@@ -9953,10 +9698,10 @@ public interface DialogueAction {
     
     static DialogueAction giveMoney(long amount) {
         return player -> {
-            PlayerMoneyData money = player.getData(ModAttachments.MONEY_DATA);
+            PlayerMoneyData money = ((IEntityDataSaver) player).medelium$getPersistentData();
             money.addMoney(amount);
-            player.displayClientMessage(
-                Component.literal("§a+$" + amount),
+            player.sendMessage(
+                Text.literal("§a+$" + amount),
                 true
             );
         };
@@ -9964,16 +9709,16 @@ public interface DialogueAction {
     
     static DialogueAction startQuest(String questId) {
         return player -> {
-            PlayerQuestData data = player.getData(ModAttachments.QUEST_DATA);
+            PlayerQuestData data = ((IEntityDataSaver) player).medelium$getPersistentData();
             data.startQuest(questId);
-            player.sendSystemMessage(
-                Component.literal("§a§lNouvelle quête !"));
+            player.sendMessage(
+                Text.literal("§a§lNouvelle quête !"));
         };
     }
     
     static DialogueAction addReputation(String factionId, int amount) {
         return player -> {
-            PlayerFactionData data = player.getData(ModAttachments.FACTION_DATA);
+            PlayerFactionData data = ((IEntityDataSaver) player).medelium$getPersistentData();
             data.addReputation(factionId, amount);
         };
     }
@@ -9993,8 +9738,8 @@ public interface DialogueAction {
 ```java
 package com.medelium.dialogue;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10037,7 +9782,7 @@ public class Dialogue {
         return nodes.get(nodeId);
     }
     
-    public DialogueNode getNextNode(ServerPlayer player, String currentNodeId, int choiceIndex) {
+    public DialogueNode getNextNode(ServerPlayerEntity player, String currentNodeId, int choiceIndex) {
         DialogueNode current = nodes.get(currentNodeId);
         if (current == null) return null;
         
@@ -10059,9 +9804,9 @@ public class Dialogue {
 ```java
 package com.medelium.dialogue;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.item.Items;
+import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10071,42 +9816,42 @@ public class DialogueRegistry {
     
     public static void register() {
         // Dialogue du Garde
-        Dialogue guardDialogue = new Dialogue("guard", Component.literal("§7Garde Royal"));
+        Dialogue guardDialogue = new Dialogue("guard", Text.literal("§7Garde Royal"));
         
         // Nœud de départ
         DialogueNode start = new DialogueNode("start", 
-            Component.literal("§7Halte ! Que faites-vous ici ?"));
+            Text.literal("§7Halte ! Que faites-vous ici ?"));
         
         start.addChoice(new DialogueChoice(
-            Component.literal("§aJe suis un voyageur."),
+            Text.literal("§aJe suis un voyageur."),
             "traveler"
         ));
         
         start.addChoice(new DialogueChoice(
-            Component.literal("§cCela ne vous regarde pas !"),
+            Text.literal("§cCela ne vous regarde pas !"),
             "rude"
         ));
         
         start.addChoice(new DialogueChoice(
-            Component.literal("§6[Montrer l'emblème royal]"),
+            Text.literal("§6[Montrer l'emblème royal]"),
             "emblem"
         ).setCondition(player -> 
-            player.getInventory().contains(new ItemStack(ModItems.ROYAL_EMBLEM.get()))
+            player.getInventory().contains(new ItemStack(ModItems.ROYAL_EMBLEM))
         ));
         
         guardDialogue.addNode(start);
         
         // Branche voyageur
         DialogueNode traveler = new DialogueNode("traveler",
-            Component.literal("§7Très bien. Soyez prudent, des bandits rôdent."));
+            Text.literal("§7Très bien. Soyez prudent, des bandits rôdent."));
         
         traveler.addChoice(new DialogueChoice(
-            Component.literal("§aMerci pour l'avertissement."),
+            Text.literal("§aMerci pour l'avertissement."),
             null // Fin dialogue
         ));
         
         traveler.addChoice(new DialogueChoice(
-            Component.literal("§6Pouvez-vous m'aider ?"),
+            Text.literal("§6Pouvez-vous m'aider ?"),
             "help"
         ));
         
@@ -10114,12 +9859,12 @@ public class DialogueRegistry {
         
         // Branche impoli
         DialogueNode rude = new DialogueNode("rude",
-            Component.literal("§cPartez avant que je ne vous arrête !"));
+            Text.literal("§cPartez avant que je ne vous arrête !"));
         
         rude.addAction(DialogueAction.addReputation("royal_guard", -10));
         
         rude.addChoice(new DialogueChoice(
-            Component.literal("§7D'accord..."),
+            Text.literal("§7D'accord..."),
             null
         ));
         
@@ -10127,12 +9872,12 @@ public class DialogueRegistry {
         
         // Branche emblème
         DialogueNode emblem = new DialogueNode("emblem",
-            Component.literal("§6Oh ! Pardonnez-moi, noble chevalier !"));
+            Text.literal("§6Oh ! Pardonnez-moi, noble chevalier !"));
         
         emblem.addAction(DialogueAction.addReputation("royal_guard", 25));
         
         emblem.addChoice(new DialogueChoice(
-            Component.literal("§aJ'ai besoin de votre aide."),
+            Text.literal("§aJ'ai besoin de votre aide."),
             "royal_help"
         ));
         
@@ -10140,13 +9885,13 @@ public class DialogueRegistry {
         
         // Aide royale (récompenses)
         DialogueNode royalHelp = new DialogueNode("royal_help",
-            Component.literal("§6Voici une épée royale et de l'or."));
+            Text.literal("§6Voici une épée royale et de l'or."));
         
-        royalHelp.addAction(DialogueAction.giveItem(new ItemStack(ModItems.ROYAL_SWORD.get())));
+        royalHelp.addAction(DialogueAction.giveItem(new ItemStack(ModItems.ROYAL_SWORD)));
         royalHelp.addAction(DialogueAction.giveMoney(500));
         
         royalHelp.addChoice(new DialogueChoice(
-            Component.literal("§aMerci !"),
+            Text.literal("§aMerci !"),
             null
         ));
         
@@ -10159,39 +9904,39 @@ public class DialogueRegistry {
     }
     
     private static void createMerchantDialogue() {
-        Dialogue merchant = new Dialogue("merchant", Component.literal("§6Marchand"));
+        Dialogue merchant = new Dialogue("merchant", Text.literal("§6Marchand"));
         
         DialogueNode start = new DialogueNode("start",
-            Component.literal("§6Bienvenue ! Que puis-je faire pour vous ?"));
+            Text.literal("§6Bienvenue ! Que puis-je faire pour vous ?"));
         
         start.addChoice(new DialogueChoice(
-            Component.literal("§aOuvrir la boutique"),
+            Text.literal("§aOuvrir la boutique"),
             "shop"
         ));
         
         start.addChoice(new DialogueChoice(
-            Component.literal("§eParlez-moi de votre marchandise"),
+            Text.literal("§eParlez-moi de votre marchandise"),
             "info"
         ));
         
         start.addChoice(new DialogueChoice(
-            Component.literal("§7Au revoir"),
+            Text.literal("§7Au revoir"),
             null
         ));
         
         merchant.addNode(start);
         
         DialogueNode shop = new DialogueNode("shop",
-            Component.literal("§6Voici ce que j'ai..."));
+            Text.literal("§6Voici ce que j'ai..."));
         
         shop.addAction(player -> {
             NPCShop npcShop = ShopRegistry.getShop("merchant");
             // Ouvrir GUI du shop
-            player.openMenu(new ShopMenuProvider(npcShop));
+            player.openMenu(new ShopNamedScreenHandlerFactory(npcShop));
         });
         
         shop.addChoice(new DialogueChoice(
-            Component.literal("§aTerminé"),
+            Text.literal("§aTerminé"),
             "start"
         ));
         
@@ -10213,7 +9958,7 @@ public class DialogueRegistry {
 ```java
 package com.medelium.dialogue;
 
-import net.minecraft.core.HolderLookup;
+import net.minecraft.registry.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
@@ -10310,11 +10055,11 @@ public class NPCMemory {
 ```java
 // Exemple d'utilisation de la mémoire
 private static void createEvolvingDialogue() {
-    Dialogue wizard = new Dialogue("wizard", Component.literal("§5Sorcier Ancien"));
+    Dialogue wizard = new Dialogue("wizard", Text.literal("§5Sorcier Ancien"));
     
     // Première rencontre
     DialogueNode firstMeeting = new DialogueNode("first",
-        Component.literal("§5Je ne vous connais pas, étranger."));
+        Text.literal("§5Je ne vous connais pas, étranger."));
     
     firstMeeting.setCondition(player -> {
         NPCMemory memory = getNPCMemory("wizard");
@@ -10322,7 +10067,7 @@ private static void createEvolvingDialogue() {
     });
     
     firstMeeting.addChoice(new DialogueChoice(
-        Component.literal("§aJe suis un apprenti mage."),
+        Text.literal("§aJe suis un apprenti mage."),
         "apprentice"
     ));
     
@@ -10330,7 +10075,7 @@ private static void createEvolvingDialogue() {
     
     // Deuxième rencontre
     DialogueNode returning = new DialogueNode("returning",
-        Component.literal("§5Ah, vous revoilà !"));
+        Text.literal("§5Ah, vous revoilà !"));
     
     returning.setCondition(player -> {
         NPCMemory memory = getNPCMemory("wizard");
@@ -10338,7 +10083,7 @@ private static void createEvolvingDialogue() {
     });
     
     returning.addChoice(new DialogueChoice(
-        Component.literal("§6Enseignez-moi la magie."),
+        Text.literal("§6Enseignez-moi la magie."),
         "teaching"
     ));
     
@@ -10346,7 +10091,7 @@ private static void createEvolvingDialogue() {
     
     // Le PNJ offre des quêtes seulement après 3 conversations
     DialogueNode trustedFriend = new DialogueNode("trusted",
-        Component.literal("§5Vous êtes devenu mon ami. Laissez-moi vous aider."));
+        Text.literal("§5Vous êtes devenu mon ami. Laissez-moi vous aider."));
     
     trustedFriend.setCondition(player -> {
         NPCMemory memory = getNPCMemory("wizard");
@@ -10397,9 +10142,9 @@ private static void createEvolvingDialogue() {
 ```java
 package com.medelium.stats;
 
-import net.minecraft.core.HolderLookup;
+import net.minecraft.registry.*;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public class PlayerStats {
     // Stats primaires
@@ -10509,7 +10254,7 @@ public class PlayerStats {
     }
     
     // Sauvegarde NBT
-    public CompoundTag save(HolderLookup.Provider provider) {
+    public CompoundTag save(RegistryWrapper.WrapperLookup provider) {
         CompoundTag tag = new CompoundTag();
         tag.putInt("Strength", strength);
         tag.putInt("Dexterity", dexterity);
@@ -10521,7 +10266,7 @@ public class PlayerStats {
         return tag;
     }
     
-    public void load(CompoundTag tag, HolderLookup.Provider provider) {
+    public void load(CompoundTag tag, RegistryWrapper.WrapperLookup provider) {
         strength = tag.getInt("Strength");
         dexterity = tag.getInt("Dexterity");
         constitution = tag.getInt("Constitution");
@@ -10540,38 +10285,25 @@ public class PlayerStats {
 ```java
 package com.medelium.event;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.medelium.stats.PlayerStats;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
-import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-import net.neoforged.neoforge.event.tick.PlayerTickEvent;
-
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.entity.damage.DamageSource;
 public class StatsEventHandler {
     
     // Appliquer HP max à la connexion et level up
-    @SubscribeEvent
-    public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
+        // Fabric: ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {\n    //     ServerPlayerEntity player = handler.getPlayer();\n    public static void onPlayerLogin(ServerPlayerEntity player) { {
             updatePlayerAttributes(player);
         }
     }
     
-    @SubscribeEvent
-    public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
+        // Fabric: enregistrer via ServerPlayerEvents.AFTER_RESPAWN\n    public static void onPlayerRespawn(ServerPlayerEntity player) { {
             updatePlayerAttributes(player);
         }
     }
     
-    private static void updatePlayerAttributes(ServerPlayer player) {
-        PlayerStats stats = player.getData(ModAttachments.STATS_DATA);
+    private static void updatePlayerAttributes(ServerPlayerEntity player) {
+        PlayerStats stats = ((IEntityDataSaver) player).medelium$getPersistentData();
         
         // Mettre à jour HP max
         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(stats.getMaxHealth());
@@ -10592,50 +10324,48 @@ public class StatsEventHandler {
     }
     
     // Modifier les dégâts selon la Force/Dextérité
-    @SubscribeEvent
-    public static void onPlayerAttack(LivingDamageEvent event) {
-        if (event.getSource().getEntity() instanceof ServerPlayer attacker) {
+        // Fabric: utiliser un Mixin sur LivingEntity.damage() pour modifier les dégâts\n    public static void onPlayerAttack(/* Via Mixin */ net.minecraft.entity.LivingEntity target, DamageSource source, float[] amount) {
+        if (event.getSource().getEntity() instanceof ServerPlayerEntity attacker) {
             PlayerStats stats = attacker.getData(ModAttachments.STATS_DATA);
             
-            float originalDamage = event.getAmount();
+            float originalDamage = amount /* Fabric: paramètre du Mixin */;
             float bonus = 0;
             
             // Arme de mêlée = Force
-            if (attacker.getMainHandItem().getItem() instanceof SwordItem || 
-                attacker.getMainHandItem().getItem() instanceof AxeItem) {
+            if (attacker.getMainHandStack().getItem() instanceof SwordItem || 
+                attacker.getMainHandStack().getItem() instanceof AxeItem) {
                 bonus = stats.getMeleeDamageBonus();
             }
             // Arc = Dextérité
-            else if (attacker.getMainHandItem().getItem() instanceof BowItem) {
+            else if (attacker.getMainHandStack().getItem() instanceof BowItem) {
                 bonus = stats.getRangedDamageBonus();
             }
             
-            event.setAmount(originalDamage + bonus);
+            // Fabric: modifier le tableau amount[] dans le Mixin
+            // amount[0] = originalDamage + bonus);
         }
     }
     
     // Réduire dégâts selon Constitution
-    @SubscribeEvent
-    public static void onPlayerHurt(LivingHurtEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            PlayerStats stats = player.getData(ModAttachments.STATS_DATA);
+        // Fabric: utiliser un Mixin sur LivingEntity.damage() pour réduire les dégâts\n    public static void onPlayerHurt(/* Via Mixin */ net.minecraft.entity.LivingEntity target, DamageSource source, float[] amount) {
+        if (player /* Fabric: obtenu via le callback */ instanceof ServerPlayerEntity player) {
+            PlayerStats stats = ((IEntityDataSaver) player).medelium$getPersistentData();
             
             float defense = stats.getDefense();
             float reduction = defense / (defense + 100); // Formule DR
             
-            float newDamage = event.getAmount() * (1 - reduction);
-            event.setAmount(newDamage);
+            float newDamage = amount /* Fabric: paramètre du Mixin */ * (1 - reduction);
+            // Fabric: modifier le tableau amount[] dans le Mixin
+            // amount[0] = newDamage);
         }
     }
     
     // Régénération de mana selon Sagesse
-    @SubscribeEvent
-    public static void onPlayerTick(PlayerTickEvent.Post event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
+        // Fabric: ServerTickEvents.END_SERVER_TICK.register(server -> { for each player... })\n    public static void onPlayerTick(ServerPlayerEntity player) { {
             // Toutes les secondes (20 ticks)
-            if (player.tickCount % 20 == 0) {
-                PlayerStats stats = player.getData(ModAttachments.STATS_DATA);
-                PlayerManaData mana = player.getData(ModAttachments.MANA_DATA);
+            if (player.age % 20 == 0) {
+                PlayerStats stats = ((IEntityDataSaver) player).medelium$getPersistentData();
+                PlayerManaData mana = ((IEntityDataSaver) player).medelium$getPersistentData();
                 
                 float regenAmount = stats.getManaRegen();
                 mana.addMana((int) regenAmount);
@@ -10650,23 +10380,23 @@ public class StatsEventHandler {
 **📝 StatsScreen - Interface pour distribuer points :**
 
 ```java
-package com.medelium.client.screen;
+package com.medelium.client.currentScreen;
 
 import com.medelium.stats.PlayerStats;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.chat.Component;
+import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.currentScreen.Screen;
+import net.minecraft.text.Text;
 
 public class StatsScreen extends Screen {
     private final PlayerStats stats;
     
     public StatsScreen(PlayerStats stats) {
-        super(Component.literal("§6§lSTATISTIQUES"));
+        super(Text.literal("§6§lSTATISTIQUES"));
         this.stats = stats;
     }
     
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+    public void render(DrawContext graphics, int mouseX, int mouseY, float partialTick) {
         renderBackground(graphics, mouseX, mouseY, partialTick);
         
         int centerX = this.width / 2;
@@ -10678,7 +10408,7 @@ public class StatsScreen extends Screen {
         // Points disponibles
         graphics.drawCenteredString(
             this.font,
-            Component.literal("§ePoints disponibles: §f" + stats.getAvailablePoints()),
+            Text.literal("§ePoints disponibles: §f" + stats.getAvailablePoints()),
             centerX,
             35,
             0xFFFFFF
@@ -10706,7 +10436,7 @@ public class StatsScreen extends Screen {
         super.render(graphics, mouseX, mouseY, partialTick);
     }
     
-    private void renderStat(GuiGraphics graphics, int x, int y, String name, int value, String effect) {
+    private void renderStat(DrawContext graphics, int x, int y, String name, int value, String effect) {
         // Nom de la stat
         graphics.drawString(this.font, name + ": §f" + value, x, y, 0xFFFFFF);
         
@@ -10775,56 +10505,56 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
-import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.commands.Commands;
-import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.command.argument.EntityArgument;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public class StatsCommands {
     
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        dispatcher.register(Commands.literal("stats")
-            .then(Commands.literal("show")
+    public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
+        dispatcher.register(CommandManager.literal("stats")
+            .then(CommandManager.literal("show")
                 .executes(StatsCommands::showStats))
-            .then(Commands.literal("add")
-                .requires(source -> source.hasPermission(2))
-                .then(Commands.argument("player", EntityArgument.player())
-                    .then(Commands.argument("stat", StringArgumentType.string())
-                        .then(Commands.argument("amount", IntegerArgumentType.integer(1))
+            .then(CommandManager.literal("add")
+                .requires(source -> source.hasPermissionLevel(2))
+                .then(CommandManager.argument("player", EntityArgument.player())
+                    .then(CommandManager.argument("stat", StringArgumentType.string())
+                        .then(CommandManager.argument("amount", IntegerArgumentType.integer(1))
                             .executes(StatsCommands::addStat)))))
-            .then(Commands.literal("points")
-                .requires(source -> source.hasPermission(2))
-                .then(Commands.argument("player", EntityArgument.player())
-                    .then(Commands.argument("amount", IntegerArgumentType.integer(1))
+            .then(CommandManager.literal("points")
+                .requires(source -> source.hasPermissionLevel(2))
+                .then(CommandManager.argument("player", EntityArgument.player())
+                    .then(CommandManager.argument("amount", IntegerArgumentType.integer(1))
                         .executes(StatsCommands::grantPoints))))
         );
     }
     
-    private static int showStats(CommandContext<CommandSourceStack> context) {
-        ServerPlayer player = context.getSource().getPlayer();
-        PlayerStats stats = player.getData(ModAttachments.STATS_DATA);
+    private static int showStats(CommandContext<ServerCommandSource> context) {
+        ServerPlayerEntity player = context.getSource().getPlayer();
+        PlayerStats stats = ((IEntityDataSaver) player).medelium$getPersistentData();
         
-        player.sendSystemMessage(Component.literal("§6§l=== VOS STATISTIQUES ==="));
-        player.sendSystemMessage(Component.literal("§e💪 Force: §f" + stats.getStrength() + 
+        player.sendMessage(Text.literal("§6§l=== VOS STATISTIQUES ==="));
+        player.sendMessage(Text.literal("§e💪 Force: §f" + stats.getStrength() + 
             " §7(+" + String.format("%.1f", stats.getMeleeDamageBonus()) + " dégâts)"));
-        player.sendSystemMessage(Component.literal("§e🎯 Dextérité: §f" + stats.getDexterity() + 
+        player.sendMessage(Text.literal("§e🎯 Dextérité: §f" + stats.getDexterity() + 
             " §7(+" + String.format("%.1f", stats.getRangedDamageBonus()) + " dégâts)"));
-        player.sendSystemMessage(Component.literal("§e🛡️ Constitution: §f" + stats.getConstitution() + 
+        player.sendMessage(Text.literal("§e🛡️ Constitution: §f" + stats.getConstitution() + 
             " §7(" + String.format("%.0f", stats.getMaxHealth()) + " HP)"));
-        player.sendSystemMessage(Component.literal("§e🧠 Intelligence: §f" + stats.getIntelligence() + 
+        player.sendMessage(Text.literal("§e🧠 Intelligence: §f" + stats.getIntelligence() + 
             " §7(" + stats.getMaxMana() + " Mana)"));
-        player.sendSystemMessage(Component.literal("§e✨ Sagesse: §f" + stats.getWisdom() + 
+        player.sendMessage(Text.literal("§e✨ Sagesse: §f" + stats.getWisdom() + 
             " §7(+" + String.format("%.1f", stats.getManaRegen()) + " mana/s)"));
-        player.sendSystemMessage(Component.literal("§e💬 Charisme: §f" + stats.getCharisma() + 
+        player.sendMessage(Text.literal("§e💬 Charisme: §f" + stats.getCharisma() + 
             " §7(-" + String.format("%.0f", (1 - stats.getPriceMultiplier()) * 100) + "% prix)"));
-        player.sendSystemMessage(Component.literal("§aPoints disponibles: §f" + stats.getAvailablePoints()));
+        player.sendMessage(Text.literal("§aPoints disponibles: §f" + stats.getAvailablePoints()));
         
         return 1;
     }
     
-    private static int addStat(CommandContext<CommandSourceStack> context) {
-        ServerPlayer target = EntityArgument.getPlayer(context, "player");
+    private static int addStat(CommandContext<ServerCommandSource> context) {
+        ServerPlayerEntity target = EntityArgument.getPlayer(context, "player");
         String statName = StringArgumentType.getString(context, "stat");
         int amount = IntegerArgumentType.getInteger(context, "amount");
         
@@ -10839,30 +10569,30 @@ public class StatsCommands {
             case "wisdom" -> stats.addWisdom(amount);
             case "charisma" -> stats.addCharisma(amount);
             default -> {
-                context.getSource().sendFailure(Component.literal("§cStat invalide !"));
+                context.getSource().sendFailure(Text.literal("§cStat invalide !"));
                 return 0;
             }
         }
         
-        context.getSource().sendSuccess(() -> 
-            Component.literal("§aAjouté " + amount + " points de " + statName + " à " + target.getName().getString()),
+        context.getSource().sendFeedback(() -> 
+            Text.literal("§aAjouté " + amount + " points de " + statName + " à " + target.getName().getString()),
             true
         );
         
         return 1;
     }
     
-    private static int grantPoints(CommandContext<CommandSourceStack> context) {
-        ServerPlayer target = EntityArgument.getPlayer(context, "player");
+    private static int grantPoints(CommandContext<ServerCommandSource> context) {
+        ServerPlayerEntity target = EntityArgument.getPlayer(context, "player");
         int amount = IntegerArgumentType.getInteger(context, "amount");
         
         PlayerStats stats = target.getData(ModAttachments.STATS_DATA);
         stats.grantPoints(amount);
         
-        target.sendSystemMessage(Component.literal("§aVous avez reçu " + amount + " points de stats !"));
+        target.sendMessage(Text.literal("§aVous avez reçu " + amount + " points de stats !"));
         
-        context.getSource().sendSuccess(() -> 
-            Component.literal("§aDonné " + amount + " points de stats à " + target.getName().getString()),
+        context.getSource().sendFeedback(() -> 
+            Text.literal("§aDonné " + amount + " points de stats à " + target.getName().getString()),
             true
         );
         
@@ -10902,18 +10632,18 @@ public class StatsCommands {
 **📝 GMPanelScreen - Hub central avec tous les outils :**
 
 ```java
-package com.medelium.client.screen;
+package com.medelium.client.currentScreen;
 
 import com.medelium.network.OpenGMToolPacket;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.chat.Component;
+import net.minecraft.client.gui.currentScreen.Screen;
+import net.minecraft.text.Text;
 
 public class GMPanelScreen extends Screen {
     
     public GMPanelScreen() {
-        super(Component.literal("§4§l⚔ PANEL GAME MASTER ⚔"));
+        super(Text.literal("§4§l⚔ PANEL GAME MASTER ⚔"));
     }
     
     @Override
@@ -10926,48 +10656,48 @@ public class GMPanelScreen extends Screen {
         
         // SECTION: QUÊTES
         this.addRenderableWidget(Button.builder(
-            Component.literal("📋 Créer Quête"),
+            Text.literal("📋 Créer Quête"),
             btn -> openQuestCreator()
         ).bounds(centerX - buttonWidth / 2, startY, buttonWidth, buttonHeight).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("📜 Gérer Quêtes Actives"),
+            Text.literal("📜 Gérer Quêtes Actives"),
             btn -> openQuestManager()
         ).bounds(centerX - buttonWidth / 2, startY + spacing, buttonWidth, buttonHeight).build());
         
         // SECTION: ENTITÉS
         this.addRenderableWidget(Button.builder(
-            Component.literal("👾 Spawn Entité Custom"),
+            Text.literal("👾 Spawn Entité Custom"),
             btn -> openEntitySpawner()
         ).bounds(centerX - buttonWidth / 2, startY + spacing * 2, buttonWidth, buttonHeight).build());
         
         // SECTION: ÉVÉNEMENTS
         this.addRenderableWidget(Button.builder(
-            Component.literal("⚡ Déclencher Événement"),
+            Text.literal("⚡ Déclencher Événement"),
             btn -> openEventTrigger()
         ).bounds(centerX - buttonWidth / 2, startY + spacing * 3, buttonWidth, buttonHeight).build());
         
         // SECTION: JOUEURS
         this.addRenderableWidget(Button.builder(
-            Component.literal("👥 Gestion Joueurs"),
+            Text.literal("👥 Gestion Joueurs"),
             btn -> openPlayerManager()
         ).bounds(centerX - buttonWidth / 2, startY + spacing * 4, buttonWidth, buttonHeight).build());
         
         // SECTION: DEBUG
         this.addRenderableWidget(Button.builder(
-            Component.literal("🔍 Outils Debug"),
+            Text.literal("🔍 Outils Debug"),
             btn -> openDebugTools()
         ).bounds(centerX - buttonWidth / 2, startY + spacing * 5, buttonWidth, buttonHeight).build());
         
         // FERMER
         this.addRenderableWidget(Button.builder(
-            Component.literal("❌ Fermer"),
+            Text.literal("❌ Fermer"),
             btn -> this.onClose()
         ).bounds(centerX - buttonWidth / 2, startY + spacing * 6, buttonWidth, buttonHeight).build());
     }
     
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+    public void render(DrawContext graphics, int mouseX, int mouseY, float partialTick) {
         renderBackground(graphics, mouseX, mouseY, partialTick);
         
         // Titre avec bordure rouge
@@ -10977,7 +10707,7 @@ public class GMPanelScreen extends Screen {
         // Avertissement
         graphics.drawCenteredString(
             this.font,
-            Component.literal("§7Toutes les actions sont loggées"),
+            Text.literal("§7Toutes les actions sont loggées"),
             this.width / 2,
             this.height - 20,
             0xAAAAAA
@@ -11024,14 +10754,14 @@ public class GMPanelScreen extends Screen {
 **📝 QuestCreatorScreen - Éditeur de quêtes visuel :**
 
 ```java
-package com.medelium.client.screen;
+package com.medelium.client.currentScreen;
 
 import com.medelium.network.CreateQuestPacket;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.chat.Component;
+import net.minecraft.client.gui.currentScreen.Screen;
+import net.minecraft.text.Text;
 
 public class QuestCreatorScreen extends Screen {
     private EditBox questIdBox;
@@ -11044,7 +10774,7 @@ public class QuestCreatorScreen extends Screen {
     private EditBox rewardMoneyBox;
     
     public QuestCreatorScreen() {
-        super(Component.literal("§6Créateur de Quête"));
+        super(Text.literal("§6Créateur de Quête"));
     }
     
     @Override
@@ -11101,12 +10831,12 @@ public class QuestCreatorScreen extends Screen {
         
         // Boutons
         this.addRenderableWidget(Button.builder(
-            Component.literal("✅ Créer Quête"),
+            Text.literal("✅ Créer Quête"),
             btn -> createQuest()
         ).bounds(leftX, startY + spacing * 7 + 20, 145, 25).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("❌ Annuler"),
+            Text.literal("❌ Annuler"),
             btn -> this.onClose()
         ).bounds(leftX + 155, startY + spacing * 7 + 20, 145, 25).build());
     }
@@ -11116,7 +10846,7 @@ public class QuestCreatorScreen extends Screen {
     }
     
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+    public void render(DrawContext graphics, int mouseX, int mouseY, float partialTick) {
         renderBackground(graphics, mouseX, mouseY, partialTick);
         graphics.drawCenteredString(this.font, this.title, this.width / 2, 15, 0xFFD700);
         super.render(graphics, mouseX, mouseY, partialTick);
@@ -11165,15 +10895,15 @@ public class QuestCreatorScreen extends Screen {
 **📝 EntitySpawnerScreen - Menu spawn avec paramètres :**
 
 ```java
-package com.medelium.client.screen;
+package com.medelium.client.currentScreen;
 
 import com.medelium.network.SpawnCustomEntityPacket;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.client.gui.currentScreen.Screen;
+import net.minecraft.text.Text;
+import net.minecraft.entity.*;
 
 public class EntitySpawnerScreen extends Screen {
     private EditBox entityTypeBox;
@@ -11185,7 +10915,7 @@ public class EntitySpawnerScreen extends Screen {
     private boolean glowing = false;
     
     public EntitySpawnerScreen() {
-        super(Component.literal("§4Spawn Entité"));
+        super(Text.literal("§4Spawn Entité"));
     }
     
     @Override
@@ -11227,40 +10957,40 @@ public class EntitySpawnerScreen extends Screen {
         
         // Options
         this.addRenderableWidget(Button.builder(
-            Component.literal(persistent ? "§a✓ Persistent" : "§7○ Persistent"),
+            Text.literal(persistent ? "§a✓ Persistent" : "§7○ Persistent"),
             btn -> {
                 persistent = !persistent;
-                btn.setMessage(Component.literal(persistent ? "§a✓ Persistent" : "§7○ Persistent"));
+                btn.setMessage(Text.literal(persistent ? "§a✓ Persistent" : "§7○ Persistent"));
             }
         ).bounds(leftX, startY + 165, 145, 20).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal(glowing ? "§a✓ Glowing" : "§7○ Glowing"),
+            Text.literal(glowing ? "§a✓ Glowing" : "§7○ Glowing"),
             btn -> {
                 glowing = !glowing;
-                btn.setMessage(Component.literal(glowing ? "§a✓ Glowing" : "§7○ Glowing"));
+                btn.setMessage(Text.literal(glowing ? "§a✓ Glowing" : "§7○ Glowing"));
             }
         ).bounds(leftX + 155, startY + 165, 145, 20).build());
         
         // Actions
         this.addRenderableWidget(Button.builder(
-            Component.literal("👾 Spawn Devant Moi"),
+            Text.literal("👾 Spawn Devant Moi"),
             btn -> spawnEntity(false)
         ).bounds(leftX, startY + 200, 145, 25).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("📍 Spawn à Position"),
+            Text.literal("📍 Spawn à Position"),
             btn -> spawnEntity(true)
         ).bounds(leftX + 155, startY + 200, 145, 25).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("❌ Fermer"),
+            Text.literal("❌ Fermer"),
             btn -> this.onClose()
         ).bounds(leftX, startY + 235, 300, 25).build());
     }
     
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+    public void render(DrawContext graphics, int mouseX, int mouseY, float partialTick) {
         renderBackground(graphics, mouseX, mouseY, partialTick);
         graphics.drawCenteredString(this.font, this.title, this.width / 2, 20, 0xFF5555);
         super.render(graphics, mouseX, mouseY, partialTick);
@@ -11289,16 +11019,16 @@ public class EntitySpawnerScreen extends Screen {
 **📝 PlayerManagerScreen - Outils GM pour joueurs :**
 
 ```java
-package com.medelium.client.screen;
+package com.medelium.client.currentScreen;
 
 import com.medelium.network.GMPlayerActionPacket;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.currentScreen.Screen;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.multiplayer.PlayerInfo;
-import net.minecraft.network.chat.Component;
+import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11309,12 +11039,12 @@ public class PlayerManagerScreen extends Screen {
     private int scrollOffset = 0;
     
     public PlayerManagerScreen() {
-        super(Component.literal("§bGestion Joueurs"));
+        super(Text.literal("§bGestion Joueurs"));
         loadPlayerList();
     }
     
     private void loadPlayerList() {
-        ClientPacketListener connection = Minecraft.getInstance().getConnection();
+        ClientPacketListener connection = MinecraftClient.getInstance().getConnection();
         if (connection != null) {
             for (PlayerInfo info : connection.getOnlinePlayers()) {
                 playerNames.add(info.getProfile().getName());
@@ -11330,59 +11060,59 @@ public class PlayerManagerScreen extends Screen {
         
         // Actions sur le joueur sélectionné
         this.addRenderableWidget(Button.builder(
-            Component.literal("📍 Téléporter à Moi"),
+            Text.literal("📍 Téléporter à Moi"),
             btn -> executeAction("tp_to_me")
         ).bounds(rightX, 50, buttonWidth, 25).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("🚀 Me Téléporter à Lui"),
+            Text.literal("🚀 Me Téléporter à Lui"),
             btn -> executeAction("tp_me_to")
         ).bounds(rightX, 80, buttonWidth, 25).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("❄️ Freeze/Unfreeze"),
+            Text.literal("❄️ Freeze/Unfreeze"),
             btn -> executeAction("freeze")
         ).bounds(rightX, 110, buttonWidth, 25).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("👻 Invisibilité GM"),
+            Text.literal("👻 Invisibilité GM"),
             btn -> executeAction("invisible")
         ).bounds(rightX, 140, buttonWidth, 25).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("🔇 Mute/Unmute"),
+            Text.literal("🔇 Mute/Unmute"),
             btn -> executeAction("mute")
         ).bounds(rightX, 170, buttonWidth, 25).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("🎒 Voir Inventaire"),
+            Text.literal("🎒 Voir Inventaire"),
             btn -> executeAction("view_inventory")
         ).bounds(rightX, 200, buttonWidth, 25).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("📊 Voir Stats/Data"),
+            Text.literal("📊 Voir Stats/Data"),
             btn -> executeAction("view_stats")
         ).bounds(rightX, 230, buttonWidth, 25).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("⚡ Heal Full"),
+            Text.literal("⚡ Heal Full"),
             btn -> executeAction("heal")
         ).bounds(rightX, 260, buttonWidth, 25).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("💀 Kill"),
+            Text.literal("💀 Kill"),
             btn -> executeAction("kill")
         ).bounds(rightX, 290, buttonWidth, 25).build());
         
         // Fermer
         this.addRenderableWidget(Button.builder(
-            Component.literal("❌ Fermer"),
+            Text.literal("❌ Fermer"),
             btn -> this.onClose()
         ).bounds(rightX, this.height - 40, buttonWidth, 25).build());
     }
     
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+    public void render(DrawContext graphics, int mouseX, int mouseY, float partialTick) {
         renderBackground(graphics, mouseX, mouseY, partialTick);
         
         // Titre
@@ -11461,19 +11191,19 @@ public class PlayerManagerScreen extends Screen {
 **📝 DebugToolsScreen - Inspecter data en jeu :**
 
 ```java
-package com.medelium.client.screen;
+package com.medelium.client.currentScreen;
 
 import com.medelium.network.RequestDebugDataPacket;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.chat.Component;
+import net.minecraft.client.gui.currentScreen.Screen;
+import net.minecraft.text.Text;
 
 public class DebugToolsScreen extends Screen {
     private String debugInfo = "Aucune donnée chargée";
     
     public DebugToolsScreen() {
-        super(Component.literal("§c🔍 Debug Tools"));
+        super(Text.literal("§c🔍 Debug Tools"));
     }
     
     @Override
@@ -11482,43 +11212,43 @@ public class DebugToolsScreen extends Screen {
         int buttonWidth = 200;
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("📊 Mes Attachments"),
+            Text.literal("📊 Mes Attachments"),
             btn -> requestDebugData("attachments")
         ).bounds(centerX - buttonWidth / 2, 50, buttonWidth, 25).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("⚔️ Mes Stats"),
+            Text.literal("⚔️ Mes Stats"),
             btn -> requestDebugData("stats")
         ).bounds(centerX - buttonWidth / 2, 80, buttonWidth, 25).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("📋 Mes Quêtes"),
+            Text.literal("📋 Mes Quêtes"),
             btn -> requestDebugData("quests")
         ).bounds(centerX - buttonWidth / 2, 110, buttonWidth, 25).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("🏰 Factions & Réputation"),
+            Text.literal("🏰 Factions & Réputation"),
             btn -> requestDebugData("factions")
         ).bounds(centerX - buttonWidth / 2, 140, buttonWidth, 25).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("💰 Économie"),
+            Text.literal("💰 Économie"),
             btn -> requestDebugData("economy")
         ).bounds(centerX - buttonWidth / 2, 170, buttonWidth, 25).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("🌍 Chunks Chargés"),
+            Text.literal("🌍 Chunks Chargés"),
             btn -> requestDebugData("chunks")
         ).bounds(centerX - buttonWidth / 2, 200, buttonWidth, 25).build());
         
         this.addRenderableWidget(Button.builder(
-            Component.literal("❌ Fermer"),
+            Text.literal("❌ Fermer"),
             btn -> this.onClose()
         ).bounds(centerX - buttonWidth / 2, this.height - 40, buttonWidth, 25).build());
     }
     
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+    public void render(DrawContext graphics, int mouseX, int mouseY, float partialTick) {
         renderBackground(graphics, mouseX, mouseY, partialTick);
         
         graphics.drawCenteredString(this.font, this.title, this.width / 2, 15, 0xFF5555);
@@ -11560,7 +11290,7 @@ package com.medelium.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11585,7 +11315,7 @@ public class GMLogger {
         }
     }
     
-    public static void logAction(ServerPlayer gm, String action, Map<String, Object> details) {
+    public static void logAction(ServerPlayerEntity gm, String action, Map<String, Object> details) {
         Map<String, Object> logEntry = new HashMap<>();
         logEntry.put("timestamp", LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
         logEntry.put("gm_name", gm.getName().getString());
@@ -11603,14 +11333,14 @@ public class GMLogger {
         }
     }
     
-    public static void logQuestCreation(ServerPlayer gm, String questId, String questName) {
+    public static void logQuestCreation(ServerPlayerEntity gm, String questId, String questName) {
         Map<String, Object> details = new HashMap<>();
         details.put("quest_id", questId);
         details.put("quest_name", questName);
         logAction(gm, "QUEST_CREATED", details);
     }
     
-    public static void logEntitySpawn(ServerPlayer gm, String entityType, int count, String location) {
+    public static void logEntitySpawn(ServerPlayerEntity gm, String entityType, int count, String location) {
         Map<String, Object> details = new HashMap<>();
         details.put("entity_type", entityType);
         details.put("count", count);
@@ -11618,7 +11348,7 @@ public class GMLogger {
         logAction(gm, "ENTITY_SPAWNED", details);
     }
     
-    public static void logPlayerAction(ServerPlayer gm, String actionType, String targetPlayer) {
+    public static void logPlayerAction(ServerPlayerEntity gm, String actionType, String targetPlayer) {
         Map<String, Object> details = new HashMap<>();
         details.put("action_type", actionType);
         details.put("target_player", targetPlayer);
@@ -11667,9 +11397,9 @@ mod_group_id=com.medelium
 mod_author=VotreNom
 mod_description=Un mod RP médiéval complet avec quêtes, factions, boss, et plus !
 
-# Minecraft & NeoForge
+# Minecraft & Fabric
 minecraft_version=1.21.1
-neoforge_version=21.1.73
+fabric_version=21.1.73
 
 # Gradle
 org.gradle.jvmargs=-Xmx4G
@@ -11685,7 +11415,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.163'
+    id 'net.fabricd.gradle.userdev' version '7.0.163'
 }
 
 version = project.mod_version
@@ -11702,7 +11432,7 @@ java {
 runs {
     configureEach {
         systemProperty 'forge.logging.markers', 'REGISTRIES'
-        systemProperty 'forge.logging.console.level', 'debug'
+        systemProperty 'forge.logging.console.world', 'debug'
         modSource project.sourceSets.main
     }
 
@@ -11717,7 +11447,7 @@ runs {
 }
 
 dependencies {
-    implementation "net.neoforged:neoforge:${neoforge_version}"
+    implementation "net.fabricd:fabric:${fabric_version}"
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -11846,12 +11576,12 @@ pause
 package com.medelium.util;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public class DataMigrationManager {
     private static final int CURRENT_DATA_VERSION = 2;
     
-    public static void migratePlayerData(ServerPlayer player, CompoundTag data) {
+    public static void migratePlayerData(ServerPlayerEntity player, CompoundTag data) {
         int dataVersion = data.getInt("DataVersion");
         
         if (dataVersion == 0) {
@@ -11961,12 +11691,12 @@ Transformez Minecraft en véritable RPG médiéval !
 ## 📋 Prérequis
 
 - Minecraft 1.21.1
-- NeoForge 21.1.73+
+- Fabric Loader + Fabric API+
 - Java 21
 
 ## 📥 Installation
 
-1. Télécharger NeoForge 1.21.1
+1. Télécharger Fabric 1.20.1
 2. Placer medelium-1.0.0.jar dans le dossier `mods/`
 3. Lancer le jeu !
 
@@ -12156,12 +11886,12 @@ jobs:
 ```java
 package com.medelium.util;
 
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.block.Block;
 
 public class ModTags {
     
@@ -12175,7 +11905,7 @@ public class ModTags {
         
         private static TagKey<Item> tag(String name) {
             return TagKey.create(Registries.ITEM, 
-                ResourceLocation.fromNamespaceAndPath("medelium", name));
+                new Identifier("medelium", name));
         }
         
         // Tags Forge (compatibilité)
@@ -12184,7 +11914,7 @@ public class ModTags {
         
         private static TagKey<Item> forgeTag(String name) {
             return TagKey.create(Registries.ITEM, 
-                ResourceLocation.fromNamespaceAndPath("forge", name));
+                new Identifier("forge", name));
         }
     }
     
@@ -12195,7 +11925,7 @@ public class ModTags {
         
         private static TagKey<Block> tag(String name) {
             return TagKey.create(Registries.BLOCK, 
-                ResourceLocation.fromNamespaceAndPath("medelium", name));
+                new Identifier("medelium", name));
         }
     }
 }
@@ -12206,7 +11936,7 @@ public class ModTags {
 ```java
 package com.medelium.util;
 
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.item.ItemStack;
 
 public class TagHelper {
     
@@ -12304,25 +12034,25 @@ public class TagHelper {
 package com.medelium.event;
 
 import com.medelium.util.ModTags;
-import net.minecraft.world.entity.Entity;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.minecraft.entity.Entity;
+// Fabric: utiliser des callbacks au lieu de // Fabric: utiliser les callbacks Fabric API
 
 public class EntityTagHandler {
     
-    @SubscribeEvent
-    public static void onEntityDamage(LivingDamageEvent event) {
-        Entity entity = event.getEntity();
+        public static void onEntityDamage(LivingDamageEvent event) {
+        Entity entity = player /* Fabric: obtenu via le callback */;
         
         // Boss prennent 50% dégâts en moins
         if (entity.getType().is(ModTags.EntityTypes.BOSSES)) {
-            event.setAmount(event.getAmount() * 0.5f);
+            // Fabric: modifier le tableau amount[] dans le Mixin
+            // amount[0] = amount /* Fabric: paramètre du Mixin */ * 0.5f);
         }
         
         // Morts-vivants vulnérables au feu
         if (entity.getType().is(ModTags.EntityTypes.UNDEAD_MONSTERS)) {
             if (event.getSource().is(DamageTypeTags.IS_FIRE)) {
-                event.setAmount(event.getAmount() * 1.5f);
+                // Fabric: modifier le tableau amount[] dans le Mixin
+            // amount[0] = amount /* Fabric: paramètre du Mixin */ * 1.5f);
             }
         }
     }
@@ -12360,29 +12090,29 @@ public class EntityTagHandler {
 ```java
 package com.medelium.util;
 
-import net.minecraft.core.registries.Registries;
+import net.minecraft.registry.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.util.Identifier;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.Entity;
+import net.minecraft.world.World;
 
 public class ModDamageTypes {
     
     public static final ResourceKey<DamageType> FIRE_SPELL = ResourceKey.create(
         Registries.DAMAGE_TYPE,
-        ResourceLocation.fromNamespaceAndPath("medelium", "fire_spell")
+        new Identifier("medelium", "fire_spell")
     );
     
     public static final ResourceKey<DamageType> ICE_SPELL = ResourceKey.create(
         Registries.DAMAGE_TYPE,
-        ResourceLocation.fromNamespaceAndPath("medelium", "ice_spell")
+        new Identifier("medelium", "ice_spell")
     );
     
-    public static DamageSource fireSpell(Level level, Entity attacker) {
+    public static DamageSource fireSpell(World world, Entity attacker) {
         return new DamageSource(
-            level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(FIRE_SPELL),
+            level.getRegistryManager().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(FIRE_SPELL),
             attacker
         );
     }
@@ -12420,7 +12150,7 @@ public class ModDamageTypes {
 }
 ```
 
-### 30.6 Tags de Compatibilité (Forge/NeoForge Convention)
+### 30.6 Tags de Compatibilité (Forge/Fabric Convention)
 
 **📝 Ores - `data/forge/tags/item/ores/silver.json` :**
 
@@ -12936,8 +12666,8 @@ public class ModDamageTypes {
 
 ```java
 @Override
-public ResourceLocation getLootTable() {
-    return ResourceLocation.fromNamespaceAndPath("medelium", "blocks/silver_ore");
+public Identifier getLootTable() {
+    return new Identifier("medelium", "blocks/silver_ore");
 }
 ```
 
@@ -12945,8 +12675,8 @@ public ResourceLocation getLootTable() {
 
 ```java
 @Override
-protected ResourceLocation getDefaultLootTable() {
-    return ResourceLocation.fromNamespaceAndPath("medelium", "entities/skeleton_knight");
+protected Identifier getDefaultLootTable() {
+    return new Identifier("medelium", "entities/skeleton_knight");
 }
 ```
 
@@ -12955,20 +12685,20 @@ protected ResourceLocation getDefaultLootTable() {
 ```java
 package com.medelium.worldgen;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.entity.ChestBlockEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.Identifier;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
 
 public class StructureHelper {
     
-    public static void placeChestWithLoot(Level level, BlockPos pos, String lootTablePath) {
-        level.setBlock(pos, Blocks.CHEST.defaultBlockState(), 3);
+    public static void placeChestWithLoot(World world, BlockPos pos, String lootTablePath) {
+        level.setBlockState(pos, Blocks.CHEST.getDefaultState(), 3);
         
         if (level.getBlockEntity(pos) instanceof ChestBlockEntity chest) {
             chest.setLootTable(
-                ResourceLocation.fromNamespaceAndPath("medelium", lootTablePath),
-                level.random.nextLong()
+                new Identifier("medelium", lootTablePath),
+                world.random.nextLong()
             );
         }
     }
@@ -12977,7 +12707,7 @@ public class StructureHelper {
 
 ---
 
-## 32. ⚙️ Configuration (TOML)
+## 32. ⚙️ Configuration (JSON)
 
 > **📖 Pourquoi un système de config ?**
 > Permet aux **joueurs et admins** de personnaliser le mod sans toucher au code :
@@ -12986,211 +12716,123 @@ public class StructureHelper {
 > - Ajuster difficulté
 > - Compatibilité avec d'autres mods
 >
-> **🎯 Types de configs NeoForge :**
-> - **CLIENT** : Seulement côté client (GUI, graphismes, sons)
-> - **COMMON** : Partagé client/serveur (gameplay, balance)
-> - **SERVER** : Seulement serveur (anti-cheat, permissions)
+> **🎯 Fabric utilise des fichiers JSON de config :**
+> - Créer un fichier JSON dans `config/medelium.json`
+> - Charger/sauvegarder avec `com.google.gson.Gson`
+> - Optionnel : Cloth Config API pour GUI
 >
-> **🔧 Format TOML :**
-> ```toml
-> # Commentaire
-> [category]
-> option = valeur
+> **🔧 Format JSON :**
+> ```json
+> {
+>   "category": {
+>     "option": valeur
+>   }
+> }
 > ```
 
 ### 32.1 Créer la Config
 
-**📝 ModConfig.java :**
+**📝 ModConfig.java - Config JSON simple (Fabric n'a pas de ModConfigSpec) :**
 
 ```java
 package com.medelium.config;
 
-import net.neoforged.neoforge.common.ModConfigSpec;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import net.fabricmc.loader.api.FabricLoader;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ModConfig {
-    
-    public static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
-    public static final ModConfigSpec SPEC;
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    private static ModConfig INSTANCE;
     
     // GAMEPLAY
-    public static final ModConfigSpec.IntValue STARTING_MANA;
-    public static final ModConfigSpec.IntValue MAX_MANA;
-    public static final ModConfigSpec.DoubleValue MANA_REGEN_RATE;
+    public int startingMana = 100;
+    public int maxMana = 200;
+    public double manaRegenRate = 1.0;
     
     // ÉCONOMIE
-    public static final ModConfigSpec.IntValue STARTING_MONEY;
-    public static final ModConfigSpec.DoubleValue SHOP_PRICE_MULTIPLIER;
-    public static final ModConfigSpec.BooleanValue ENABLE_PLAYER_TRADING;
+    public int startingMoney = 100;
+    public double shopPriceMultiplier = 1.0;
+    public boolean enablePlayerTrading = true;
     
     // QUÊTES
-    public static final ModConfigSpec.BooleanValue ENABLE_QUEST_SYSTEM;
-    public static final ModConfigSpec.IntValue QUEST_XP_MULTIPLIER;
-    public static final ModConfigSpec.IntValue MAX_ACTIVE_QUESTS;
+    public boolean enableQuestSystem = true;
+    public int questXpMultiplier = 100;
+    public int maxActiveQuests = 5;
     
     // FACTIONS
-    public static final ModConfigSpec.IntValue REP_GAIN_MULTIPLIER;
-    public static final ModConfigSpec.IntValue REP_LOSS_MULTIPLIER;
-    public static final ModConfigSpec.BooleanValue ENABLE_FACTION_PVP;
+    public int repGainMultiplier = 100;
+    public int repLossMultiplier = 100;
+    public boolean enableFactionPvp = false;
     
     // STATS
-    public static final ModConfigSpec.IntValue STARTING_STAT_POINTS;
-    public static final ModConfigSpec.IntValue STAT_POINTS_PER_LEVEL;
-    public static final ModConfigSpec.IntValue MAX_STAT_VALUE;
+    public int startingStatPoints = 0;
+    public int statPointsPerLevel = 3;
+    public int maxStatValue = 100;
     
     // BOSS
-    public static final ModConfigSpec.DoubleValue BOSS_HEALTH_MULTIPLIER;
-    public static final ModConfigSpec.DoubleValue BOSS_DAMAGE_MULTIPLIER;
-    public static final ModConfigSpec.IntValue BOSS_RESPAWN_TIME_MINUTES;
+    public double bossHealthMultiplier = 1.0;
+    public double bossDamageMultiplier = 1.0;
+    public int bossRespawnTimeMinutes = 60;
     
     // PERFORMANCE
-    public static final ModConfigSpec.BooleanValue ENABLE_PARTICLE_EFFECTS;
-    public static final ModConfigSpec.IntValue PARTICLE_RENDER_DISTANCE;
-    public static final ModConfigSpec.BooleanValue ENABLE_QUEST_MARKERS;
+    public boolean enableParticleEffects = true;
+    public int particleRenderDistance = 32;
+    public boolean enableQuestMarkers = true;
     
-    static {
-        // === GAMEPLAY ===
-        BUILDER.push("gameplay");
+    public static ModConfig get() {
+        if (INSTANCE == null) load();
+        return INSTANCE;
+    }
+    
+    public static void load() {
+        File configFile = FabricLoader.getInstance().getConfigDir().resolve("medelium.json").toFile();
         
-        STARTING_MANA = BUILDER
-            .comment("Mana de départ pour nouveaux joueurs")
-            .defineInRange("startingMana", 100, 0, 1000);
-        
-        MAX_MANA = BUILDER
-            .comment("Mana maximum (avant bonus Intelligence)")
-            .defineInRange("maxMana", 200, 50, 10000);
-        
-        MANA_REGEN_RATE = BUILDER
-            .comment("Mana régénéré par seconde (avant bonus Sagesse)")
-            .defineInRange("manaRegenRate", 1.0, 0.1, 100.0);
-        
-        BUILDER.pop();
-        
-        // === ÉCONOMIE ===
-        BUILDER.push("economy");
-        
-        STARTING_MONEY = BUILDER
-            .comment("Argent de départ")
-            .defineInRange("startingMoney", 100, 0, 1000000);
-        
-        SHOP_PRICE_MULTIPLIER = BUILDER
-            .comment("Multiplicateur prix des shops (1.0 = normal, 2.0 = double)")
-            .defineInRange("shopPriceMultiplier", 1.0, 0.1, 10.0);
-        
-        ENABLE_PLAYER_TRADING = BUILDER
-            .comment("Activer le trading entre joueurs")
-            .define("enablePlayerTrading", true);
-        
-        BUILDER.pop();
-        
-        // === QUÊTES ===
-        BUILDER.push("quests");
-        
-        ENABLE_QUEST_SYSTEM = BUILDER
-            .comment("Activer le système de quêtes")
-            .define("enableQuestSystem", true);
-        
-        QUEST_XP_MULTIPLIER = BUILDER
-            .comment("Multiplicateur XP des quêtes (100 = normal)")
-            .defineInRange("questXpMultiplier", 100, 0, 1000);
-        
-        MAX_ACTIVE_QUESTS = BUILDER
-            .comment("Nombre maximum de quêtes actives simultanées")
-            .defineInRange("maxActiveQuests", 5, 1, 50);
-        
-        BUILDER.pop();
-        
-        // === FACTIONS ===
-        BUILDER.push("factions");
-        
-        REP_GAIN_MULTIPLIER = BUILDER
-            .comment("Multiplicateur gain de réputation (100 = normal)")
-            .defineInRange("repGainMultiplier", 100, 1, 1000);
-        
-        REP_LOSS_MULTIPLIER = BUILDER
-            .comment("Multiplicateur perte de réputation (100 = normal)")
-            .defineInRange("repLossMultiplier", 100, 1, 1000);
-        
-        ENABLE_FACTION_PVP = BUILDER
-            .comment("Activer PvP entre factions ennemies")
-            .define("enableFactionPvp", false);
-        
-        BUILDER.pop();
-        
-        // === STATS ===
-        BUILDER.push("stats");
-        
-        STARTING_STAT_POINTS = BUILDER
-            .comment("Points de stats gratuits au début")
-            .defineInRange("startingStatPoints", 0, 0, 100);
-        
-        STAT_POINTS_PER_LEVEL = BUILDER
-            .comment("Points de stats gagnés par niveau")
-            .defineInRange("statPointsPerLevel", 3, 0, 50);
-        
-        MAX_STAT_VALUE = BUILDER
-            .comment("Valeur maximum d'une stat (0 = illimité)")
-            .defineInRange("maxStatValue", 100, 0, 1000);
-        
-        BUILDER.pop();
-        
-        // === BOSS ===
-        BUILDER.push("boss");
-        
-        BOSS_HEALTH_MULTIPLIER = BUILDER
-            .comment("Multiplicateur HP des boss (1.0 = normal)")
-            .defineInRange("bossHealthMultiplier", 1.0, 0.1, 10.0);
-        
-        BOSS_DAMAGE_MULTIPLIER = BUILDER
-            .comment("Multiplicateur dégâts des boss (1.0 = normal)")
-            .defineInRange("bossDamageMultiplier", 1.0, 0.1, 10.0);
-        
-        BOSS_RESPAWN_TIME_MINUTES = BUILDER
-            .comment("Temps de respawn des boss en minutes")
-            .defineInRange("bossRespawnTimeMinutes", 60, 1, 10080); // Max 1 semaine
-        
-        BUILDER.pop();
-        
-        // === PERFORMANCE ===
-        BUILDER.push("performance");
-        
-        ENABLE_PARTICLE_EFFECTS = BUILDER
-            .comment("Activer les effets de particules")
-            .define("enableParticleEffects", true);
-        
-        PARTICLE_RENDER_DISTANCE = BUILDER
-            .comment("Distance de rendu des particules (blocs)")
-            .defineInRange("particleRenderDistance", 32, 8, 128);
-        
-        ENABLE_QUEST_MARKERS = BUILDER
-            .comment("Activer les marqueurs de quête 3D")
-            .define("enableQuestMarkers", true);
-        
-        BUILDER.pop();
-        
-        SPEC = BUILDER.build();
+        if (configFile.exists()) {
+            try (FileReader reader = new FileReader(configFile)) {
+                INSTANCE = GSON.fromJson(reader, ModConfig.class);
+            } catch (IOException e) {
+                INSTANCE = new ModConfig();
+            }
+        } else {
+            INSTANCE = new ModConfig();
+        }
+        save(); // Crée le fichier s'il n'existe pas / met à jour avec nouveaux champs
+    }
+    
+    public static void save() {
+        File configFile = FabricLoader.getInstance().getConfigDir().resolve("medelium.json").toFile();
+        try (FileWriter writer = new FileWriter(configFile)) {
+            GSON.toJson(get(), writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 ```
 
-### 32.2 Enregistrer la Config
+### 32.2 Charger la Config
 
-**📝 MedeliumMod.java - Dans le constructeur :**
+**📝 Medelium.java - Dans onInitialize() :**
 
 ```java
 package com.medelium;
 
 import com.medelium.config.ModConfig;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig.Type;
+import net.fabricmc.api.ModInitializer;
 
-@Mod(MedeliumMod.MOD_ID)
-public class MedeliumMod {
+public class Medelium implements ModInitializer {
     public static final String MOD_ID = "medelium";
     
-    public MedeliumMod(ModContainer container) {
-        // Enregistrer la config
-        container.registerConfig(Type.COMMON, ModConfig.SPEC, "medelium-common.toml");
+    @Override
+    public void onInitialize() {
+        // Charger la config JSON
+        ModConfig.load();
         
         // ... reste du code
     }
@@ -13205,7 +12847,7 @@ public class MedeliumMod {
 package com.medelium.attachment;
 
 import com.medelium.config.ModConfig;
-import net.minecraft.core.HolderLookup;
+import net.minecraft.registry.*;
 import net.minecraft.nbt.CompoundTag;
 
 public class PlayerManaData {
@@ -13214,14 +12856,14 @@ public class PlayerManaData {
     
     public PlayerManaData() {
         // Utiliser valeurs de config
-        this.mana = ModConfig.STARTING_MANA.get();
-        this.maxMana = ModConfig.MAX_MANA.get();
+        this.mana = ModConfig.STARTING_MANA;
+        this.maxMana = ModConfig.MAX_MANA;
     }
     
     public void regenerate() {
         if (mana < maxMana) {
             // Regen rate depuis config
-            double regenRate = ModConfig.MANA_REGEN_RATE.get();
+            double regenRate = ModConfig.MANA_REGEN_RATE;
             mana = Math.min(maxMana, mana + (int) regenRate);
         }
     }
@@ -13234,17 +12876,17 @@ public class PlayerManaData {
 package com.medelium.entity;
 
 import com.medelium.config.ModConfig;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.entity.*;
+import net.minecraft.entity.mob.*;
 
 public class DragonBoss extends Monster {
     
-    public DragonBoss(EntityType<? extends Monster> type, Level level) {
-        super(type, level);
+    public DragonBoss(EntityType<? extends Monster> type, World world) {
+        super(type, world);
         
         // HP depuis config
         double baseHealth = 500.0;
-        double multiplier = ModConfig.BOSS_HEALTH_MULTIPLIER.get();
+        double multiplier = ModConfig.BOSS_HEALTH_MULTIPLIER;
         this.setMaxHealth((float) (baseHealth * multiplier));
         this.setHealth(this.getMaxHealth());
     }
@@ -13252,10 +12894,10 @@ public class DragonBoss extends Monster {
     @Override
     public boolean doHurtTarget(Entity target) {
         float baseDamage = 20.0f;
-        float multiplier = ModConfig.BOSS_DAMAGE_MULTIPLIER.get().floatValue();
+        float multiplier = ModConfig.BOSS_DAMAGE_MULTIPLIER.floatValue();
         float finalDamage = baseDamage * multiplier;
         
-        return target.hurt(this.damageSources().mobAttack(this), finalDamage);
+        return target.damage(this.getDamageSources().mobAttack(this), finalDamage);
     }
 }
 ```
@@ -13269,19 +12911,19 @@ import com.medelium.config.ModConfig;
 
 public class QuestManager {
     
-    public boolean canAcceptQuest(ServerPlayer player, Quest quest) {
+    public boolean canAcceptQuest(ServerPlayerEntity player, Quest quest) {
         // Vérifier si système activé
-        if (!ModConfig.ENABLE_QUEST_SYSTEM.get()) {
-            player.sendSystemMessage(Component.literal("§cLe système de quêtes est désactivé"));
+        if (!ModConfig.ENABLE_QUEST_SYSTEM) {
+            player.sendMessage(Text.literal("§cLe système de quêtes est désactivé"));
             return false;
         }
         
         // Vérifier limite de quêtes actives
         int activeCount = getActiveQuestCount(player);
-        int maxActive = ModConfig.MAX_ACTIVE_QUESTS.get();
+        int maxActive = ModConfig.MAX_ACTIVE_QUESTS;
         
         if (activeCount >= maxActive) {
-            player.sendSystemMessage(Component.literal(
+            player.sendMessage(Text.literal(
                 "§cVous avez trop de quêtes actives ! (" + activeCount + "/" + maxActive + ")"
             ));
             return false;
@@ -13291,7 +12933,7 @@ public class QuestManager {
     }
     
     public int calculateQuestXP(int baseXP) {
-        int multiplier = ModConfig.QUEST_XP_MULTIPLIER.get();
+        int multiplier = ModConfig.QUEST_XP_MULTIPLIER;
         return (baseXP * multiplier) / 100;
     }
 }
@@ -13299,150 +12941,99 @@ public class QuestManager {
 
 ### 32.4 Fichier Config Généré
 
-**📝 Le fichier `config/medelium-common.toml` sera créé automatiquement :**
+**📝 Le fichier `config/medelium.json` sera créé automatiquement :**
 
-```toml
-# Configuration Medelium Mod
-
-[gameplay]
-    # Mana de départ pour nouveaux joueurs
-    # Range: 0 ~ 1000
-    startingMana = 100
-    # Mana maximum (avant bonus Intelligence)
-    # Range: 50 ~ 10000
-    maxMana = 200
-    # Mana régénéré par seconde (avant bonus Sagesse)
-    # Range: 0.1 ~ 100.0
-    manaRegenRate = 1.0
-
-[economy]
-    # Argent de départ
-    # Range: 0 ~ 1000000
-    startingMoney = 100
-    # Multiplicateur prix des shops (1.0 = normal, 2.0 = double)
-    # Range: 0.1 ~ 10.0
-    shopPriceMultiplier = 1.0
-    # Activer le trading entre joueurs
-    enablePlayerTrading = true
-
-[quests]
-    # Activer le système de quêtes
-    enableQuestSystem = true
-    # Multiplicateur XP des quêtes (100 = normal)
-    # Range: 0 ~ 1000
-    questXpMultiplier = 100
-    # Nombre maximum de quêtes actives simultanées
-    # Range: 1 ~ 50
-    maxActiveQuests = 5
-
-[factions]
-    # Multiplicateur gain de réputation (100 = normal)
-    # Range: 1 ~ 1000
-    repGainMultiplier = 100
-    # Multiplicateur perte de réputation (100 = normal)
-    # Range: 1 ~ 1000
-    repLossMultiplier = 100
-    # Activer PvP entre factions ennemies
-    enableFactionPvp = false
-
-[stats]
-    # Points de stats gratuits au début
-    # Range: 0 ~ 100
-    startingStatPoints = 0
-    # Points de stats gagnés par niveau
-    # Range: 0 ~ 50
-    statPointsPerLevel = 3
-    # Valeur maximum d'une stat (0 = illimité)
-    # Range: 0 ~ 1000
-    maxStatValue = 100
-
-[boss]
-    # Multiplicateur HP des boss (1.0 = normal)
-    # Range: 0.1 ~ 10.0
-    bossHealthMultiplier = 1.0
-    # Multiplicateur dégâts des boss (1.0 = normal)
-    # Range: 0.1 ~ 10.0
-    bossDamageMultiplier = 1.0
-    # Temps de respawn des boss en minutes
-    # Range: 1 ~ 10080
-    bossRespawnTimeMinutes = 60
-
-[performance]
-    # Activer les effets de particules
-    enableParticleEffects = true
-    # Distance de rendu des particules (blocs)
-    # Range: 8 ~ 128
-    particleRenderDistance = 32
-    # Activer les marqueurs de quête 3D
-    enableQuestMarkers = true
+```json
+{
+  "startingMana": 100,
+  "maxMana": 200,
+  "manaRegenRate": 1.0,
+  "startingMoney": 100,
+  "shopPriceMultiplier": 1.0,
+  "enablePlayerTrading": true,
+  "enableQuestSystem": true,
+  "questXpMultiplier": 100,
+  "maxActiveQuests": 5,
+  "repGainMultiplier": 100,
+  "repLossMultiplier": 100,
+  "enableFactionPvp": false,
+  "startingStatPoints": 0,
+  "statPointsPerLevel": 3,
+  "maxStatValue": 100,
+  "bossHealthMultiplier": 1.0,
+  "bossDamageMultiplier": 1.0,
+  "bossRespawnTimeMinutes": 60,
+  "enableParticleEffects": true,
+  "particleRenderDistance": 32,
+  "enableQuestMarkers": true
+}
 ```
 
 ### 32.5 Config Client Séparée
 
-**📝 ModClientConfig.java :**
+**📝 ModClientConfig.java - Même principe avec un fichier séparé :**
 
 ```java
 package com.medelium.config;
 
-import net.neoforged.neoforge.common.ModConfigSpec;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import net.fabricmc.loader.api.FabricLoader;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ModClientConfig {
-    
-    public static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
-    public static final ModConfigSpec SPEC;
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    private static ModClientConfig INSTANCE;
     
     // GUI
-    public static final ModConfigSpec.BooleanValue SHOW_MANA_BAR;
-    public static final ModConfigSpec.BooleanValue SHOW_STAMINA_BAR;
-    public static final ModConfigSpec.IntValue HUD_X_OFFSET;
-    public static final ModConfigSpec.IntValue HUD_Y_OFFSET;
+    public boolean showManaBar = true;
+    public boolean showStaminaBar = true;
+    public int hudXOffset = 0;
+    public int hudYOffset = 0;
     
     // VISUALS
-    public static final ModConfigSpec.BooleanValue FANCY_SPELL_EFFECTS;
-    public static final ModConfigSpec.DoubleValue SPELL_PARTICLE_SCALE;
+    public boolean fancySpellEffects = true;
+    public double spellParticleScale = 1.0;
     
-    static {
-        BUILDER.push("gui");
-        
-        SHOW_MANA_BAR = BUILDER
-            .comment("Afficher la barre de mana")
-            .define("showManaBar", true);
-        
-        SHOW_STAMINA_BAR = BUILDER
-            .comment("Afficher la barre de stamina")
-            .define("showStaminaBar", true);
-        
-        HUD_X_OFFSET = BUILDER
-            .comment("Décalage horizontal du HUD")
-            .defineInRange("hudXOffset", 0, -500, 500);
-        
-        HUD_Y_OFFSET = BUILDER
-            .comment("Décalage vertical du HUD")
-            .defineInRange("hudYOffset", 0, -500, 500);
-        
-        BUILDER.pop();
-        
-        BUILDER.push("visuals");
-        
-        FANCY_SPELL_EFFECTS = BUILDER
-            .comment("Effets de sorts améliorés (plus de particules)")
-            .define("fancySpellEffects", true);
-        
-        SPELL_PARTICLE_SCALE = BUILDER
-            .comment("Taille des particules de sorts")
-            .defineInRange("spellParticleScale", 1.0, 0.1, 5.0);
-        
-        BUILDER.pop();
-        
-        SPEC = BUILDER.build();
+    public static ModClientConfig get() {
+        if (INSTANCE == null) load();
+        return INSTANCE;
+    }
+    
+    public static void load() {
+        File configFile = FabricLoader.getInstance().getConfigDir().resolve("medelium-client.json").toFile();
+        if (configFile.exists()) {
+            try (FileReader reader = new FileReader(configFile)) {
+                INSTANCE = GSON.fromJson(reader, ModClientConfig.class);
+            } catch (IOException e) {
+                INSTANCE = new ModClientConfig();
+            }
+        } else {
+            INSTANCE = new ModClientConfig();
+        }
+        save();
+    }
+    
+    public static void save() {
+        File configFile = FabricLoader.getInstance().getConfigDir().resolve("medelium-client.json").toFile();
+        try (FileWriter writer = new FileWriter(configFile)) {
+            GSON.toJson(get(), writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 ```
 
-**📝 Enregistrer dans MedeliumMod :**
+**📝 Charger dans MedeliumClient :**
 
 ```java
-container.registerConfig(Type.CLIENT, ModClientConfig.SPEC, "medelium-client.toml");
+// Dans MedeliumClient.onInitializeClient()
+ModClientConfig.load();
 ```
 
 ### 32.6 Reload Config en Jeu
@@ -13454,41 +13045,42 @@ package com.medelium.command;
 
 import com.medelium.config.ModConfig;
 import com.mojang.brigadier.CommandDispatcher;
-import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.Component;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.text.Text;
 
 public class ConfigCommands {
     
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        dispatcher.register(Commands.literal("medelium")
-            .then(Commands.literal("config")
-                .then(Commands.literal("reload")
-                    .requires(source -> source.hasPermission(3))
+    public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
+        dispatcher.register(CommandManager.literal("medelium")
+            .then(CommandManager.literal("config")
+                .then(CommandManager.literal("reload")
+                    .requires(source -> source.hasPermissionLevel(3))
                     .executes(context -> {
-                        // Les configs NeoForge se rechargent automatiquement
-                        // Mais on peut forcer certaines actions
+                        // Recharger le fichier JSON
+                        ModConfig.load();
                         
-                        context.getSource().sendSuccess(() -> 
-                            Component.literal("§aConfiguration rechargée !"),
+                        context.getSource().sendFeedback(() -> 
+                            Text.literal("§aConfiguration rechargée !"),
                             true
                         );
                         
                         return 1;
                     }))
-                .then(Commands.literal("show")
+                .then(CommandManager.literal("show")
                     .executes(context -> {
                         var source = context.getSource();
+                        ModConfig cfg = ModConfig.get();
                         
-                        source.sendSuccess(() -> Component.literal("§6=== CONFIG MEDELIUM ==="), false);
-                        source.sendSuccess(() -> Component.literal("§eMana départ: §f" + 
-                            ModConfig.STARTING_MANA.get()), false);
-                        source.sendSuccess(() -> Component.literal("§eMana max: §f" + 
-                            ModConfig.MAX_MANA.get()), false);
-                        source.sendSuccess(() -> Component.literal("§eArgent départ: §f" + 
-                            ModConfig.STARTING_MONEY.get()), false);
-                        source.sendSuccess(() -> Component.literal("§eQuêtes activées: §f" + 
-                            ModConfig.ENABLE_QUEST_SYSTEM.get()), false);
+                        source.sendFeedback(() -> Text.literal("§6=== CONFIG MEDELIUM ==="), false);
+                        source.sendFeedback(() -> Text.literal("§eMana départ: §f" + 
+                            cfg.startingMana), false);
+                        source.sendFeedback(() -> Text.literal("§eMana max: §f" + 
+                            cfg.maxMana), false);
+                        source.sendFeedback(() -> Text.literal("§eArgent départ: §f" + 
+                            cfg.startingMoney), false);
+                        source.sendFeedback(() -> Text.literal("§eQuêtes activées: §f" + 
+                            cfg.enableQuestSystem), false);
                         
                         return 1;
                     })))
@@ -13503,12 +13095,12 @@ public class ConfigCommands {
 
 Le guide contient maintenant **32 sections complètes** couvrant :
 ✅ **Tous les systèmes RPG** (Stats, Quêtes, Factions, Économie, Dialogues)
-✅ **Networking moderne** (CustomPacketPayload, StreamCodec)
+✅ **Networking moderne** (Fabric Networking API (ServerPlayNetworking, ClientPlayNetworking))
 ✅ **Outils avancés** (GM Panel, Debug Tools)
 ✅ **Build professionnel** (Gradle, Versioning, CI/CD)
 ✅ **Tags & Data-Driven** (Compatibilité mods)
 ✅ **Loot Tables complets** (Conditions, Functions, Boss)
-✅ **Configuration TOML** (Client/Server, Reload)
+✅ **Configuration JSON** (JSON, Client/Server, Reload)
 ✅ **Localisation multilingue** (i18n)
 ✅ **Keybindings & HUD custom** (Input, Overlays)
 ✅ **World Generation** (Biomes, Features)
@@ -13740,34 +13332,34 @@ Votre guide est maintenant **VRAIMENT complet** pour créer un mod Minecraft pro
 ```java
 package com.medelium.util;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public class TranslationHelper {
     
     // Message simple
-    public static void sendTranslatedMessage(ServerPlayer player, String key) {
-        player.sendSystemMessage(Component.translatable(key));
+    public static void sendTranslatedMessage(ServerPlayerEntity player, String key) {
+        player.sendMessage(Text.translatable(key));
     }
     
     // Message avec paramètres
-    public static void sendQuestAccepted(ServerPlayer player, String questName) {
-        player.sendSystemMessage(
-            Component.translatable("message.medelium.quest_accepted", questName)
+    public static void sendQuestAccepted(ServerPlayerEntity player, String questName) {
+        player.sendMessage(
+            Text.translatable("message.medelium.quest_accepted", questName)
         );
     }
     
     // Message level up
-    public static void sendLevelUp(ServerPlayer player, int level) {
-        player.sendSystemMessage(
-            Component.translatable("message.medelium.level_up", level)
+    public static void sendLevelUp(ServerPlayerEntity player, int level) {
+        player.sendMessage(
+            Text.translatable("message.medelium.level_up", level)
         );
     }
     
     // Message réputation
-    public static void sendReputationGain(ServerPlayer player, int amount, String faction) {
-        player.sendSystemMessage(
-            Component.translatable("message.medelium.reputation_gained", amount, faction)
+    public static void sendReputationGain(ServerPlayerEntity player, int amount, String faction) {
+        player.sendMessage(
+            Text.translatable("message.medelium.reputation_gained", amount, faction)
         );
     }
 }
@@ -13778,10 +13370,10 @@ public class TranslationHelper {
 ```java
 package com.medelium.item;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.text.Text;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.client.item.TooltipContext;
 
 import java.util.List;
 
@@ -13790,19 +13382,19 @@ public class MagicSwordItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltips, TooltipFlag flag) {
         // Ligne 1: Coût mana (traduit)
-        tooltips.add(Component.translatable("tooltip.medelium.mana_cost", 50));
+        tooltips.add(Text.translatable("tooltip.medelium.mana_cost", 50));
         
         // Ligne 2: Cooldown (traduit)
-        tooltips.add(Component.translatable("tooltip.medelium.cooldown", 10));
+        tooltips.add(Text.translatable("tooltip.medelium.cooldown", 10));
         
         // Ligne 3: Dégâts magiques (traduit)
-        tooltips.add(Component.translatable("tooltip.medelium.magic_damage", 25));
+        tooltips.add(Text.translatable("tooltip.medelium.magic_damage", 25));
         
         // Ligne 4: Shift pour détails (traduit)
         if (!Screen.hasShiftDown()) {
-            tooltips.add(Component.translatable("tooltip.medelium.hold_shift"));
+            tooltips.add(Text.translatable("tooltip.medelium.hold_shift"));
         } else {
-            tooltips.add(Component.translatable("tooltip.medelium.fire_damage_bonus"));
+            tooltips.add(Text.translatable("tooltip.medelium.fire_damage_bonus"));
         }
     }
 }
@@ -13811,16 +13403,16 @@ public class MagicSwordItem extends Item {
 **📝 GUI avec titre traduit :**
 
 ```java
-package com.medelium.client.screen;
+package com.medelium.client.currentScreen;
 
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.chat.Component;
+import net.minecraft.client.gui.currentScreen.Screen;
+import net.minecraft.text.Text;
 
 public class QuestLogScreen extends Screen {
     
     public QuestLogScreen() {
         // Titre traduit automatiquement
-        super(Component.translatable("gui.medelium.quest_log"));
+        super(Text.translatable("gui.medelium.quest_log"));
     }
 }
 ```
@@ -13831,21 +13423,21 @@ public class QuestLogScreen extends Screen {
 package com.medelium.command;
 
 import com.mojang.brigadier.context.CommandContext;
-import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public class QuestCommands {
     
-    private static int giveQuest(CommandContext<CommandSourceStack> context) {
-        ServerPlayer target = EntityArgument.getPlayer(context, "player");
+    private static int giveQuest(CommandContext<ServerCommandSource> context) {
+        ServerPlayerEntity target = EntityArgument.getPlayer(context, "player");
         String questId = StringArgumentType.getString(context, "quest");
         
         // Donner la quête...
         
         // Message traduit
-        context.getSource().sendSuccess(() -> 
-            Component.translatable("command.medelium.quest.success", target.getName().getString()),
+        context.getSource().sendFeedback(() -> 
+            Text.translatable("command.medelium.quest.success", target.getName().getString()),
             true
         );
         
@@ -13862,7 +13454,7 @@ public class QuestCommands {
 // EN: "You gained +%s %s with %s faction"
 // FR: "Vous avez gagné +%s %s avec la faction %s"
 
-Component.translatable(
+Text.translatable(
     "message.medelium.reputation_detailed",
     50,                    // %s -> 50
     "points",              // %s -> points
@@ -13873,8 +13465,8 @@ Component.translatable(
 **📝 Component avec composants imbriqués :**
 
 ```java
-Component questName = Component.translatable("quest.medelium.dragon_slayer.title");
-Component message = Component.translatable("message.medelium.quest_completed", questName);
+Component questName = Text.translatable("quest.medelium.dragon_slayer.title");
+Component message = Text.translatable("message.medelium.quest_completed", questName);
 
 // EN: "Quest completed: Dragon Slayer"
 // FR: "Quête terminée : Tueur de Dragons"
@@ -13896,12 +13488,12 @@ Component message = Component.translatable("message.medelium.quest_completed", q
 **📝 Utiliser selon la quantité :**
 
 ```java
-public static void sendCoinsReceived(ServerPlayer player, int amount) {
+public static void sendCoinsReceived(ServerPlayerEntity player, int amount) {
     String key = amount == 1 
         ? "message.medelium.coins.single" 
         : "message.medelium.coins.multiple";
     
-    player.sendSystemMessage(Component.translatable(key, amount));
+    player.sendMessage(Text.translatable(key, amount));
 }
 ```
 
@@ -13957,7 +13549,7 @@ death.attack.<modid>.<damage_type>
 > - Afficher stats (ex: P)
 >
 > **🎯 Composants essentiels :**
-> - 🎮 **KeyMapping** : Définir la touche
+> - 🎮 **KeyBinding** : Définir la touche
 > - 📡 **Packet** : Envoyer action au serveur
 > - 🎨 **HUD Overlay** : Afficher infos à l'écran
 > - 🔄 **Event** : Détecter appui touche
@@ -13977,57 +13569,53 @@ death.attack.<modid>.<damage_type>
 package com.medelium.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import net.minecraft.client.KeyMapping;
-import net.neoforged.neoforge.client.settings.KeyConflictContext;
+import net.minecraft.client.KeyBinding;
+// Fabric: voir Fabric Rendering API
 import org.lwjgl.glfw.GLFW;
 
 public class ModKeyBindings {
     
     public static final String KEY_CATEGORY = "key.categories.medelium";
     
-    public static KeyMapping OPEN_QUEST_LOG;
-    public static KeyMapping USE_SKILL;
-    public static KeyMapping OPEN_STATS;
-    public static KeyMapping TOGGLE_STEALTH;
-    public static KeyMapping QUICK_HEAL;
+    public static KeyBinding OPEN_QUEST_LOG;
+    public static KeyBinding USE_SKILL;
+    public static KeyBinding OPEN_STATS;
+    public static KeyBinding TOGGLE_STEALTH;
+    public static KeyBinding QUICK_HEAL;
     
     public static void register() {
-        OPEN_QUEST_LOG = new KeyMapping(
+        OPEN_QUEST_LOG = new KeyBinding(
             "key.medelium.open_quest_log",           // Clé de traduction
             KeyConflictContext.IN_GAME,              // Contexte (en jeu)
-            InputConstants.Type.KEYSYM,              // Type (clavier)
+            InputUtil.Type.KEYSYM,              // Type (clavier)
             GLFW.GLFW_KEY_K,                         // Touche par défaut: K
             KEY_CATEGORY                             // Catégorie
         );
         
-        USE_SKILL = new KeyMapping(
+        USE_SKILL = new KeyBinding(
             "key.medelium.use_skill",
-            KeyConflictContext.IN_GAME,
-            InputConstants.Type.KEYSYM,
+            InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_R,                         // Touche: R
             KEY_CATEGORY
         );
         
-        OPEN_STATS = new KeyMapping(
+        OPEN_STATS = new KeyBinding(
             "key.medelium.open_stats",
-            KeyConflictContext.IN_GAME,
-            InputConstants.Type.KEYSYM,
+            InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_P,                         // Touche: P
             KEY_CATEGORY
         );
         
-        TOGGLE_STEALTH = new KeyMapping(
+        TOGGLE_STEALTH = new KeyBinding(
             "key.medelium.toggle_stealth",
-            KeyConflictContext.IN_GAME,
-            InputConstants.Type.KEYSYM,
+            InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_C,                         // Touche: C
             KEY_CATEGORY
         );
         
-        QUICK_HEAL = new KeyMapping(
+        QUICK_HEAL = new KeyBinding(
             "key.medelium.quick_heal",
-            KeyConflictContext.IN_GAME,
-            InputConstants.Type.KEYSYM,
+            InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_H,                         // Touche: H
             KEY_CATEGORY
         );
@@ -14040,23 +13628,16 @@ public class ModKeyBindings {
 ```java
 package com.medelium.client;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
-
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientModEvents {
     
-    @SubscribeEvent
-    public static void registerKeyBindings(RegisterKeyMappingsEvent event) {
+        // Fabric: KeyBindingHelper.registerKeyBinding() dans onInitializeClient()\n    public static void registerKeyBindings() {
         ModKeyBindings.register();
         
-        event.register(ModKeyBindings.OPEN_QUEST_LOG);
-        event.register(ModKeyBindings.USE_SKILL);
-        event.register(ModKeyBindings.OPEN_STATS);
-        event.register(ModKeyBindings.TOGGLE_STEALTH);
-        event.register(ModKeyBindings.QUICK_HEAL);
+        KeyBindingHelper.registerKeyBinding(ModKeyBindings.OPEN_QUEST_LOG);
+        KeyBindingHelper.registerKeyBinding(ModKeyBindings.USE_SKILL);
+        KeyBindingHelper.registerKeyBinding(ModKeyBindings.OPEN_STATS);
+        KeyBindingHelper.registerKeyBinding(ModKeyBindings.TOGGLE_STEALTH);
+        KeyBindingHelper.registerKeyBinding(ModKeyBindings.QUICK_HEAL);
     }
 }
 ```
@@ -14068,24 +13649,17 @@ public class ClientModEvents {
 ```java
 package com.medelium.client.event;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.medelium.client.ModKeyBindings;
-import com.medelium.client.screen.QuestLogScreen;
-import com.medelium.client.screen.StatsScreen;
+import com.medelium.client.currentScreen.QuestLogScreen;
+import com.medelium.client.currentScreen.StatsScreen;
 import com.medelium.network.UseSkillPacket;
 import com.medelium.network.ToggleStealthPacket;
-import net.minecraft.client.Minecraft;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.InputEvent;
-
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID, bus = EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+import net.minecraft.client.MinecraftClient;
 public class KeyInputHandler {
     
-    @SubscribeEvent
-    public static void onKeyInput(InputEvent.Key event) {
-        Minecraft mc = Minecraft.getInstance();
+        // Fabric: ClientTickEvents.END_CLIENT_TICK.register(client -> { check keys... })\n    public static void onClientTick(MinecraftClient mc) {
+        Minecraft mc = MinecraftClient.getInstance();
         
         if (mc.player == null || mc.screen != null) {
             return; // Pas dans un menu
@@ -14105,7 +13679,7 @@ public class KeyInputHandler {
         
         // OUVRIR STATS
         if (ModKeyBindings.OPEN_STATS.consumeClick()) {
-            PlayerStats stats = mc.player.getData(ModAttachments.STATS_DATA);
+            PlayerStats stats = mc.((IEntityDataSaver) player).medelium$getPersistentData();
             mc.setScreen(new StatsScreen(stats));
         }
         
@@ -14122,10 +13696,10 @@ public class KeyInputHandler {
         }
     }
     
-    private static void useQuickHeal(Player player) {
+    private static void useQuickHeal(PlayerEntity player) {
         for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
             ItemStack stack = player.getInventory().getItem(i);
-            if (stack.getItem() == ModItems.HEALING_POTION.get()) {
+            if (stack.getItem() == ModItems.HEALING_POTION) {
                 // Utiliser la potion
                 QuickHealPacket packet = new QuickHealPacket(i);
                 ModPackets.sendToServer(packet);
@@ -14143,67 +13717,59 @@ public class KeyInputHandler {
 ```java
 package com.medelium.client.hud;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.medelium.attachment.ModAttachments;
 import com.medelium.attachment.PlayerManaData;
 import com.medelium.config.ModClientConfig;
 import net.minecraft.client.DeltaTracker;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.LayeredDraw;
-import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
-import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
-
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+import net.minecraft.util.Identifier;
 public class HudOverlay {
     
-    private static final ResourceLocation MANA_BAR = ResourceLocation.fromNamespaceAndPath(
-        MedeliumMod.MOD_ID, "textures/gui/mana_bar.png"
+    private static final Identifier MANA_BAR = new Identifier(
+        Medelium.MOD_ID, "textures/gui/mana_bar.png"
     );
     
-    private static final ResourceLocation STAMINA_BAR = ResourceLocation.fromNamespaceAndPath(
-        MedeliumMod.MOD_ID, "textures/gui/stamina_bar.png"
+    private static final Identifier STAMINA_BAR = new Identifier(
+        Medelium.MOD_ID, "textures/gui/stamina_bar.png"
     );
     
-    @SubscribeEvent
-    public static void registerOverlays(RegisterGuiLayersEvent event) {
+        public static void registerOverlays(RegisterGuiLayersEvent event) {
         event.registerAbove(
             VanillaGuiLayers.PLAYER_HEALTH,
-            ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "mana_bar"),
+            new Identifier(Medelium.MOD_ID, "mana_bar"),
             HudOverlay::renderManaBar
         );
         
         event.registerAbove(
             VanillaGuiLayers.PLAYER_HEALTH,
-            ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "stamina_bar"),
+            new Identifier(Medelium.MOD_ID, "stamina_bar"),
             HudOverlay::renderStaminaBar
         );
     }
     
-    private static void renderManaBar(GuiGraphics graphics, DeltaTracker deltaTracker) {
-        Minecraft mc = Minecraft.getInstance();
+    private static void renderManaBar(DrawContext graphics, DeltaTracker deltaTracker) {
+        Minecraft mc = MinecraftClient.getInstance();
         
         if (mc.player == null || mc.options.hideGui) {
             return;
         }
         
         // Vérifier config
-        if (!ModClientConfig.SHOW_MANA_BAR.get()) {
+        if (!ModClientConfig.get().SHOW_MANA_BAR) {
             return;
         }
         
-        PlayerManaData manaData = mc.player.getData(ModAttachments.MANA_DATA);
+        PlayerManaData manaData = mc.((IEntityDataSaver) player).medelium$getPersistentData();
         
         int screenWidth = mc.getWindow().getGuiScaledWidth();
         int screenHeight = mc.getWindow().getGuiScaledHeight();
         
         // Position (à droite de la barre de vie)
-        int x = screenWidth / 2 + 10 + ModClientConfig.HUD_X_OFFSET.get();
-        int y = screenHeight - 39 + ModClientConfig.HUD_Y_OFFSET.get();
+        int x = screenWidth / 2 + 10 + ModClientConfig.get().HUD_X_OFFSET;
+        int y = screenHeight - 39 + ModClientConfig.get().HUD_Y_OFFSET;
         
         // Largeur de la barre
         int barWidth = 81;
@@ -14225,14 +13791,14 @@ public class HudOverlay {
         graphics.drawString(mc.font, manaText, textX, y + 1, 0x00AAFF);
     }
     
-    private static void renderStaminaBar(GuiGraphics graphics, DeltaTracker deltaTracker) {
-        Minecraft mc = Minecraft.getInstance();
+    private static void renderStaminaBar(DrawContext graphics, DeltaTracker deltaTracker) {
+        Minecraft mc = MinecraftClient.getInstance();
         
         if (mc.player == null || mc.options.hideGui) {
             return;
         }
         
-        if (!ModClientConfig.SHOW_STAMINA_BAR.get()) {
+        if (!ModClientConfig.get().SHOW_STAMINA_BAR) {
             return;
         }
         
@@ -14240,8 +13806,8 @@ public class HudOverlay {
         int screenWidth = mc.getWindow().getGuiScaledWidth();
         int screenHeight = mc.getWindow().getGuiScaledHeight();
         
-        int x = screenWidth / 2 - 91 + ModClientConfig.HUD_X_OFFSET.get();
-        int y = screenHeight - 39 + ModClientConfig.HUD_Y_OFFSET.get();
+        int x = screenWidth / 2 - 91 + ModClientConfig.get().HUD_X_OFFSET;
+        int y = screenHeight - 39 + ModClientConfig.get().HUD_Y_OFFSET;
         
         // ... rendu similaire ...
     }
@@ -14255,20 +13821,20 @@ public class HudOverlay {
 ```java
 package com.medelium.client.hud;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.medelium.quest.Quest;
 import com.medelium.quest.QuestManager;
 import net.minecraft.client.DeltaTracker;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.network.chat.Component;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
+import net.minecraft.text.Text;
 
 import java.util.List;
 
 public class QuestTrackerOverlay {
     
-    public static void render(GuiGraphics graphics, DeltaTracker deltaTracker) {
-        Minecraft mc = Minecraft.getInstance();
+    public static void render(DrawContext graphics, DeltaTracker deltaTracker) {
+        Minecraft mc = MinecraftClient.getInstance();
         
         if (mc.player == null || mc.options.hideGui) {
             return;
@@ -14292,7 +13858,7 @@ public class QuestTrackerOverlay {
             Quest quest = activeQuests.get(i);
             
             // Nom de la quête
-            Component questName = Component.translatable(quest.getNameKey());
+            Component questName = Text.translatable(quest.getNameKey());
             graphics.drawString(mc.font, "§e• " + questName.getString(), x, y, 0xFFFFFF);
             y += 10;
             
@@ -14315,10 +13881,10 @@ public class QuestTrackerOverlay {
 package com.medelium.client.hud;
 
 import net.minecraft.client.DeltaTracker;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
+import net.minecraft.text.Text;
+import net.minecraft.entity.LivingEntity;
 
 public class BossHealthOverlay {
     
@@ -14330,13 +13896,13 @@ public class BossHealthOverlay {
         bossDetectedTime = System.currentTimeMillis();
     }
     
-    public static void render(GuiGraphics graphics, DeltaTracker deltaTracker) {
+    public static void render(DrawContext graphics, DeltaTracker deltaTracker) {
         if (currentBoss == null || !currentBoss.isAlive()) {
             currentBoss = null;
             return;
         }
         
-        Minecraft mc = Minecraft.getInstance();
+        Minecraft mc = MinecraftClient.getInstance();
         int screenWidth = mc.getWindow().getGuiScaledWidth();
         
         // Position en haut au centre
@@ -14910,20 +14476,20 @@ Votre guide est maintenant **ULTRA-COMPLET** avec tous les systèmes essentiels 
 ```java
 package com.medelium.util;
 
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.Vec3d;
 
 public class ParticleHelper {
     
     // Explosion de particules
-    public static void spawnExplosion(ServerLevel level, Vec3 pos, int count) {
+    public static void spawnExplosion(ServerWorld level, Vec3 pos, int count) {
         for (int i = 0; i < count; i++) {
-            double offsetX = (level.random.nextDouble() - 0.5) * 2;
-            double offsetY = (level.random.nextDouble() - 0.5) * 2;
-            double offsetZ = (level.random.nextDouble() - 0.5) * 2;
+            double offsetX = (world.random.nextDouble() - 0.5) * 2;
+            double offsetY = (world.random.nextDouble() - 0.5) * 2;
+            double offsetZ = (world.random.nextDouble() - 0.5) * 2;
             
-            level.sendParticles(
+            level.spawnParticles(
                 ParticleTypes.FLAME,
                 pos.x, pos.y, pos.z,
                 1,                    // Count
@@ -14934,8 +14500,8 @@ public class ParticleHelper {
     }
     
     // Trail de particules (derrière projectile)
-    public static void spawnTrail(ServerLevel level, Vec3 pos) {
-        level.sendParticles(
+    public static void spawnTrail(ServerWorld level, Vec3 pos) {
+        level.spawnParticles(
             ParticleTypes.ENCHANT,
             pos.x, pos.y, pos.z,
             5,
@@ -14945,13 +14511,13 @@ public class ParticleHelper {
     }
     
     // Aura autour entité
-    public static void spawnAura(ServerLevel level, Vec3 pos, double radius) {
+    public static void spawnAura(ServerWorld level, Vec3 pos, double radius) {
         for (int i = 0; i < 20; i++) {
             double angle = (2 * Math.PI * i) / 20;
             double x = pos.x + Math.cos(angle) * radius;
             double z = pos.z + Math.sin(angle) * radius;
             
-            level.sendParticles(
+            level.spawnParticles(
                 ParticleTypes.PORTAL,
                 x, pos.y + 1, z,
                 1,
@@ -14962,7 +14528,7 @@ public class ParticleHelper {
     }
     
     // Spirale montante
-    public static void spawnSpiral(ServerLevel level, Vec3 pos, int ticks) {
+    public static void spawnSpiral(ServerWorld level, Vec3 pos, int ticks) {
         double angle = (ticks * 0.3) % (2 * Math.PI);
         double radius = 0.5;
         double height = (ticks % 40) * 0.1;
@@ -14970,7 +14536,7 @@ public class ParticleHelper {
         double x = pos.x + Math.cos(angle) * radius;
         double z = pos.z + Math.sin(angle) * radius;
         
-        level.sendParticles(
+        level.spawnParticles(
             ParticleTypes.SOUL_FIRE_FLAME,
             x, pos.y + height, z,
             1,
@@ -14988,37 +14554,33 @@ public class ParticleHelper {
 ```java
 package com.medelium.particle;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.core.particles.ParticleType;
-import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.core.registries.Registries;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
-
+import com.medelium.Medelium;
+import net.minecraft.registry.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.Registries;
 public class ModParticles {
     
-    public static final DeferredRegister<ParticleType<?>> PARTICLES = 
-        DeferredRegister.create(Registries.PARTICLE_TYPE, MedeliumMod.MOD_ID);
+    // Les particules sont enregistrées via Registry.register(Registries.PARTICLE_TYPE, ...)
     
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> MAGIC_SPARK = 
+    public static final ItemGroup, SimpleParticleType> MAGIC_SPARK = 
         PARTICLES.register("magic_spark", () -> new SimpleParticleType(false));
     
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> BLOOD_DRIP = 
+    public static final ItemGroup, SimpleParticleType> BLOOD_DRIP = 
         PARTICLES.register("blood_drip", () -> new SimpleParticleType(false));
     
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> HOLY_LIGHT = 
+    public static final ItemGroup, SimpleParticleType> HOLY_LIGHT = 
         PARTICLES.register("holy_light", () -> new SimpleParticleType(false));
     
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> DARK_ENERGY = 
+    public static final ItemGroup, SimpleParticleType> DARK_ENERGY = 
         PARTICLES.register("dark_energy", () -> new SimpleParticleType(false));
 }
 ```
 
-**📝 Enregistrer dans MedeliumMod.java :**
+**📝 Enregistrer dans Medelium.java :**
 
 ```java
-public MedeliumMod(ModContainer container) {
-    IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+// Fabric: la classe principale implémente ModInitializer\npublic void onInitialize() {
+    // Fabric: pas besoin de event bus
     
     // ... autres registrations
     ModParticles.PARTICLES.register(modBus);
@@ -15032,15 +14594,15 @@ public MedeliumMod(ModContainer container) {
 ```java
 package com.medelium.client.particle;
 
-import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.multiplayer.ClientWorld;
 import net.minecraft.client.particle.*;
-import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.registry.*;
 
 public class MagicSparkParticle extends TextureSheetParticle {
     
-    protected MagicSparkParticle(ClientLevel level, double x, double y, double z,
+    protected MagicSparkParticle(ClientWorld world, double x, double y, double z,
                                   double xSpeed, double ySpeed, double zSpeed) {
-        super(level, x, y, z, xSpeed, ySpeed, zSpeed);
+        super(world, x, y, z, xSpeed, ySpeed, zSpeed);
         
         this.lifetime = 20 + this.random.nextInt(20); // 20-40 ticks
         this.gravity = -0.05f;  // Monte légèrement
@@ -15082,10 +14644,10 @@ public class MagicSparkParticle extends TextureSheetParticle {
         }
         
         @Override
-        public Particle createParticle(SimpleParticleType type, ClientLevel level,
+        public Particle createParticle(SimpleParticleType type, ClientWorld world,
                                        double x, double y, double z,
                                        double xSpeed, double ySpeed, double zSpeed) {
-            MagicSparkParticle particle = new MagicSparkParticle(level, x, y, z, xSpeed, ySpeed, zSpeed);
+            MagicSparkParticle particle = new MagicSparkParticle(world, x, y, z, xSpeed, ySpeed, zSpeed);
             particle.pickSprite(this.sprites);
             return particle;
         }
@@ -15098,22 +14660,15 @@ public class MagicSparkParticle extends TextureSheetParticle {
 ```java
 package com.medelium.client;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.medelium.client.particle.MagicSparkParticle;
 import com.medelium.particle.ModParticles;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
-
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ParticleRegistry {
     
-    @SubscribeEvent
-    public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(ModParticles.MAGIC_SPARK.get(), MagicSparkParticle.Provider::new);
-        event.registerSpriteSet(ModParticles.BLOOD_DRIP.get(), BloodDripParticle.Provider::new);
-        event.registerSpriteSet(ModParticles.HOLY_LIGHT.get(), HolyLightParticle.Provider::new);
+        // Fabric: ParticleFactoryRegistry.getInstance().register() dans onInitializeClient()\n    public static void registerParticleFactories() {
+        ParticleFactoryRegistry.getInstance().register(ModParticles.MAGIC_SPARK, MagicSparkParticle.Provider::new);
+        ParticleFactoryRegistry.getInstance().register(ModParticles.BLOOD_DRIP, BloodDripParticle.Provider::new);
+        ParticleFactoryRegistry.getInstance().register(ModParticles.HOLY_LIGHT, HolyLightParticle.Provider::new);
     }
 }
 ```
@@ -15150,30 +14705,30 @@ assets/medelium/textures/particle/
 package com.medelium.item;
 
 import com.medelium.particle.ModParticles;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class MagicWandItem extends Item {
     
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        if (level instanceof ServerLevel serverLevel) {
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        if (world instanceof ServerWorld serverWorld) {
             // Spawner 50 particules devant le joueur
             for (int i = 0; i < 50; i++) {
-                double offsetX = (level.random.nextDouble() - 0.5) * 2;
-                double offsetY = (level.random.nextDouble() - 0.5) * 2;
-                double offsetZ = (level.random.nextDouble() - 0.5) * 2;
+                double offsetX = (world.random.nextDouble() - 0.5) * 2;
+                double offsetY = (world.random.nextDouble() - 0.5) * 2;
+                double offsetZ = (world.random.nextDouble() - 0.5) * 2;
                 
-                serverLevel.sendParticles(
-                    ModParticles.MAGIC_SPARK.get(),
-                    player.getX() + player.getLookAngle().x * 2,
+                serverWorld.spawnParticles(
+                    ModParticles.MAGIC_SPARK,
+                    player.getX() + player.getRotationVector().x * 2,
                     player.getEyeY(),
-                    player.getZ() + player.getLookAngle().z * 2,
+                    player.getZ() + player.getRotationVector().z * 2,
                     1,
                     offsetX, offsetY, offsetZ,
                     0.2
@@ -15181,7 +14736,7 @@ public class MagicWandItem extends Item {
             }
         }
         
-        return InteractionResultHolder.success(player.getItemInHand(hand));
+        return TypedActionResult.success(player.getStackInHand(hand));
     }
 }
 ```
@@ -15242,16 +14797,16 @@ magic_sword.png (16x96 pixels)
 package com.medelium.block;
 
 import com.medelium.particle.ModParticles;
-import net.minecraft.core.BlockPos;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.net.minecraft.util.math.random.Random;
+import net.minecraft.world.World;
+import net.minecraft.block.Block;
+import net.minecraft.block.*;
 
 public class PortalBlock extends Block {
     
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+    public void animateTick(BlockState state, World world, BlockPos pos, net.minecraft.util.math.random.Random random) {
         // Spawner particules aléatoires
         if (random.nextInt(3) == 0) {
             double x = pos.getX() + random.nextDouble();
@@ -15259,7 +14814,7 @@ public class PortalBlock extends Block {
             double z = pos.getZ() + random.nextDouble();
             
             level.addParticle(
-                ModParticles.DARK_ENERGY.get(),
+                ModParticles.DARK_ENERGY,
                 x, y, z,
                 (random.nextDouble() - 0.5) * 0.1,
                 random.nextDouble() * 0.1,
@@ -15278,14 +14833,14 @@ public class PortalBlock extends Block {
 package com.medelium.entity;
 
 import com.medelium.particle.ModParticles;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.projectile.ThrowableProjectile;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.world.World;
 
 public class MagicBoltEntity extends ThrowableProjectile {
     
-    public MagicBoltEntity(EntityType<? extends ThrowableProjectile> type, Level level) {
-        super(type, level);
+    public MagicBoltEntity(EntityType<? extends ThrowableProjectile> type, World world) {
+        super(type, world);
     }
     
     @Override
@@ -15293,10 +14848,10 @@ public class MagicBoltEntity extends ThrowableProjectile {
         super.tick();
         
         // Trail de particules
-        if (this.level().isClientSide) {
+        if (this.level().isClient) {
             for (int i = 0; i < 3; i++) {
                 this.level().addParticle(
-                    ModParticles.MAGIC_SPARK.get(),
+                    ModParticles.MAGIC_SPARK,
                     this.getX() + (this.random.nextDouble() - 0.5) * 0.2,
                     this.getY() + (this.random.nextDouble() - 0.5) * 0.2,
                     this.getZ() + (this.random.nextDouble() - 0.5) * 0.2,
@@ -15563,22 +15118,18 @@ public class MagicBoltEntity extends ThrowableProjectile {
 ```java
 package com.medelium.advancement;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
-import net.minecraft.core.registries.Registries;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
-
+import net.minecraft.registry.Registries;
 public class ModAdvancementTriggers {
     
-    public static final DeferredRegister<CriterionTrigger<?>> TRIGGERS =
-        DeferredRegister.create(Registries.TRIGGER_TYPE, MedeliumMod.MOD_ID);
+    // Les critères sont enregistrés via net.minecraft.advancement.criterion.Criteria.register()
     
-    public static final DeferredHolder<CriterionTrigger<?>, QuestCompletedTrigger> QUEST_COMPLETED =
+    public static final ItemGroup, QuestCompletedTrigger> QUEST_COMPLETED =
         TRIGGERS.register("quest_completed", QuestCompletedTrigger::new);
     
-    public static final DeferredHolder<CriterionTrigger<?>, ReputationGainedTrigger> REPUTATION_GAINED =
+    public static final ItemGroup, ReputationGainedTrigger> REPUTATION_GAINED =
         TRIGGERS.register("reputation_gained", ReputationGainedTrigger::new);
 }
 ```
@@ -15594,7 +15145,7 @@ import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.Optional;
 
@@ -15605,7 +15156,7 @@ public class QuestCompletedTrigger extends SimpleCriterionTrigger<QuestCompleted
         return TriggerInstance.CODEC;
     }
     
-    public void trigger(ServerPlayer player, String questId) {
+    public void trigger(ServerPlayerEntity player, String questId) {
         this.trigger(player, instance -> instance.matches(questId));
     }
     
@@ -15649,15 +15200,15 @@ public class QuestCompletedTrigger extends SimpleCriterionTrigger<QuestCompleted
 package com.medelium.quest;
 
 import com.medelium.advancement.ModAdvancementTriggers;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public class QuestManager {
     
-    public static void completeQuest(ServerPlayer player, String questId) {
+    public static void completeQuest(ServerPlayerEntity player, String questId) {
         // ... logique de complétion
         
         // Trigger advancement
-        ModAdvancementTriggers.QUEST_COMPLETED.get().trigger(player, questId);
+        ModAdvancementTriggers.QUEST_COMPLETED.trigger(player, questId);
     }
 }
 ```
@@ -15748,11 +15299,11 @@ repositories {
 }
 
 dependencies {
-    implementation "net.neoforged:neoforge:${neoforge_version}"
+    implementation "net.fabricd:fabric:${fabric_version}"
     
     // JEI
-    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
-    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+    compileOnly "mezz.jei:jei-${minecraft_version}-fabric-api:${jei_version}"
+    runtimeOnly "mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"
 }
 ```
 
@@ -15769,7 +15320,7 @@ jei_version=17.3.0.49
 ```java
 package com.medelium.compat.jei;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.medelium.block.ModBlocks;
 import com.medelium.item.ModItems;
 import mezz.jei.api.IModPlugin;
@@ -15778,16 +15329,16 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
+import net.minecraft.item.ItemStack;
 
 @JeiPlugin
 public class MedeliumJEIPlugin implements IModPlugin {
     
     @Override
-    public ResourceLocation getPluginUid() {
-        return ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "jei_plugin");
+    public Identifier getPluginUid() {
+        return new Identifier(Medelium.MOD_ID, "jei_plugin");
     }
     
     @Override
@@ -15800,15 +15351,15 @@ public class MedeliumJEIPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         // Ajouter infos aux items
         registration.addIngredientInfo(
-            new ItemStack(ModItems.MAGIC_DUST.get()),
+            new ItemStack(ModItems.MAGIC_DUST),
             VanillaTypes.ITEM_STACK,
-            Component.translatable("jei.medelium.magic_dust.info")
+            Text.translatable("jei.medelium.magic_dust.info")
         );
         
         registration.addIngredientInfo(
-            new ItemStack(ModItems.DRAGON_HEART.get()),
+            new ItemStack(ModItems.DRAGON_HEART),
             VanillaTypes.ITEM_STACK,
-            Component.translatable("jei.medelium.dragon_heart.info")
+            Text.translatable("jei.medelium.dragon_heart.info")
         );
         
         // Enregistrer recettes custom
@@ -15819,7 +15370,7 @@ public class MedeliumJEIPlugin implements IModPlugin {
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         // Quel bloc ouvre quelle catégorie
         registration.addRecipeCatalyst(
-            new ItemStack(ModBlocks.ALCHEMY_TABLE.get()),
+            new ItemStack(ModBlocks.ALCHEMY_TABLE),
             AlchemyTableCategory.TYPE
         );
     }
@@ -15833,7 +15384,7 @@ public class MedeliumJEIPlugin implements IModPlugin {
 ```java
 package com.medelium.compat.jei;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -15841,28 +15392,28 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
+import net.minecraft.item.ItemStack;
 
 public class AlchemyTableCategory implements IRecipeCategory<AlchemyRecipe> {
     
-    public static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(
-        MedeliumMod.MOD_ID, "alchemy"
+    public static final Identifier UID = new Identifier(
+        Medelium.MOD_ID, "alchemy"
     );
     
     public static final RecipeType<AlchemyRecipe> TYPE = 
-        RecipeType.create(MedeliumMod.MOD_ID, "alchemy", AlchemyRecipe.class);
+        RecipeType.create(Medelium.MOD_ID, "alchemy", AlchemyRecipe.class);
     
     private final IDrawable background;
     private final IDrawable icon;
     
     public AlchemyTableCategory(IGuiHelper guiHelper) {
         this.background = guiHelper.createDrawable(
-            ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, "textures/gui/alchemy_table.png"),
+            new Identifier(Medelium.MOD_ID, "textures/gui/alchemy_table.png"),
             0, 0, 176, 80
         );
-        this.icon = guiHelper.createDrawableItemStack(new ItemStack(ModBlocks.ALCHEMY_TABLE.get()));
+        this.icon = guiHelper.createDrawableItemStack(new ItemStack(ModBlocks.ALCHEMY_TABLE));
     }
     
     @Override
@@ -15872,7 +15423,7 @@ public class AlchemyTableCategory implements IRecipeCategory<AlchemyRecipe> {
     
     @Override
     public Component getTitle() {
-        return Component.translatable("jei.medelium.alchemy");
+        return Text.translatable("jei.medelium.alchemy");
     }
     
     @Override
@@ -15916,8 +15467,8 @@ repositories {
 
 dependencies {
     // Curios
-    compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"
-    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+    compileOnly "top.theillusivec4.curios:curios-fabric:${curios_version}:api"
+    runtimeOnly "top.theillusivec4.curios:curios-fabric:${curios_version}"
 }
 ```
 
@@ -15934,9 +15485,9 @@ curios_version=9.1.0+1.21.1
 ```java
 package com.medelium.item;
 
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -15951,7 +15502,7 @@ public class RingItem extends Item implements ICurioItem {
         LivingEntity entity = slotContext.entity();
         
         // Effet tant que l'anneau est équipé
-        if (entity.tickCount % 20 == 0) { // Chaque seconde
+        if (entity.age % 20 == 0) { // Chaque seconde
             entity.heal(1.0f); // +1 HP/sec
         }
     }
@@ -15960,14 +15511,14 @@ public class RingItem extends Item implements ICurioItem {
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
         // Appelé quand on équipe l'anneau
         LivingEntity entity = slotContext.entity();
-        entity.sendSystemMessage(Component.literal("§aRing equipped!"));
+        entity.sendMessage(Text.literal("§aRing equipped!"));
     }
     
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
         // Appelé quand on retire l'anneau
         LivingEntity entity = slotContext.entity();
-        entity.sendSystemMessage(Component.literal("§cRing unequipped!"));
+        entity.sendMessage(Text.literal("§cRing unequipped!"));
     }
     
     @Override
@@ -16002,10 +15553,8 @@ public class RingItem extends Item implements ICurioItem {
 ```java
 package com.medelium.item;
 
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -16049,20 +15598,19 @@ public class AmuletItem extends Item implements ICurioItem {
 ```java
 package com.medelium.compat;
 
-import net.neoforged.fml.ModList;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import top.theillusivec4.curios.api.CuriosApi;
 
 public class CuriosCompat {
     
-    private static final boolean CURIOS_LOADED = ModList.get().isLoaded("curios");
+    private static final boolean CURIOS_LOADED = FabricLoader.getInstance().isModLoaded("curios");
     
     public static boolean isCuriosLoaded() {
         return CURIOS_LOADED;
     }
     
-    public static boolean hasRingEquipped(Player player, Item ring) {
+    public static boolean hasRingEquipped(PlayerEntity player, Item ring) {
         if (!CURIOS_LOADED) return false;
         
         return CuriosApi.getCuriosInventory(player).map(handler -> {
@@ -16070,7 +15618,7 @@ public class CuriosCompat {
         }).orElse(false);
     }
     
-    public static ItemStack getEquippedAmulet(Player player) {
+    public static ItemStack getEquippedAmulet(PlayerEntity player) {
         if (!CURIOS_LOADED) return ItemStack.EMPTY;
         
         return CuriosApi.getCuriosInventory(player).map(handler -> {
@@ -16110,35 +15658,26 @@ public class CuriosCompat {
 package com.medelium.village;
 
 import com.google.common.collect.ImmutableSet;
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.medelium.block.ModBlocks;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.entity.ai.village.poi.PoiType;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
-
+import net.minecraft.registry.Registries;
 public class ModPOIs {
     
-    public static final DeferredRegister<PoiType> POIS = 
-        DeferredRegister.create(Registries.POINT_OF_INTEREST_TYPE, MedeliumMod.MOD_ID);
+    // Fabric: utiliser Registry.register() directement au lieu de DeferredRegister
     
-    public static final DeferredHolder<PoiType, PoiType> ALCHEMY_TABLE_POI = POIS.register(
-        "alchemy_table",
-        () -> new PoiType(
-            ImmutableSet.copyOf(ModBlocks.ALCHEMY_TABLE.get().getStateDefinition().getPossibleStates()),
-            1,  // Ticket count
-            1   // Search distance
-        )
-    );
+    // Fabric: PointOfInterestHelper.register()
+public static final PointOfInterestType ALCHEMY_TABLE_POI = PointOfInterestHelper.register(
+    new Identifier(Medelium.MOD_ID, "alchemy_table"),
+    1, // ticketCount
+    1, // searchDistance
+    ModBlocks.ALCHEMY_TABLE
+);
     
-    public static final DeferredHolder<PoiType, PoiType> ENCHANTING_ALTAR_POI = POIS.register(
-        "enchanting_altar",
-        () -> new PoiType(
-            ImmutableSet.copyOf(ModBlocks.ENCHANTING_ALTAR.get().getStateDefinition().getPossibleStates()),
-            1,
-            1
-        )
-    );
+    public static final PointOfInterestType ENCHANTING_ALTAR_POI = PointOfInterestHelper.register(
+    new Identifier(Medelium.MOD_ID, "enchanting_altar"),
+    1, 1,
+    ModBlocks.ENCHANTING_ALTAR
+);
 }
 ```
 
@@ -16150,21 +15689,16 @@ public class ModPOIs {
 package com.medelium.village;
 
 import com.google.common.collect.ImmutableSet;
-import com.medelium.MedeliumMod;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.ai.village.poi.PoiType;
-import net.minecraft.world.entity.npc.VillagerProfession;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
-
+import com.medelium.Medelium;
+import net.minecraft.registry.Registries;
+import net.minecraft.sound.SoundEvents;
+// Fabric: import net.minecraft.entity.ai equivalent
+import net.minecraft.village.*;
 public class ModVillagerProfessions {
     
-    public static final DeferredRegister<VillagerProfession> PROFESSIONS = 
-        DeferredRegister.create(Registries.VILLAGER_PROFESSION, MedeliumMod.MOD_ID);
+    // Fabric: utiliser Registry.register() directement au lieu de DeferredRegister
     
-    public static final DeferredHolder<VillagerProfession, VillagerProfession> ALCHEMIST = 
-        PROFESSIONS.register("alchemist", () -> new VillagerProfession(
+    public static final VillagerProfession ALCHEMIST = Registry.register(Registries.VILLAGER_PROFESSION, new Identifier(Medelium.MOD_ID, "alchemist"), () -> new VillagerProfession(
             "alchemist",
             holder -> holder.is(ModPOIs.ALCHEMY_TABLE_POI.getKey()),  // POI requis
             holder -> holder.is(ModPOIs.ALCHEMY_TABLE_POI.getKey()),
@@ -16173,8 +15707,7 @@ public class ModVillagerProfessions {
             SoundEvents.VILLAGER_WORK_CLERIC  // Son de travail
         ));
     
-    public static final DeferredHolder<VillagerProfession, VillagerProfession> ENCHANTER = 
-        PROFESSIONS.register("enchanter", () -> new VillagerProfession(
+    public static final VillagerProfession ENCHANTER = Registry.register(Registries.VILLAGER_PROFESSION, new Identifier(Medelium.MOD_ID, "enchanter"), () -> new VillagerProfession(
             "enchanter",
             holder -> holder.is(ModPOIs.ENCHANTING_ALTAR_POI.getKey()),
             holder -> holder.is(ModPOIs.ENCHANTING_ALTAR_POI.getKey()),
@@ -16192,32 +15725,26 @@ public class ModVillagerProfessions {
 ```java
 package com.medelium.village;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.medelium.item.ModItems;
-import net.minecraft.world.entity.npc.VillagerTrades;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.trading.ItemCost;
-import net.minecraft.world.item.trading.MerchantOffer;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.village.VillagerTradesEvent;
+import net.minecraft.village.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.*;
 
 import java.util.List;
 
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
 public class ModVillagerTrades {
     
-    @SubscribeEvent
-    public static void addCustomTrades(VillagerTradesEvent event) {
-        if (event.getType() == ModVillagerProfessions.ALCHEMIST.get()) {
+        // Fabric: TradeOfferHelper.registerVillagerOffers()\n    public static void registerTrades() {
+        if (true /* Vérifier la profession */.get()) {
             
             // LEVEL 1 (Novice)
-            event.getTrades().get(1).addAll(List.of(
+            // Niveau 1 trades:(List.of(
                 // 5 Silver Coins -> 1 Healing Potion
                 (trader, random) -> new MerchantOffer(
-                    new ItemCost(ModItems.SILVER_COIN.get(), 5),
-                    new ItemStack(ModItems.HEALING_POTION.get(), 1),
+                    new ItemCost(ModItems.SILVER_COIN, 5),
+                    new ItemStack(ModItems.HEALING_POTION, 1),
                     12,   // Max uses
                     2,    // XP reward
                     0.05f // Price multiplier
@@ -16225,8 +15752,8 @@ public class ModVillagerTrades {
                 
                 // 10 Silver Coins -> 1 Mana Potion
                 (trader, random) -> new MerchantOffer(
-                    new ItemCost(ModItems.SILVER_COIN.get(), 10),
-                    new ItemStack(ModItems.MANA_POTION.get(), 1),
+                    new ItemCost(ModItems.SILVER_COIN, 10),
+                    new ItemStack(ModItems.MANA_POTION, 1),
                     8,
                     2,
                     0.05f
@@ -16234,11 +15761,11 @@ public class ModVillagerTrades {
             ));
             
             // LEVEL 2 (Apprentice)
-            event.getTrades().get(2).addAll(List.of(
+            // Niveau 2 trades:(List.of(
                 // 1 Gold Coin -> 3 Magic Dust
                 (trader, random) -> new MerchantOffer(
-                    new ItemCost(ModItems.GOLD_COIN.get(), 1),
-                    new ItemStack(ModItems.MAGIC_DUST.get(), 3),
+                    new ItemCost(ModItems.GOLD_COIN, 1),
+                    new ItemStack(ModItems.MAGIC_DUST, 3),
                     16,
                     5,
                     0.05f
@@ -16246,12 +15773,12 @@ public class ModVillagerTrades {
             ));
             
             // LEVEL 3 (Journeyman)
-            event.getTrades().get(3).addAll(List.of(
+            // Niveau 3 trades:(List.of(
                 // 5 Gold Coins + 1 Diamond -> 1 Greater Healing Potion
                 (trader, random) -> new MerchantOffer(
-                    new ItemCost(ModItems.GOLD_COIN.get(), 5),
+                    new ItemCost(ModItems.GOLD_COIN, 5),
                     new ItemCost(Items.DIAMOND, 1),
-                    new ItemStack(ModItems.GREATER_HEALING_POTION.get(), 1),
+                    new ItemStack(ModItems.GREATER_HEALING_POTION, 1),
                     6,
                     10,
                     0.05f
@@ -16259,11 +15786,11 @@ public class ModVillagerTrades {
             ));
             
             // LEVEL 4 (Expert)
-            event.getTrades().get(4).addAll(List.of(
+            // Niveau 4 trades:(List.of(
                 // 10 Gold Coins -> 1 Elixir of Life
                 (trader, random) -> new MerchantOffer(
-                    new ItemCost(ModItems.GOLD_COIN.get(), 10),
-                    new ItemStack(ModItems.ELIXIR_OF_LIFE.get(), 1),
+                    new ItemCost(ModItems.GOLD_COIN, 10),
+                    new ItemStack(ModItems.ELIXIR_OF_LIFE, 1),
                     3,
                     20,
                     0.05f
@@ -16271,12 +15798,12 @@ public class ModVillagerTrades {
             ));
             
             // LEVEL 5 (Master)
-            event.getTrades().get(5).addAll(List.of(
+            // Niveau 5 trades:(List.of(
                 // 1 Nether Star + 20 Gold Coins -> 1 Philosopher's Stone
                 (trader, random) -> new MerchantOffer(
                     new ItemCost(Items.NETHER_STAR, 1),
-                    new ItemCost(ModItems.GOLD_COIN.get(), 20),
-                    new ItemStack(ModItems.PHILOSOPHERS_STONE.get(), 1),
+                    new ItemCost(ModItems.GOLD_COIN, 20),
+                    new ItemStack(ModItems.PHILOSOPHERS_STONE, 1),
                     1,
                     50,
                     0.05f
@@ -16285,10 +15812,10 @@ public class ModVillagerTrades {
         }
         
         // ENCHANTER
-        if (event.getType() == ModVillagerProfessions.ENCHANTER.get()) {
-            event.getTrades().get(1).addAll(List.of(
+        if (true /* Vérifier la profession */.get()) {
+            // Niveau 1 trades:(List.of(
                 (trader, random) -> new MerchantOffer(
-                    new ItemCost(ModItems.SILVER_COIN.get(), 15),
+                    new ItemCost(ModItems.SILVER_COIN, 15),
                     new ItemStack(Items.ENCHANTED_BOOK, 1),
                     5,
                     3,
@@ -16300,7 +15827,7 @@ public class ModVillagerTrades {
 }
 ```
 
-### 39.4 Villager Texture Custom
+### 39.4 VillagerEntity Texture Custom
 
 **📝 Créer texture profession :**
 
@@ -16321,39 +15848,37 @@ package com.medelium.command;
 
 import com.medelium.village.ModVillagerProfessions;
 import com.mojang.brigadier.CommandDispatcher;
-import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.npc.Villager;
-import net.minecraft.world.entity.npc.VillagerData;
-import net.minecraft.world.entity.npc.VillagerType;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.text.Text;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.entity.*;
+import net.minecraft.village.*;
 
 public class VillagerCommands {
     
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        dispatcher.register(Commands.literal("medelium")
-            .then(Commands.literal("spawn")
-                .then(Commands.literal("alchemist")
-                    .requires(source -> source.hasPermission(2))
+    public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
+        dispatcher.register(CommandManager.literal("medelium")
+            .then(CommandManager.literal("spawn")
+                .then(CommandManager.literal("alchemist")
+                    .requires(source -> source.hasPermissionLevel(2))
                     .executes(context -> {
-                        ServerLevel level = context.getSource().getLevel();
+                        ServerWorld level = context.getSource().getWorld();
                         var pos = context.getSource().getPosition();
                         
-                        Villager villager = EntityType.VILLAGER.create(level);
+                        VillagerEntity villager = EntityType.VILLAGER.create(world);
                         if (villager != null) {
                             villager.setPos(pos.x, pos.y, pos.z);
                             villager.setVillagerData(new VillagerData(
                                 VillagerType.PLAINS,
-                                ModVillagerProfessions.ALCHEMIST.get(),
+                                ModVillagerProfessions.ALCHEMIST,
                                 1  // Level 1
                             ));
                             
-                            level.addFreshEntity(villager);
+                            level.spawnEntity(villager);
                             
-                            context.getSource().sendSuccess(() -> 
-                                Component.literal("§aAlchemist spawned!"),
+                            context.getSource().sendFeedback(() -> 
+                                Text.literal("§aAlchemist spawned!"),
                                 true
                             );
                         }
@@ -16372,14 +15897,14 @@ public class VillagerCommands {
 ```java
 package com.medelium.block;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.Hand;
+import net.minecraft.util.ActionResult;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.World;
+import net.minecraft.block.Block;
+import net.minecraft.block.*;
+import net.minecraft.util.hit.BlockHitResult;
 
 public class AlchemyTableBlock extends Block {
     
@@ -16388,50 +15913,44 @@ public class AlchemyTableBlock extends Block {
     }
     
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos,
-                                  Player player, InteractionHand hand, BlockHitResult hit) {
-        if (!level.isClientSide) {
+    public ActionResult use(BlockState state, World world, BlockPos pos,
+                                  PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (!world.isClient) {
             // Ouvrir GUI alchemy table
-            player.openMenu(new SimpleMenuProvider(
-                (id, inventory, p) -> new AlchemyTableMenu(id, inventory, ContainerLevelAccess.create(level, pos)),
-                Component.translatable("container.medelium.alchemy_table")
+            player.openMenu(new SimpleNamedScreenHandlerFactory(
+                (id, inventory, p) -> new AlchemyTableMenu(id, inventory, ContainerLevelAccess.create(world, pos)),
+                Text.translatable("container.medelium.alchemy_table")
             ));
         }
         
-        return InteractionResult.SUCCESS;
+        return ActionResult.SUCCESS;
     }
 }
 ```
 
-### 39.7 Villager Events
+### 39.7 VillagerEntity Events
 
 **📝 VillagerEventHandler.java :**
 
 ```java
 package com.medelium.event;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.npc.Villager;
-import net.minecraft.world.entity.player.Player;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
-
-@EventBusSubscriber(modid = MedeliumMod.MOD_ID)
+import com.medelium.Medelium;
+import net.minecraft.text.Text;
+import net.minecraft.village.*;
+import net.minecraft.entity.player.PlayerEntity;
 public class VillagerEventHandler {
     
-    @SubscribeEvent
-    public static void onVillagerInteract(PlayerInteractEvent.EntityInteract event) {
-        if (event.getTarget() instanceof Villager villager) {
-            Player player = event.getEntity();
+        // Fabric: UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> { ... })\n    public static void onVillagerInteract(PlayerEntity player, net.minecraft.entity.Entity target) {
+        if (target /* Fabric: paramètre du callback */ instanceof VillagerEntity villager) {
+            PlayerEntity player = player /* Fabric: obtenu via le callback */;
             
             // Custom dialogue selon profession
-            if (villager.getVillagerData().getProfession() == ModVillagerProfessions.ALCHEMIST.get()) {
+            if (villager.getVillagerData().getProfession() == ModVillagerProfessions.ALCHEMIST) {
                 if (villager.getVillagerData().getLevel() == 1) {
-                    player.sendSystemMessage(Component.literal("§eAlchemist: §7I'm just starting my craft..."));
+                    player.sendMessage(Text.literal("§eAlchemist: §7I'm just starting my craft..."));
                 } else if (villager.getVillagerData().getLevel() == 5) {
-                    player.sendSystemMessage(Component.literal("§eAlchemist: §7I am a master of potions!"));
+                    player.sendMessage(Text.literal("§eAlchemist: §7I am a master of potions!"));
                 }
             }
         }
@@ -16457,7 +15976,7 @@ Les **Data Generators** automatisent la création des fichiers JSON (recipes, mo
 ### 🔧 **Comment ça marche ?**
 
 1. Créer des classes `DataProvider` (RecipeProvider, ItemModelProvider, etc.)
-2. S'abonner à `GatherDataEvent`
+2. Implémenter `DataGeneratorEntrypoint` dans votre classe datagen
 3. Lancer la commande Gradle `runData`
 4. Les fichiers JSON sont générés dans `src/generated/resources/`
 
@@ -16472,153 +15991,93 @@ Les **Data Generators** automatisent la création des fichiers JSON (recipes, mo
 
 ### **40.1 Configuration build.gradle**
 
-Pour activer les Data Generators, configurez votre `build.gradle` :
+Fabric Loom gère les Data Generators automatiquement. Ajoutez dans `build.gradle` :
 
 ```gradle
-// build.gradle
+// build.gradle - Fabric Loom
 
-minecraft {
+loom {
     runs {
-        // Run configuration existante pour le client
-        client {
-            workingDirectory project.file('run')
-            property 'forge.logging.console.level', 'debug'
-            mods {
-                medeliummod {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        // Run configuration existante pour le serveur
-        server {
-            workingDirectory project.file('run')
-            property 'forge.logging.console.level', 'debug'
-            mods {
-                medeliummod {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        // ⭐ NOUVELLE CONFIGURATION : Data Generator
-        data {
-            workingDirectory project.file('run')
-            property 'forge.logging.console.level', 'debug'
-
-            // Spécifier où générer les fichiers
-            args '--mod', 'medeliummod',
-                 '--all',
-                 '--output', file('src/generated/resources/'),
-                 '--existing', file('src/main/resources/')
-
-            mods {
-                medeliummod {
-                    source sourceSets.main
-                }
-            }
+        datagen {
+            inherit server
+            name "Data Generation"
+            vmArg "-Dfabric-api.datagen"
+            vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+            vmArg "-Dfabric-api.datagen.modid=medelium"
+            
+            runDir "build/datagen"
         }
     }
 }
 
 // Ajouter le dossier generated aux sources
-sourceSets.main.resources {
-    srcDir 'src/generated/resources'
+sourceSets {
+    main {
+        resources {
+            srcDirs += ["src/main/generated"]
+        }
+    }
 }
 ```
 
-**📝 Explication des arguments :**
+**📝 Ajouter dans `fabric.mod.json` l'entrypoint datagen :**
 
-- `--mod medeliummod` : Le mod ID
-- `--all` : Générer tous les types de données (recipes, models, loot, tags, etc.)
-- `--output` : Dossier de sortie des fichiers générés
-- `--existing` : Dossier des resources existantes (pour référence)
+```json
+{
+  "entrypoints": {
+    "fabric-datagen": [
+      "com.medelium.datagen.MedeliumDataGenerator"
+    ]
+  }
+}
+```
 
 **▶️ Commande pour générer :**
 
 ```bash
-./gradlew runData
+./gradlew runDatagengen
 ```
 
 ---
 
-### **40.2 Event GatherDataEvent**
+### **40.2 DataGeneratorEntrypoint - Point d'entrée Fabric**
 
 Créez une classe dédiée pour enregistrer tous vos providers :
 
 ```java
 package com.medelium.datagen;
 
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
-import java.util.concurrent.CompletableFuture;
+public class MedeliumDataGenerator implements DataGeneratorEntrypoint {
 
-@EventBusSubscriber(modid = "medeliummod", bus = EventBusSubscriber.Bus.MOD)
-public class DataGenerators {
-
-    @SubscribeEvent
-    public static void gatherData(GatherDataEvent event) {
-        DataGenerator generator = event.getGenerator();
-        PackOutput output = generator.getPackOutput();
-        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+    @Override
+    public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
+        FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
         // ⚔️ Générer les RECIPES (crafting, smelting, etc.)
-        generator.addProvider(
-            event.includeServer(),
-            new ModRecipeProvider(output, lookupProvider)
-        );
-
-        // 🧊 Générer les BLOCKSTATES (états des blocs)
-        generator.addProvider(
-            event.includeClient(),
-            new ModBlockStateProvider(output, existingFileHelper)
-        );
-
-        // 🗡️ Générer les ITEM MODELS (models d'items)
-        generator.addProvider(
-            event.includeClient(),
-            new ModItemModelProvider(output, existingFileHelper)
-        );
+        pack.addProvider(ModRecipeProvider::new);
 
         // 🎁 Générer les LOOT TABLES (drops des blocs/mobs)
-        generator.addProvider(
-            event.includeServer(),
-            new ModLootTableProvider(output, lookupProvider)
-        );
+        pack.addProvider(ModLootTableProvider::new);
 
         // 🏷️ Générer les TAGS (item tags, block tags, etc.)
-        ModBlockTagsProvider blockTags = new ModBlockTagsProvider(output, lookupProvider, existingFileHelper);
-        generator.addProvider(event.includeServer(), blockTags);
-        generator.addProvider(
-            event.includeServer(),
-            new ModItemTagsProvider(output, lookupProvider, blockTags.contentsGetter(), existingFileHelper)
-        );
+        pack.addProvider(ModBlockTagsProvider::new);
+        pack.addProvider(ModItemTagsProvider::new);
 
-        // 🌐 Générer les FICHIERS DE LANGUE (en_us.json, fr_fr.json)
-        generator.addProvider(
-            event.includeClient(),
-            new ModLanguageProviderEN(output)
-        );
-        generator.addProvider(
-            event.includeClient(),
-            new ModLanguageProviderFR(output)
-        );
+        // 🌐 Générer les FICHIERS DE LANGUE
+        pack.addProvider(ModLanguageProviderEN::new);
+        pack.addProvider(ModLanguageProviderFR::new);
     }
 }
 ```
 
 **📝 Notes importantes :**
 
-- `includeServer()` : Pour données serveur (recipes, loot, tags)
-- `includeClient()` : Pour données client (models, lang)
-- Vous pouvez filtrer avec `--client` ou `--server` dans la commande
+- Fabric utilise `FabricDataGenerator.Pack` pour regrouper les providers
+- Les providers prennent un `FabricDataOutput` au lieu de `FabricDataOutput`
+- Pas besoin de `ExistingFileHelper` (concept NeoForge)
 
 ---
 
@@ -16631,168 +16090,167 @@ package com.medelium.datagen;
 
 import com.medelium.registry.ModBlocks;
 import com.medelium.registry.ModItems;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.*;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.*;
-import net.minecraft.world.level.ItemLike;
-import net.neoforged.neoforge.common.conditions.IConditionBuilder;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.data.server.recipe.*;
+import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.book.RecipeCategory;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 
-public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
+public class ModRecipeProvider extends FabricRecipeProvider {
 
-    public ModRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
-        super(output, lookupProvider);
+    public ModRecipeProvider(FabricDataOutput output) {
+        super(output);
     }
 
     @Override
-    protected void buildRecipes(RecipeOutput recipeOutput) {
+    public void generate(Consumer<RecipeJsonProvider> exporter) {
         // ⚔️ CRAFTING SHAPÉ (forme spécifique)
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.ROYAL_SWORD.get())
+        ShapedRecipeBuilder.create(RecipeCategory.COMBAT, ModItems.ROYAL_SWORD)
             .pattern("  D")
             .pattern(" D ")
             .pattern("S  ")
             .define('D', Items.DIAMOND)
             .define('S', Items.STICK)
-            .unlockedBy("has_diamond", has(Items.DIAMOND))
-            .save(recipeOutput);
+            .criterion("has_diamond", has(Items.DIAMOND))
+            .offerTo(exporter);
 
         // 🛡️ CRAFTING NON-SHAPÉ (ordre n'a pas d'importance)
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.GOLD_COIN.get(), 9)
-            .requires(ModBlocks.GOLD_BLOCK.get())
-            .unlockedBy("has_gold_block", has(ModBlocks.GOLD_BLOCK.get()))
-            .save(recipeOutput);
+        ShapelessRecipeBuilder.create(RecipeCategory.MISC, ModItems.GOLD_COIN, 9)
+            .requires(ModBlocks.GOLD_BLOCK)
+            .criterion("has_gold_block", has(ModBlocks.GOLD_BLOCK))
+            .offerTo(exporter);
 
         // 🔥 SMELTING (furnace)
-        SimpleCookingRecipeBuilder.smelting(
-                Ingredient.of(ModBlocks.MITHRIL_ORE.get()),
+        CookingRecipeJsonBuilder.createSmelting(
+                Ingredient.ofItems(ModBlocks.MITHRIL_ORE),
                 RecipeCategory.MISC,
-                ModItems.MITHRIL_INGOT.get(),
+                ModItems.MITHRIL_INGOT,
                 0.7f,  // XP
                 200    // Temps en ticks (10s)
             )
-            .unlockedBy("has_mithril_ore", has(ModBlocks.MITHRIL_ORE.get()))
-            .save(recipeOutput);
+            .criterion("has_mithril_ore", has(ModBlocks.MITHRIL_ORE))
+            .offerTo(exporter);
 
         // ⚡ BLASTING (blast furnace - 2x plus rapide)
-        SimpleCookingRecipeBuilder.blasting(
-                Ingredient.of(ModBlocks.MITHRIL_ORE.get()),
+        CookingRecipeJsonBuilder.createBlasting(
+                Ingredient.ofItems(ModBlocks.MITHRIL_ORE),
                 RecipeCategory.MISC,
-                ModItems.MITHRIL_INGOT.get(),
+                ModItems.MITHRIL_INGOT,
                 0.7f,
                 100  // 5s au lieu de 10s
             )
-            .unlockedBy("has_mithril_ore", has(ModBlocks.MITHRIL_ORE.get()))
-            .save(recipeOutput, "mithril_ingot_from_blasting");
+            .criterion("has_mithril_ore", has(ModBlocks.MITHRIL_ORE))
+            .offerTo(exporter, "mithril_ingot_from_blasting");
 
         // 🍖 SMOKING (smoker - pour nourriture)
-        SimpleCookingRecipeBuilder.smoking(
-                Ingredient.of(Items.BEEF),
+        CookingRecipeJsonBuilder.createSmoking(
+                Ingredient.ofItems(Items.BEEF),
                 RecipeCategory.FOOD,
                 Items.COOKED_BEEF,
                 0.35f,
                 100
             )
-            .unlockedBy("has_beef", has(Items.BEEF))
-            .save(recipeOutput);
+            .criterion("has_beef", has(Items.BEEF))
+            .offerTo(exporter);
 
         // 🏕️ CAMPFIRE COOKING
-        SimpleCookingRecipeBuilder.campfireCooking(
-                Ingredient.of(Items.BEEF),
+        CookingRecipeJsonBuilder.createCampfireCooking(
+                Ingredient.ofItems(Items.BEEF),
                 RecipeCategory.FOOD,
                 Items.COOKED_BEEF,
                 0.35f,
                 600  // 30s
             )
-            .unlockedBy("has_beef", has(Items.BEEF))
-            .save(recipeOutput, "cooked_beef_from_campfire");
+            .criterion("has_beef", has(Items.BEEF))
+            .offerTo(exporter, "cooked_beef_from_campfire");
 
         // ⛏️ STONECUTTING (tailler la pierre)
         SingleItemRecipeBuilder.stonecutting(
-                Ingredient.of(Items.STONE),
+                Ingredient.ofItems(Items.STONE),
                 RecipeCategory.BUILDING_BLOCKS,
                 Items.STONE_BRICKS,
                 1
             )
-            .unlockedBy("has_stone", has(Items.STONE))
-            .save(recipeOutput, "stone_bricks_from_stonecutting");
+            .criterion("has_stone", has(Items.STONE))
+            .offerTo(exporter, "stone_bricks_from_stonecutting");
 
-        // 🔨 SMITHING (table de forge - NeoForge 1.21)
-        SmithingTransformRecipeBuilder.smithing(
-                Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
-                Ingredient.of(Items.DIAMOND_SWORD),
-                Ingredient.of(Items.NETHERITE_INGOT),
+        // 🔨 SMITHING (table de forge - Fabric 1.21)
+        SmithingTransformRecipeJsonBuilder.create(
+                Ingredient.ofItems(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
+                Ingredient.ofItems(Items.DIAMOND_SWORD),
+                Ingredient.ofItems(Items.NETHERITE_INGOT),
                 RecipeCategory.COMBAT,
                 Items.NETHERITE_SWORD
             )
-            .unlocks("has_netherite", has(Items.NETHERITE_INGOT))
-            .save(recipeOutput, "netherite_sword_smithing");
+            .criterion("has_netherite", has(Items.NETHERITE_INGOT))
+            .offerTo(exporter, "netherite_sword_smithing");
 
         // 📦 GÉNÉRER PLUSIEURS RECETTES EN BOUCLE
         List<ItemLike> mithrilSmeltables = List.of(
-            ModBlocks.MITHRIL_ORE.get(),
-            ModBlocks.DEEPSLATE_MITHRIL_ORE.get(),
-            ModItems.RAW_MITHRIL.get()
+            ModBlocks.MITHRIL_ORE,
+            ModBlocks.DEEPSLATE_MITHRIL_ORE,
+            ModItems.RAW_MITHRIL
         );
 
-        oreSmelting(recipeOutput, mithrilSmeltables, RecipeCategory.MISC,
-            ModItems.MITHRIL_INGOT.get(), 0.7f, 200, "mithril");
-        oreBlasting(recipeOutput, mithrilSmeltables, RecipeCategory.MISC,
-            ModItems.MITHRIL_INGOT.get(), 0.7f, 100, "mithril");
+        oreSmelting(exporter, mithrilSmeltables, RecipeCategory.MISC,
+            ModItems.MITHRIL_INGOT, 0.7f, 200, "mithril");
+        oreBlasting(exporter, mithrilSmeltables, RecipeCategory.MISC,
+            ModItems.MITHRIL_INGOT, 0.7f, 100, "mithril");
 
         // 🔄 RECETTE CONDITIONNELLE (seulement si un item existe)
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MAGIC_SCROLL.get())
+        ShapedRecipeBuilder.create(RecipeCategory.MISC, ModItems.MAGIC_SCROLL)
             .pattern("PPP")
             .pattern("PDP")
             .pattern("PPP")
             .define('P', Items.PAPER)
             .define('D', Items.DIAMOND)
-            .unlockedBy("has_paper", has(Items.PAPER))
-            .save(recipeOutput);
+            .criterion("has_paper", has(Items.PAPER))
+            .offerTo(exporter);
     }
 
     // 🔥 Helper pour générer smelting de plusieurs items
-    protected static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> ingredients,
+    protected static void oreSmelting(Consumer<RecipeJsonProvider> exporter, List<ItemLike> ingredients,
                                        RecipeCategory category, ItemLike result,
                                        float experience, int cookingTime, String group) {
         for (ItemLike ingredient : ingredients) {
-            SimpleCookingRecipeBuilder.smelting(
-                    Ingredient.of(ingredient),
+            CookingRecipeJsonBuilder.createSmelting(
+                    Ingredient.ofItems(ingredient),
                     category,
                     result,
                     experience,
                     cookingTime
                 )
                 .group(group)
-                .unlockedBy(getHasName(ingredient), has(ingredient))
-                .save(recipeOutput, getItemName(result) + "_from_smelting_" + getItemName(ingredient));
+                .criterion(hasItem(ingredient), has(ingredient))
+                .save(exporter, getRecipeName(result) + "_from_smelting_" + getRecipeName(ingredient));
         }
     }
 
     // ⚡ Helper pour blasting
-    protected static void oreBlasting(RecipeOutput recipeOutput, List<ItemLike> ingredients,
+    protected static void oreBlasting(Consumer<RecipeJsonProvider> exporter, List<ItemLike> ingredients,
                                        RecipeCategory category, ItemLike result,
                                        float experience, int cookingTime, String group) {
         for (ItemLike ingredient : ingredients) {
-            SimpleCookingRecipeBuilder.blasting(
-                    Ingredient.of(ingredient),
+            CookingRecipeJsonBuilder.createBlasting(
+                    Ingredient.ofItems(ingredient),
                     category,
                     result,
                     experience,
                     cookingTime
                 )
                 .group(group)
-                .unlockedBy(getHasName(ingredient), has(ingredient))
-                .save(recipeOutput, getItemName(result) + "_from_blasting_" + getItemName(ingredient));
+                .criterion(hasItem(ingredient), has(ingredient))
+                .save(exporter, getRecipeName(result) + "_from_blasting_" + getRecipeName(ingredient));
         }
     }
 }
 ```
 
-**🎯 Résultat :** Tous vos fichiers JSON de recettes seront générés dans `src/generated/resources/data/medeliummod/recipes/`
+**🎯 Résultat :** Tous vos fichiers JSON de recettes seront générés dans `src/generated/resources/data/medelium/recipes/`
 
 ---
 
@@ -16804,104 +16262,99 @@ Créez automatiquement les fichiers de blockstates et models de blocs :
 package com.medelium.datagen;
 
 import com.medelium.registry.ModBlocks;
-import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.*;
-import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
-import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.registries.DeferredBlock;
+import net.minecraft.util.Identifier;
+import net.minecraft.block.*;
+// Note: Fabric n'a pas de BlockStateProvider intégré. Utilisez des JSON manuels
+// ou fabric-model-datagen (mod tiers). Voici la structure pour référence.
+public class ModBlockStateProvider /* Fabric: pas d'équivalent direct */ {
 
-public class ModBlockStateProvider extends BlockStateProvider {
-
-    public ModBlockStateProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
-        super(output, "medeliummod", existingFileHelper);
+    public ModBlockStateProvider(FabricDataOutput output) {
+        super(output, "medelium", existingFileHelper);
     }
 
     @Override
     protected void registerStatesAndModels() {
         // 🧊 BLOC SIMPLE (cube avec même texture sur tous les côtés)
-        simpleBlockWithItem(ModBlocks.MITHRIL_BLOCK.get(),
-            cubeAll(ModBlocks.MITHRIL_BLOCK.get()));
+        simpleBlockWithItem(ModBlocks.MITHRIL_BLOCK,
+            cubeAll(ModBlocks.MITHRIL_BLOCK));
 
         // ⛏️ MINERAI (ore) - texture différente par côté optionnel
-        simpleBlockWithItem(ModBlocks.MITHRIL_ORE.get(),
-            cubeAll(ModBlocks.MITHRIL_ORE.get()));
+        simpleBlockWithItem(ModBlocks.MITHRIL_ORE,
+            cubeAll(ModBlocks.MITHRIL_ORE));
 
-        simpleBlockWithItem(ModBlocks.DEEPSLATE_MITHRIL_ORE.get(),
-            cubeAll(ModBlocks.DEEPSLATE_MITHRIL_ORE.get()));
+        simpleBlockWithItem(ModBlocks.DEEPSLATE_MITHRIL_ORE,
+            cubeAll(ModBlocks.DEEPSLATE_MITHRIL_ORE));
 
         // 🪜 ESCALIER (stairs)
-        stairsBlock((StairBlock) ModBlocks.MITHRIL_STAIRS.get(),
-            blockTexture(ModBlocks.MITHRIL_BLOCK.get()));
-        simpleBlockItem(ModBlocks.MITHRIL_STAIRS.get(),
+        stairsBlock((StairBlock) ModBlocks.MITHRIL_STAIRS,
+            blockTexture(ModBlocks.MITHRIL_BLOCK));
+        simpleBlockItem(ModBlocks.MITHRIL_STAIRS,
             models().stairs("mithril_stairs",
-                blockTexture(ModBlocks.MITHRIL_BLOCK.get()),
-                blockTexture(ModBlocks.MITHRIL_BLOCK.get()),
-                blockTexture(ModBlocks.MITHRIL_BLOCK.get())));
+                blockTexture(ModBlocks.MITHRIL_BLOCK),
+                blockTexture(ModBlocks.MITHRIL_BLOCK),
+                blockTexture(ModBlocks.MITHRIL_BLOCK)));
 
         // 🧱 DALLE (slab)
-        slabBlock((SlabBlock) ModBlocks.MITHRIL_SLAB.get(),
-            blockTexture(ModBlocks.MITHRIL_BLOCK.get()),
-            blockTexture(ModBlocks.MITHRIL_BLOCK.get()));
-        simpleBlockItem(ModBlocks.MITHRIL_SLAB.get(),
+        slabBlock((SlabBlock) ModBlocks.MITHRIL_SLAB,
+            blockTexture(ModBlocks.MITHRIL_BLOCK),
+            blockTexture(ModBlocks.MITHRIL_BLOCK));
+        simpleBlockItem(ModBlocks.MITHRIL_SLAB,
             models().slab("mithril_slab",
-                blockTexture(ModBlocks.MITHRIL_BLOCK.get()),
-                blockTexture(ModBlocks.MITHRIL_BLOCK.get()),
-                blockTexture(ModBlocks.MITHRIL_BLOCK.get())));
+                blockTexture(ModBlocks.MITHRIL_BLOCK),
+                blockTexture(ModBlocks.MITHRIL_BLOCK),
+                blockTexture(ModBlocks.MITHRIL_BLOCK)));
 
         // 🚪 PORTE (door)
-        doorBlockWithRenderType((DoorBlock) ModBlocks.MITHRIL_DOOR.get(),
-            modLoc("block/mithril_door_bottom"),
-            modLoc("block/mithril_door_top"),
+        doorBlockWithRenderType((DoorBlock) ModBlocks.MITHRIL_DOOR,
+            new Identifier(Medelium.MOD_ID, "block/mithril_door_bottom"),
+            new Identifier(Medelium.MOD_ID, "block/mithril_door_top"),
             "cutout");
 
         // 🚪 TRAPPE (trapdoor)
-        trapdoorBlockWithRenderType((TrapDoorBlock) ModBlocks.MITHRIL_TRAPDOOR.get(),
-            modLoc("block/mithril_trapdoor"),
+        trapdoorBlockWithRenderType((TrapDoorBlock) ModBlocks.MITHRIL_TRAPDOOR,
+            new Identifier(Medelium.MOD_ID, "block/mithril_trapdoor"),
             true,
             "cutout");
 
         // 🪵 PILIER (colonne - textures top/side)
-        axisBlock((RotatedPillarBlock) ModBlocks.MAGIC_PILLAR.get(),
-            modLoc("block/magic_pillar_side"),
-            modLoc("block/magic_pillar_top"));
-        simpleBlockItem(ModBlocks.MAGIC_PILLAR.get(),
+        axisBlock((RotatedPillarBlock) ModBlocks.MAGIC_PILLAR,
+            new Identifier(Medelium.MOD_ID, "block/magic_pillar_side"),
+            new Identifier(Medelium.MOD_ID, "block/magic_pillar_top"));
+        simpleBlockItem(ModBlocks.MAGIC_PILLAR,
             models().cubeColumn("magic_pillar",
-                modLoc("block/magic_pillar_side"),
-                modLoc("block/magic_pillar_top")));
+                new Identifier(Medelium.MOD_ID, "block/magic_pillar_side"),
+                new Identifier(Medelium.MOD_ID, "block/magic_pillar_top")));
 
         // 🌾 CROIX (cross model - plantes)
-        crossBlock(ModBlocks.MAGIC_FLOWER.get());
-        simpleBlockItem(ModBlocks.MAGIC_FLOWER.get(),
+        crossBlock(ModBlocks.MAGIC_FLOWER);
+        simpleBlockItem(ModBlocks.MAGIC_FLOWER,
             models().cross("magic_flower",
-                modLoc("block/magic_flower")).renderType("cutout"));
+                new Identifier(Medelium.MOD_ID, "block/magic_flower")).renderType("cutout"));
 
         // 🎯 BLOC DIRECTIONNEL (horizontal facing)
-        horizontalBlock(ModBlocks.ENCHANTING_ALTAR.get(),
+        horizontalBlock(ModBlocks.ENCHANTING_ALTAR,
             models().orientable("enchanting_altar",
-                modLoc("block/enchanting_altar_side"),
-                modLoc("block/enchanting_altar_front"),
-                modLoc("block/enchanting_altar_top")));
-        simpleBlockItem(ModBlocks.ENCHANTING_ALTAR.get(),
+                new Identifier(Medelium.MOD_ID, "block/enchanting_altar_side"),
+                new Identifier(Medelium.MOD_ID, "block/enchanting_altar_front"),
+                new Identifier(Medelium.MOD_ID, "block/enchanting_altar_top")));
+        simpleBlockItem(ModBlocks.ENCHANTING_ALTAR,
             models().orientable("enchanting_altar",
-                modLoc("block/enchanting_altar_side"),
-                modLoc("block/enchanting_altar_front"),
-                modLoc("block/enchanting_altar_top")));
+                new Identifier(Medelium.MOD_ID, "block/enchanting_altar_side"),
+                new Identifier(Medelium.MOD_ID, "block/enchanting_altar_front"),
+                new Identifier(Medelium.MOD_ID, "block/enchanting_altar_top")));
 
         // 💡 BLOC AVEC PROPRIÉTÉS (ex: lit = true/false)
-        getVariantBuilder(ModBlocks.MAGIC_TORCH.get())
+        getVariantBuilder(ModBlocks.MAGIC_TORCH)
             .partialState().with(BlockStateProperties.LIT, true)
                 .modelForState().modelFile(models().torch("magic_torch_on",
-                    modLoc("block/magic_torch_on"))).addModel()
+                    new Identifier(Medelium.MOD_ID, "block/magic_torch_on"))).addModel()
             .partialState().with(BlockStateProperties.LIT, false)
                 .modelForState().modelFile(models().torch("magic_torch_off",
-                    modLoc("block/magic_torch_off"))).addModel();
+                    new Identifier(Medelium.MOD_ID, "block/magic_torch_off"))).addModel();
 
         // 🔄 BLOC AVEC ROTATION (4 états)
-        horizontalBlock(ModBlocks.MAGIC_WORKBENCH.get(),
-            new ModelFile.UncheckedModelFile(modLoc("block/magic_workbench")));
+        horizontalBlock(ModBlocks.MAGIC_WORKBENCH,
+            new ModelFile.UncheckedModelFile(new Identifier(Medelium.MOD_ID, "block/magic_workbench")));
     }
 
     // 🔧 Helper : Bloc simple + item model automatique
@@ -16921,13 +16374,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
         return key(block).getPath();
     }
 
-    private ResourceLocation key(Block block) {
-        return BuiltInRegistries.BLOCK.getKey(block);
+    private Identifier key(Block block) {
+        return Registries.BLOCK.getId(block);
     }
 }
 ```
 
-**🎯 Résultat :** Fichiers générés dans `src/generated/resources/assets/medeliummod/blockstates/` et `models/block/`
+**🎯 Résultat :** Fichiers générés dans `src/generated/resources/assets/medelium/blockstates/` et `models/block/`
 
 ---
 
@@ -16939,121 +16392,119 @@ Créez automatiquement les models de vos items :
 package com.medelium.datagen;
 
 import com.medelium.registry.ModItems;
-import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.registries.DeferredItem;
+import net.minecraft.util.Identifier;
+import net.minecraft.item.Item;
+import net.minecraft.block.Block;
+import net.minecraft.registry.Registries;\nimport net.minecraft.registry.Registry;
 
-public class ModItemModelProvider extends ItemModelProvider {
+// Note: Fabric n'a pas d'ItemModelProvider intégré.
+// Utilisez des JSON manuels ou fabric-model-datagen.
+public class ModItemModelProvider /* Fabric: pas d'équivalent direct */ {
 
-    public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
-        super(output, "medeliummod", existingFileHelper);
+    public ModItemModelProvider(FabricDataOutput output) {
+        super(output, "medelium", existingFileHelper);
     }
 
     @Override
     protected void registerModels() {
         // ⚔️ ITEM SIMPLE (texture generated)
-        basicItem(ModItems.MITHRIL_INGOT.get());
-        basicItem(ModItems.RAW_MITHRIL.get());
-        basicItem(ModItems.GOLD_COIN.get());
-        basicItem(ModItems.SILVER_COIN.get());
+        basicItem(ModItems.MITHRIL_INGOT);
+        basicItem(ModItems.RAW_MITHRIL);
+        basicItem(ModItems.GOLD_COIN);
+        basicItem(ModItems.SILVER_COIN);
 
         // 🗡️ ITEM HANDHELD (épées, outils)
-        handheldItem(ModItems.ROYAL_SWORD.get());
-        handheldItem(ModItems.MITHRIL_SWORD.get());
-        handheldItem(ModItems.MITHRIL_PICKAXE.get());
-        handheldItem(ModItems.MITHRIL_AXE.get());
+        handheldItem(ModItems.ROYAL_SWORD);
+        handheldItem(ModItems.MITHRIL_SWORD);
+        handheldItem(ModItems.MITHRIL_PICKAXE);
+        handheldItem(ModItems.MITHRIL_AXE);
 
         // 🛡️ ARMOR (generated model)
-        basicItem(ModItems.MITHRIL_HELMET.get());
-        basicItem(ModItems.MITHRIL_CHESTPLATE.get());
-        basicItem(ModItems.MITHRIL_LEGGINGS.get());
-        basicItem(ModItems.MITHRIL_BOOTS.get());
+        basicItem(ModItems.MITHRIL_HELMET);
+        basicItem(ModItems.MITHRIL_CHESTPLATE);
+        basicItem(ModItems.MITHRIL_LEGGINGS);
+        basicItem(ModItems.MITHRIL_BOOTS);
 
         // 📜 ITEM AVEC TEXTURE CUSTOM
         singleTexture("magic_scroll",
-            mcLoc("item/generated"),
-            "layer0", modLoc("item/magic_scroll"));
+            new Identifier("item/generated"),
+            "layer0", new Identifier(Medelium.MOD_ID, "item/magic_scroll"));
 
         // 🥤 ITEM AVEC 2 LAYERS (bouteille + liquide)
         singleTexture("mana_potion",
-            mcLoc("item/generated"),
-            "layer0", modLoc("item/potion_bottle"),
-            "layer1", modLoc("item/mana_liquid"));
+            new Identifier("item/generated"),
+            "layer0", new Identifier(Medelium.MOD_ID, "item/potion_bottle"),
+            "layer1", new Identifier(Medelium.MOD_ID, "item/mana_liquid"));
 
         // 🍎 NOURRITURE
-        basicItem(ModItems.BREAD.get());
-        basicItem(ModItems.CHEESE.get());
+        basicItem(ModItems.BREAD);
+        basicItem(ModItems.CHEESE);
 
         // 🔮 ITEM 3D (utilise un model custom JSON)
-        withExistingParent("magic_orb", modLoc("item/magic_orb_3d"));
+        withExistingParent("magic_orb", new Identifier(Medelium.MOD_ID, "item/magic_orb_3d"));
 
         // 🪙 SPAWN EGG (utilise template vanilla)
         withExistingParent(ModItems.SKELETON_KNIGHT_SPAWN_EGG.getId().getPath(),
-            mcLoc("item/template_spawn_egg"));
+            new Identifier("item/template_spawn_egg"));
 
         // 🚪 BLOC ITEM (porte, trappe - génère automatiquement depuis blockstate)
         // Pas besoin de spécifier, déjà fait dans BlockStateProvider
 
         // 🔥 BOW (arc) - avec pulling states
-        bowItem(ModItems.MAGIC_BOW.get());
+        bowItem(ModItems.MAGIC_BOW);
 
         // 🎣 FISHING ROD - avec cast state
-        fishingRodItem(ModItems.MAGIC_FISHING_ROD.get());
+        fishingRodItem(ModItems.MAGIC_FISHING_ROD);
 
         // 🧭 SHIELD - modèle custom
         withExistingParent("royal_shield",
-            mcLoc("item/shield"))
-            .texture("particle", modLoc("entity/royal_shield"));
+            new Identifier("item/shield"))
+            .texture("particle", new Identifier(Medelium.MOD_ID, "entity/royal_shield"));
     }
 
     // 🔧 Helper : Item tenu en main (handheld)
     private void handheldItem(Item item) {
-        String name = BuiltInRegistries.ITEM.getKey(item).getPath();
+        String name = Registries.ITEM.getId(item).getPath();
         withExistingParent(name,
-            mcLoc("item/handheld"))
+            new Identifier("item/handheld"))
             .texture("layer0", modLoc("item/" + name));
     }
 
     // 🏹 Helper : Arc (bow)
     private void bowItem(Item item) {
-        String name = BuiltInRegistries.ITEM.getKey(item).getPath();
-        withExistingParent(name, mcLoc("item/bow"))
+        String name = Registries.ITEM.getId(item).getPath();
+        withExistingParent(name, new Identifier("item/bow"))
             .texture("layer0", modLoc("item/" + name));
         
         // Pulling states (0, 1, 2)
         for (int i = 0; i <= 2; i++) {
-            withExistingParent(name + "_pulling_" + i, mcLoc("item/bow"))
+            withExistingParent(name + "_pulling_" + i, new Identifier("item/bow"))
                 .texture("layer0", modLoc("item/" + name + "_pulling_" + i));
         }
     }
 
     // 🎣 Helper : Canne à pêche
     private void fishingRodItem(Item item) {
-        String name = BuiltInRegistries.ITEM.getKey(item).getPath();
-        withExistingParent(name, mcLoc("item/handheld_rod"))
+        String name = Registries.ITEM.getId(item).getPath();
+        withExistingParent(name, new Identifier("item/handheld_rod"))
             .texture("layer0", modLoc("item/" + name));
 
         // Cast state
-        withExistingParent(name + "_cast", mcLoc("item/handheld_rod"))
+        withExistingParent(name + "_cast", new Identifier("item/handheld_rod"))
             .texture("layer0", modLoc("item/" + name + "_cast"));
     }
 
     // 📦 Helper : 2-layer item
     private void twoLayerItem(Item item, String layer0, String layer1) {
-        String name = BuiltInRegistries.ITEM.getKey(item).getPath();
-        withExistingParent(name, mcLoc("item/generated"))
+        String name = Registries.ITEM.getId(item).getPath();
+        withExistingParent(name, new Identifier("item/generated"))
             .texture("layer0", modLoc("item/" + layer0))
             .texture("layer1", modLoc("item/" + layer1));
     }
 }
 ```
 
-**🎯 Résultat :** Models générés dans `src/generated/resources/assets/medeliummod/models/item/`
+**🎯 Résultat :** Models générés dans `src/generated/resources/assets/medelium/models/item/`
 
 ---
 
@@ -17066,18 +16517,16 @@ package com.medelium.datagen;
 
 import com.medelium.registry.ModBlocks;
 import com.medelium.registry.ModItems;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.registry.*;
+import net.minecraft.world.*;
 
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public class ModLootTableProvider extends LootTableProvider {
+public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
-    public ModLootTableProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+    public ModLootTableProvider(FabricDataOutput output) {
         super(output, Set.of(), List.of(
             new SubProviderEntry(ModBlockLootTables::new, LootContextParamSets.BLOCK)
         ), lookupProvider);
@@ -17092,67 +16541,62 @@ package com.medelium.datagen;
 
 import com.medelium.registry.ModBlocks;
 import com.medelium.registry.ModItems;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
-import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraft.registry.*;
+import /* Fabric: no FeatureFlags */;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
+import net.minecraft.item.*;
+import net.minecraft.block.Block;
+import net.minecraft.world.*;
 
 import java.util.Set;
 
-public class ModBlockLootTables extends BlockLootSubProvider {
+public class ModBlockLootTables extends FabricBlockLootTableProvider {
 
-    public ModBlockLootTables(HolderLookup.Provider provider) {
+    public ModBlockLootTables(FabricDataOutput output) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), provider);
     }
 
     @Override
     protected void generate() {
         // 🧊 BLOC QUI DROP LUI-MÊME
-        dropSelf(ModBlocks.MITHRIL_BLOCK.get());
-        dropSelf(ModBlocks.MAGIC_WORKBENCH.get());
-        dropSelf(ModBlocks.ENCHANTING_ALTAR.get());
+        dropSelf(ModBlocks.MITHRIL_BLOCK);
+        dropSelf(ModBlocks.MAGIC_WORKBENCH);
+        dropSelf(ModBlocks.ENCHANTING_ALTAR);
 
         // ⛏️ MINERAI QUI DROP RAW MATERIAL (avec Fortune)
-        add(ModBlocks.MITHRIL_ORE.get(),
-            block -> createOreDrop(block, ModItems.RAW_MITHRIL.get()));
+        add(ModBlocks.MITHRIL_ORE,
+            block -> createOreDrop(block, ModItems.RAW_MITHRIL));
 
-        add(ModBlocks.DEEPSLATE_MITHRIL_ORE.get(),
-            block -> createOreDrop(block, ModItems.RAW_MITHRIL.get()));
+        add(ModBlocks.DEEPSLATE_MITHRIL_ORE,
+            block -> createOreDrop(block, ModItems.RAW_MITHRIL));
 
         // 💎 MINERAI AVEC QUANTITÉ VARIABLE (2-5 items)
-        add(ModBlocks.RUBY_ORE.get(),
-            block -> createMultipleOreDrops(block, ModItems.RUBY.get(), 2.0f, 5.0f));
+        add(ModBlocks.RUBY_ORE,
+            block -> createMultipleOreDrops(block, ModItems.RUBY, 2.0f, 5.0f));
 
         // 🌾 PLANTE QUI DROP GRAINES (avec Shears optionnel)
-        add(ModBlocks.MAGIC_FLOWER.get(),
+        add(ModBlocks.MAGIC_FLOWER,
             block -> createShearsOnlyDrop(block));
 
         // 🚪 PORTE (drop seulement la moitié inférieure)
-        add(ModBlocks.MITHRIL_DOOR.get(),
+        add(ModBlocks.MITHRIL_DOOR,
             block -> createDoorTable(block));
 
         // 🧱 DALLE (drop 2 si bloc complet)
-        add(ModBlocks.MITHRIL_SLAB.get(),
+        add(ModBlocks.MITHRIL_SLAB,
             block -> createSlabItemTable(block));
 
         // 🍎 FEUILLES (drop sapling + stick + apple)
-        add(ModBlocks.MAGIC_LEAVES.get(),
-            block -> createLeavesDrops(block, ModBlocks.MAGIC_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        add(ModBlocks.MAGIC_LEAVES,
+            block -> createLeavesDrops(block, ModBlocks.MAGIC_SAPLING, NORMAL_LEAVES_SAPLING_CHANCES));
 
         // 🪵 BLOC AVEC SILK TOUCH REQUIS (sinon rien)
-        add(ModBlocks.GLASS_ORE.get(),
+        add(ModBlocks.GLASS_ORE,
             block -> createSilkTouchOnlyTable(block));
 
         // 🔮 BLOC AVEC ALTERNATIVE SANS SILK TOUCH
-        add(ModBlocks.GRASS_BLOCK.get(),
+        add(ModBlocks.GRASS_BLOCK,
             block -> createSingleItemTableWithSilkTouch(block, Items.DIRT));
     }
 
@@ -17161,7 +16605,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         return createSilkTouchDispatchTable(block,
             this.applyExplosionDecay(block,
                 LootItem.lootTableItem(item)
-                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(min, max)))
+                    .apply(SetItemCountFunction.setCount(UniformLootNumberProvider.between(min, max)))
                     .apply(ApplyBonusCount.addOreBonusCount(this.registries.lookupOrThrow(Enchantments.FORTUNE)))
             )
         );
@@ -17170,14 +16614,19 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected Iterable<Block> getKnownBlocks() {
         // Retourner tous les blocs qui ont besoin d'une loot table
-        return ModBlocks.BLOCKS.getEntries().stream()
-            .map(holder -> (Block) holder.value())
-            .toList();
+        return List.of(
+            ModBlocks.MITHRIL_BLOCK,
+            ModBlocks.MAGIC_WORKBENCH,
+            ModBlocks.ENCHANTING_ALTAR,
+            ModBlocks.MITHRIL_ORE,
+            ModBlocks.DEEPSLATE_MITHRIL_ORE
+            // Ajouter tous vos blocs ici
+        );
     }
 }
 ```
 
-**🎯 Résultat :** Loot tables générées dans `src/generated/resources/data/medeliummod/loot_table/blocks/`
+**🎯 Résultat :** Loot tables générées dans `src/generated/resources/data/medelium/loot_table/blocks/`
 
 ---
 
@@ -17189,54 +16638,51 @@ Créez automatiquement les tags pour compatibilité avec autres mods :
 package com.medelium.datagen;
 
 import com.medelium.registry.ModBlocks;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.PackOutput;
-import net.minecraft.tags.BlockTags;
-import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.minecraft.registry.*;
+import net.minecraft.registry.tag.BlockTags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModBlockTagsProvider extends BlockTagsProvider {
+public class ModBlockTagsProvider extends FabricTagProvider.BlockTagProvider {
 
-    public ModBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider,
-                                ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, "medeliummod", existingFileHelper);
+    public ModBlockTagsProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> lookupProvider,
+                                /* Fabric: no ExistingFileHelper needed */) {
+        super(output, lookupProvider, "medelium", existingFileHelper);
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider provider) {
+    @Override
+    protected void configure(RegistryWrapper.WrapperLookup registries) {
         // ⛏️ MINEABLE WITH PICKAXE
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
-            .add(ModBlocks.MITHRIL_ORE.get())
-            .add(ModBlocks.DEEPSLATE_MITHRIL_ORE.get())
-            .add(ModBlocks.MITHRIL_BLOCK.get());
+            .add(ModBlocks.MITHRIL_ORE)
+            .add(ModBlocks.DEEPSLATE_MITHRIL_ORE)
+            .add(ModBlocks.MITHRIL_BLOCK);
 
         // 🪓 MINEABLE WITH AXE
         tag(BlockTags.MINEABLE_WITH_AXE)
-            .add(ModBlocks.MAGIC_WORKBENCH.get());
+            .add(ModBlocks.MAGIC_WORKBENCH);
 
         // 🏗️ NEEDS IRON TOOL (niveau outil requis)
         tag(BlockTags.NEEDS_IRON_TOOL)
-            .add(ModBlocks.MITHRIL_ORE.get());
+            .add(ModBlocks.MITHRIL_ORE);
 
         // 💎 NEEDS DIAMOND TOOL
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
-            .add(ModBlocks.ADAMANTITE_ORE.get());
+            .add(ModBlocks.ADAMANTITE_ORE);
 
         // 🔥 TAG CUSTOM
         tag(ModTags.Blocks.MAGIC_BLOCKS)
-            .add(ModBlocks.MITHRIL_BLOCK.get())
-            .add(ModBlocks.ENCHANTING_ALTAR.get());
+            .add(ModBlocks.MITHRIL_BLOCK)
+            .add(ModBlocks.ENCHANTING_ALTAR);
 
         // 🌍 FORGE/NEOFORGE TAGS (compatibilité mods)
-        tag(Tags.Blocks.ORES)
-            .add(ModBlocks.MITHRIL_ORE.get())
-            .add(ModBlocks.DEEPSLATE_MITHRIL_ORE.get());
+        tag(ConventionalBlockTags.ORES)
+            .add(ModBlocks.MITHRIL_ORE)
+            .add(ModBlocks.DEEPSLATE_MITHRIL_ORE);
 
-        tag(Tags.Blocks.STORAGE_BLOCKS)
-            .add(ModBlocks.MITHRIL_BLOCK.get());
+        tag(ConventionalBlockTags.STORAGE_BLOCKS)
+            .add(ModBlocks.MITHRIL_BLOCK);
     }
 }
 ```
@@ -17247,50 +16693,47 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 package com.medelium.datagen;
 
 import com.medelium.registry.ModItems;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.minecraft.registry.*;
+import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.block.Block;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModItemTagsProvider extends ItemTagsProvider {
+public class ModItemTagsProvider extends FabricTagProvider.ItemTagProvider {
 
-    public ModItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider,
+    public ModItemTagsProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> lookupProvider,
                                CompletableFuture<TagLookup<Block>> blockTags,
-                               ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, blockTags, "medeliummod", existingFileHelper);
+                               /* Fabric: no ExistingFileHelper needed */) {
+        super(output, lookupProvider, blockTags, "medelium", existingFileHelper);
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider provider) {
+    @Override
+    protected void configure(RegistryWrapper.WrapperLookup registries) {
         // ⚔️ SWORDS TAG
         tag(ItemTags.SWORDS)
-            .add(ModItems.ROYAL_SWORD.get())
-            .add(ModItems.MITHRIL_SWORD.get());
+            .add(ModItems.ROYAL_SWORD)
+            .add(ModItems.MITHRIL_SWORD);
 
         // ⛏️ PICKAXES TAG
         tag(ItemTags.PICKAXES)
-            .add(ModItems.MITHRIL_PICKAXE.get());
+            .add(ModItems.MITHRIL_PICKAXE);
 
         // 🍖 FOOD TAG
         tag(ItemTags.FOX_FOOD)
-            .add(ModItems.BREAD.get());
+            .add(ModItems.BREAD);
 
         // 💰 TAG CUSTOM
         tag(ModTags.Items.CURRENCY)
-            .add(ModItems.GOLD_COIN.get())
-            .add(ModItems.SILVER_COIN.get());
+            .add(ModItems.GOLD_COIN)
+            .add(ModItems.SILVER_COIN);
 
-        // 🔥 FORGE/NEOFORGE TAGS
-        tag(Tags.Items.INGOTS)
-            .add(ModItems.MITHRIL_INGOT.get());
+        // 🔥 CONVENTIONAL TAGS (compatibilité mods via Fabric API)
+        tag(ConventionalItemTags.INGOTS)
+            .add(ModItems.MITHRIL_INGOT);
 
-        tag(Tags.Items.GEMS)
-            .add(ModItems.RUBY.get());
+        tag(ConventionalItemTags.GEMS)
+            .add(ModItems.RUBY);
     }
 }
 ```
@@ -17300,19 +16743,19 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 ```java
 package com.medelium.registry;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.util.Identifier;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.item.Item;
+import net.minecraft.block.Block;
 
 public class ModTags {
     public static class Blocks {
         public static final TagKey<Block> MAGIC_BLOCKS = tag("magic_blocks");
 
         private static TagKey<Block> tag(String name) {
-            return BlockTags.create(ResourceLocation.fromNamespaceAndPath("medeliummod", name));
+            return TagKey.of(RegistryKeys.BLOCK, new Identifier("medelium", name));
         }
     }
 
@@ -17321,13 +16764,13 @@ public class ModTags {
         public static final TagKey<Item> MAGIC_ITEMS = tag("magic_items");
 
         private static TagKey<Item> tag(String name) {
-            return ItemTags.create(ResourceLocation.fromNamespaceAndPath("medeliummod", name));
+            return TagKey.of(RegistryKeys.ITEM, new Identifier("medelium", name));
         }
     }
 }
 ```
 
-**🎯 Résultat :** Tags générés dans `src/generated/resources/data/medeliummod/tags/`
+**🎯 Résultat :** Tags générés dans `src/generated/resources/data/medelium/tags/`
 
 ---
 
@@ -17340,60 +16783,59 @@ package com.medelium.datagen;
 
 import com.medelium.registry.ModBlocks;
 import com.medelium.registry.ModItems;
-import net.minecraft.data.PackOutput;
-import net.neoforged.neoforge.common.data.LanguageProvider;
 
-public class ModLanguageProviderEN extends LanguageProvider {
+public class ModLanguageProviderEN extends FabricLanguageProvider {
 
-    public ModLanguageProviderEN(PackOutput output) {
-        super(output, "medeliummod", "en_us");
+    public ModLanguageProviderEN(FabricDataOutput output) {
+        super(output, "medelium", "en_us");
     }
 
     @Override
-    protected void addTranslations() {
+    @Override
+    public void generateTranslations(TranslationBuilder translationBuilder) {
         // ⚔️ ITEMS
-        add(ModItems.ROYAL_SWORD.get(), "Royal Sword");
-        add(ModItems.MITHRIL_INGOT.get(), "Mithril Ingot");
-        add(ModItems.RAW_MITHRIL.get(), "Raw Mithril");
-        add(ModItems.GOLD_COIN.get(), "Gold Coin");
-        add(ModItems.SILVER_COIN.get(), "Silver Coin");
-        add(ModItems.MAGIC_SCROLL.get(), "Magic Scroll");
+        add(ModItems.ROYAL_SWORD, "Royal Sword");
+        add(ModItems.MITHRIL_INGOT, "Mithril Ingot");
+        add(ModItems.RAW_MITHRIL, "Raw Mithril");
+        add(ModItems.GOLD_COIN, "Gold Coin");
+        add(ModItems.SILVER_COIN, "Silver Coin");
+        add(ModItems.MAGIC_SCROLL, "Magic Scroll");
 
         // 🧊 BLOCKS
-        add(ModBlocks.MITHRIL_BLOCK.get(), "Mithril Block");
-        add(ModBlocks.MITHRIL_ORE.get(), "Mithril Ore");
-        add(ModBlocks.DEEPSLATE_MITHRIL_ORE.get(), "Deepslate Mithril Ore");
-        add(ModBlocks.MAGIC_WORKBENCH.get(), "Magic Workbench");
+        add(ModBlocks.MITHRIL_BLOCK, "Mithril Block");
+        add(ModBlocks.MITHRIL_ORE, "Mithril Ore");
+        add(ModBlocks.DEEPSLATE_MITHRIL_ORE, "Deepslate Mithril Ore");
+        add(ModBlocks.MAGIC_WORKBENCH, "Magic Workbench");
 
         // 📜 CREATIVE TAB
-        add("itemGroup.medeliummod.main", "Medelium Mod");
+        add("itemGroup.medelium.main", "Medelium Mod");
 
         // 💬 TOOLTIPS
-        add("tooltip.medeliummod.royal_sword.line1", "A legendary blade");
-        add("tooltip.medeliummod.royal_sword.line2", "Forged by ancient kings");
+        add("tooltip.medelium.royal_sword.line1", "A legendary blade");
+        add("tooltip.medelium.royal_sword.line2", "Forged by ancient kings");
 
         // 🎮 GUI
-        add("gui.medeliummod.magic_workbench.title", "Magic Workbench");
-        add("gui.medeliummod.enchanting_altar.title", "Enchanting Altar");
+        add("gui.medelium.magic_workbench.title", "Magic Workbench");
+        add("gui.medelium.enchanting_altar.title", "Enchanting Altar");
 
         // 📊 STATS
-        add("stat.medeliummod.mana", "Mana");
-        add("stat.medeliummod.stamina", "Stamina");
+        add("stat.medelium.mana", "Mana");
+        add("stat.medelium.stamina", "Stamina");
 
         // ⌨️ KEYBINDINGS
-        add("key.categories.medeliummod", "Medelium Mod");
-        add("key.medeliummod.open_skills", "Open Skills Menu");
-        add("key.medeliummod.cast_spell", "Cast Spell");
+        add("key.categories.Medelium", "Medelium Mod");
+        add("key.medelium.open_skills", "Open Skills Menu");
+        add("key.medelium.cast_spell", "Cast Spell");
 
         // 🎯 ADVANCEMENTS
-        add("advancement.medeliummod.root", "Medelium Mod");
-        add("advancement.medeliummod.root.desc", "Begin your medieval adventure");
-        add("advancement.medeliummod.first_mithril", "First Mithril");
-        add("advancement.medeliummod.first_mithril.desc", "Mine your first Mithril Ore");
+        add("advancement.medelium.root", "Medelium Mod");
+        add("advancement.medelium.root.desc", "Begin your medieval adventure");
+        add("advancement.medelium.first_mithril", "First Mithril");
+        add("advancement.medelium.first_mithril.desc", "Mine your first Mithril Ore");
 
         // ⚠️ MESSAGES
-        add("message.medeliummod.not_enough_mana", "Not enough mana!");
-        add("message.medeliummod.quest_completed", "Quest completed!");
+        add("message.medelium.not_enough_mana", "Not enough mana!");
+        add("message.medelium.quest_completed", "Quest completed!");
     }
 }
 ```
@@ -17405,65 +16847,64 @@ package com.medelium.datagen;
 
 import com.medelium.registry.ModBlocks;
 import com.medelium.registry.ModItems;
-import net.minecraft.data.PackOutput;
-import net.neoforged.neoforge.common.data.LanguageProvider;
 
-public class ModLanguageProviderFR extends LanguageProvider {
+public class ModLanguageProviderFR extends FabricLanguageProvider {
 
-    public ModLanguageProviderFR(PackOutput output) {
-        super(output, "medeliummod", "fr_fr");
+    public ModLanguageProviderFR(FabricDataOutput output) {
+        super(output, "medelium", "fr_fr");
     }
 
     @Override
-    protected void addTranslations() {
+    @Override
+    public void generateTranslations(TranslationBuilder translationBuilder) {
         // ⚔️ ITEMS
-        add(ModItems.ROYAL_SWORD.get(), "Épée Royale");
-        add(ModItems.MITHRIL_INGOT.get(), "Lingot de Mithril");
-        add(ModItems.RAW_MITHRIL.get(), "Mithril Brut");
-        add(ModItems.GOLD_COIN.get(), "Pièce d'Or");
-        add(ModItems.SILVER_COIN.get(), "Pièce d'Argent");
-        add(ModItems.MAGIC_SCROLL.get(), "Parchemin Magique");
+        add(ModItems.ROYAL_SWORD, "Épée Royale");
+        add(ModItems.MITHRIL_INGOT, "Lingot de Mithril");
+        add(ModItems.RAW_MITHRIL, "Mithril Brut");
+        add(ModItems.GOLD_COIN, "Pièce d'Or");
+        add(ModItems.SILVER_COIN, "Pièce d'Argent");
+        add(ModItems.MAGIC_SCROLL, "Parchemin Magique");
 
         // 🧊 BLOCKS
-        add(ModBlocks.MITHRIL_BLOCK.get(), "Bloc de Mithril");
-        add(ModBlocks.MITHRIL_ORE.get(), "Minerai de Mithril");
-        add(ModBlocks.DEEPSLATE_MITHRIL_ORE.get(), "Minerai de Mithril des Abîmes");
-        add(ModBlocks.MAGIC_WORKBENCH.get(), "Établi Magique");
+        add(ModBlocks.MITHRIL_BLOCK, "Bloc de Mithril");
+        add(ModBlocks.MITHRIL_ORE, "Minerai de Mithril");
+        add(ModBlocks.DEEPSLATE_MITHRIL_ORE, "Minerai de Mithril des Abîmes");
+        add(ModBlocks.MAGIC_WORKBENCH, "Établi Magique");
 
         // 📜 CREATIVE TAB
-        add("itemGroup.medeliummod.main", "Medelium Mod");
+        add("itemGroup.medelium.main", "Medelium Mod");
 
         // 💬 TOOLTIPS
-        add("tooltip.medeliummod.royal_sword.line1", "Une lame légendaire");
-        add("tooltip.medeliummod.royal_sword.line2", "Forgée par les anciens rois");
+        add("tooltip.medelium.royal_sword.line1", "Une lame légendaire");
+        add("tooltip.medelium.royal_sword.line2", "Forgée par les anciens rois");
 
         // 🎮 GUI
-        add("gui.medeliummod.magic_workbench.title", "Établi Magique");
-        add("gui.medeliummod.enchanting_altar.title", "Autel d'Enchantement");
+        add("gui.medelium.magic_workbench.title", "Établi Magique");
+        add("gui.medelium.enchanting_altar.title", "Autel d'Enchantement");
 
         // 📊 STATS
-        add("stat.medeliummod.mana", "Mana");
-        add("stat.medeliummod.stamina", "Endurance");
+        add("stat.medelium.mana", "Mana");
+        add("stat.medelium.stamina", "Endurance");
 
         // ⌨️ KEYBINDINGS
-        add("key.categories.medeliummod", "Medelium Mod");
-        add("key.medeliummod.open_skills", "Ouvrir Menu Compétences");
-        add("key.medeliummod.cast_spell", "Lancer Sort");
+        add("key.categories.Medelium", "Medelium Mod");
+        add("key.medelium.open_skills", "Ouvrir Menu Compétences");
+        add("key.medelium.cast_spell", "Lancer Sort");
 
         // 🎯 ADVANCEMENTS
-        add("advancement.medeliummod.root", "Medelium Mod");
-        add("advancement.medeliummod.root.desc", "Commencez votre aventure médiévale");
-        add("advancement.medeliummod.first_mithril", "Premier Mithril");
-        add("advancement.medeliummod.first_mithril.desc", "Minez votre premier minerai de Mithril");
+        add("advancement.medelium.root", "Medelium Mod");
+        add("advancement.medelium.root.desc", "Commencez votre aventure médiévale");
+        add("advancement.medelium.first_mithril", "Premier Mithril");
+        add("advancement.medelium.first_mithril.desc", "Minez votre premier minerai de Mithril");
 
         // ⚠️ MESSAGES
-        add("message.medeliummod.not_enough_mana", "Pas assez de mana !");
-        add("message.medeliummod.quest_completed", "Quête terminée !");
+        add("message.medelium.not_enough_mana", "Pas assez de mana !");
+        add("message.medelium.quest_completed", "Quête terminée !");
     }
 }
 ```
 
-**🎯 Résultat :** Fichiers générés dans `src/generated/resources/assets/medeliummod/lang/`
+**🎯 Résultat :** Fichiers générés dans `src/generated/resources/assets/medelium/lang/`
 
 ---
 
@@ -17472,27 +16913,27 @@ public class ModLanguageProviderFR extends LanguageProvider {
 **📝 Commande pour générer tous les fichiers :**
 
 ```bash
-./gradlew runData
+./gradlew runDatagen
 ```
 
 **Options avancées :**
 
 ```bash
 # Générer seulement les données client (models, lang)
-./gradlew runData --args="--client"
+./gradlew runDatagen --args="--client"
 
 # Générer seulement les données serveur (recipes, loot, tags)
-./gradlew runData --args="--server"
+./gradlew runDatagen --args="--server"
 
 # Générer seulement un type spécifique
-./gradlew runData --args="--mod medeliummod --dev"
+./gradlew runDatagen --args="--mod Medelium --dev"
 ```
 
 **🎯 Résultat attendu :**
 
 ```
 src/generated/resources/
-├── assets/medeliummod/
+├── assets/medelium/
 │   ├── blockstates/       (fichiers .json des blockstates)
 │   ├── models/
 │   │   ├── block/         (models de blocs)
@@ -17500,7 +16941,7 @@ src/generated/resources/
 │   └── lang/
 │       ├── en_us.json
 │       └── fr_fr.json
-└── data/medeliummod/
+└── data/medelium/
     ├── recipes/           (recettes de craft)
     ├── loot_tables/
     │   └── blocks/        (drops des blocs)
@@ -17533,7 +16974,7 @@ minecraft {
 
 **❌ Erreur : "No data providers registered"**
 
-Vérifiez que votre classe `DataGenerators` a bien `@EventBusSubscriber` et `@SubscribeEvent`.
+Vérifiez que `fabric.mod.json` contient bien l'entrypoint `fabric-datagen` et que votre classe implémente `DataGeneratorEntrypoint`.
 
 **❌ Fichiers générés mais pas utilisés en jeu**
 
@@ -17547,7 +16988,7 @@ sourceSets.main.resources {
 **🔧 Régénérer après modification :**
 
 1. Modifiez vos providers Java
-2. Relancez `./gradlew runData`
+2. Relancez `./gradlew runDatagen`
 3. Les anciens fichiers seront écrasés
 4. Redémarrez votre client/serveur
 
@@ -17575,14 +17016,14 @@ src/generated/
 Vous savez maintenant :
 
 1. ✅ Configurer `build.gradle` pour `runData`
-2. ✅ Créer un `GatherDataEvent` subscriber
+2. ✅ Créer un `DataGeneratorEntrypoint` subscriber
 3. ✅ Générer des **recipes** (crafting, smelting, smithing)
 4. ✅ Générer des **blockstates** (stairs, slabs, doors, pillars)
 5. ✅ Générer des **item models** (handheld, armor, bows)
 6. ✅ Générer des **loot tables** (ores, plants, silk touch)
 7. ✅ Générer des **tags** (mineable, needs_tool, custom)
 8. ✅ Générer des **fichiers de langue** (en_us, fr_fr)
-9. ✅ Exécuter `./gradlew runData`
+9. ✅ Exécuter `./gradlew runDatagen`
 10. ✅ Débugger les erreurs courantes
 
 **🚀 Les Data Generators sont INDISPENSABLES pour des mods professionnels avec beaucoup de contenu !**
@@ -17622,7 +17063,7 @@ Les **Render Types** définissent **comment Minecraft affiche vos blocs** : opaq
 
 ### **41.1 Configuration de base - Enregistrer les RenderTypes**
 
-En **NeoForge 1.21+**, vous enregistrez les RenderTypes dans un event client uniquement.
+En **Fabric 1.21+**, vous enregistrez les RenderTypes dans un event client uniquement.
 
 **📁 `ClientSetup.java` :**
 
@@ -17630,47 +17071,40 @@ En **NeoForge 1.21+**, vous enregistrez les RenderTypes dans un event client uni
 package com.medelium.client;
 
 import com.medelium.registry.ModBlocks;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-
-@EventBusSubscriber(modid = "medeliummod", bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.minecraft.client.render.RenderLayer;
 public class ClientSetup {
 
-    @SubscribeEvent
-    public static void onClientSetup(FMLClientSetupEvent event) {
-        event.enqueueWork(() -> {
+        // Fabric: dans MedeliumClient.onInitializeClient()
+public static void registerRenderLayers() {
             // 🌾 CUTOUT : Plantes, fleurs, portes vitrées
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.MAGIC_FLOWER.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.MAGIC_SAPLING.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.TALL_MAGIC_GRASS.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.GLASS_DOOR.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.IRON_BARS.get(), RenderType.cutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MAGIC_FLOWER, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MAGIC_SAPLING, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.TALL_MAGIC_GRASS, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GLASS_DOOR, RenderLayer.getCutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.IRON_BARS, RenderLayer.getCutout());
 
             // 🍃 CUTOUT_MIPPED : Feuilles d'arbres (optimisation distance)
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.MAGIC_LEAVES.get(), RenderType.cutoutMipped());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.CHERRY_LEAVES.get(), RenderType.cutoutMipped());
+            BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MAGIC_LEAVES, RenderLayer.getCutoutMipped());
+            BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CHERRY_LEAVES, RenderLayer.getCutoutMipped());
 
             // 🪟 TRANSLUCENT : Verre, glace, slime
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.MAGIC_GLASS.get(), RenderType.translucent());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.STAINED_GLASS.get(), RenderType.translucent());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.ICE_BLOCK.get(), RenderType.translucent());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.SLIME_BLOCK.get(), RenderType.translucent());
+            BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MAGIC_GLASS, RenderLayer.getTranslucent());
+            BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.STAINED_GLASS, RenderLayer.getTranslucent());
+            BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ICE_BLOCK, RenderLayer.getTranslucent());
+            BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SLIME_BLOCK, RenderLayer.getTranslucent());
 
             // 🚪 TRAPPE TRANSPARENTE
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.GLASS_TRAPDOOR.get(), RenderType.cutout());
+            BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GLASS_TRAPDOOR, RenderLayer.getCutout());
 
             // 💎 CRISTAL TRANSLUCIDE
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.CRYSTAL_BLOCK.get(), RenderType.translucent());
+            BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CRYSTAL_BLOCK, RenderLayer.getTranslucent());
         });
     }
 }
 ```
 
-**⚠️ IMPORTANT :** Cette classe doit être **CLIENT ONLY** (`@Dist.CLIENT`) pour éviter les crashes serveur dédié !
+**⚠️ IMPORTANT :** Cette classe doit être **CLIENT ONLY** (`// Fabric: @Environment(EnvType.CLIENT)`) pour éviter les crashes serveur dédié !
 
 ---
 
@@ -17683,25 +17117,25 @@ Pour créer une plante avec texture découpée (type fleur, champignon) :
 ```java
 package com.medelium.block;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BushBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.*;
+import net.minecraft.block.ShapeContext;
+import net.minecraft.util.shape.VoxelShape;
 
 public class MagicFlowerBlock extends BushBlock {
     // Hitbox de la plante (8x8 pixels au centre, 14 de haut)
-    protected static final VoxelShape SHAPE = Block.box(4.0, 0.0, 4.0, 12.0, 14.0, 12.0);
+    protected static final VoxelShape SHAPE = Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 14.0, 12.0);
 
-    public MagicFlowerBlock(BlockBehaviour.Properties properties) {
+    public MagicFlowerBlock(FabricBlockSettings properties) {
         super(properties);
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView level, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }
 }
@@ -17710,13 +17144,12 @@ public class MagicFlowerBlock extends BushBlock {
 **📁 Registration dans `ModBlocks.java` :**
 
 ```java
-public static final DeferredBlock<Block> MAGIC_FLOWER = BLOCKS.register("magic_flower",
-    () -> new MagicFlowerBlock(BlockBehaviour.Properties.of()
-        .noCollission()  // On peut passer au travers
+public static final Block MAGIC_FLOWER = registerBlock("magic_flower", new MagicFlowerBlock(FabricBlockSettings.create()
+        .noCollision()  // On peut passer au travers
         .instabreak()    // Se casse instantanément
-        .sound(SoundType.GRASS)
+        .sounds(BlockSoundGroup.GRASS)
         .offsetType(BlockBehaviour.OffsetType.XZ)  // Légère variation de position (naturel)
-        .pushReaction(PushReaction.DESTROY)  // Détruit par pistons
+        .pushReaction(PistonBehavior.DESTROY)  // Détruit par pistons
     )
 );
 ```
@@ -17729,24 +17162,24 @@ public static final DeferredBlock<Block> MAGIC_FLOWER = BLOCKS.register("magic_f
 - Pas de semi-transparence (CUTOUT ne la gère pas)
 ```
 
-**📁 Model JSON `assets/medeliummod/models/block/magic_flower.json` :**
+**📁 Model JSON `assets/medelium/models/block/magic_flower.json` :**
 
 ```json
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "medeliummod:block/magic_flower"
+    "cross": "medelium:block/magic_flower"
   }
 }
 ```
 
-**📁 Blockstate JSON `assets/medeliummod/blockstates/magic_flower.json` :**
+**📁 Blockstate JSON `assets/medelium/blockstates/magic_flower.json` :**
 
 ```json
 {
   "variants": {
     "": {
-      "model": "medeliummod:block/magic_flower"
+      "model": "medelium:block/magic_flower"
     }
   }
 }
@@ -17765,46 +17198,46 @@ Les **feuilles** utilisent `CUTOUT_MIPPED` pour améliorer les performances à d
 ```java
 package com.medelium.block;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.FluidState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.registry.*;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.net.minecraft.util.math.random.Random;
+import net.minecraft.world.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.*;
+import net.minecraft.world.*;
 
 public class MagicLeavesBlock extends LeavesBlock {
 
-    public MagicLeavesBlock(BlockBehaviour.Properties properties) {
+    public MagicLeavesBlock(FabricBlockSettings properties) {
         super(properties);
     }
 
     @Override
-    public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+    public boolean isFlammable(BlockState state, BlockView level, BlockPos pos, Direction direction) {
         return true;  // Peut brûler
     }
 
     @Override
-    public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+    public int getFlammability(BlockState state, BlockView level, BlockPos pos, Direction direction) {
         return 60;  // Vitesse de propagation du feu
     }
 
     @Override
-    public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+    public int getFireSpreadSpeed(BlockState state, BlockView level, BlockPos pos, Direction direction) {
         return 30;
     }
 
     // 🍃 Particules qui tombent des feuilles
     @Override
-    public void animateTick(BlockState state, net.minecraft.world.level.Level level, BlockPos pos, RandomSource random) {
+    public void animateTick(BlockState state, net.minecraft.world.World world, BlockPos pos, net.minecraft.util.math.random.Random random) {
         super.animateTick(state, level, pos, random);
         
         if (random.nextInt(10) == 0) {
             level.addParticle(
-                net.minecraft.core.particles.ParticleTypes.FALLING_SPORE_BLOSSOM,
+                net.minecraft.particle.ParticleTypes.FALLING_SPORE_BLOSSOM,
                 pos.getX() + random.nextDouble(),
                 pos.getY() - 0.1,
                 pos.getZ() + random.nextDouble(),
@@ -17818,15 +17251,14 @@ public class MagicLeavesBlock extends LeavesBlock {
 **📁 Registration :**
 
 ```java
-public static final DeferredBlock<Block> MAGIC_LEAVES = BLOCKS.register("magic_leaves",
-    () -> new MagicLeavesBlock(BlockBehaviour.Properties.of()
+public static final Block MAGIC_LEAVES = registerBlock("magic_leaves", new MagicLeavesBlock(FabricBlockSettings.create()
         .strength(0.2f)
         .randomTicks()  // Pour les feuilles qui se décomposent
-        .sound(SoundType.GRASS)
-        .noOcclusion()  // Important pour la transparence !
-        .isValidSpawn((state, level, pos, type) -> false)  // Pas de spawn de mobs
-        .isSuffocating((state, level, pos) -> false)
-        .isViewBlocking((state, level, pos) -> false)
+        .sounds(BlockSoundGroup.GRASS)
+        .nonOpaque()  // Important pour la transparence !
+        .allowsSpawning((state, level, pos, type) -> false)  // Pas de spawn de mobs
+        .suffocates((state, level, pos) -> false)
+        .blockVision((state, level, pos) -> false)
     )
 );
 ```
@@ -17842,7 +17274,7 @@ public static final DeferredBlock<Block> MAGIC_LEAVES = BLOCKS.register("magic_l
 **✅ RenderType dans ClientSetup :**
 
 ```java
-ItemBlockRenderTypes.setRenderLayer(ModBlocks.MAGIC_LEAVES.get(), RenderType.cutoutMipped());
+BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MAGIC_LEAVES, RenderLayer.getCutoutMipped());
 ```
 
 ---
@@ -17856,19 +17288,19 @@ Le **verre** utilise `TRANSLUCENT` pour permettre la semi-transparence et le ble
 ```java
 package com.medelium.block;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.registry.*;
+import net.minecraft.world.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.*;
+import net.minecraft.block.ShapeContext;
+import net.minecraft.util.math.shapes.Shapes;
+import net.minecraft.util.shape.VoxelShape;
 
 public class MagicGlassBlock extends Block {
 
-    public MagicGlassBlock(BlockBehaviour.Properties properties) {
+    public MagicGlassBlock(FabricBlockSettings properties) {
         super(properties);
     }
 
@@ -17881,19 +17313,19 @@ public class MagicGlassBlock extends Block {
 
     // ☀️ Laisse passer la lumière du soleil
     @Override
-    public boolean propagatesSkylightDown(BlockState state, BlockGetter level, BlockPos pos) {
+    public boolean propagatesSkylightDown(BlockState state, BlockView level, BlockPos pos) {
         return true;
     }
 
     // 👁️ Pas de suffocation
     @Override
-    public VoxelShape getVisualShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    public VoxelShape getVisualShape(BlockState state, BlockView level, BlockPos pos, ShapeContext context) {
         return Shapes.empty();
     }
 
     // 🔢 Niveau d'opacité de la lumière (0 = totalement transparent)
     @Override
-    public int getLightBlock(BlockState state, BlockGetter level, BlockPos pos) {
+    public int getLightBlock(BlockState state, BlockView level, BlockPos pos) {
         return 0;
     }
 }
@@ -17902,15 +17334,14 @@ public class MagicGlassBlock extends Block {
 **📁 Registration :**
 
 ```java
-public static final DeferredBlock<Block> MAGIC_GLASS = BLOCKS.register("magic_glass",
-    () -> new MagicGlassBlock(BlockBehaviour.Properties.of()
+public static final Block MAGIC_GLASS = registerBlock("magic_glass", new MagicGlassBlock(FabricBlockSettings.create()
         .strength(0.3f)
-        .sound(SoundType.GLASS)
-        .noOcclusion()  // CRITIQUE pour la transparence
-        .isValidSpawn((state, level, pos, type) -> false)
+        .sounds(BlockSoundGroup.GLASS)
+        .nonOpaque()  // CRITIQUE pour la transparence
+        .allowsSpawning((state, level, pos, type) -> false)
         .isRedstoneConductor((state, level, pos) -> false)
-        .isSuffocating((state, level, pos) -> false)
-        .isViewBlocking((state, level, pos) -> false)
+        .suffocates((state, level, pos) -> false)
+        .blockVision((state, level, pos) -> false)
     )
 );
 ```
@@ -17918,7 +17349,7 @@ public static final DeferredBlock<Block> MAGIC_GLASS = BLOCKS.register("magic_gl
 **📁 RenderType dans ClientSetup :**
 
 ```java
-ItemBlockRenderTypes.setRenderLayer(ModBlocks.MAGIC_GLASS.get(), RenderType.translucent());
+BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MAGIC_GLASS, RenderLayer.getTranslucent());
 ```
 
 **📁 Texture `magic_glass.png` :**
@@ -17935,7 +17366,7 @@ ItemBlockRenderTypes.setRenderLayer(ModBlocks.MAGIC_GLASS.get(), RenderType.tran
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "medeliummod:block/magic_glass"
+    "all": "medelium:block/magic_glass"
   }
 }
 ```
@@ -17951,13 +17382,12 @@ Pour créer une **porte transparente** :
 **📁 Registration :**
 
 ```java
-public static final DeferredBlock<DoorBlock> GLASS_DOOR = BLOCKS.register("glass_door",
-    () -> new DoorBlock(
+public static final DoorBlock GLASS_DOOR = registerBlock("glass_door", new DoorBlock(
         BlockSetType.IRON,  // Son d'ouverture métal
-        BlockBehaviour.Properties.of()
+        FabricBlockSettings.create()
             .strength(3.0f)
-            .sound(SoundType.GLASS)
-            .noOcclusion()  // Important !
+            .sounds(BlockSoundGroup.GLASS)
+            .nonOpaque()  // Important !
     )
 );
 ```
@@ -17965,13 +17395,13 @@ public static final DeferredBlock<DoorBlock> GLASS_DOOR = BLOCKS.register("glass
 **📁 RenderType :**
 
 ```java
-ItemBlockRenderTypes.setRenderLayer(ModBlocks.GLASS_DOOR.get(), RenderType.cutout());
+BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GLASS_DOOR, RenderLayer.getCutout());
 ```
 
 **📁 Textures requises :**
 
 ```
-assets/medeliummod/textures/block/
+assets/medelium/textures/block/
 ├── glass_door_bottom.png  (16x16, partie basse)
 └── glass_door_top.png     (16x16, partie haute)
 ```
@@ -17985,14 +17415,13 @@ assets/medeliummod/textures/block/
 **📁 Registration :**
 
 ```java
-public static final DeferredBlock<TrapDoorBlock> GLASS_TRAPDOOR = BLOCKS.register("glass_trapdoor",
-    () -> new TrapDoorBlock(
+public static final TrapDoorBlock GLASS_TRAPDOOR = registerBlock("glass_trapdoor", new TrapDoorBlock(
         BlockSetType.IRON,
-        BlockBehaviour.Properties.of()
+        FabricBlockSettings.create()
             .strength(3.0f)
-            .sound(SoundType.GLASS)
-            .noOcclusion()
-            .isValidSpawn((state, level, pos, type) -> false)
+            .sounds(BlockSoundGroup.GLASS)
+            .nonOpaque()
+            .allowsSpawning((state, level, pos, type) -> false)
     )
 );
 ```
@@ -18000,13 +17429,13 @@ public static final DeferredBlock<TrapDoorBlock> GLASS_TRAPDOOR = BLOCKS.registe
 **📁 RenderType :**
 
 ```java
-ItemBlockRenderTypes.setRenderLayer(ModBlocks.GLASS_TRAPDOOR.get(), RenderType.cutout());
+BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GLASS_TRAPDOOR, RenderLayer.getCutout());
 ```
 
 **📁 Texture :**
 
 ```
-assets/medeliummod/textures/block/glass_trapdoor.png (16x16)
+assets/medelium/textures/block/glass_trapdoor.png (16x16)
 ```
 
 ---
@@ -18020,9 +17449,9 @@ Pour créer un **verre coloré** avec effet de lumière :
 ```java
 package com.medelium.block;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockAndTintGetter;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.*;
+import net.minecraft.block.*;
 
 public class StainedMagicGlassBlock extends MagicGlassBlock {
     private final int color;
@@ -18042,22 +17471,20 @@ public class StainedMagicGlassBlock extends MagicGlassBlock {
 **📁 Registration :**
 
 ```java
-public static final DeferredBlock<Block> RED_STAINED_GLASS = BLOCKS.register("red_stained_glass",
-    () -> new StainedMagicGlassBlock(
-        BlockBehaviour.Properties.of()
+public static final Block RED_STAINED_GLASS = registerBlock("red_stained_glass", new StainedMagicGlassBlock(
+        FabricBlockSettings.create()
             .strength(0.3f)
-            .sound(SoundType.GLASS)
-            .noOcclusion(),
+            .sounds(BlockSoundGroup.GLASS)
+            .nonOpaque(),
         0xFF3333  // Rouge
     )
 );
 
-public static final DeferredBlock<Block> BLUE_STAINED_GLASS = BLOCKS.register("blue_stained_glass",
-    () -> new StainedMagicGlassBlock(
-        BlockBehaviour.Properties.of()
+public static final Block BLUE_STAINED_GLASS = registerBlock("blue_stained_glass", new StainedMagicGlassBlock(
+        FabricBlockSettings.create()
             .strength(0.3f)
-            .sound(SoundType.GLASS)
-            .noOcclusion(),
+            .sounds(BlockSoundGroup.GLASS)
+            .nonOpaque(),
         0x3333FF  // Bleu
     )
 );
@@ -18066,12 +17493,11 @@ public static final DeferredBlock<Block> BLUE_STAINED_GLASS = BLOCKS.register("b
 **📁 BlockColor registration (client) :**
 
 ```java
-@SubscribeEvent
 public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
-    event.register(
+    /* Fabric: voir le callback correspondant */ register(
         (state, level, pos, tintIndex) -> ((StainedMagicGlassBlock) state.getBlock()).getColor(state, level, pos, tintIndex),
-        ModBlocks.RED_STAINED_GLASS.get(),
-        ModBlocks.BLUE_STAINED_GLASS.get()
+        ModBlocks.RED_STAINED_GLASS,
+        ModBlocks.BLUE_STAINED_GLASS
     );
 }
 ```
@@ -18087,32 +17513,32 @@ Pour créer un **liquide transparent** (section avancée) :
 ```java
 package com.medelium.block;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.FlowingFluid;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.*;
+import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.*;
+import net.minecraft.world.*;
 
 import java.util.function.Supplier;
 
 public class MagicWaterBlock extends LiquidBlock {
 
-    public MagicWaterBlock(Supplier<? extends FlowingFluid> fluid, BlockBehaviour.Properties properties) {
+    public MagicWaterBlock(Supplier<? extends FlowingFluid> fluid, FabricBlockSettings properties) {
         super(fluid, properties);
     }
 
     @Override
-    public int getLightBlock(BlockState state, BlockGetter level, BlockPos pos) {
+    public int getLightBlock(BlockState state, BlockView level, BlockPos pos) {
         return 1;  // Légère atténuation de lumière
     }
 }
 ```
 
-**📁 RenderType pour FluidType (dans ClientSetup) :**
+**📁 RenderType pour /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */ (dans ClientSetup) :**
 
 ```java
-// Les fluides utilisent un système différent (FluidType)
+// Les fluides utilisent un système différent (/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */)
 // Voir Section 42 pour détails complets sur les fluides
 ```
 
@@ -18150,7 +17576,7 @@ public void tick() {
 **📁 Texture de particule avec alpha :**
 
 ```
-assets/medeliummod/textures/particle/magic_spark.png
+assets/medelium/textures/particle/magic_spark.png
 - Canal alpha pour dégradé radial
 - Centre opaque (alpha 255)
 - Bords transparents (alpha 0)
@@ -18166,13 +17592,13 @@ assets/medeliummod/textures/particle/magic_spark.png
 
 ```java
 // 1. Vérifier noOcclusion() dans Properties
-BlockBehaviour.Properties.of().noOcclusion()
+FabricBlockSettings.create().nonOpaque()
 
 // 2. Enregistrer le RenderType côté client
 ItemBlockRenderTypes.setRenderLayer(bloc, RenderType.cutout());
 
-// 3. Vérifier que la classe est @Dist.CLIENT
-@EventBusSubscriber(value = Dist.CLIENT)
+// 3. Vérifier que la classe est // Fabric: @Environment(EnvType.CLIENT)
+// Fabric: enregistrer les callbacks dans onInitialize()
 ```
 
 **❌ Problème : Faces internes du verre visibles**
@@ -18201,10 +17627,10 @@ C'est normal ! Les particules utilisent un système de collision différent.
 
 **❌ Problème : Crash "RenderType not set" sur serveur dédié**
 
-✅ **Solution :** Vérifier que ClientSetup est bien `@Dist.CLIENT` :
+✅ **Solution :** Vérifier que ClientSetup est bien `// Fabric: @Environment(EnvType.CLIENT)` :
 
 ```java
-@EventBusSubscriber(modid = "medeliummod", value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+// Fabric: enregistrer les callbacks dans onInitialize()
 ```
 
 **📝 Tableau récapitulatif :**
@@ -18216,21 +17642,20 @@ C'est normal ! Les particules utilisent un système de collision différent.
 | Feuilles | CUTOUT_MIPPED | ✅ | ❌ | Optimisation distance |
 | Verre | TRANSLUCENT | ✅ | ✅ | Semi-transparence |
 | Porte verre | CUTOUT | ✅ | ❌ | 2 textures (top/bottom) |
-| Eau | TRANSLUCENT | ✅ | ❌ | Système FluidType |
+| Eau | TRANSLUCENT | ✅ | ❌ | Système /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */ |
 
 **🔧 Template complet pour bloc transparent :**
 
 ```java
 // Dans ModBlocks.java
-public static final DeferredBlock<Block> MY_GLASS = BLOCKS.register("my_glass",
-    () -> new Block(BlockBehaviour.Properties.of()
+public static final Block MY_GLASS = registerBlock("my_glass", new Block(FabricBlockSettings.create()
         .strength(0.3f)
-        .sound(SoundType.GLASS)
-        .noOcclusion()  // Essentiel
-        .isValidSpawn((s, l, p, t) -> false)
+        .sounds(BlockSoundGroup.GLASS)
+        .nonOpaque()  // Essentiel
+        .allowsSpawning((s, l, p, t) -> false)
         .isRedstoneConductor((s, l, p) -> false)
-        .isSuffocating((s, l, p) -> false)
-        .isViewBlocking((s, l, p) -> false)
+        .suffocates((s, l, p) -> false)
+        .blockVision((s, l, p) -> false)
     ) {
         @Override
         public boolean skipRendering(BlockState state, BlockState adjacent, Direction dir) {
@@ -18238,14 +17663,14 @@ public static final DeferredBlock<Block> MY_GLASS = BLOCKS.register("my_glass",
         }
         
         @Override
-        public boolean propagatesSkylightDown(BlockState state, BlockGetter level, BlockPos pos) {
+        public boolean propagatesSkylightDown(BlockState state, BlockView level, BlockPos pos) {
             return true;
         }
     }
 );
 
 // Dans ClientSetup.java
-ItemBlockRenderTypes.setRenderLayer(ModBlocks.MY_GLASS.get(), RenderType.translucent());
+BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MY_GLASS, RenderLayer.getTranslucent());
 ```
 
 ---
@@ -18258,7 +17683,7 @@ Vous savez maintenant :
 2. ✅ Créer une **plante transparente** (CUTOUT)
 3. ✅ Créer des **feuilles optimisées** (CUTOUT_MIPPED)
 4. ✅ Créer du **verre translucide** (TRANSLUCENT)
-5. ✅ Enregistrer les RenderTypes dans **ClientSetup** (@Dist.CLIENT)
+5. ✅ Enregistrer les RenderTypes dans **ClientSetup** (// Fabric: @Environment(EnvType.CLIENT))
 6. ✅ Utiliser `noOcclusion()`, `skipRendering()`, `propagatesSkylightDown()`
 7. ✅ Créer des **portes/trappes en verre**
 8. ✅ Créer du **verre coloré** avec BlockColor
@@ -18275,7 +17700,7 @@ Vous savez maintenant :
 
 Les **Fluids** sont des liquides (comme l'eau ou la lave) qui s'écoulent, peuvent être mis dans des seaux, et interagissent avec le monde. Créer un fluide custom nécessite **4 composants principaux** :
 
-1. **FluidType** : Propriétés du fluide (densité, viscosité, température, textures)
+1. **/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */** : Propriétés du fluide (densité, viscosité, température, textures)
 2. **Fluid Source & Flowing** : États statique et en mouvement
 3. **Block** : Bloc du fluide dans le monde
 4. **BucketItem** : Item pour transporter le fluide
@@ -18296,12 +17721,12 @@ Les **Fluids** sont des liquides (comme l'eau ou la lave) qui s'écoulent, peuve
 ```
 com.medelium.fluid/
 ├── ModFluids.java          (Registration)
-├── ModFluidTypes.java      (FluidType registration)
+├── Mod/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */s.java      (/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */ registration)
 ├── ManaFluid.java          (Fluid source)
 ├── ManaFlowingFluid.java   (Fluid flowing - peut être inner class)
 └── ManaFluidBlock.java     (Block du fluide)
 
-assets/medeliummod/textures/fluid/
+assets/medelium/textures/fluid/
 ├── mana_still.png          (Texture statique 16x16)
 ├── mana_flowing.png        (Texture en mouvement 32x16)
 └── mana_overlay.png        (Overlay vision sous l'eau - optionnel)
@@ -18309,68 +17734,60 @@ assets/medeliummod/textures/fluid/
 
 ---
 
-### **42.1 FluidType Registration**
+### **42.1 /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */ Registration**
 
-Le **FluidType** définit les propriétés physiques du fluide (NeoForge 1.21+).
+Le **/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */** définit les propriétés physiques du fluide (Fabric 1.21+).
 
-**📁 `ModFluidTypes.java` :**
+**📁 `Mod/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */s.java` :**
 
 ```java
 package com.medelium.registry;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.level.material.FluidState;
-import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
-import net.neoforged.neoforge.common.SoundActions;
-import net.neoforged.neoforge.fluids.FluidType;
-import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.minecraft.registry.*;
+import net.minecraft.util.Identifier;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.world.*;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class ModFluidTypes {
-    public static final DeferredRegister<FluidType> FLUID_TYPES =
-        DeferredRegister.create(NeoForgeRegistries.Keys.FLUID_TYPES, MedeliumMod.MODID);
-
-    // 🔵 MANA FLUID TYPE
-    public static final Supplier<FluidType> MANA_FLUID_TYPE = FLUID_TYPES.register("mana_fluid",
-        () -> new FluidType(FluidType.Properties.create()
-            .descriptionId("fluid.medeliummod.mana")
+public class Mod/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */s {
+        // 🔵 MANA FLUID TYPE
+    public static final /* Fabric: SimpleFluidRenderHandler */ MANA_FLUID_TYPE = /* Fabric: FluidRenderHandlerRegistry.INSTANCE.register() */ register("mana_fluid",
+        () -> new /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */(/* Fabric: pas de /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */, utiliser FluidRenderHandlerRegistry */
+            .descriptionId("fluid.medelium.mana")
             .fallDistanceModifier(0F)  // Pas de dégâts de chute
             .canExtinguish(true)       // Peut éteindre le feu
             .supportsBoating(true)     // On peut naviguer dessus
-            .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
-            .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
-            .sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)
+            .sound(SoundEvents.ITEM_BUCKET_FILL /* Fabric: son direct */, SoundEvents.BUCKET_FILL)
+            .sound(SoundEvents.ITEM_BUCKET_FILL /* Fabric: son direct */, SoundEvents.BUCKET_EMPTY)
+            .sound(SoundEvents.ITEM_BUCKET_FILL /* Fabric: son direct */, SoundEvents.FIRE_EXTINGUISH)
             .lightLevel(15)            // Émet de la lumière (0-15)
             .density(1000)             // Densité (eau = 1000, lave = 3000)
             .viscosity(1000)           // Viscosité (eau = 1000, lave = 6000)
             .temperature(300)          // Température en Kelvin (eau = 300)
         ) {
             @Override
-            public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
-                consumer.accept(new IClientFluidTypeExtensions() {
-                    private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath(MedeliumMod.MODID, "fluid/mana_still");
-                    private static final ResourceLocation FLOWING = ResourceLocation.fromNamespaceAndPath(MedeliumMod.MODID, "fluid/mana_flowing");
-                    private static final ResourceLocation OVERLAY = ResourceLocation.fromNamespaceAndPath(MedeliumMod.MODID, "fluid/mana_overlay");
+            public void initializeClient(Consumer<IClient/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */Extensions> consumer) {
+                consumer.accept(new IClient/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */Extensions() {
+                    private static final Identifier STILL = new Identifier(Medelium.MOD_ID, "fluid/mana_still");
+                    private static final Identifier FLOWING = new Identifier(Medelium.MOD_ID, "fluid/mana_flowing");
+                    private static final Identifier OVERLAY = new Identifier(Medelium.MOD_ID, "fluid/mana_overlay");
 
                     @Override
-                    public ResourceLocation getStillTexture() {
+                    public Identifier getStillTexture() {
                         return STILL;
                     }
 
                     @Override
-                    public ResourceLocation getFlowingTexture() {
+                    public Identifier getFlowingTexture() {
                         return FLOWING;
                     }
 
                     @Override
-                    public ResourceLocation getOverlayTexture() {
+                    public Identifier getOverlayTexture() {
                         return OVERLAY;
                     }
 
@@ -18385,32 +17802,32 @@ public class ModFluidTypes {
     );
 
     // 🩸 BLOOD FLUID TYPE (exemple avec propriétés différentes)
-    public static final Supplier<FluidType> BLOOD_FLUID_TYPE = FLUID_TYPES.register("blood_fluid",
-        () -> new FluidType(FluidType.Properties.create()
-            .descriptionId("fluid.medeliummod.blood")
+    public static final /* Fabric: SimpleFluidRenderHandler */ BLOOD_FLUID_TYPE = /* Fabric: FluidRenderHandlerRegistry.INSTANCE.register() */ register("blood_fluid",
+        () -> new /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */(/* Fabric: pas de /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */, utiliser FluidRenderHandlerRegistry */
+            .descriptionId("fluid.medelium.blood")
             .fallDistanceModifier(0F)
             .canExtinguish(false)      // Ne peut PAS éteindre le feu
             .supportsBoating(true)
-            .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
-            .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
+            .sound(SoundEvents.ITEM_BUCKET_FILL /* Fabric: son direct */, SoundEvents.BUCKET_FILL)
+            .sound(SoundEvents.ITEM_BUCKET_FILL /* Fabric: son direct */, SoundEvents.BUCKET_EMPTY)
             .lightLevel(0)             // Pas de lumière
             .density(1200)             // Plus dense que l'eau
             .viscosity(1500)           // Plus visqueux (s'écoule plus lentement)
             .temperature(310)          // Température corporelle
         ) {
             @Override
-            public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
-                consumer.accept(new IClientFluidTypeExtensions() {
-                    private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath(MedeliumMod.MODID, "fluid/blood_still");
-                    private static final ResourceLocation FLOWING = ResourceLocation.fromNamespaceAndPath(MedeliumMod.MODID, "fluid/blood_flowing");
+            public void initializeClient(Consumer<IClient/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */Extensions> consumer) {
+                consumer.accept(new IClient/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */Extensions() {
+                    private static final Identifier STILL = new Identifier(Medelium.MOD_ID, "fluid/blood_still");
+                    private static final Identifier FLOWING = new Identifier(Medelium.MOD_ID, "fluid/blood_flowing");
 
                     @Override
-                    public ResourceLocation getStillTexture() {
+                    public Identifier getStillTexture() {
                         return STILL;
                     }
 
                     @Override
-                    public ResourceLocation getFlowingTexture() {
+                    public Identifier getFlowingTexture() {
                         return FLOWING;
                     }
 
@@ -18447,32 +17864,26 @@ Créez les états **statique** (source) et **en mouvement** (flowing).
 ```java
 package com.medelium.registry;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.level.material.FlowingFluid;
-import net.minecraft.world.level.material.Fluid;
-import net.neoforged.neoforge.fluids.BaseFlowingFluid;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import com.medelium.Medelium;
+import net.minecraft.registry.*;
+import net.minecraft.world.*;
 
 import java.util.function.Supplier;
 
 public class ModFluids {
-    public static final DeferredRegister<Fluid> FLUIDS =
-        DeferredRegister.create(BuiltInRegistries.FLUID, MedeliumMod.MODID);
-
-    // 🔵 MANA FLUID SOURCE (bloc statique infini)
-    public static final Supplier<FlowingFluid> MANA_SOURCE = FLUIDS.register("mana_source",
-        () -> new BaseFlowingFluid.Source(ModFluids.MANA_PROPERTIES)
+        // 🔵 MANA FLUID SOURCE (bloc statique infini)
+    public static final FlowingFluid MANA_SOURCE = Registry.register(Registries.FLUID, new Identifier(Medelium.MOD_ID,("mana_source",
+        () -> new net.minecraft.fluid.FlowableFluid /* Source state */(ModFluids.MANA_PROPERTIES)
     );
 
     // 🌊 MANA FLUID FLOWING (fluide qui s'écoule)
-    public static final Supplier<FlowingFluid> MANA_FLOWING = FLUIDS.register("mana_flowing",
-        () -> new BaseFlowingFluid.Flowing(ModFluids.MANA_PROPERTIES)
+    public static final FlowingFluid MANA_FLOWING = Registry.register(Registries.FLUID, new Identifier(Medelium.MOD_ID,("mana_flowing",
+        () -> new net.minecraft.fluid.FlowableFluid /* Flowing state */(ModFluids.MANA_PROPERTIES)
     );
 
     // ⚙️ PROPRIÉTÉS DU FLUIDE MANA
-    public static final BaseFlowingFluid.Properties MANA_PROPERTIES = new BaseFlowingFluid.Properties(
-        ModFluidTypes.MANA_FLUID_TYPE,   // FluidType
+    public static final /* Fabric: définir les propriétés dans la classe fluide */ MANA_PROPERTIES = new /* Fabric: définir les propriétés dans la classe fluide */(
+        Mod/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */s.MANA_FLUID_TYPE,   // /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */
         MANA_SOURCE,                      // Source fluid
         MANA_FLOWING                      // Flowing fluid
     )
@@ -18484,16 +17895,16 @@ public class ModFluids {
     .tickRate(10);                       // Vitesse d'écoulement (eau = 5, lave = 30)
 
     // 🩸 BLOOD FLUID (exemple fluide visqueux)
-    public static final Supplier<FlowingFluid> BLOOD_SOURCE = FLUIDS.register("blood_source",
-        () -> new BaseFlowingFluid.Source(ModFluids.BLOOD_PROPERTIES)
+    public static final FlowingFluid BLOOD_SOURCE = Registry.register(Registries.FLUID, new Identifier(Medelium.MOD_ID,("blood_source",
+        () -> new net.minecraft.fluid.FlowableFluid /* Source state */(ModFluids.BLOOD_PROPERTIES)
     );
 
-    public static final Supplier<FlowingFluid> BLOOD_FLOWING = FLUIDS.register("blood_flowing",
-        () -> new BaseFlowingFluid.Flowing(ModFluids.BLOOD_PROPERTIES)
+    public static final FlowingFluid BLOOD_FLOWING = Registry.register(Registries.FLUID, new Identifier(Medelium.MOD_ID,("blood_flowing",
+        () -> new net.minecraft.fluid.FlowableFluid /* Flowing state */(ModFluids.BLOOD_PROPERTIES)
     );
 
-    public static final BaseFlowingFluid.Properties BLOOD_PROPERTIES = new BaseFlowingFluid.Properties(
-        ModFluidTypes.BLOOD_FLUID_TYPE,
+    public static final /* Fabric: définir les propriétés dans la classe fluide */ BLOOD_PROPERTIES = new /* Fabric: définir les propriétés dans la classe fluide */(
+        Mod/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */s.BLOOD_FLUID_TYPE,
         BLOOD_SOURCE,
         BLOOD_FLOWING
     )
@@ -18523,34 +17934,34 @@ Créez le **bloc** qui représente le fluide dans le monde.
 package com.medelium.block;
 
 import com.medelium.registry.ModFluids;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.FlowingFluid;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.World;
+import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.*;
+import net.minecraft.world.*;
 
 import java.util.function.Supplier;
 
 public class ManaFluidBlock extends LiquidBlock {
 
-    public ManaFluidBlock(Supplier<? extends FlowingFluid> fluid, BlockBehaviour.Properties properties) {
+    public ManaFluidBlock(Supplier<? extends FlowingFluid> fluid, FabricBlockSettings properties) {
         super(fluid, properties);
     }
 
     // 🎮 Effet appliqué aux entités dans le fluide
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    public void entityInside(BlockState state, World world, BlockPos pos, Entity entity) {
         super.entityInside(state, level, pos, entity);
 
-        if (!level.isClientSide && entity instanceof LivingEntity living) {
+        if (!world.isClient && entity instanceof LivingEntity living) {
             // Régénération de mana (effet custom) ou régénération HP
-            living.addEffect(new MobEffectInstance(
-                MobEffects.REGENERATION,
+            living.addStatusEffect(new StatusEffectInstance(
+                StatusEffects.REGENERATION,
                 60,  // 3 secondes
                 0,   // Niveau 1
                 false,
@@ -18567,29 +17978,27 @@ public class ManaFluidBlock extends LiquidBlock {
 **📁 Registration dans `ModBlocks.java` :**
 
 ```java
-public static final DeferredBlock<LiquidBlock> MANA_FLUID_BLOCK = BLOCKS.register("mana_fluid_block",
-    () -> new ManaFluidBlock(
+public static final LiquidBlock MANA_FLUID_BLOCK = registerBlock("mana_fluid_block", new ManaFluidBlock(
         ModFluids.MANA_SOURCE,
-        BlockBehaviour.Properties.of()
+        FabricBlockSettings.create()
             .mapColor(MapColor.WATER)
             .replaceable()
-            .noCollission()
+            .noCollision()
             .strength(100.0f)
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PistonBehavior.DESTROY)
             .noLootTable()
             .liquid()
     )
 );
 
-public static final DeferredBlock<LiquidBlock> BLOOD_FLUID_BLOCK = BLOCKS.register("blood_fluid_block",
-    () -> new LiquidBlock(
-        ModFluids.BLOOD_SOURCE.get(),
-        BlockBehaviour.Properties.of()
+public static final LiquidBlock BLOOD_FLUID_BLOCK = registerBlock("blood_fluid_block", new LiquidBlock(
+        ModFluids.BLOOD_SOURCE,
+        FabricBlockSettings.create()
             .mapColor(MapColor.COLOR_RED)
             .replaceable()
-            .noCollission()
+            .noCollision()
             .strength(100.0f)
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PistonBehavior.DESTROY)
             .noLootTable()
             .liquid()
     )
@@ -18607,37 +18016,35 @@ Créez le **seau** pour transporter le fluide.
 **📁 Registration dans `ModItems.java` :**
 
 ```java
-public static final DeferredItem<BucketItem> MANA_BUCKET = ITEMS.register("mana_bucket",
-    () -> new BucketItem(
-        ModFluids.MANA_SOURCE.get(),
-        new Item.Properties()
+public static final BucketItem MANA_BUCKET = registerItem("mana_bucket", new BucketItem(
+        ModFluids.MANA_SOURCE,
+        new FabricItemSettings()
             .craftRemainder(Items.BUCKET)  // Rend un seau vide après utilisation
-            .stacksTo(1)                   // Non stackable (comme tous les seaux)
+            .maxCount(1)                   // Non stackable (comme tous les seaux)
     )
 );
 
-public static final DeferredItem<BucketItem> BLOOD_BUCKET = ITEMS.register("blood_bucket",
-    () -> new BucketItem(
-        ModFluids.BLOOD_SOURCE.get(),
-        new Item.Properties()
+public static final BucketItem BLOOD_BUCKET = registerItem("blood_bucket", new BucketItem(
+        ModFluids.BLOOD_SOURCE,
+        new FabricItemSettings()
             .craftRemainder(Items.BUCKET)
-            .stacksTo(1)
+            .maxCount(1)
     )
 );
 ```
 
-**📁 Model JSON `assets/medeliummod/models/item/mana_bucket.json` :**
+**📁 Model JSON `assets/medelium/models/item/mana_bucket.json` :**
 
 ```json
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "medeliummod:item/mana_bucket"
+    "layer0": "medelium:item/mana_bucket"
   }
 }
 ```
 
-**📁 Texture du seau :** Créez `assets/medeliummod/textures/item/mana_bucket.png` (16x16)
+**📁 Texture du seau :** Créez `assets/medelium/textures/item/mana_bucket.png` (16x16)
 
 ---
 
@@ -18648,7 +18055,7 @@ Les fluides nécessitent **3 textures** :
 **📁 Structure :**
 
 ```
-assets/medeliummod/textures/fluid/
+assets/medelium/textures/fluid/
 ├── mana_still.png      (16x16 - texture statique animée)
 ├── mana_flowing.png    (32x16 - texture en mouvement animée)
 └── mana_overlay.png    (16x16 - overlay vision sous l'eau - optionnel)
@@ -18668,7 +18075,7 @@ assets/medeliummod/textures/fluid/
 
 **📝 Animation avec `.mcmeta` :**
 
-**`assets/medeliummod/textures/fluid/mana_still.png.mcmeta` :**
+**`assets/medelium/textures/fluid/mana_still.png.mcmeta` :**
 
 ```json
 {
@@ -18679,7 +18086,7 @@ assets/medeliummod/textures/fluid/
 }
 ```
 
-**`assets/medeliummod/textures/fluid/mana_flowing.png.mcmeta` :**
+**`assets/medelium/textures/fluid/mana_flowing.png.mcmeta` :**
 
 ```json
 {
@@ -18707,15 +18114,14 @@ Les fluides utilisent automatiquement `RenderType.TRANSLUCENT`, mais vous pouvez
 **📁 Dans `ClientSetup.java` :**
 
 ```java
-@SubscribeEvent
-public static void onClientSetup(FMLClientSetupEvent event) {
-    event.enqueueWork(() -> {
+// Fabric: dans MedeliumClient.onInitializeClient()
+public static void registerRenderLayers() {
         // Les fluides utilisent automatiquement TRANSLUCENT
         // Pas besoin de setRenderLayer pour les fluides
 
         // Mais si vous avez un bloc de fluide spécial :
-        ItemBlockRenderTypes.setRenderLayer(ModFluids.MANA_SOURCE.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(ModFluids.MANA_FLOWING.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.MANA_SOURCE, RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.MANA_FLOWING, RenderType.translucent());
     });
 }
 ```
@@ -18732,39 +18138,39 @@ Un fluide qui inflige des dégâts :
 package com.medelium.block;
 
 import com.medelium.registry.ModFluids;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.FlowingFluid;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.World;
+import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.*;
+import net.minecraft.world.*;
 
 import java.util.function.Supplier;
 
 public class AcidFluidBlock extends LiquidBlock {
 
-    public AcidFluidBlock(Supplier<? extends FlowingFluid> fluid, BlockBehaviour.Properties properties) {
+    public AcidFluidBlock(Supplier<? extends FlowingFluid> fluid, FabricBlockSettings properties) {
         super(fluid, properties);
     }
 
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    public void entityInside(BlockState state, World world, BlockPos pos, Entity entity) {
         super.entityInside(state, level, pos, entity);
 
-        if (!level.isClientSide && entity instanceof LivingEntity) {
+        if (!world.isClient && entity instanceof LivingEntity) {
             // Dégâts toutes les 20 ticks (1 seconde)
             if (level.getGameTime() % 20 == 0) {
-                entity.hurt(level.damageSources().magic(), 2.0f);
+                entity.damage(level.getDamageSources().magic(), 2.0f);
             }
 
             // Effet de poison
             if (entity instanceof LivingEntity living) {
-                living.addEffect(new net.minecraft.world.effect.MobEffectInstance(
-                    net.minecraft.world.effect.MobEffects.POISON,
+                living.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(
+                    net.minecraft.entity.effect.StatusEffects.POISON,
                     100,
                     0
                 ));
@@ -18774,12 +18180,12 @@ public class AcidFluidBlock extends LiquidBlock {
 }
 ```
 
-**📁 FluidType avec température élevée :**
+**📁 /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */ avec température élevée :**
 
 ```java
-public static final Supplier<FluidType> ACID_FLUID_TYPE = FLUID_TYPES.register("acid_fluid",
-    () -> new FluidType(FluidType.Properties.create()
-        .descriptionId("fluid.medeliummod.acid")
+public static final /* Fabric: SimpleFluidRenderHandler */ ACID_FLUID_TYPE = /* Fabric: FluidRenderHandlerRegistry.INSTANCE.register() */ register("acid_fluid",
+    () -> new /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */(/* Fabric: pas de /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */, utiliser FluidRenderHandlerRegistry */
+        .descriptionId("fluid.medelium.acid")
         .canExtinguish(false)
         .supportsBoating(false)  // Bateau fond dans l'acide !
         .lightLevel(3)
@@ -18788,16 +18194,16 @@ public static final Supplier<FluidType> ACID_FLUID_TYPE = FLUID_TYPES.register("
         .temperature(350) // Température élevée (brûlant)
     ) {
         @Override
-        public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
-            consumer.accept(new IClientFluidTypeExtensions() {
+        public void initializeClient(Consumer<IClient/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */Extensions> consumer) {
+            consumer.accept(new IClient/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */Extensions() {
                 @Override
-                public ResourceLocation getStillTexture() {
-                    return ResourceLocation.fromNamespaceAndPath(MedeliumMod.MODID, "fluid/acid_still");
+                public Identifier getStillTexture() {
+                    return new Identifier(Medelium.MOD_ID, "fluid/acid_still");
                 }
 
                 @Override
-                public ResourceLocation getFlowingTexture() {
-                    return ResourceLocation.fromNamespaceAndPath(MedeliumMod.MODID, "fluid/acid_flowing");
+                public Identifier getFlowingTexture() {
+                    return new Identifier(Medelium.MOD_ID, "fluid/acid_flowing");
                 }
 
                 @Override
@@ -18819,14 +18225,14 @@ public static final Supplier<FluidType> ACID_FLUID_TYPE = FLUID_TYPES.register("
 ```java
 public class ManaFluidBlock extends LiquidBlock {
     @Override
-    public void neighborChanged(BlockState state, Level level, BlockPos pos,
+    public void neighborChanged(BlockState state, World world, BlockPos pos,
                                 Block neighborBlock, BlockPos neighborPos, boolean isMoving) {
         super.neighborChanged(state, level, pos, neighborBlock, neighborPos, isMoving);
 
         // Si touche de la lave, créer de l'obsidienne magique
         BlockState neighborState = level.getBlockState(neighborPos);
         if (neighborState.getBlock() == Blocks.LAVA) {
-            level.setBlock(neighborPos, ModBlocks.MAGIC_OBSIDIAN.get().defaultBlockState(), 3);
+            level.setBlockState(neighborPos, ModBlocks.MAGIC_OBSIDIAN.getDefaultState(), 3);
             level.levelEvent(1501, neighborPos, 0);  // Effet sonore/visuel
         }
     }
@@ -18837,12 +18243,12 @@ public class ManaFluidBlock extends LiquidBlock {
 
 ```java
 @Override
-public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+public void randomTick(BlockState state, ServerWorld level, BlockPos pos, net.minecraft.util.math.random.Random random) {
     super.randomTick(state, level, pos, random);
 
     // Si température froide (biome neigeux), geler
     if (level.getBiome(pos).value().coldEnoughToSnow(pos)) {
-        level.setBlockAndUpdate(pos, ModBlocks.FROZEN_MANA_BLOCK.get().defaultBlockState());
+        level.setBlockState(pos, ModBlocks.FROZEN_MANA_BLOCK.getDefaultState());
     }
 }
 ```
@@ -18855,11 +18261,11 @@ public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random
 
 ```java
 // Dans RecipeProvider
-ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.MANA_BUCKET.get())
+ShapelessRecipeBuilder.create(RecipeCategory.MISC, ModItems.MANA_BUCKET)
     .requires(Items.BUCKET)
-    .requires(ModItems.MANA_CRYSTAL.get(), 4)
-    .unlockedBy("has_mana_crystal", has(ModItems.MANA_CRYSTAL.get()))
-    .save(recipeOutput);
+    .requires(ModItems.MANA_CRYSTAL, 4)
+    .criterion("has_mana_crystal", has(ModItems.MANA_CRYSTAL))
+    .offerTo(exporter);
 ```
 
 **Ou via Cauldron custom :**
@@ -18867,17 +18273,17 @@ ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.MANA_BUCKET.get()
 ```java
 public class ManaCauldronBlock extends LayeredCauldronBlock {
     @Override
-    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level,
-                                           BlockPos pos, Player player, InteractionHand hand,
+    public ItemActionResult useItemOn(ItemStack stack, BlockState state, World world,
+                                           BlockPos pos, PlayerEntity player, Hand hand,
                                            BlockHitResult hitResult) {
         // Si seau vide, remplir avec mana
         if (stack.is(Items.BUCKET) && state.getValue(LEVEL) == 3) {
-            if (!level.isClientSide) {
-                player.setItemInHand(hand, new ItemStack(ModItems.MANA_BUCKET.get()));
-                setWaterLevel(level, pos, state, state.getValue(LEVEL) - 3);
-                level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0f, 1.0f);
+            if (!world.isClient) {
+                player.setItemInHand(hand, new ItemStack(ModItems.MANA_BUCKET));
+                setWaterLevel(world, pos, state, state.getValue(LEVEL) - 3);
+                level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
             }
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+            return ItemActionResult.sidedSuccess(world.isClient);
         }
         return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
     }
@@ -18894,25 +18300,25 @@ public class ManaCauldronBlock extends LayeredCauldronBlock {
 
 ```java
 // 1. Vérifier que les textures existent
-assets/medeliummod/textures/fluid/
+assets/medelium/textures/fluid/
 ├── mana_still.png
 ├── mana_flowing.png
 └── mana_overlay.png (optionnel)
 
-// 2. Vérifier initializeClient dans FluidType
+// 2. Vérifier initializeClient dans /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */
 @Override
-public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
-    consumer.accept(new IClientFluidTypeExtensions() {
+public void initializeClient(Consumer<IClient/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */Extensions> consumer) {
+    consumer.accept(new IClient/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */Extensions() {
         @Override
-        public ResourceLocation getStillTexture() {
-            return ResourceLocation.fromNamespaceAndPath("medeliummod", "fluid/mana_still");
+        public Identifier getStillTexture() {
+            return new Identifier("medelium", "fluid/mana_still");
         }
         // ...
     });
 }
 
-// 3. Vérifier que FluidType est enregistré
-ModFluidTypes.FLUID_TYPES.register(modEventBus);
+// 3. Vérifier que /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */ est enregistré
+Mod/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */s./* Fabric: FluidRenderHandlerRegistry.INSTANCE.register() */ register(modEventBus);
 ```
 
 **❌ Problème : Fluide ne s'écoule pas**
@@ -18927,7 +18333,7 @@ ModFluidTypes.FLUID_TYPES.register(modEventBus);
 .slopeFindDistance(4)  // Distance d'écoulement
 
 // 3. Vérifier que c'est bien Source, pas Flowing
-ModFluids.MANA_SOURCE.get()  // Utiliser SOURCE pour placer
+ModFluids.MANA_SOURCE  // Utiliser SOURCE pour placer
 ```
 
 **❌ Problème : Seau ne peut pas ramasser le fluide**
@@ -18939,10 +18345,10 @@ ModFluids.MANA_SOURCE.get()  // Utiliser SOURCE pour placer
 .bucket(ModItems.MANA_BUCKET)
 
 // 2. Vérifier que le fluide source est bien infini
-new BaseFlowingFluid.Source(properties)  // Pas Flowing !
+new net.minecraft.fluid.FlowableFluid /* Source state */(properties)  // Pas Flowing !
 
 // 3. Vérifier l'item bucket
-new BucketItem(ModFluids.MANA_SOURCE.get(), ...)
+new BucketItem(ModFluids.MANA_SOURCE, ...)
 ```
 
 **❌ Problème : Crash "Circular dependency"**
@@ -18955,8 +18361,8 @@ public static final FlowingFluid MANA = ...;
 public static final Block MANA_BLOCK = new LiquidBlock(MANA, ...);
 
 // ✅ BON
-public static final Supplier<FlowingFluid> MANA = FLUIDS.register(...);
-public static final DeferredBlock<LiquidBlock> MANA_BLOCK = BLOCKS.register(
+public static final FlowingFluid MANA = Registry.register(Registries.FLUID, new Identifier(Medelium.MOD_ID,(...);
+public static final LiquidBlock MANA_BLOCK = BLOCKS.register(
     "mana_block",
     () -> new LiquidBlock(MANA, ...)  // Supplier résout la dépendance
 );
@@ -18968,7 +18374,7 @@ public static final DeferredBlock<LiquidBlock> MANA_BLOCK = BLOCKS.register(
 
 ```java
 @Override
-public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+public void animateTick(BlockState state, World world, BlockPos pos, net.minecraft.util.math.random.Random random) {
     if (random.nextInt(10) == 0) {
         level.addParticle(
             ParticleTypes.GLOW,
@@ -18983,23 +18389,23 @@ public void animateTick(BlockState state, Level level, BlockPos pos, RandomSourc
 
 **📝 Checklist complète pour un fluide :**
 
-✅ FluidType enregistré dans `ModFluidTypes`  
+✅ /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */ enregistré dans `Mod/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */s`  
 ✅ Source et Flowing enregistrés dans `ModFluids`  
 ✅ Propriétés `.block()` et `.bucket()` définies  
 ✅ LiquidBlock créé et enregistré  
 ✅ BucketItem créé et enregistré  
 ✅ Textures still/flowing créées (16x16 et 32x16)  
 ✅ Fichiers `.mcmeta` pour animation  
-✅ FluidType.initializeClient() implémenté  
+✅ /* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */.initializeClient() implémenté  
 ✅ Utilisation de `Supplier` pour éviter circular dependency  
-✅ Test en jeu avec `/setblock ~ ~ ~ medeliummod:mana_fluid_block`  
+✅ Test en jeu avec `/setblock ~ ~ ~ medelium:mana_fluid_block`  
 
 **🎮 Commandes de test :**
 
 ```
-/setblock ~ ~1 ~ medeliummod:mana_fluid_block
-/give @p medeliummod:mana_bucket
-/fill ~-5 ~-1 ~-5 ~5 ~-1 ~5 medeliummod:mana_fluid_block
+/setblock ~ ~1 ~ medelium:mana_fluid_block
+/give @p medelium:mana_bucket
+/fill ~-5 ~-1 ~-5 ~5 ~-1 ~5 medelium:mana_fluid_block
 ```
 
 ---
@@ -19008,7 +18414,7 @@ public void animateTick(BlockState state, Level level, BlockPos pos, RandomSourc
 
 Vous savez maintenant :
 
-1. ✅ Créer un **FluidType** avec propriétés (densité, viscosité, température, lumière)
+1. ✅ Créer un **/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */** avec propriétés (densité, viscosité, température, lumière)
 2. ✅ Enregistrer les états **Source** et **Flowing**
 3. ✅ Créer un **LiquidBlock** avec effets au contact (régénération, dégâts, poison)
 4. ✅ Créer un **BucketItem** pour transporter le fluide
@@ -19034,9 +18440,9 @@ Le guide contient maintenant **42 sections exhaustives** couvrant :
 ✅ **Section 39** : Villageois & Professions (POI, professions custom, trades par niveau, textures, workstations)
 ✅ **Section 40** : Data Generators (automatiser JSON, RecipeProvider, BlockStateProvider, ItemModelProvider, LootTableProvider, TagsProvider, LanguageProvider)
 ✅ **Section 41** : Render Types (CUTOUT pour plantes, TRANSLUCENT pour verre, skipRendering, noOcclusion, transparence partielle)
-✅ **Section 42** : Fluids Custom (FluidType, Source/Flowing, LiquidBlock, BucketItem, textures animées, interactions spéciales)
+✅ **Section 42** : Fluids Custom (/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */, Source/Flowing, LiquidBlock, BucketItem, textures animées, interactions spéciales)
 
-**Le guide couvre LITTÉRALEMENT TOUT ce qu'il est possible de faire dans un mod Minecraft NeoForge 1.21.1 !** 🏰⚔️✨
+**Le guide couvre LITTÉRALEMENT TOUT ce qu'il est possible de faire dans un mod Minecraft Fabric 1.20.1 !** 🏰⚔️✨
 
 Plus de **18 000 lignes** de documentation professionnelle, complète, en français, avec des exemples de code compilables !
 
@@ -19048,7 +18454,7 @@ Plus de **18 000 lignes** de documentation professionnelle, complète, en franç
 
 ### 📖 **Qu'est-ce que c'est ?**
 
-Les **Music Discs** sont des disques de musique que les joueurs peuvent écouter dans les **Jukeboxes**. En **NeoForge 1.21+**, le système a été complètement refait avec le nouveau registry `JukeboxSong`. Vous pouvez créer vos propres disques avec votre musique custom !
+Les **Music Discs** sont des disques de musique que les joueurs peuvent écouter dans les **Jukeboxes**. En **Fabric 1.21+**, le système a été complètement refait avec le nouveau registry `/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */`. Vous pouvez créer vos propres disques avec votre musique custom !
 
 ### 🎯 **Pourquoi créer des disques custom ?**
 
@@ -19060,13 +18466,13 @@ Les **Music Discs** sont des disques de musique que les joueurs peuvent écouter
 ### 🔧 **Ce dont vous avez besoin**
 
 1. **Fichier audio .ogg** (format Vorbis OGG obligatoire)
-2. **JukeboxSong** enregistré dans le registry
-3. **Item disque** avec référence au JukeboxSong
+2. **/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */** enregistré dans le registry
+3. **Item disque** avec référence au /* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */
 4. **Texture** du disque (16x16)
 
 ### 💡 **Nouveau système 1.21+**
 
-⚠️ **CHANGEMENT MAJEUR** : En 1.21, Minecraft a introduit le **JukeboxSong registry** au lieu de l'ancien système. Les disques ne sont plus de simples items, mais des **data-driven components**.
+⚠️ **CHANGEMENT MAJEUR** : En 1.21, Minecraft a introduit le **/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ registry** au lieu de l'ancien système. Les disques ne sont plus de simples items, mais des **data-driven components**.
 
 ---
 
@@ -19098,7 +18504,7 @@ ffmpeg -i your_music.mp3 -c:a libvorbis -q:a 5 tavern_music.ogg
 **📁 Emplacement du fichier :**
 
 ```
-src/main/resources/assets/medeliummod/sounds/music/
+src/main/resources/assets/medelium/sounds/music/
 ├── tavern_music.ogg
 ├── battle_theme.ogg
 ├── boss_dragon.ogg
@@ -19114,55 +18520,55 @@ Les fichiers .ogg peuvent être volumineux (3-10 MB). Si votre mod devient lourd
 
 ---
 
-### **43.2 JukeboxSong Registry (NeoForge 1.21+)**
+### **43.2 /* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ Registry (Fabric 1.21+)**
 
-Le **JukeboxSong** est un nouveau registry data-driven.
+Le **/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */** est un nouveau registry data-driven.
 
-**📁 `ModJukeboxSongs.java` :**
+**📁 `Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */s.java` :**
 
 ```java
 package com.medelium.registry;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
+import com.medelium.Medelium;
+import net.minecraft.registry.Registries;
+import net.minecraft.text.Text;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Identifier;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.item.JukeboxSong;
+import net.minecraft.item./* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */;
 
-public class ModJukeboxSongs {
+public class Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */s {
     
     // 🎵 TAVERN MUSIC
-    public static final ResourceKey<JukeboxSong> TAVERN_MUSIC = create("tavern_music");
+    public static final ResourceKey</* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */> TAVERN_MUSIC = create("tavern_music");
     
     // ⚔️ BATTLE THEME
-    public static final ResourceKey<JukeboxSong> BATTLE_THEME = create("battle_theme");
+    public static final ResourceKey</* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */> BATTLE_THEME = create("battle_theme");
     
     // 🐉 BOSS DRAGON THEME
-    public static final ResourceKey<JukeboxSong> BOSS_DRAGON = create("boss_dragon");
+    public static final ResourceKey</* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */> BOSS_DRAGON = create("boss_dragon");
     
     // 🏰 MEDIEVAL CALM
-    public static final ResourceKey<JukeboxSong> MEDIEVAL_CALM = create("medieval_calm");
+    public static final ResourceKey</* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */> MEDIEVAL_CALM = create("medieval_calm");
 
-    private static ResourceKey<JukeboxSong> create(String name) {
+    private static ResourceKey</* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */> create(String name) {
         return ResourceKey.create(
             Registries.JUKEBOX_SONG,
-            ResourceLocation.fromNamespaceAndPath(MedeliumMod.MODID, name)
+            new Identifier(Medelium.MOD_ID, name)
         );
     }
 }
 ```
 
-**📁 Fichier JSON de définition - `data/medeliummod/jukebox_song/tavern_music.json` :**
+**📁 Fichier JSON de définition - `data/medelium/jukebox_song/tavern_music.json` :**
 
 ```json
 {
   "sound_event": {
-    "sound_id": "medeliummod:music.tavern_music"
+    "sound_id": "medelium:music.tavern_music"
   },
   "description": {
-    "translate": "jukebox_song.medeliummod.tavern_music.desc"
+    "translate": "jukebox_song.medelium.tavern_music.desc"
   },
   "length_in_seconds": 180,
   "comparator_output": 1
@@ -19178,30 +18584,30 @@ public class ModJukeboxSongs {
 
 **📁 Créer les autres JSON :**
 
-**`data/medeliummod/jukebox_song/battle_theme.json` :**
+**`data/medelium/jukebox_song/battle_theme.json` :**
 
 ```json
 {
   "sound_event": {
-    "sound_id": "medeliummod:music.battle_theme"
+    "sound_id": "medelium:music.battle_theme"
   },
   "description": {
-    "translate": "jukebox_song.medeliummod.battle_theme.desc"
+    "translate": "jukebox_song.medelium.battle_theme.desc"
   },
   "length_in_seconds": 240,
   "comparator_output": 2
 }
 ```
 
-**`data/medeliummod/jukebox_song/boss_dragon.json` :**
+**`data/medelium/jukebox_song/boss_dragon.json` :**
 
 ```json
 {
   "sound_event": {
-    "sound_id": "medeliummod:music.boss_dragon"
+    "sound_id": "medelium:music.boss_dragon"
   },
   "description": {
-    "translate": "jukebox_song.medeliummod.boss_dragon.desc"
+    "translate": "jukebox_song.medelium.boss_dragon.desc"
   },
   "length_in_seconds": 300,
   "comparator_output": 3
@@ -19219,19 +18625,16 @@ Vous devez créer un **SoundEvent** pour chaque musique.
 ```java
 package com.medelium.registry;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import com.medelium.Medelium;
+import net.minecraft.registry.*;
+import net.minecraft.util.Identifier;
 import net.minecraft.sounds.SoundEvent;
-import net.neoforged.neoforge.registries.DeferredRegister;
+// Fabric: utiliser Registry.register directement
 
 import java.util.function.Supplier;
 
 public class ModSounds {
-    public static final DeferredRegister<SoundEvent> SOUNDS =
-        DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, MedeliumMod.MODID);
-
-    // 🎵 MUSIC DISCS
+        // 🎵 MUSIC DISCS
     public static final Supplier<SoundEvent> TAVERN_MUSIC = registerSound("music.tavern_music");
     public static final Supplier<SoundEvent> BATTLE_THEME = registerSound("music.battle_theme");
     public static final Supplier<SoundEvent> BOSS_DRAGON = registerSound("music.boss_dragon");
@@ -19239,56 +18642,56 @@ public class ModSounds {
 
     // 🔔 Helper
     private static Supplier<SoundEvent> registerSound(String name) {
-        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(MedeliumMod.MODID, name);
+        Identifier id = new Identifier(Medelium.MOD_ID, name);
         return SOUNDS.register(name, () -> SoundEvent.createVariableRangeEvent(id));
     }
 
     // Enregistrer dans le mod bus
-    public static void register(net.neoforged.bus.api.IEventBus modEventBus) {
+    public static void register(// Fabric: pas besoin de event bus modEventBus) {
         SOUNDS.register(modEventBus);
     }
 }
 ```
 
-**📁 `sounds.json` - `assets/medeliummod/sounds.json` :**
+**📁 `sounds.json` - `assets/medelium/sounds.json` :**
 
 ```json
 {
   "music.tavern_music": {
     "sounds": [
       {
-        "name": "medeliummod:music/tavern_music",
+        "name": "medelium:music/tavern_music",
         "stream": true
       }
     ],
-    "subtitle": "subtitles.medeliummod.music.tavern_music"
+    "subtitle": "subtitles.medelium.music.tavern_music"
   },
   "music.battle_theme": {
     "sounds": [
       {
-        "name": "medeliummod:music/battle_theme",
+        "name": "medelium:music/battle_theme",
         "stream": true
       }
     ],
-    "subtitle": "subtitles.medeliummod.music.battle_theme"
+    "subtitle": "subtitles.medelium.music.battle_theme"
   },
   "music.boss_dragon": {
     "sounds": [
       {
-        "name": "medeliummod:music/boss_dragon",
+        "name": "medelium:music/boss_dragon",
         "stream": true
       }
     ],
-    "subtitle": "subtitles.medeliummod.music.boss_dragon"
+    "subtitle": "subtitles.medelium.music.boss_dragon"
   },
   "music.medieval_calm": {
     "sounds": [
       {
-        "name": "medeliummod:music/medieval_calm",
+        "name": "medelium:music/medieval_calm",
         "stream": true
       }
     ],
-    "subtitle": "subtitles.medeliummod.music.medieval_calm"
+    "subtitle": "subtitles.medelium.music.medieval_calm"
   }
 }
 ```
@@ -19299,40 +18702,36 @@ public class ModSounds {
 
 ### **43.4 Music Disc Item**
 
-Créez l'item disque qui utilise le JukeboxSong.
+Créez l'item disque qui utilise le /* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */.
 
 **📁 Dans `ModItems.java` :**
 
 ```java
-public static final DeferredItem<Item> TAVERN_MUSIC_DISC = ITEMS.register("tavern_music_disc",
-    () -> new Item(new Item.Properties()
-        .stacksTo(1)
+public static final Item TAVERN_MUSIC_DISC = registerItem("tavern_music_disc", new Item(new FabricItemSettings()
+        .maxCount(1)
         .rarity(Rarity.RARE)
-        .jukeboxPlayable(ModJukeboxSongs.TAVERN_MUSIC)  // ⭐ NOUVEAU EN 1.21
+        .jukeboxPlayable(Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */s.TAVERN_MUSIC)  // ⭐ NOUVEAU EN 1.21
     )
 );
 
-public static final DeferredItem<Item> BATTLE_THEME_DISC = ITEMS.register("battle_theme_disc",
-    () -> new Item(new Item.Properties()
-        .stacksTo(1)
+public static final Item BATTLE_THEME_DISC = registerItem("battle_theme_disc", new Item(new FabricItemSettings()
+        .maxCount(1)
         .rarity(Rarity.RARE)
-        .jukeboxPlayable(ModJukeboxSongs.BATTLE_THEME)
+        .jukeboxPlayable(Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */s.BATTLE_THEME)
     )
 );
 
-public static final DeferredItem<Item> BOSS_DRAGON_DISC = ITEMS.register("boss_dragon_disc",
-    () -> new Item(new Item.Properties()
-        .stacksTo(1)
+public static final Item BOSS_DRAGON_DISC = registerItem("boss_dragon_disc", new Item(new FabricItemSettings()
+        .maxCount(1)
         .rarity(Rarity.EPIC)  // Epic rarity pour boss theme
-        .jukeboxPlayable(ModJukeboxSongs.BOSS_DRAGON)
+        .jukeboxPlayable(Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */s.BOSS_DRAGON)
     )
 );
 
-public static final DeferredItem<Item> MEDIEVAL_CALM_DISC = ITEMS.register("medieval_calm_disc",
-    () -> new Item(new Item.Properties()
-        .stacksTo(1)
+public static final Item MEDIEVAL_CALM_DISC = registerItem("medieval_calm_disc", new Item(new FabricItemSettings()
+        .maxCount(1)
         .rarity(Rarity.UNCOMMON)
-        .jukeboxPlayable(ModJukeboxSongs.MEDIEVAL_CALM)
+        .jukeboxPlayable(Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */s.MEDIEVAL_CALM)
     )
 );
 ```
@@ -19343,20 +18742,20 @@ public static final DeferredItem<Item> MEDIEVAL_CALM_DISC = ITEMS.register("medi
 
 ### **43.5 Textures & Models**
 
-**📁 Texture du disque - `assets/medeliummod/textures/item/tavern_music_disc.png` :**
+**📁 Texture du disque - `assets/medelium/textures/item/tavern_music_disc.png` :**
 
 - Taille : **16x16 pixels**
 - Base : Copier `minecraft:textures/item/music_disc_13.png`
 - Modifier la couleur du centre (partie colorée du disque)
 - Garder le bord noir/gris
 
-**📁 Model JSON - `assets/medeliummod/models/item/tavern_music_disc.json` :**
+**📁 Model JSON - `assets/medelium/models/item/tavern_music_disc.json` :**
 
 ```json
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "medeliummod:item/tavern_music_disc"
+    "layer0": "medelium:item/tavern_music_disc"
   }
 }
 ```
@@ -19372,45 +18771,45 @@ public static final DeferredItem<Item> MEDIEVAL_CALM_DISC = ITEMS.register("medi
 
 ### **43.6 Traductions**
 
-**📁 `assets/medeliummod/lang/en_us.json` :**
+**📁 `assets/medelium/lang/en_us.json` :**
 
 ```json
 {
-  "item.medeliummod.tavern_music_disc": "Music Disc",
-  "item.medeliummod.battle_theme_disc": "Music Disc",
-  "item.medeliummod.boss_dragon_disc": "Music Disc",
-  "item.medeliummod.medieval_calm_disc": "Music Disc",
+  "item.medelium.tavern_music_disc": "Music Disc",
+  "item.medelium.battle_theme_disc": "Music Disc",
+  "item.medelium.boss_dragon_disc": "Music Disc",
+  "item.medelium.medieval_calm_disc": "Music Disc",
 
-  "jukebox_song.medeliummod.tavern_music.desc": "Medelium - Tavern Tales",
-  "jukebox_song.medeliummod.battle_theme.desc": "Medelium - Battle Cry",
-  "jukebox_song.medeliummod.boss_dragon.desc": "Medelium - Dragon's Wrath",
-  "jukebox_song.medeliummod.medieval_calm.desc": "Medelium - Peaceful Kingdom",
+  "jukebox_song.medelium.tavern_music.desc": "Medelium - Tavern Tales",
+  "jukebox_song.medelium.battle_theme.desc": "Medelium - Battle Cry",
+  "jukebox_song.medelium.boss_dragon.desc": "Medelium - Dragon's Wrath",
+  "jukebox_song.medelium.medieval_calm.desc": "Medelium - Peaceful Kingdom",
 
-  "subtitles.medeliummod.music.tavern_music": "Tavern music playing",
-  "subtitles.medeliummod.music.battle_theme": "Battle theme playing",
-  "subtitles.medeliummod.music.boss_dragon": "Epic dragon theme playing",
-  "subtitles.medeliummod.music.medieval_calm": "Calm medieval music playing"
+  "subtitles.medelium.music.tavern_music": "Tavern music playing",
+  "subtitles.medelium.music.battle_theme": "Battle theme playing",
+  "subtitles.medelium.music.boss_dragon": "Epic dragon theme playing",
+  "subtitles.medelium.music.medieval_calm": "Calm medieval music playing"
 }
 ```
 
-**📁 `assets/medeliummod/lang/fr_fr.json` :**
+**📁 `assets/medelium/lang/fr_fr.json` :**
 
 ```json
 {
-  "item.medeliummod.tavern_music_disc": "Disque de Musique",
-  "item.medeliummod.battle_theme_disc": "Disque de Musique",
-  "item.medeliummod.boss_dragon_disc": "Disque de Musique",
-  "item.medeliummod.medieval_calm_disc": "Disque de Musique",
+  "item.medelium.tavern_music_disc": "Disque de Musique",
+  "item.medelium.battle_theme_disc": "Disque de Musique",
+  "item.medelium.boss_dragon_disc": "Disque de Musique",
+  "item.medelium.medieval_calm_disc": "Disque de Musique",
 
-  "jukebox_song.medeliummod.tavern_music.desc": "Medelium - Contes de Taverne",
-  "jukebox_song.medeliummod.battle_theme.desc": "Medelium - Cri de Guerre",
-  "jukebox_song.medeliummod.boss_dragon.desc": "Medelium - Courroux du Dragon",
-  "jukebox_song.medeliummod.medieval_calm.desc": "Medelium - Royaume Paisible",
+  "jukebox_song.medelium.tavern_music.desc": "Medelium - Contes de Taverne",
+  "jukebox_song.medelium.battle_theme.desc": "Medelium - Cri de Guerre",
+  "jukebox_song.medelium.boss_dragon.desc": "Medelium - Courroux du Dragon",
+  "jukebox_song.medelium.medieval_calm.desc": "Medelium - Royaume Paisible",
 
-  "subtitles.medeliummod.music.tavern_music": "Musique de taverne",
-  "subtitles.medeliummod.music.battle_theme": "Thème de bataille",
-  "subtitles.medeliummod.music.boss_dragon": "Thème épique du dragon",
-  "subtitles.medeliummod.music.medieval_calm": "Musique médiévale calme"
+  "subtitles.medelium.music.tavern_music": "Musique de taverne",
+  "subtitles.medelium.music.battle_theme": "Thème de bataille",
+  "subtitles.medelium.music.boss_dragon": "Thème épique du dragon",
+  "subtitles.medelium.music.medieval_calm": "Musique médiévale calme"
 }
 ```
 
@@ -19420,7 +18819,7 @@ public static final DeferredItem<Item> MEDIEVAL_CALM_DISC = ITEMS.register("medi
 
 Ajoutez vos disques dans les loot tables de structures/mobs.
 
-**📁 `data/medeliummod/loot_table/chests/dungeon_treasure.json` :**
+**📁 `data/medelium/loot_table/chests/dungeon_treasure.json` :**
 
 ```json
 {
@@ -19431,17 +18830,17 @@ Ajoutez vos disques dans les loot tables de structures/mobs.
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "medeliummod:tavern_music_disc",
+          "name": "medelium:tavern_music_disc",
           "weight": 5
         },
         {
           "type": "minecraft:item",
-          "name": "medeliummod:battle_theme_disc",
+          "name": "medelium:battle_theme_disc",
           "weight": 3
         },
         {
           "type": "minecraft:item",
-          "name": "medeliummod:boss_dragon_disc",
+          "name": "medelium:boss_dragon_disc",
           "weight": 1
         }
       ]
@@ -19450,7 +18849,7 @@ Ajoutez vos disques dans les loot tables de structures/mobs.
 }
 ```
 
-**📁 Drop par un boss - `data/medeliummod/loot_table/entities/ender_dragon.json` :**
+**📁 Drop par un boss - `data/medelium/loot_table/entities/ender_dragon.json` :**
 
 ```json
 {
@@ -19461,7 +18860,7 @@ Ajoutez vos disques dans les loot tables de structures/mobs.
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "medeliummod:boss_dragon_disc"
+          "name": "medelium:boss_dragon_disc"
         }
       ],
       "conditions": [
@@ -19480,7 +18879,7 @@ Ajoutez vos disques dans les loot tables de structures/mobs.
 
 Vous pouvez rendre certains disques craftables :
 
-**📁 `data/medeliummod/recipe/tavern_music_disc.json` :**
+**📁 `data/medelium/recipe/tavern_music_disc.json` :**
 
 ```json
 {
@@ -19499,7 +18898,7 @@ Vous pouvez rendre certains disques craftables :
     }
   },
   "result": {
-    "id": "medeliummod:tavern_music_disc",
+    "id": "medelium:tavern_music_disc",
     "count": 1
   }
 }
@@ -19512,7 +18911,7 @@ Vous pouvez rendre certains disques craftables :
 **🎮 Commandes de test :**
 
 ```
-/give @p medeliummod:tavern_music_disc
+/give @p medelium:tavern_music_disc
 /give @p minecraft:jukebox
 ```
 
@@ -19538,10 +18937,10 @@ Vous pouvez rendre certains disques craftables :
 
 ```java
 public class MusicZoneTrigger {
-    public static void onPlayerEnter(Player player, BlockPos pos) {
-        if (player.level().isClientSide) {
+    public static void onPlayerEnter(PlayerEntity player, BlockPos pos) {
+        if (player.getWorld().isClient) {
             // Jouer la musique côté client
-            Minecraft.getInstance().getSoundManager().play(
+            MinecraftClient.getInstance().getSoundManager().play(
                 SimpleSoundInstance.forMusic(ModSounds.TAVERN_MUSIC.get())
             );
         }
@@ -19558,20 +18957,20 @@ public class AdaptiveMusicDisc extends Item {
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext context) {
+    public ActionResult useOn(UseOnContext context) {
         Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();
         
         if (level.getBlockState(pos).is(Blocks.JUKEBOX)) {
             long dayTime = level.getDayTime() % 24000;
-            ResourceKey<JukeboxSong> song;
+            ResourceKey</* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */> song;
             
             if (dayTime < 6000) {
-                song = ModJukeboxSongs.MEDIEVAL_CALM; // Matin
+                song = Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */s.MEDIEVAL_CALM; // Matin
             } else if (dayTime < 18000) {
-                song = ModJukeboxSongs.TAVERN_MUSIC; // Jour
+                song = Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */s.TAVERN_MUSIC; // Jour
             } else {
-                song = ModJukeboxSongs.BATTLE_THEME; // Nuit
+                song = Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */s.BATTLE_THEME; // Nuit
             }
             
             // Logique pour jouer le bon disque
@@ -19586,22 +18985,21 @@ public class AdaptiveMusicDisc extends Item {
 **🎲 Disque mystérieux (random song) :**
 
 ```java
-public static final DeferredItem<Item> MYSTERY_DISC = ITEMS.register("mystery_disc",
-    () -> new Item(new Item.Properties()
-        .stacksTo(1)
+public static final Item MYSTERY_DISC = registerItem("mystery_disc", new Item(new FabricItemSettings()
+        .maxCount(1)
         .rarity(Rarity.EPIC)
     ) {
         @Override
-        public InteractionResult useOn(UseOnContext context) {
+        public ActionResult useOn(UseOnContext context) {
             if (context.getLevel().getBlockState(context.getClickedPos()).is(Blocks.JUKEBOX)) {
-                List<ResourceKey<JukeboxSong>> songs = List.of(
-                    ModJukeboxSongs.TAVERN_MUSIC,
-                    ModJukeboxSongs.BATTLE_THEME,
-                    ModJukeboxSongs.BOSS_DRAGON,
-                    ModJukeboxSongs.MEDIEVAL_CALM
+                List<ResourceKey</* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */>> songs = List.of(
+                    Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */s.TAVERN_MUSIC,
+                    Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */s.BATTLE_THEME,
+                    Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */s.BOSS_DRAGON,
+                    Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */s.MEDIEVAL_CALM
                 );
                 
-                ResourceKey<JukeboxSong> randomSong = songs.get(
+                ResourceKey</* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */> randomSong = songs.get(
                     context.getLevel().random.nextInt(songs.size())
                 );
                 
@@ -19623,42 +19021,42 @@ public static final DeferredItem<Item> MYSTERY_DISC = ITEMS.register("mystery_di
 
 ```java
 // 1. Vérifier que le fichier .ogg existe
-src/main/resources/assets/medeliummod/sounds/music/tavern_music.ogg
+src/main/resources/assets/medelium/sounds/music/tavern_music.ogg
 
 // 2. Vérifier sounds.json
 {
   "music.tavern_music": {
     "sounds": [
       {
-        "name": "medeliummod:music/tavern_music",
+        "name": "medelium:music/tavern_music",
         "stream": true  // ESSENTIEL pour musiques longues
       }
     ]
   }
 }
 
-// 3. Vérifier le JukeboxSong JSON
-data/medeliummod/jukebox_song/tavern_music.json
+// 3. Vérifier le /* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ JSON
+data/medelium/jukebox_song/tavern_music.json
 // sound_event.sound_id doit correspondre au SoundEvent
 
 // 4. Vérifier l'item
-.jukeboxPlayable(ModJukeboxSongs.TAVERN_MUSIC)
+.jukeboxPlayable(Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */s.TAVERN_MUSIC)
 ```
 
 **❌ Problème : "File not found" dans les logs**
 
 ```
-[ERROR] Failed to load sound: medeliummod:music/tavern_music
+[ERROR] Failed to load sound: medelium:music/tavern_music
 ```
 
 ✅ **Vérifier le chemin :**
 
 ```
-assets/medeliummod/sounds/music/tavern_music.ogg
+assets/medelium/sounds/music/tavern_music.ogg
                               ^^^^^^ Dossier "music"
 ```
 
-Le nom dans `sounds.json` doit être `"medeliummod:music/tavern_music"`.
+Le nom dans `sounds.json` doit être `"medelium:music/tavern_music"`.
 
 **❌ Problème : Musique lag / stutter**
 
@@ -19670,7 +19068,7 @@ Le nom dans `sounds.json` doit être `"medeliummod:music/tavern_music"`.
   "music.tavern_music": {
     "sounds": [
       {
-        "name": "medeliummod:music/tavern_music",
+        "name": "medelium:music/tavern_music",
         "stream": true,  // Charge en streaming
         "preload": false  // Ne pas précharger
       }
@@ -19679,7 +19077,7 @@ Le nom dans `sounds.json` doit être `"medeliummod:music/tavern_music"`.
 }
 ```
 
-**❌ Problème : Crash "JukeboxSong not found"**
+**❌ Problème : Crash "/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ not found"**
 
 ✅ **Vérifier :**
 
@@ -19688,7 +19086,7 @@ Le nom dans `sounds.json` doit être `"medeliummod:music/tavern_music"`.
 ResourceKey.create(Registries.JUKEBOX_SONG, ...)
 
 // 2. Le fichier JSON existe
-data/medeliummod/jukebox_song/tavern_music.json
+data/medelium/jukebox_song/tavern_music.json
 
 // 3. Le sound_event.sound_id correspond au SoundEvent enregistré
 ```
@@ -19699,11 +19097,11 @@ C'est normal ! Les disques de musique ne peuvent jamais s'empiler, même avec `s
 
 **📝 Checklist complète pour un music disc :**
 
-✅ Fichier .ogg créé et placé dans `assets/medeliummod/sounds/music/`  
+✅ Fichier .ogg créé et placé dans `assets/medelium/sounds/music/`  
 ✅ SoundEvent enregistré dans `ModSounds.java`  
 ✅ Entrée dans `sounds.json` avec `"stream": true`  
-✅ ResourceKey créé dans `ModJukeboxSongs.java`  
-✅ Fichier JSON `data/medeliummod/jukebox_song/xxx.json`  
+✅ ResourceKey créé dans `Mod/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */s.java`  
+✅ Fichier JSON `data/medelium/jukebox_song/xxx.json`  
 ✅ Item créé avec `.jukeboxPlayable()`  
 ✅ Texture 16x16 du disque  
 ✅ Traductions (item name + jukebox_song.desc + subtitle)  
@@ -19713,9 +19111,9 @@ C'est normal ! Les disques de musique ne peuvent jamais s'empiler, même avec `s
 **🎮 Commandes de debug :**
 
 ```
-/give @p medeliummod:tavern_music_disc
+/give @p medelium:tavern_music_disc
 /give @p minecraft:jukebox
-/playsound medeliummod:music.tavern_music music @a ~ ~ ~ 1.0 1.0
+/playsound medelium:music.tavern_music music @a ~ ~ ~ 1.0 1.0
 ```
 
 ---
@@ -19725,7 +19123,7 @@ C'est normal ! Les disques de musique ne peuvent jamais s'empiler, même avec `s
 Vous savez maintenant :
 
 1. ✅ Convertir des fichiers audio en **OGG Vorbis**
-2. ✅ Créer un **JukeboxSong** avec le nouveau système 1.21+
+2. ✅ Créer un **/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */** avec le nouveau système 1.21+
 3. ✅ Enregistrer des **SoundEvents** pour musiques
 4. ✅ Configurer `sounds.json` avec **"stream": true**
 5. ✅ Créer des **items disques** avec `.jukeboxPlayable()`
@@ -19778,11 +19176,11 @@ Nous allons créer des **patterns spéciaux** pour votre mod.
 ```java
 package com.medelium.registry;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.core.registries.Registries;
+import com.medelium.Medelium;
+import net.minecraft.registry.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.entity.BannerPattern;
+import net.minecraft.util.Identifier;
+import net.minecraft.block.entity.*;
 
 public class ModBannerPatterns {
 
@@ -19807,13 +19205,13 @@ public class ModBannerPatterns {
     private static ResourceKey<BannerPattern> create(String name) {
         return ResourceKey.create(
             Registries.BANNER_PATTERN,
-            ResourceLocation.fromNamespaceAndPath(MedeliumMod.MODID, name)
+            new Identifier(Medelium.MOD_ID, name)
         );
     }
 }
 ```
 
-**⚠️ Note importante :** En NeoForge 1.21+, les BannerPatterns sont **data-driven** (comme les JukeboxSongs). Vous n'avez pas besoin de DeferredRegister, seulement des ResourceKeys.
+**⚠️ Note importante :** En Fabric 1.21+, les BannerPatterns sont **data-driven** (comme les /* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */s). Vous n'avez pas besoin de DeferredRegister, seulement des ResourceKeys.
 
 ---
 
@@ -19825,61 +19223,55 @@ Créez les items "pattern" qui sont consommés dans le loom.
 
 ```java
 // 👑 CROWN PATTERN ITEM
-public static final DeferredItem<Item> CROWN_BANNER_PATTERN = ITEMS.register("crown_banner_pattern",
-    () -> new BannerPatternItem(
+public static final Item CROWN_BANNER_PATTERN = registerItem("crown_banner_pattern", new BannerPatternItem(
         ModTags.BannerPatterns.CROWN_PATTERN,  // Tag pour le loom
-        new Item.Properties()
-            .stacksTo(1)  // Non-stackable (comme tous les patterns)
+        new FabricItemSettings()
+            .maxCount(1)  // Non-stackable (comme tous les patterns)
             .rarity(Rarity.UNCOMMON)
     )
 );
 
 // ⚔️ CROSSED SWORDS PATTERN ITEM
-public static final DeferredItem<Item> CROSSED_SWORDS_BANNER_PATTERN = ITEMS.register("crossed_swords_banner_pattern",
-    () -> new BannerPatternItem(
+public static final Item CROSSED_SWORDS_BANNER_PATTERN = registerItem("crossed_swords_banner_pattern", new BannerPatternItem(
         ModTags.BannerPatterns.CROSSED_SWORDS_PATTERN,
-        new Item.Properties()
-            .stacksTo(1)
+        new FabricItemSettings()
+            .maxCount(1)
             .rarity(Rarity.UNCOMMON)
     )
 );
 
 // 🐉 DRAGON PATTERN ITEM
-public static final DeferredItem<Item> DRAGON_BANNER_PATTERN = ITEMS.register("dragon_banner_pattern",
-    () -> new BannerPatternItem(
+public static final Item DRAGON_BANNER_PATTERN = registerItem("dragon_banner_pattern", new BannerPatternItem(
         ModTags.BannerPatterns.DRAGON_PATTERN,
-        new Item.Properties()
-            .stacksTo(1)
+        new FabricItemSettings()
+            .maxCount(1)
             .rarity(Rarity.RARE)  // Plus rare pour le dragon
     )
 );
 
 // 🏰 CASTLE PATTERN ITEM
-public static final DeferredItem<Item> CASTLE_BANNER_PATTERN = ITEMS.register("castle_banner_pattern",
-    () -> new BannerPatternItem(
+public static final Item CASTLE_BANNER_PATTERN = registerItem("castle_banner_pattern", new BannerPatternItem(
         ModTags.BannerPatterns.CASTLE_PATTERN,
-        new Item.Properties()
-            .stacksTo(1)
+        new FabricItemSettings()
+            .maxCount(1)
             .rarity(Rarity.UNCOMMON)
     )
 );
 
 // 🛡️ SHIELD PATTERN ITEM
-public static final DeferredItem<Item> SHIELD_BANNER_PATTERN = ITEMS.register("shield_banner_pattern",
-    () -> new BannerPatternItem(
+public static final Item SHIELD_BANNER_PATTERN = registerItem("shield_banner_pattern", new BannerPatternItem(
         ModTags.BannerPatterns.SHIELD_PATTERN,
-        new Item.Properties()
-            .stacksTo(1)
+        new FabricItemSettings()
+            .maxCount(1)
             .rarity(Rarity.UNCOMMON)
     )
 );
 
 // ⚜️ FLEUR DE LIS PATTERN ITEM
-public static final DeferredItem<Item> FLEUR_DE_LIS_BANNER_PATTERN = ITEMS.register("fleur_de_lis_banner_pattern",
-    () -> new BannerPatternItem(
+public static final Item FLEUR_DE_LIS_BANNER_PATTERN = registerItem("fleur_de_lis_banner_pattern", new BannerPatternItem(
         ModTags.BannerPatterns.FLEUR_DE_LIS_PATTERN,
-        new Item.Properties()
-            .stacksTo(1)
+        new FabricItemSettings()
+            .maxCount(1)
             .rarity(Rarity.RARE)
     )
 );
@@ -19908,77 +19300,77 @@ public class ModTags {
         private static TagKey<BannerPattern> create(String name) {
             return TagKey.create(
                 Registries.BANNER_PATTERN,
-                ResourceLocation.fromNamespaceAndPath("medeliummod", name)
+                new Identifier("medelium", name)
             );
         }
     }
 }
 ```
 
-**📁 Tag JSON - `data/medeliummod/tags/banner_pattern/pattern_item/crown.json` :**
+**📁 Tag JSON - `data/medelium/tags/banner_pattern/pattern_item/crown.json` :**
 
 ```json
 {
   "replace": false,
   "values": [
-    "medeliummod:crown"
+    "medelium:crown"
   ]
 }
 ```
 
 **📁 Créer les autres tags :**
 
-**`data/medeliummod/tags/banner_pattern/pattern_item/crossed_swords.json` :**
+**`data/medelium/tags/banner_pattern/pattern_item/crossed_swords.json` :**
 
 ```json
 {
   "replace": false,
   "values": [
-    "medeliummod:crossed_swords"
+    "medelium:crossed_swords"
   ]
 }
 ```
 
-**`data/medeliummod/tags/banner_pattern/pattern_item/dragon.json` :**
+**`data/medelium/tags/banner_pattern/pattern_item/dragon.json` :**
 
 ```json
 {
   "replace": false,
   "values": [
-    "medeliummod:dragon"
+    "medelium:dragon"
   ]
 }
 ```
 
-**`data/medeliummod/tags/banner_pattern/pattern_item/castle.json` :**
+**`data/medelium/tags/banner_pattern/pattern_item/castle.json` :**
 
 ```json
 {
   "replace": false,
   "values": [
-    "medeliummod:castle"
+    "medelium:castle"
   ]
 }
 ```
 
-**`data/medeliummod/tags/banner_pattern/pattern_item/shield.json` :**
+**`data/medelium/tags/banner_pattern/pattern_item/shield.json` :**
 
 ```json
 {
   "replace": false,
   "values": [
-    "medeliummod:shield"
+    "medelium:shield"
   ]
 }
 ```
 
-**`data/medeliummod/tags/banner_pattern/pattern_item/fleur_de_lis.json` :**
+**`data/medelium/tags/banner_pattern/pattern_item/fleur_de_lis.json` :**
 
 ```json
 {
   "replace": false,
   "values": [
-    "medeliummod:fleur_de_lis"
+    "medelium:fleur_de_lis"
   ]
 }
 ```
@@ -19989,12 +19381,12 @@ public class ModTags {
 
 Définissez les propriétés de chaque pattern.
 
-**📁 `data/medeliummod/banner_pattern/crown.json` :**
+**📁 `data/medelium/banner_pattern/crown.json` :**
 
 ```json
 {
-  "asset_id": "medeliummod:crown",
-  "translation_key": "block.medeliummod.banner.crown"
+  "asset_id": "medelium:crown",
+  "translation_key": "block.medelium.banner.crown"
 }
 ```
 
@@ -20005,48 +19397,48 @@ Définissez les propriétés de chaque pattern.
 
 **📁 Créer les autres fichiers :**
 
-**`data/medeliummod/banner_pattern/crossed_swords.json` :**
+**`data/medelium/banner_pattern/crossed_swords.json` :**
 
 ```json
 {
-  "asset_id": "medeliummod:crossed_swords",
-  "translation_key": "block.medeliummod.banner.crossed_swords"
+  "asset_id": "medelium:crossed_swords",
+  "translation_key": "block.medelium.banner.crossed_swords"
 }
 ```
 
-**`data/medeliummod/banner_pattern/dragon.json` :**
+**`data/medelium/banner_pattern/dragon.json` :**
 
 ```json
 {
-  "asset_id": "medeliummod:dragon",
-  "translation_key": "block.medeliummod.banner.dragon"
+  "asset_id": "medelium:dragon",
+  "translation_key": "block.medelium.banner.dragon"
 }
 ```
 
-**`data/medeliummod/banner_pattern/castle.json` :**
+**`data/medelium/banner_pattern/castle.json` :**
 
 ```json
 {
-  "asset_id": "medeliummod:castle",
-  "translation_key": "block.medeliummod.banner.castle"
+  "asset_id": "medelium:castle",
+  "translation_key": "block.medelium.banner.castle"
 }
 ```
 
-**`data/medeliummod/banner_pattern/shield.json` :**
+**`data/medelium/banner_pattern/shield.json` :**
 
 ```json
 {
-  "asset_id": "medeliummod:shield",
-  "translation_key": "block.medeliummod.banner.shield"
+  "asset_id": "medelium:shield",
+  "translation_key": "block.medelium.banner.shield"
 }
 ```
 
-**`data/medeliummod/banner_pattern/fleur_de_lis.json` :**
+**`data/medelium/banner_pattern/fleur_de_lis.json` :**
 
 ```json
 {
-  "asset_id": "medeliummod:fleur_de_lis",
-  "translation_key": "block.medeliummod.banner.fleur_de_lis"
+  "asset_id": "medelium:fleur_de_lis",
+  "translation_key": "block.medelium.banner.fleur_de_lis"
 }
 ```
 
@@ -20075,7 +19467,7 @@ assets/minecraft/textures/entity/banner/
 └── fleur_de_lis.png
 ```
 
-**⚠️ IMPORTANT :** Les textures de banner patterns vont dans `assets/minecraft/`, pas `assets/medeliummod/` ! C'est une particularité du système vanilla.
+**⚠️ IMPORTANT :** Les textures de banner patterns vont dans `assets/minecraft/`, pas `assets/medelium/` ! C'est une particularité du système vanilla.
 
 **🎨 Comment créer une texture de pattern :**
 
@@ -20110,19 +19502,19 @@ Reste = transparent
 
 Les items patterns ont leurs propres textures.
 
-**📁 `assets/medeliummod/textures/item/crown_banner_pattern.png` :**
+**📁 `assets/medelium/textures/item/crown_banner_pattern.png` :**
 
 - **Résolution** : 16x16 pixels
 - **Style** : Représentation du pattern (miniature de la couronne)
 - **Copier** : Inspirer de `minecraft:textures/item/creeper_banner_pattern.png`
 
-**📁 Models JSON - `assets/medeliummod/models/item/crown_banner_pattern.json` :**
+**📁 Models JSON - `assets/medelium/models/item/crown_banner_pattern.json` :**
 
 ```json
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "medeliummod:item/crown_banner_pattern"
+    "layer0": "medelium:item/crown_banner_pattern"
   }
 }
 ```
@@ -20139,57 +19531,57 @@ Les items patterns ont leurs propres textures.
 
 ### **44.7 Traductions**
 
-**📁 `assets/medeliummod/lang/en_us.json` :**
+**📁 `assets/medelium/lang/en_us.json` :**
 
 ```json
 {
-  "item.medeliummod.crown_banner_pattern": "Banner Pattern",
-  "item.medeliummod.crossed_swords_banner_pattern": "Banner Pattern",
-  "item.medeliummod.dragon_banner_pattern": "Banner Pattern",
-  "item.medeliummod.castle_banner_pattern": "Banner Pattern",
-  "item.medeliummod.shield_banner_pattern": "Banner Pattern",
-  "item.medeliummod.fleur_de_lis_banner_pattern": "Banner Pattern",
+  "item.medelium.crown_banner_pattern": "Banner Pattern",
+  "item.medelium.crossed_swords_banner_pattern": "Banner Pattern",
+  "item.medelium.dragon_banner_pattern": "Banner Pattern",
+  "item.medelium.castle_banner_pattern": "Banner Pattern",
+  "item.medelium.shield_banner_pattern": "Banner Pattern",
+  "item.medelium.fleur_de_lis_banner_pattern": "Banner Pattern",
 
-  "item.medeliummod.crown_banner_pattern.desc": "Crown",
-  "item.medeliummod.crossed_swords_banner_pattern.desc": "Crossed Swords",
-  "item.medeliummod.dragon_banner_pattern.desc": "Dragon",
-  "item.medeliummod.castle_banner_pattern.desc": "Castle",
-  "item.medeliummod.shield_banner_pattern.desc": "Shield",
-  "item.medeliummod.fleur_de_lis_banner_pattern.desc": "Fleur-de-Lis",
+  "item.medelium.crown_banner_pattern.desc": "Crown",
+  "item.medelium.crossed_swords_banner_pattern.desc": "Crossed Swords",
+  "item.medelium.dragon_banner_pattern.desc": "Dragon",
+  "item.medelium.castle_banner_pattern.desc": "Castle",
+  "item.medelium.shield_banner_pattern.desc": "Shield",
+  "item.medelium.fleur_de_lis_banner_pattern.desc": "Fleur-de-Lis",
 
-  "block.medeliummod.banner.crown": "Crown",
-  "block.medeliummod.banner.crossed_swords": "Crossed Swords",
-  "block.medeliummod.banner.dragon": "Dragon",
-  "block.medeliummod.banner.castle": "Castle",
-  "block.medeliummod.banner.shield": "Shield",
-  "block.medeliummod.banner.fleur_de_lis": "Fleur-de-Lis"
+  "block.medelium.banner.crown": "Crown",
+  "block.medelium.banner.crossed_swords": "Crossed Swords",
+  "block.medelium.banner.dragon": "Dragon",
+  "block.medelium.banner.castle": "Castle",
+  "block.medelium.banner.shield": "Shield",
+  "block.medelium.banner.fleur_de_lis": "Fleur-de-Lis"
 }
 ```
 
-**📁 `assets/medeliummod/lang/fr_fr.json` :**
+**📁 `assets/medelium/lang/fr_fr.json` :**
 
 ```json
 {
-  "item.medeliummod.crown_banner_pattern": "Motif de bannière",
-  "item.medeliummod.crossed_swords_banner_pattern": "Motif de bannière",
-  "item.medeliummod.dragon_banner_pattern": "Motif de bannière",
-  "item.medeliummod.castle_banner_pattern": "Motif de bannière",
-  "item.medeliummod.shield_banner_pattern": "Motif de bannière",
-  "item.medeliummod.fleur_de_lis_banner_pattern": "Motif de bannière",
+  "item.medelium.crown_banner_pattern": "Motif de bannière",
+  "item.medelium.crossed_swords_banner_pattern": "Motif de bannière",
+  "item.medelium.dragon_banner_pattern": "Motif de bannière",
+  "item.medelium.castle_banner_pattern": "Motif de bannière",
+  "item.medelium.shield_banner_pattern": "Motif de bannière",
+  "item.medelium.fleur_de_lis_banner_pattern": "Motif de bannière",
 
-  "item.medeliummod.crown_banner_pattern.desc": "Couronne",
-  "item.medeliummod.crossed_swords_banner_pattern.desc": "Épées croisées",
-  "item.medeliummod.dragon_banner_pattern.desc": "Dragon",
-  "item.medeliummod.castle_banner_pattern.desc": "Château",
-  "item.medeliummod.shield_banner_pattern.desc": "Bouclier",
-  "item.medeliummod.fleur_de_lis_banner_pattern.desc": "Fleur de Lys",
+  "item.medelium.crown_banner_pattern.desc": "Couronne",
+  "item.medelium.crossed_swords_banner_pattern.desc": "Épées croisées",
+  "item.medelium.dragon_banner_pattern.desc": "Dragon",
+  "item.medelium.castle_banner_pattern.desc": "Château",
+  "item.medelium.shield_banner_pattern.desc": "Bouclier",
+  "item.medelium.fleur_de_lis_banner_pattern.desc": "Fleur de Lys",
 
-  "block.medeliummod.banner.crown": "Couronne",
-  "block.medeliummod.banner.crossed_swords": "Épées croisées",
-  "block.medeliummod.banner.dragon": "Dragon",
-  "block.medeliummod.banner.castle": "Château",
-  "block.medeliummod.banner.shield": "Bouclier",
-  "block.medeliummod.banner.fleur_de_lis": "Fleur de Lys"
+  "block.medelium.banner.crown": "Couronne",
+  "block.medelium.banner.crossed_swords": "Épées croisées",
+  "block.medelium.banner.dragon": "Dragon",
+  "block.medelium.banner.castle": "Château",
+  "block.medelium.banner.shield": "Bouclier",
+  "block.medelium.banner.fleur_de_lis": "Fleur de Lys"
 }
 ```
 
@@ -20199,7 +19591,7 @@ Les items patterns ont leurs propres textures.
 
 Créez des recettes pour obtenir les pattern items.
 
-**📁 `data/medeliummod/recipe/crown_banner_pattern.json` :**
+**📁 `data/medelium/recipe/crown_banner_pattern.json` :**
 
 ```json
 {
@@ -20218,13 +19610,13 @@ Créez des recettes pour obtenir les pattern items.
     }
   },
   "result": {
-    "id": "medeliummod:crown_banner_pattern",
+    "id": "medelium:crown_banner_pattern",
     "count": 1
   }
 }
 ```
 
-**📁 `data/medeliummod/recipe/crossed_swords_banner_pattern.json` :**
+**📁 `data/medelium/recipe/crossed_swords_banner_pattern.json` :**
 
 ```json
 {
@@ -20243,13 +19635,13 @@ Créez des recettes pour obtenir les pattern items.
     }
   },
   "result": {
-    "id": "medeliummod:crossed_swords_banner_pattern",
+    "id": "medelium:crossed_swords_banner_pattern",
     "count": 1
   }
 }
 ```
 
-**📁 `data/medeliummod/recipe/dragon_banner_pattern.json` :**
+**📁 `data/medelium/recipe/dragon_banner_pattern.json` :**
 
 ```json
 {
@@ -20263,7 +19655,7 @@ Créez des recettes pour obtenir les pattern items.
     }
   ],
   "result": {
-    "id": "medeliummod:dragon_banner_pattern",
+    "id": "medelium:dragon_banner_pattern",
     "count": 1
   }
 }
@@ -20298,12 +19690,12 @@ Une fois tous les fichiers créés, voici comment ça fonctionne en jeu :
 
 Pour créer un pattern **gratuit** (sans item consommable) :
 
-**📁 `data/medeliummod/banner_pattern/simple_crown.json` :**
+**📁 `data/medelium/banner_pattern/simple_crown.json` :**
 
 ```json
 {
-  "asset_id": "medeliummod:simple_crown",
-  "translation_key": "block.medeliummod.banner.simple_crown"
+  "asset_id": "medelium:simple_crown",
+  "translation_key": "block.medelium.banner.simple_crown"
 }
 ```
 
@@ -20324,13 +19716,13 @@ Le pattern sera automatiquement disponible dans le loom gratuitement (comme les 
 
 ```java
 // 1. Vérifier le tag
-data/medeliummod/tags/banner_pattern/pattern_item/crown.json
+data/medelium/tags/banner_pattern/pattern_item/crown.json
 
 // 2. Vérifier le BannerPatternItem
 new BannerPatternItem(ModTags.BannerPatterns.CROWN_PATTERN, ...)
 
 // 3. Vérifier le fichier data JSON
-data/medeliummod/banner_pattern/crown.json
+data/medelium/banner_pattern/crown.json
 ```
 
 **❌ Problème : Texture ne s'affiche pas**
@@ -20340,12 +19732,12 @@ data/medeliummod/banner_pattern/crown.json
 ```
 // 1. Emplacement DOIT être dans assets/minecraft/
 assets/minecraft/textures/entity/banner/crown.png
-               ^^^^^^^^^ Pas "medeliummod" !
+               ^^^^^^^^^ Pas "medelium" !
 
 // 2. Résolution 64x64 pixels
 
 // 3. asset_id correspond au nom du fichier
-"asset_id": "medeliummod:crown"
+"asset_id": "medelium:crown"
 → fichier : assets/minecraft/textures/entity/banner/crown.png
 ```
 
@@ -20366,10 +19758,10 @@ Les bannières utilisent une résolution 64x64. C'est normal qu'elles soient pix
 ResourceKey.create(Registries.BANNER_PATTERN, ...)
 
 // 2. Fichier JSON existe
-data/medeliummod/banner_pattern/crown.json
+data/medelium/banner_pattern/crown.json
 
 // 3. asset_id est valide
-"asset_id": "medeliummod:crown"
+"asset_id": "medelium:crown"
 ```
 
 **📝 Checklist complète pour un banner pattern :**
@@ -20389,7 +19781,7 @@ data/medeliummod/banner_pattern/crown.json
 **🎮 Commandes de test :**
 
 ```
-/give @p medeliummod:crown_banner_pattern
+/give @p medelium:crown_banner_pattern
 /give @p minecraft:loom
 /give @p minecraft:white_banner
 /give @p minecraft:red_dye
@@ -20403,8 +19795,7 @@ data/medeliummod/banner_pattern/crown.json
 public static final ResourceKey<BannerPattern> MY_PATTERN = create("my_pattern");
 
 // ModItems.java
-public static final DeferredItem<Item> MY_PATTERN_ITEM = ITEMS.register("my_banner_pattern",
-    () -> new BannerPatternItem(ModTags.BannerPatterns.MY_PATTERN, ...)
+public static final Item MY_PATTERN_ITEM = registerItem("my_banner_pattern", new BannerPatternItem(ModTags.BannerPatterns.MY_PATTERN, ...)
 );
 
 // ModTags.java
@@ -20413,23 +19804,23 @@ public static final TagKey<BannerPattern> MY_PATTERN = create("pattern_item/my_p
 
 2. **Fichiers JSON :**
 ```
-data/medeliummod/banner_pattern/my_pattern.json
-data/medeliummod/tags/banner_pattern/pattern_item/my_pattern.json
-data/medeliummod/recipe/my_banner_pattern.json
+data/medelium/banner_pattern/my_pattern.json
+data/medelium/tags/banner_pattern/pattern_item/my_pattern.json
+data/medelium/recipe/my_banner_pattern.json
 ```
 
 3. **Textures :**
 ```
 assets/minecraft/textures/entity/banner/my_pattern.png (64x64)
-assets/medeliummod/textures/item/my_banner_pattern.png (16x16)
-assets/medeliummod/models/item/my_banner_pattern.json
+assets/medelium/textures/item/my_banner_pattern.png (16x16)
+assets/medelium/models/item/my_banner_pattern.json
 ```
 
 4. **Traductions :**
 ```json
-"item.medeliummod.my_banner_pattern": "Banner Pattern",
-"item.medeliummod.my_banner_pattern.desc": "My Custom Pattern",
-"block.medeliummod.banner.my_pattern": "My Custom Pattern"
+"item.medelium.my_banner_pattern": "Banner Pattern",
+"item.medelium.my_banner_pattern.desc": "My Custom Pattern",
+"block.medelium.banner.my_pattern": "My Custom Pattern"
 ```
 
 ---
@@ -20464,11 +19855,11 @@ Le guide contient maintenant **44 sections exhaustives** couvrant :
 ✅ **Section 39** : Villageois & Professions (POI, professions custom, trades par niveau, textures, workstations)
 ✅ **Section 40** : Data Generators (automatiser JSON, RecipeProvider, BlockStateProvider, ItemModelProvider, LootTableProvider, TagsProvider, LanguageProvider)
 ✅ **Section 41** : Render Types (CUTOUT pour plantes, TRANSLUCENT pour verre, skipRendering, noOcclusion, transparence partielle)
-✅ **Section 42** : Fluids Custom (FluidType, Source/Flowing, LiquidBlock, BucketItem, textures animées, interactions spéciales)
-✅ **Section 43** : Music Discs Custom (JukeboxSong 1.21+, fichiers .ogg, SoundEvent, disques écoutables, loot tables)
+✅ **Section 42** : Fluids Custom (/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */, Source/Flowing, LiquidBlock, BucketItem, textures animées, interactions spéciales)
+✅ **Section 43** : Music Discs Custom (/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ 1.21+, fichiers .ogg, SoundEvent, disques écoutables, loot tables)
 ✅ **Section 44** : Banner Patterns Custom (BannerPattern registry, BannerPatternItem, textures 64x64, loom integration, tags)
 
-**Le guide couvre LITTÉRALEMENT TOUT ce qu'il est possible de faire dans un mod Minecraft NeoForge 1.21.1 !** 🏰⚔️✨
+**Le guide couvre LITTÉRALEMENT TOUT ce qu'il est possible de faire dans un mod Minecraft Fabric 1.20.1 !** 🏰⚔️✨
 
 Plus de **20 000 lignes** de documentation professionnelle, complète, en français, avec des exemples de code compilables !
 
@@ -20489,7 +19880,7 @@ Ces mods ajoutent des fonctionnalités essentielles pour la **documentation** et
 ### 🎯 **Pourquoi les supporter ?**
 
 - ✅ **Patchouli** : Guide complet pour les joueurs (quêtes, lore, tutoriels)
-- ✅ **REI** : Très populaire dans les modpacks Fabric/NeoForge
+- ✅ **REI** : Très populaire dans les modpacks Fabric/Fabric
 - ✅ **EMI** : Léger, rapide, interface moderne
 - ✅ **Compatibilité** : De nombreux joueurs utilisent REI/EMI au lieu de JEI
 
@@ -20517,12 +19908,12 @@ repositories {
 }
 
 dependencies {
-    // NeoForge
-    implementation "net.neoforged:neoforge:${neo_version}"
+    // Fabric
+    implementation "net.fabricd:fabric:${neo_version}"
     
     // Patchouli (version pour 1.21+)
-    compileOnly "vazkii.patchouli:Patchouli:1.21-87-NEOFORGE-SNAPSHOT:api"
-    runtimeOnly "vazkii.patchouli:Patchouli:1.21-87-NEOFORGE-SNAPSHOT"
+    compileOnly "vazkii.patchouli:Patchouli:1.21-87-1.20.1:api"
+    runtimeOnly "vazkii.patchouli:Patchouli:1.21-87-1.20.1"
 }
 ```
 
@@ -20538,18 +19929,18 @@ dependencies {
 
 ### **45.2 Créer le livre (Book JSON)**
 
-**📁 `data/medeliummod/patchouli_books/guide/book.json` :**
+**📁 `data/medelium/patchouli_books/guide/book.json` :**
 
 ```json
 {
-  "name": "item.medeliummod.guide_book",
-  "landing_text": "patchouli.medeliummod.guide.landing_text",
+  "name": "item.medelium.guide_book",
+  "landing_text": "patchouli.medelium.guide.landing_text",
   "version": "1.0",
-  "creative_tab": "medeliummod.main",
-  "advancements_tab": "medeliummod",
-  "book_texture": "medeliummod:textures/gui/book.png",
-  "filler_texture": "medeliummod:textures/gui/book_filler.png",
-  "model": "medeliummod:medelium_guide",
+  "creative_tab": "Medelium.main",
+  "advancements_tab": "medelium",
+  "book_texture": "medelium:textures/gui/book.png",
+  "filler_texture": "medelium:textures/gui/book_filler.png",
+  "model": "medelium:medelium_guide",
   "text_color": "000000",
   "header_color": "8B0000",
   "nameplate_color": "8B0000",
@@ -20564,7 +19955,7 @@ dependencies {
   },
   "pause_game": false,
   "show_progress": true,
-  "index_icon": "medeliummod:royal_sword"
+  "index_icon": "medelium:royal_sword"
 }
 ```
 
@@ -20589,15 +19980,14 @@ dependencies {
 **📁 Dans `ModItems.java` :**
 
 ```java
-public static final DeferredItem<Item> GUIDE_BOOK = ITEMS.register("guide_book",
-    () -> new Item(new Item.Properties()
-        .stacksTo(1)
+public static final Item GUIDE_BOOK = registerItem("guide_book", new Item(new FabricItemSettings()
+        .maxCount(1)
         .rarity(Rarity.UNCOMMON)
     )
 );
 ```
 
-**📁 Model JSON - `assets/medeliummod/models/item/medelium_guide.json` :**
+**📁 Model JSON - `assets/medelium/models/item/medelium_guide.json` :**
 
 ```json
 {
@@ -20610,13 +20000,13 @@ public static final DeferredItem<Item> GUIDE_BOOK = ITEMS.register("guide_book",
       "predicate": {
         "patchouli:completion": 0
       },
-      "model": "medeliummod:item/guide_book_0"
+      "model": "medelium:item/guide_book_0"
     },
     {
       "predicate": {
         "patchouli:completion": 1
       },
-      "model": "medeliummod:item/guide_book_full"
+      "model": "medelium:item/guide_book_full"
     }
   ]
 }
@@ -20625,14 +20015,13 @@ public static final DeferredItem<Item> GUIDE_BOOK = ITEMS.register("guide_book",
 **📁 Donner le livre au joueur à la première connexion :**
 
 ```java
-@SubscribeEvent
 public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-    Player player = event.getEntity();
+    PlayerEntity player = player /* Fabric: obtenu via le callback */;
     
     // Vérifier si le joueur a déjà le livre
-    if (!player.getInventory().contains(new ItemStack(ModItems.GUIDE_BOOK.get()))) {
-        player.addItem(new ItemStack(ModItems.GUIDE_BOOK.get()));
-        player.sendSystemMessage(Component.literal("§6Tu as reçu le Guide de Medelium !"));
+    if (!player.getInventory().contains(new ItemStack(ModItems.GUIDE_BOOK))) {
+        player.addItem(new ItemStack(ModItems.GUIDE_BOOK));
+        player.sendMessage(Text.literal("§6Tu as reçu le Guide de Medelium !"));
     }
 }
 ```
@@ -20643,40 +20032,40 @@ public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
 
 Les catégories organisent les pages du livre.
 
-**📁 `data/medeliummod/patchouli_books/guide/en_us/categories/basics.json` :**
+**📁 `data/medelium/patchouli_books/guide/en_us/categories/basics.json` :**
 
 ```json
 {
   "name": "Basics",
   "description": "Learn the fundamentals of Medelium",
-  "icon": "medeliummod:mithril_ingot",
+  "icon": "medelium:mithril_ingot",
   "sortnum": 0
 }
 ```
 
-**📁 `data/medeliummod/patchouli_books/guide/en_us/categories/magic.json` :**
+**📁 `data/medelium/patchouli_books/guide/en_us/categories/magic.json` :**
 
 ```json
 {
   "name": "Magic",
   "description": "Discover the secrets of mana and spells",
-  "icon": "medeliummod:magic_scroll",
+  "icon": "medelium:magic_scroll",
   "sortnum": 1
 }
 ```
 
-**📁 `data/medeliummod/patchouli_books/guide/en_us/categories/combat.json` :**
+**📁 `data/medelium/patchouli_books/guide/en_us/categories/combat.json` :**
 
 ```json
 {
   "name": "Combat",
   "description": "Master weapons and armor",
-  "icon": "medeliummod:royal_sword",
+  "icon": "medelium:royal_sword",
   "sortnum": 2
 }
 ```
 
-**📁 `data/medeliummod/patchouli_books/guide/en_us/categories/quests.json` :**
+**📁 `data/medelium/patchouli_books/guide/en_us/categories/quests.json` :**
 
 ```json
 {
@@ -20693,39 +20082,39 @@ Les catégories organisent les pages du livre.
 
 Chaque entrée contient plusieurs pages.
 
-**📁 `data/medeliummod/patchouli_books/guide/en_us/entries/basics/getting_started.json` :**
+**📁 `data/medelium/patchouli_books/guide/en_us/entries/basics/getting_started.json` :**
 
 ```json
 {
   "name": "Getting Started",
-  "category": "medeliummod:basics",
+  "category": "medelium:basics",
   "icon": "minecraft:grass_block",
   "pages": [
     {
       "type": "text",
-      "text": "Welcome to $(l:medeliummod:basics/getting_started)Medelium$()! This guide will help you discover all the features of this medieval mod.$(br2)Start by mining $(item)Mithril Ore$() in your world."
+      "text": "Welcome to $(l:medelium:basics/getting_started)Medelium$()! This guide will help you discover all the features of this medieval mod.$(br2)Start by mining $(item)Mithril Ore$() in your world."
     },
     {
       "type": "spotlight",
-      "item": "medeliummod:mithril_ore",
+      "item": "medelium:mithril_ore",
       "text": "$(item)Mithril Ore$() can be found between Y=-64 and Y=32. It's a rare magical metal used for powerful equipment."
     },
     {
       "type": "crafting",
-      "recipe": "medeliummod:mithril_ingot_from_smelting",
+      "recipe": "medelium:mithril_ingot_from_smelting",
       "text": "Smelt the ore in a furnace to obtain $(item)Mithril Ingots$()."
     }
   ]
 }
 ```
 
-**📁 `data/medeliummod/patchouli_books/guide/en_us/entries/magic/mana_system.json` :**
+**📁 `data/medelium/patchouli_books/guide/en_us/entries/magic/mana_system.json` :**
 
 ```json
 {
   "name": "Mana System",
-  "category": "medeliummod:magic",
-  "icon": "medeliummod:mana_crystal",
+  "category": "medelium:magic",
+  "icon": "medelium:mana_crystal",
   "pages": [
     {
       "type": "text",
@@ -20735,7 +20124,7 @@ Chaque entrée contient plusieurs pages.
     {
       "type": "image",
       "images": [
-        "medeliummod:textures/gui/patchouli/mana_bar.png"
+        "medelium:textures/gui/patchouli/mana_bar.png"
       ],
       "text": "Your mana bar is displayed above your hotbar."
     },
@@ -20746,21 +20135,21 @@ Chaque entrée contient plusieurs pages.
     },
     {
       "type": "crafting",
-      "recipe": "medeliummod:mana_potion",
+      "recipe": "medelium:mana_potion",
       "text": "Craft $(item)Mana Potions$() to restore 50 mana instantly."
     }
   ]
 }
 ```
 
-**📁 `data/medeliummod/patchouli_books/guide/en_us/entries/combat/royal_sword.json` :**
+**📁 `data/medelium/patchouli_books/guide/en_us/entries/combat/royal_sword.json` :**
 
 ```json
 {
   "name": "Royal Sword",
-  "category": "medeliummod:combat",
-  "icon": "medeliummod:royal_sword",
-  "advancement": "medeliummod:craft_royal_sword",
+  "category": "medelium:combat",
+  "icon": "medelium:royal_sword",
+  "advancement": "medelium:craft_royal_sword",
   "pages": [
     {
       "type": "text",
@@ -20768,7 +20157,7 @@ Chaque entrée contient plusieurs pages.
     },
     {
       "type": "crafting",
-      "recipe": "medeliummod:royal_sword",
+      "recipe": "medelium:royal_sword",
       "text": "Crafting requires diamonds, gold, and a $(item)Mithril Core$()."
     },
     {
@@ -20807,7 +20196,7 @@ Chaque entrée contient plusieurs pages.
 {
   "type": "multiblock",
   "name": "Enchanting Altar",
-  "multiblock_id": "medeliummod:enchanting_altar",
+  "multiblock_id": "medelium:enchanting_altar",
   "text": "Build this structure to create powerful enchantments."
 }
 ```
@@ -20817,7 +20206,7 @@ Chaque entrée contient plusieurs pages.
 ```json
 {
   "type": "entity",
-  "entity": "medeliummod:skeleton_knight",
+  "entity": "medelium:skeleton_knight",
   "text": "The $(thing)Skeleton Knight$() is a powerful undead warrior found in dungeons."
 }
 ```
@@ -20828,7 +20217,7 @@ Chaque entrée contient plusieurs pages.
 {
   "type": "image",
   "images": [
-    "medeliummod:textures/gui/patchouli/diagram.png"
+    "medelium:textures/gui/patchouli/diagram.png"
   ],
   "border": true,
   "text": "This diagram shows the mana flow system."
@@ -20868,21 +20257,21 @@ Patchouli utilise des codes de formatage spéciaux :
 
 ### **45.8 Traductions**
 
-**📁 `assets/medeliummod/lang/en_us.json` :**
+**📁 `assets/medelium/lang/en_us.json` :**
 
 ```json
 {
-  "item.medeliummod.guide_book": "Medelium Guide",
-  "patchouli.medeliummod.guide.landing_text": "Welcome to the world of Medelium! This guide contains everything you need to become a legendary hero."
+  "item.medelium.guide_book": "Medelium Guide",
+  "patchouli.medelium.guide.landing_text": "Welcome to the world of Medelium! This guide contains everything you need to become a legendary hero."
 }
 ```
 
-**📁 `assets/medeliummod/lang/fr_fr.json` :**
+**📁 `assets/medelium/lang/fr_fr.json` :**
 
 ```json
 {
-  "item.medeliummod.guide_book": "Guide de Medelium",
-  "patchouli.medeliummod.guide.landing_text": "Bienvenue dans le monde de Medelium ! Ce guide contient tout ce dont vous avez besoin pour devenir un héros légendaire."
+  "item.medelium.guide_book": "Guide de Medelium",
+  "patchouli.medelium.guide.landing_text": "Bienvenue dans le monde de Medelium ! Ce guide contient tout ce dont vous avez besoin pour devenir un héros légendaire."
 }
 ```
 
@@ -20907,13 +20296,13 @@ repositories {
 }
 
 dependencies {
-    // REI pour NeoForge 1.21
-    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-neoforge:${rei_version}"
-    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-neoforge:${rei_version}"
+    // REI pour Fabric 1.21
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${rei_version}"
+    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"
     
     // Architectury (requis par REI)
-    modCompileOnly "dev.architectury:architectury-neoforge:${architectury_version}"
-    modRuntimeOnly "dev.architectury:architectury-neoforge:${architectury_version}"
+    modCompileOnly "dev.architectury:architectury-fabric:${architectury_version}"
+    modRuntimeOnly "dev.architectury:architectury-fabric:${architectury_version}"
 }
 ```
 
@@ -20940,8 +20329,7 @@ import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCraftingDisplay;
-import net.minecraft.world.item.crafting.CraftingRecipe;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.item.*;
 
 public class MedeliumREIPlugin implements REIClientPlugin {
 
@@ -20962,38 +20350,38 @@ public class MedeliumREIPlugin implements REIClientPlugin {
 
         // Ajouter des infos pour vos items
         registry.registerDisplay(
-            EntryStacks.of(ModItems.ROYAL_SWORD.get()),
+            EntryStacks.of(ModItems.ROYAL_SWORD),
             builder -> builder
-                .addTagMatch(EntryStacks.of(ModItems.MITHRIL_INGOT.get()))
+                .addTagMatch(EntryStacks.of(ModItems.MITHRIL_INGOT))
         );
     }
 
     @Override
     public void registerEntries(me.shedaniel.rei.api.client.registry.entry.EntryRegistry registry) {
         // Masquer des items du REI
-        // registry.removeEntry(EntryStacks.of(ModItems.DEBUG_ITEM.get()));
+        // registry.removeEntry(EntryStacks.of(ModItems.DEBUG_ITEM));
     }
 
     @Override
     public void registerCollapsibleEntries(me.shedaniel.rei.api.client.registry.entry.CollapsibleEntryRegistry registry) {
         // Grouper des items similaires
         registry.group(
-            EntryStacks.of(ModItems.MITHRIL_SWORD.get()),
-            Component.literal("Mithril Tools"),
-            EntryStacks.of(ModItems.MITHRIL_SWORD.get()),
-            EntryStacks.of(ModItems.MITHRIL_PICKAXE.get()),
-            EntryStacks.of(ModItems.MITHRIL_AXE.get()),
-            EntryStacks.of(ModItems.MITHRIL_SHOVEL.get()),
-            EntryStacks.of(ModItems.MITHRIL_HOE.get())
+            EntryStacks.of(ModItems.MITHRIL_SWORD),
+            Text.literal("Mithril Tools"),
+            EntryStacks.of(ModItems.MITHRIL_SWORD),
+            EntryStacks.of(ModItems.MITHRIL_PICKAXE),
+            EntryStacks.of(ModItems.MITHRIL_AXE),
+            EntryStacks.of(ModItems.MITHRIL_SHOVEL),
+            EntryStacks.of(ModItems.MITHRIL_HOE)
         );
     }
 }
 ```
 
-**📁 Déclarer le plugin - `resources/META-INF/neoforge.mods.toml` :**
+**📁 Déclarer le plugin - `resources/META-INF/fabric.mod.json` :**
 
 ```toml
-[[dependencies.medeliummod]]
+[[dependencies.Medelium]]
     modId="roughlyenoughitems"
     mandatory=false
     versionRange="[16.0,)"
@@ -21018,9 +20406,9 @@ repositories {
 }
 
 dependencies {
-    // EMI pour NeoForge 1.21
-    modCompileOnly "dev.emi:emi-neoforge:${emi_version}:api"
-    modRuntimeOnly "dev.emi:emi-neoforge:${emi_version}"
+    // EMI pour Fabric 1.21
+    modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
+    modRuntimeOnly "dev.emi:emi-fabric:${emi_version}"
 }
 ```
 
@@ -21046,8 +20434,8 @@ import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.render.EmiTexture;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.util.Identifier;
+import net.minecraft.item.*;
 
 public class MedeliumEMIPlugin implements EmiPlugin {
 
@@ -21059,16 +20447,16 @@ public class MedeliumEMIPlugin implements EmiPlugin {
         // Ajouter des workstations (blocs qui ouvrent la catégorie)
         registry.addWorkstation(
             dev.emi.emi.api.recipe.VanillaEmiRecipeCategories.CRAFTING,
-            EmiStack.of(ModBlocks.MAGIC_WORKBENCH.get())
+            EmiStack.of(ModBlocks.MAGIC_WORKBENCH)
         );
 
         // Masquer des items
-        // registry.removeEmiStacks(EmiStack.of(ModItems.DEBUG_ITEM.get()));
+        // registry.removeEmiStacks(EmiStack.of(ModItems.DEBUG_ITEM));
 
         // Ajouter des infos sur un item
         registry.addStackInfo(
-            EmiStack.of(ModItems.ROYAL_SWORD.get()),
-            Component.literal("§6Legendary weapon crafted by ancient kings")
+            EmiStack.of(ModItems.ROYAL_SWORD),
+            Text.literal("§6Legendary weapon crafted by ancient kings")
         );
     }
 }
@@ -21089,13 +20477,12 @@ com.medelium.compat.emi.MedeliumEMIPlugin
 ```java
 package com.medelium.compat;
 
-import net.neoforged.fml.ModList;
 
 public class ModCompat {
-    public static final boolean JEI_LOADED = ModList.get().isLoaded("jei");
-    public static final boolean REI_LOADED = ModList.get().isLoaded("roughlyenoughitems");
-    public static final boolean EMI_LOADED = ModList.get().isLoaded("emi");
-    public static final boolean PATCHOULI_LOADED = ModList.get().isLoaded("patchouli");
+    public static final boolean JEI_LOADED = FabricLoader.getInstance().isModLoaded("jei");
+    public static final boolean REI_LOADED = FabricLoader.getInstance().isModLoaded("roughlyenoughitems");
+    public static final boolean EMI_LOADED = FabricLoader.getInstance().isModLoaded("emi");
+    public static final boolean PATCHOULI_LOADED = FabricLoader.getInstance().isModLoaded("patchouli");
 
     public static void init() {
         if (JEI_LOADED) {
@@ -21156,12 +20543,12 @@ Le guide contient maintenant **45 sections exhaustives** couvrant :
 ✅ **Section 39** : Villageois & Professions (POI, professions custom, trades par niveau, textures, workstations)
 ✅ **Section 40** : Data Generators (automatiser JSON, RecipeProvider, BlockStateProvider, ItemModelProvider, LootTableProvider, TagsProvider, LanguageProvider)
 ✅ **Section 41** : Render Types (CUTOUT pour plantes, TRANSLUCENT pour verre, skipRendering, noOcclusion, transparence partielle)
-✅ **Section 42** : Fluids Custom (FluidType, Source/Flowing, LiquidBlock, BucketItem, textures animées, interactions spéciales)
-✅ **Section 43** : Music Discs Custom (JukeboxSong 1.21+, fichiers .ogg, SoundEvent, disques écoutables, loot tables)
+✅ **Section 42** : Fluids Custom (/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */, Source/Flowing, LiquidBlock, BucketItem, textures animées, interactions spéciales)
+✅ **Section 43** : Music Discs Custom (/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ 1.21+, fichiers .ogg, SoundEvent, disques écoutables, loot tables)
 ✅ **Section 44** : Banner Patterns Custom (BannerPattern registry, BannerPatternItem, textures 64x64, loom integration, tags)
 ✅ **Section 45** : Patchouli/REI/EMI Support (livre de documentation in-game, REI displays, EMI plugin, compatibilité)
 
-**Le guide couvre LITTÉRALEMENT TOUT ce qu'il est possible de faire dans un mod Minecraft NeoForge 1.21.1 !** 🏰⚔️✨
+**Le guide couvre LITTÉRALEMENT TOUT ce qu'il est possible de faire dans un mod Minecraft Fabric 1.20.1 !** 🏰⚔️✨
 
 Plus de **21 000 lignes** de documentation professionnelle, complète, en français, avec des exemples de code compilables !
 
@@ -21173,7 +20560,7 @@ Plus de **21 000 lignes** de documentation professionnelle, complète, en franç
 
 ### 📖 **Qu'est-ce que c'est ?**
 
-Les **MobEffect** (Status Effects) sont des effets temporaires appliqués aux entités : régénération, poison, force, lenteur, etc. Vous pouvez créer vos propres effets avec des **comportements uniques**, des **icônes personnalisées**, et des **effets visuels**.
+Les **StatusEffect** (Status Effects) sont des effets temporaires appliqués aux entités : régénération, poison, force, lenteur, etc. Vous pouvez créer vos propres effets avec des **comportements uniques**, des **icônes personnalisées**, et des **effets visuels**.
 
 ### 🎯 **Pourquoi créer des effets custom ?**
 
@@ -21184,14 +20571,14 @@ Les **MobEffect** (Status Effects) sont des effets temporaires appliqués aux en
 
 ### 🔧 **Composants d'un effet**
 
-1. **MobEffect** : La classe de l'effet avec sa logique
+1. **StatusEffect** : La classe de l'effet avec sa logique
 2. **Icône** : Texture 18x18 affichée dans l'inventaire
 3. **Particles** : Particules visuelles autour de l'entité
-4. **MobEffectInstance** : Instance de l'effet avec durée et amplificateur
+4. **StatusEffectInstance** : Instance de l'effet avec durée et amplificateur
 
 ---
 
-### **46.1 MobEffect Registration**
+### **46.1 StatusEffect Registration**
 
 **📁 `ModEffects.java` :**
 
@@ -21199,83 +20586,80 @@ Les **MobEffect** (Status Effects) sont des effets temporaires appliqués aux en
 package com.medelium.registry;
 
 import com.medelium.effect.*;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraft.registry.*;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
+// Fabric: utiliser Registry.register directement
 
 import java.util.function.Supplier;
 
 public class ModEffects {
-    public static final DeferredRegister<MobEffect> EFFECTS =
-        DeferredRegister.create(BuiltInRegistries.MOB_EFFECT, "medeliummod");
-
-    // 🔵 MANA REGENERATION (effet bénéfique)
-    public static final Supplier<MobEffect> MANA_REGENERATION = EFFECTS.register("mana_regeneration",
-        () -> new ManaRegenerationEffect(MobEffectCategory.BENEFICIAL, 0x3366FF)
+        // 🔵 MANA REGENERATION (effet bénéfique)
+    public static final Supplier<StatusEffect> MANA_REGENERATION = EFFECTS.register("mana_regeneration",
+        () -> new ManaRegenerationEffect(StatusEffectCategory.BENEFICIAL, 0x3366FF)
     );
 
     // 🩸 BLEEDING (effet néfaste - dégâts sur la durée)
-    public static final Supplier<MobEffect> BLEEDING = EFFECTS.register("bleeding",
-        () -> new BleedingEffect(MobEffectCategory.HARMFUL, 0x8B0000)
+    public static final Supplier<StatusEffect> BLEEDING = EFFECTS.register("bleeding",
+        () -> new BleedingEffect(StatusEffectCategory.HARMFUL, 0x8B0000)
     );
 
     // ⚡ HASTE ADVANCED (haste amélioré)
-    public static final Supplier<MobEffect> SUPER_HASTE = EFFECTS.register("super_haste",
-        () -> new SuperHasteEffect(MobEffectCategory.BENEFICIAL, 0xFFD700)
+    public static final Supplier<StatusEffect> SUPER_HASTE = EFFECTS.register("super_haste",
+        () -> new SuperHasteEffect(StatusEffectCategory.BENEFICIAL, 0xFFD700)
     );
 
     // 🌟 BLESSING (bénédiction - multiples bonus)
-    public static final Supplier<MobEffect> BLESSING = EFFECTS.register("blessing",
-        () -> new BlessingEffect(MobEffectCategory.BENEFICIAL, 0xFFFFAA)
+    public static final Supplier<StatusEffect> BLESSING = EFFECTS.register("blessing",
+        () -> new BlessingEffect(StatusEffectCategory.BENEFICIAL, 0xFFFFAA)
     );
 
     // 💀 CURSE (malédiction - multiples malus)
-    public static final Supplier<MobEffect> CURSE = EFFECTS.register("curse",
-        () -> new CurseEffect(MobEffectCategory.HARMFUL, 0x4B0082)
+    public static final Supplier<StatusEffect> CURSE = EFFECTS.register("curse",
+        () -> new CurseEffect(StatusEffectCategory.HARMFUL, 0x4B0082)
     );
 
     // 🔥 BURNING SOUL (augmente dégâts de feu)
-    public static final Supplier<MobEffect> BURNING_SOUL = EFFECTS.register("burning_soul",
-        () -> new BurningSoulEffect(MobEffectCategory.BENEFICIAL, 0xFF4500)
+    public static final Supplier<StatusEffect> BURNING_SOUL = EFFECTS.register("burning_soul",
+        () -> new BurningSoulEffect(StatusEffectCategory.BENEFICIAL, 0xFF4500)
     );
 
     // ❄️ FROZEN (ralentissement extrême)
-    public static final Supplier<MobEffect> FROZEN = EFFECTS.register("frozen",
-        () -> new FrozenEffect(MobEffectCategory.HARMFUL, 0xADD8E6)
+    public static final Supplier<StatusEffect> FROZEN = EFFECTS.register("frozen",
+        () -> new FrozenEffect(StatusEffectCategory.HARMFUL, 0xADD8E6)
     );
 
     // 👻 GHOSTLY (semi-intangible - réduit dégâts)
-    public static final Supplier<MobEffect> GHOSTLY = EFFECTS.register("ghostly",
-        () -> new GhostlyEffect(MobEffectCategory.BENEFICIAL, 0xE0E0E0)
+    public static final Supplier<StatusEffect> GHOSTLY = EFFECTS.register("ghostly",
+        () -> new GhostlyEffect(StatusEffectCategory.BENEFICIAL, 0xE0E0E0)
     );
 }
 ```
 
 ---
 
-### **46.2 MobEffect simple - Mana Regeneration**
+### **46.2 StatusEffect simple - Mana Regeneration**
 
 **📁 `ManaRegenerationEffect.java` :**
 
 ```java
 package com.medelium.effect;
 
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 
-public class ManaRegenerationEffect extends MobEffect {
+public class ManaRegenerationEffect extends StatusEffect {
 
-    public ManaRegenerationEffect(MobEffectCategory category, int color) {
+    public ManaRegenerationEffect(StatusEffectCategory category, int color) {
         super(category, color);
     }
 
     // ⏰ Exécuté chaque tick (20 fois par seconde)
     @Override
     public boolean applyEffectTick(LivingEntity living, int amplifier) {
-        if (!living.level().isClientSide && living instanceof Player player) {
+        if (!living.level().isClient && living instanceof PlayerEntity player) {
             // Régénérer la mana (exemple - adaptez à votre système)
             // ManaCapability.get(player).ifPresent(mana -> {
             //     mana.addMana((1 + amplifier) * 0.5f);  // 0.5 mana/tick au niveau 1
@@ -21300,36 +20684,36 @@ public class ManaRegenerationEffect extends MobEffect {
 
 ---
 
-### **46.3 MobEffect avec dégâts - Bleeding**
+### **46.3 StatusEffect avec dégâts - Bleeding**
 
 **📁 `BleedingEffect.java` :**
 
 ```java
 package com.medelium.effect;
 
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.LivingEntity;
 
-public class BleedingEffect extends MobEffect {
+public class BleedingEffect extends StatusEffect {
 
-    public BleedingEffect(MobEffectCategory category, int color) {
+    public BleedingEffect(StatusEffectCategory category, int color) {
         super(category, color);
     }
 
     @Override
     public boolean applyEffectTick(LivingEntity living, int amplifier) {
-        if (!living.level().isClientSide) {
+        if (!living.level().isClient) {
             // Infliger des dégâts
             float damage = 1.0f + (amplifier * 0.5f);  // 1 HP/s au niveau 1, 1.5 au niveau 2, etc.
-            living.hurt(living.damageSources().magic(), damage);
+            living.damage(living.getDamageSources().magic(), damage);
 
             // Particules de sang (serveur)
-            if (living.level() instanceof ServerLevel serverLevel) {
-                serverLevel.sendParticles(
+            if (living.level() instanceof ServerWorld serverWorld) {
+                serverWorld.spawnParticles(
                     ParticleTypes.DAMAGE_INDICATOR,
                     living.getX(),
                     living.getY() + living.getBbHeight() / 2,
@@ -21353,21 +20737,18 @@ public class BleedingEffect extends MobEffect {
 
 ---
 
-### **46.4 MobEffect avec attributs - Super Haste**
+### **46.4 StatusEffect avec attributs - Super Haste**
 
 **📁 `SuperHasteEffect.java` :**
 
 ```java
 package com.medelium.effect;
 
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
+public class SuperHasteEffect extends StatusEffect {
 
-public class SuperHasteEffect extends MobEffect {
-
-    public SuperHasteEffect(MobEffectCategory category, int color) {
+    public SuperHasteEffect(StatusEffectCategory category, int color) {
         super(category, color);
 
         // Ajouter modificateur de vitesse d'attaque
@@ -21403,26 +20784,23 @@ public class SuperHasteEffect extends MobEffect {
 
 ---
 
-### **46.5 MobEffect complexe - Blessing (bénédiction)**
+### **46.5 StatusEffect complexe - Blessing (bénédiction)**
 
 **📁 `BlessingEffect.java` :**
 
 ```java
 package com.medelium.effect;
 
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.LivingEntity;
+public class BlessingEffect extends StatusEffect {
 
-public class BlessingEffect extends MobEffect {
-
-    public BlessingEffect(MobEffectCategory category, int color) {
+    public BlessingEffect(StatusEffectCategory category, int color) {
         super(category, color);
 
         // Bonus de vie max
@@ -21444,9 +20822,9 @@ public class BlessingEffect extends MobEffect {
 
     @Override
     public boolean applyEffectTick(LivingEntity living, int amplifier) {
-        if (!living.level().isClientSide) {
+        if (!living.level().isClient) {
             // Régénération lente
-            if (living.getHealth() < living.getMaxHealth() && living.tickCount % 40 == 0) {
+            if (living.getHealth() < living.getMaxHealth() && living.age % 40 == 0) {
                 living.heal(1.0f);
             }
 
@@ -21459,8 +20837,8 @@ public class BlessingEffect extends MobEffect {
             }
 
             // Particules dorées
-            if (living.level() instanceof ServerLevel serverLevel && living.tickCount % 10 == 0) {
-                serverLevel.sendParticles(
+            if (living.level() instanceof ServerWorld serverWorld && living.age % 10 == 0) {
+                serverWorld.spawnParticles(
                     ParticleTypes.END_ROD,
                     living.getX(),
                     living.getY() + living.getBbHeight() + 0.5,
@@ -21483,22 +20861,19 @@ public class BlessingEffect extends MobEffect {
 
 ---
 
-### **46.6 MobEffect avec événements - Ghostly**
+### **46.6 StatusEffect avec événements - Ghostly**
 
 **📁 `GhostlyEffect.java` :**
 
 ```java
 package com.medelium.effect;
 
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.LivingEntity;
+public class GhostlyEffect extends StatusEffect {
 
-public class GhostlyEffect extends MobEffect {
-
-    public GhostlyEffect(MobEffectCategory category, int color) {
+    public GhostlyEffect(StatusEffectCategory category, int color) {
         super(category, color);
 
         // Réduction de vitesse (fantôme flotte)
@@ -21526,20 +20901,20 @@ public class GhostlyEffect extends MobEffect {
 **📁 Event Handler pour réduire les dégâts :**
 
 ```java
-@SubscribeEvent
 public static void onLivingHurt(LivingHurtEvent event) {
-    LivingEntity living = event.getEntity();
+    LivingEntity living = player /* Fabric: obtenu via le callback */;
     
     if (living.hasEffect(ModEffects.GHOSTLY.get())) {
         int amplifier = living.getEffect(ModEffects.GHOSTLY.get()).getAmplifier();
         
         // Réduire les dégâts de 30% par niveau
         float reduction = 0.3f * (1 + amplifier);
-        event.setAmount(event.getAmount() * (1 - reduction));
+        // Fabric: modifier le tableau amount[] dans le Mixin
+            // amount[0] = amount /* Fabric: paramètre du Mixin */ * (1 - reduction));
         
         // Particules spectrales
-        if (living.level() instanceof ServerLevel serverLevel) {
-            serverLevel.sendParticles(
+        if (living.level() instanceof ServerWorld serverWorld) {
+            serverWorld.spawnParticles(
                 ParticleTypes.SOUL,
                 living.getX(),
                 living.getY() + 1,
@@ -21557,7 +20932,7 @@ public static void onLivingHurt(LivingHurtEvent event) {
 
 Les icônes sont affichées dans l'inventaire quand l'effet est actif.
 
-**📁 Texture - `assets/medeliummod/textures/mob_effect/mana_regeneration.png` :**
+**📁 Texture - `assets/medelium/textures/mob_effect/mana_regeneration.png` :**
 
 - **Résolution** : 18x18 pixels
 - **Style** : Iconique, simple, reconnaissable
@@ -21566,7 +20941,7 @@ Les icônes sont affichées dans l'inventaire quand l'effet est actif.
 **📁 Créer les autres textures :**
 
 ```
-assets/medeliummod/textures/mob_effect/
+assets/medelium/textures/mob_effect/
 ├── mana_regeneration.png  (18x18 - gouttes bleues)
 ├── bleeding.png           (18x18 - gouttes rouges)
 ├── super_haste.png        (18x18 - éclair doré)
@@ -21586,13 +20961,12 @@ assets/medeliummod/textures/mob_effect/
 **💊 Via potion :**
 
 ```java
-public static final DeferredItem<Item> MANA_POTION = ITEMS.register("mana_potion",
-    () -> new Item(new Item.Properties()
-        .food(new FoodProperties.Builder()
+public static final Item MANA_POTION = registerItem("mana_potion", new Item(new FabricItemSettings()
+        .food(new FoodComponent.Builder()
             .nutrition(0)
             .saturationModifier(0)
             .alwaysEdible()
-            .effect(() -> new MobEffectInstance(
+            .effect(() -> new StatusEffectInstance(
                 ModEffects.MANA_REGENERATION.get(),
                 1200,  // 60 secondes (20 ticks/s * 60)
                 0,     // Amplifier 0 (niveau 1)
@@ -21610,7 +20984,7 @@ public static final DeferredItem<Item> MANA_POTION = ITEMS.register("mana_potion
 @Override
 public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
     // Appliquer bleeding à la cible
-    target.addEffect(new MobEffectInstance(
+    target.addStatusEffect(new StatusEffectInstance(
         ModEffects.BLEEDING.get(),
         200,   // 10 secondes
         1,     // Niveau 2
@@ -21626,20 +21000,20 @@ public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity atta
 
 ```java
 @Override
-public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos,
-                                        Player player, BlockHitResult hit) {
-    if (!level.isClientSide) {
-        player.addEffect(new MobEffectInstance(
+public ActionResult useWithoutItem(BlockState state, World world, BlockPos pos,
+                                        PlayerEntity player, BlockHitResult hit) {
+    if (!world.isClient) {
+        player.addStatusEffect(new StatusEffectInstance(
             ModEffects.BLESSING.get(),
             6000,  // 5 minutes
             0
         ));
-        player.displayClientMessage(
-            Component.literal("§6Tu as été béni par les dieux !"),
+        player.sendMessage(
+            Text.literal("§6Tu as été béni par les dieux !"),
             true
         );
     }
-    return InteractionResult.SUCCESS;
+    return ActionResult.SUCCESS;
 }
 ```
 
@@ -21647,7 +21021,7 @@ public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos 
 
 ```java
 // Dans un command custom
-player.addEffect(new MobEffectInstance(
+player.addStatusEffect(new StatusEffectInstance(
     ModEffects.GHOSTLY.get(),
     600,   // 30 secondes
     1,     // Niveau 2
@@ -21666,16 +21040,15 @@ Pour créer des potions craftables dans l'alambic :
 **📁 Event pour ajouter brewing recipes :**
 
 ```java
-@SubscribeEvent
 public static void onBrewingRecipeRegister(RegisterBrewingRecipesEvent event) {
     PotionBrewing.Builder builder = event.getBuilder();
     
     // Potion de Mana Regeneration
     builder.addMix(
         Potions.AWKWARD,                          // Potion de base
-        ModItems.MANA_CRYSTAL.get(),              // Ingrédient
+        ModItems.MANA_CRYSTAL,              // Ingrédient
         Potions.register("mana_regeneration",     // ID
-            new Potion(new MobEffectInstance(
+            new Potion(new StatusEffectInstance(
                 ModEffects.MANA_REGENERATION.get(),
                 1800  // 90 secondes
             ))
@@ -21687,7 +21060,7 @@ public static void onBrewingRecipeRegister(RegisterBrewingRecipesEvent event) {
         Potions.AWKWARD,
         Items.GOLDEN_APPLE,
         Potions.register("blessing",
-            new Potion(new MobEffectInstance(
+            new Potion(new StatusEffectInstance(
                 ModEffects.BLESSING.get(),
                 3600  // 3 minutes
             ))
@@ -21697,9 +21070,9 @@ public static void onBrewingRecipeRegister(RegisterBrewingRecipesEvent event) {
     // Potion de Curse (splash)
     builder.addMix(
         Potions.AWKWARD,
-        ModItems.CURSED_FRAGMENT.get(),
+        ModItems.CURSED_FRAGMENT,
         Potions.register("curse",
-            new Potion(new MobEffectInstance(
+            new Potion(new StatusEffectInstance(
                 ModEffects.CURSE.get(),
                 1200
             ))
@@ -21717,7 +21090,7 @@ public static void onBrewingRecipeRegister(RegisterBrewingRecipesEvent event) {
 ```java
 @Override
 public boolean applyEffectTick(LivingEntity living, int amplifier) {
-    if (living.level().isClientSide) {
+    if (living.level().isClient) {
         // Particules côté client
         for (int i = 0; i < 2; i++) {
             double offsetX = (living.getRandom().nextDouble() - 0.5) * 0.8;
@@ -21739,9 +21112,8 @@ public boolean applyEffectTick(LivingEntity living, int amplifier) {
 **🎨 Modifier le rendu de l'entité (fog, tint) :**
 
 ```java
-@SubscribeEvent
 public static void onRenderLivingEntity(RenderLivingEvent.Pre<?, ?> event) {
-    LivingEntity living = event.getEntity();
+    LivingEntity living = player /* Fabric: obtenu via le callback */;
     
     if (living.hasEffect(ModEffects.GHOSTLY.get())) {
         // Rendre l'entité semi-transparente
@@ -21752,9 +21124,8 @@ public static void onRenderLivingEntity(RenderLivingEvent.Pre<?, ?> event) {
     }
 }
 
-@SubscribeEvent
 public static void onRenderLivingEntityPost(RenderLivingEvent.Post<?, ?> event) {
-    LivingEntity living = event.getEntity();
+    LivingEntity living = player /* Fabric: obtenu via le callback */;
     
     if (living.hasEffect(ModEffects.GHOSTLY.get())) {
         // Restaurer le rendu normal
@@ -21768,33 +21139,33 @@ public static void onRenderLivingEntityPost(RenderLivingEvent.Post<?, ?> event) 
 
 ### **46.11 Traductions**
 
-**📁 `assets/medeliummod/lang/en_us.json` :**
+**📁 `assets/medelium/lang/en_us.json` :**
 
 ```json
 {
-  "effect.medeliummod.mana_regeneration": "Mana Regeneration",
-  "effect.medeliummod.bleeding": "Bleeding",
-  "effect.medeliummod.super_haste": "Super Haste",
-  "effect.medeliummod.blessing": "Blessing",
-  "effect.medeliummod.curse": "Curse",
-  "effect.medeliummod.burning_soul": "Burning Soul",
-  "effect.medeliummod.frozen": "Frozen",
-  "effect.medeliummod.ghostly": "Ghostly"
+  "effect.medelium.mana_regeneration": "Mana Regeneration",
+  "effect.medelium.bleeding": "Bleeding",
+  "effect.medelium.super_haste": "Super Haste",
+  "effect.medelium.blessing": "Blessing",
+  "effect.medelium.curse": "Curse",
+  "effect.medelium.burning_soul": "Burning Soul",
+  "effect.medelium.frozen": "Frozen",
+  "effect.medelium.ghostly": "Ghostly"
 }
 ```
 
-**📁 `assets/medeliummod/lang/fr_fr.json` :**
+**📁 `assets/medelium/lang/fr_fr.json` :**
 
 ```json
 {
-  "effect.medeliummod.mana_regeneration": "Régénération de Mana",
-  "effect.medeliummod.bleeding": "Saignement",
-  "effect.medeliummod.super_haste": "Célérité Suprême",
-  "effect.medeliummod.blessing": "Bénédiction",
-  "effect.medeliummod.curse": "Malédiction",
-  "effect.medeliummod.burning_soul": "Âme Brûlante",
-  "effect.medeliummod.frozen": "Gelé",
-  "effect.medeliummod.ghostly": "Spectral"
+  "effect.medelium.mana_regeneration": "Régénération de Mana",
+  "effect.medelium.bleeding": "Saignement",
+  "effect.medelium.super_haste": "Célérité Suprême",
+  "effect.medelium.blessing": "Bénédiction",
+  "effect.medelium.curse": "Malédiction",
+  "effect.medelium.burning_soul": "Âme Brûlante",
+  "effect.medelium.frozen": "Gelé",
+  "effect.medelium.ghostly": "Spectral"
 }
 ```
 
@@ -21808,7 +21179,7 @@ public static void onRenderLivingEntityPost(RenderLivingEvent.Post<?, ?> event) 
 
 ```
 // 1. Vérifier le chemin
-assets/medeliummod/textures/mob_effect/mana_regeneration.png
+assets/medelium/textures/mob_effect/mana_regeneration.png
 
 // 2. Vérifier la résolution (DOIT être 18x18)
 
@@ -21856,43 +21227,43 @@ this.addAttributeModifier(
 
 ```java
 // Particules serveur = sendParticles
-if (living.level() instanceof ServerLevel serverLevel) {
-    serverLevel.sendParticles(...);
+if (living.level() instanceof ServerWorld serverWorld) {
+    serverWorld.spawnParticles(...);
 }
 
 // Particules client = addParticle
-if (living.level().isClientSide) {
+if (living.level().isClient) {
     living.level().addParticle(...);
 }
 ```
 
-**📝 Checklist complète pour un MobEffect :**
+**📝 Checklist complète pour un StatusEffect :**
 
-✅ Classe extends MobEffect  
-✅ DeferredRegister dans ModEffects  
+✅ Classe extends StatusEffect  
+✅ Registry.register dans ModEffects  
 ✅ applyEffectTick() implémenté  
 ✅ shouldApplyEffectTickThisTick() configuré  
 ✅ Texture 18x18 dans `mob_effect/`  
 ✅ Traductions (effect.modid.name)  
-✅ Test avec `/effect give @p medeliummod:mana_regeneration 60 0`  
+✅ Test avec `/effect give @p medelium:mana_regeneration 60 0`  
 ✅ Vérifier que l'icône apparaît dans l'inventaire  
 ✅ Tester le comportement en jeu  
 
 **🎮 Commandes de test :**
 
 ```
-/effect give @p medeliummod:mana_regeneration 60 0
-/effect give @p medeliummod:bleeding 30 1
-/effect give @p medeliummod:blessing 300 0
+/effect give @p medelium:mana_regeneration 60 0
+/effect give @p medelium:bleeding 30 1
+/effect give @p medelium:blessing 300 0
 /effect clear @p
-/effect clear @p medeliummod:curse
+/effect clear @p medelium:curse
 ```
 
 **🔧 Template pour créer un nouvel effet :**
 
 ```java
-public class MyCustomEffect extends MobEffect {
-    public MyCustomEffect(MobEffectCategory category, int color) {
+public class MyCustomEffect extends StatusEffect {
+    public MyCustomEffect(StatusEffectCategory category, int color) {
         super(category, color);
         
         // Optionnel : Modificateurs d'attributs
@@ -21906,7 +21277,7 @@ public class MyCustomEffect extends MobEffect {
 
     @Override
     public boolean applyEffectTick(LivingEntity living, int amplifier) {
-        if (!living.level().isClientSide) {
+        if (!living.level().isClient) {
             // Logique serveur
         }
         return true;
@@ -21925,7 +21296,7 @@ public class MyCustomEffect extends MobEffect {
 
 Vous savez maintenant :
 
-1. ✅ Créer un **MobEffect** avec DeferredRegister
+1. ✅ Créer un **StatusEffect** avec Registry.register
 2. ✅ Implémenter **applyEffectTick()** pour la logique
 3. ✅ Configurer **shouldApplyEffectTickThisTick()** pour la fréquence
 4. ✅ Ajouter des **modificateurs d'attributs** (speed, armor, health)
@@ -21951,13 +21322,13 @@ Le guide contient maintenant **46 sections exhaustives** couvrant :
 ✅ **Section 39** : Villageois & Professions (POI, professions custom, trades par niveau, textures, workstations)
 ✅ **Section 40** : Data Generators (automatiser JSON, RecipeProvider, BlockStateProvider, ItemModelProvider, LootTableProvider, TagsProvider, LanguageProvider)
 ✅ **Section 41** : Render Types (CUTOUT pour plantes, TRANSLUCENT pour verre, skipRendering, noOcclusion, transparence partielle)
-✅ **Section 42** : Fluids Custom (FluidType, Source/Flowing, LiquidBlock, BucketItem, textures animées, interactions spéciales)
-✅ **Section 43** : Music Discs Custom (JukeboxSong 1.21+, fichiers .ogg, SoundEvent, disques écoutables, loot tables)
+✅ **Section 42** : Fluids Custom (/* FluidType - NeoForge only, Fabric utilise FluidRenderHandlerRegistry */, Source/Flowing, LiquidBlock, BucketItem, textures animées, interactions spéciales)
+✅ **Section 43** : Music Discs Custom (/* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ 1.21+, fichiers .ogg, SoundEvent, disques écoutables, loot tables)
 ✅ **Section 44** : Banner Patterns Custom (BannerPattern registry, BannerPatternItem, textures 64x64, loom integration, tags)
 ✅ **Section 45** : Patchouli/REI/EMI Support (livre de documentation in-game, REI displays, EMI plugin, compatibilité)
-✅ **Section 46** : Status Effects Custom (MobEffect, icônes 18x18, attributs modifiers, brewing recipes, particules, événements)
+✅ **Section 46** : Status Effects Custom (StatusEffect, icônes 18x18, attributs modifiers, brewing recipes, particules, événements)
 
-**Le guide couvre LITTÉRALEMENT TOUT ce qu'il est possible de faire dans un mod Minecraft NeoForge 1.21.1 !** 🏰⚔️✨
+**Le guide couvre LITTÉRALEMENT TOUT ce qu'il est possible de faire dans un mod Minecraft Fabric 1.20.1 !** 🏰⚔️✨
 
 Plus de **22 000 lignes** de documentation professionnelle, complète, en français, avec des exemples de code compilables !
 
@@ -21982,15 +21353,15 @@ Les **Goals** (objectifs) définissent le **comportement des entités** : patrou
 
 ```java
 // Dans votre entité (registerGoals)
-this.goalSelector.addGoal(0, new FloatGoal(this));              // Priorité 0 = la plus haute
-this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0, false));
-this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0));
-this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8.0f));
-this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+this.goalSelector.add(0, new FloatGoal(this));              // Priorité 0 = la plus haute
+this.goalSelector.add(1, new MeleeAttackGoal(this, 1.0, false));
+this.goalSelector.add(2, new WaterAvoidingRandomStrollGoal(this, 1.0));
+this.goalSelector.add(3, new LookAtPlayerGoal(this, Player.class, 8.0f));
+this.goalSelector.add(4, new RandomLookAroundGoal(this));
 
 // targetSelector pour choisir les cibles
-this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+this.targetSelector.add(1, new HurtByTargetGoal(this));
+this.targetSelector.add(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
 ```
 
 **Priorités** :
@@ -22009,8 +21380,8 @@ this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.cl
 ```java
 package com.medelium.entity.ai;
 
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.entity.*;
+// Fabric: import net.minecraft.entity.ai equivalent
 import java.util.EnumSet;
 
 public class MyCustomGoal extends Goal {
@@ -22022,7 +21393,7 @@ public class MyCustomGoal extends Goal {
         this.mob = mob;
         
         // Définir les flags (MOVE, LOOK, JUMP, TARGET)
-        this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+        this.setFlags(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
     }
 
     // ✅ Condition pour démarrer le Goal
@@ -22062,10 +21433,10 @@ public class MyCustomGoal extends Goal {
 **🚩 Flags disponibles :**
 
 ```java
-Goal.Flag.MOVE      // Contrôle le mouvement (navigation)
-Goal.Flag.LOOK      // Contrôle la rotation (regard)
-Goal.Flag.JUMP      // Contrôle les sauts
-Goal.Flag.TARGET    // Contrôle le ciblage (targetSelector)
+Goal.Control.MOVE      // Contrôle le mouvement (navigation)
+Goal.Control.LOOK      // Contrôle la rotation (regard)
+Goal.Control.JUMP      // Contrôle les sauts
+Goal.Control.TARGET    // Contrôle le ciblage (targetSelector)
 ```
 
 ---
@@ -22079,10 +21450,10 @@ Un garde qui patrouille entre plusieurs points.
 ```java
 package com.medelium.entity.ai;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.level.pathfinder.Path;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.entity.*;
+// Fabric: import net.minecraft.entity.ai equivalent
+import net.minecraft.world.*;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -22100,7 +21471,7 @@ public class PatrolGoal extends Goal {
         this.speedModifier = speedModifier;
         this.patrolPoints = patrolPoints;
         
-        this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+        this.setFlags(EnumSet.of(Goal.Control.MOVE));
     }
 
     @Override
@@ -22140,7 +21511,7 @@ public class PatrolGoal extends Goal {
         BlockPos targetPos = this.patrolPoints.get(this.currentPointIndex);
         
         // Vérifier si on est arrivé au point
-        if (this.mob.blockPosition().distSqr(targetPos) < 4.0) {
+        if (this.mob.getBlockPos().distSqr(targetPos) < 4.0) {
             // Arrivé au point, attendre puis aller au suivant
             this.waitTimer = WAIT_TIME;
             this.currentPointIndex = (this.currentPointIndex + 1) % this.patrolPoints.size();
@@ -22178,7 +21549,7 @@ protected void registerGoals() {
         new BlockPos(100, 64, 120)
     );
     
-    this.goalSelector.addGoal(2, new PatrolGoal(this, 0.8, patrolPoints));
+    this.goalSelector.add(2, new PatrolGoal(this, 0.8, patrolPoints));
 }
 ```
 
@@ -22193,13 +21564,13 @@ Une entité qui exécute un rituel à intervalle régulier.
 ```java
 package com.medelium.entity.ai;
 
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.*;
+// Fabric: import net.minecraft.entity.ai equivalent
 import java.util.EnumSet;
 
 public class RitualGoal extends Goal {
@@ -22217,7 +21588,7 @@ public class RitualGoal extends Goal {
         this.cooldownDuration = cooldownDuration;
         
         // Bloque mouvement et regard pendant le rituel
-        this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+        this.setFlags(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
     }
 
     @Override
@@ -22252,7 +21623,7 @@ public class RitualGoal extends Goal {
         this.mob.setDeltaMovement(this.mob.getDeltaMovement().multiply(0.5, 1.0, 0.5));
 
         // Particules magiques
-        if (this.mob.level() instanceof ServerLevel serverLevel) {
+        if (this.mob.level() instanceof ServerWorld serverWorld) {
             if (this.ritualTimer % 5 == 0) {
                 double radius = 2.0;
                 int particleCount = 10;
@@ -22262,7 +21633,7 @@ public class RitualGoal extends Goal {
                     double offsetX = Math.cos(angle) * radius;
                     double offsetZ = Math.sin(angle) * radius;
                     
-                    serverLevel.sendParticles(
+                    serverWorld.spawnParticles(
                         ParticleTypes.ENCHANT,
                         this.mob.getX() + offsetX,
                         this.mob.getY() + 1.0,
@@ -22292,15 +21663,15 @@ public class RitualGoal extends Goal {
 
     private void completeRitual() {
         // Effet du rituel : buff pour l'entité
-        this.mob.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 200, 1));
-        this.mob.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 0));
+        this.mob.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1));
+        this.mob.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 0));
         
         // Soigner un peu
         this.mob.heal(10.0f);
         
         // Explosion de particules
-        if (this.mob.level() instanceof ServerLevel serverLevel) {
-            serverLevel.sendParticles(
+        if (this.mob.level() instanceof ServerWorld serverWorld) {
+            serverWorld.spawnParticles(
                 ParticleTypes.FLASH,
                 this.mob.getX(),
                 this.mob.getY() + 1.0,
@@ -22308,7 +21679,7 @@ public class RitualGoal extends Goal {
                 1, 0, 0, 0, 0
             );
             
-            serverLevel.sendParticles(
+            serverWorld.spawnParticles(
                 ParticleTypes.ENCHANT,
                 this.mob.getX(),
                 this.mob.getY() + 1.0,
@@ -22338,7 +21709,7 @@ private RitualGoal ritualGoal;
 @Override
 protected void registerGoals() {
     this.ritualGoal = new RitualGoal(this, 100, 600);  // 5s rituel, 30s cooldown
-    this.goalSelector.addGoal(3, this.ritualGoal);
+    this.goalSelector.add(3, this.ritualGoal);
 }
 
 @Override
@@ -22361,10 +21732,10 @@ Un marchand qui propose des trades quand un joueur s'approche.
 ```java
 package com.medelium.entity.ai;
 
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.entity.*;
+// Fabric: import net.minecraft.entity.ai equivalent
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.AABB;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -22381,7 +21752,7 @@ public class TradeWithPlayerGoal extends Goal {
         this.detectionRange = detectionRange;
         this.speedModifier = speedModifier;
         
-        this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+        this.setFlags(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
     }
 
     @Override
@@ -22441,7 +21812,7 @@ public class TradeWithPlayerGoal extends Goal {
             this.mob.getNavigation().stop();
             
             // Ouvrir interface de trade (tous les 40 ticks = 2 secondes)
-            if (this.mob.tickCount % 40 == 0) {
+            if (this.mob.age % 40 == 0) {
                 this.openTradeInterface();
             }
         } else if (distanceSqr < this.detectionRange * this.detectionRange) {
@@ -22458,14 +21829,14 @@ public class TradeWithPlayerGoal extends Goal {
     }
 
     private void openTradeInterface() {
-        if (!this.mob.level().isClientSide && this.targetPlayer != null) {
+        if (!this.mob.level().isClient && this.targetPlayer != null) {
             // Ouvrir l'interface de trade vanilla
             // Si votre mob implémente Merchant :
             // this.targetPlayer.openTradingScreen(this.mob);
             
             // Ou envoyer un message custom
-            this.targetPlayer.displayClientMessage(
-                net.minecraft.network.chat.Component.literal(
+            this.targetPlayer.sendMessage(
+                net.minecraft.network.chat.Text.literal(
                     "§6[Marchand] §eBienvenue ! Clic droit pour commercer !"
                 ),
                 true  // Action bar
@@ -22486,8 +21857,8 @@ Pour des mobs qui se déplacent en groupe.
 ```java
 package com.medelium.entity.ai;
 
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.entity.*;
+// Fabric: import net.minecraft.entity.ai equivalent
 import java.util.EnumSet;
 
 public class FollowLeaderGoal extends Goal {
@@ -22506,7 +21877,7 @@ public class FollowLeaderGoal extends Goal {
         this.minDistance = minDistance;
         this.maxDistance = maxDistance;
         
-        this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+        this.setFlags(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
     }
 
     @Override
@@ -22514,7 +21885,7 @@ public class FollowLeaderGoal extends Goal {
         // Chercher un leader (entité du même type)
         this.leader = this.follower.level().getNearestEntity(
             this.follower.getClass(),
-            net.minecraft.world.entity.ai.targeting.TargetingConditions.DEFAULT,
+            net.minecraft.entity.ai.targeting.TargetingConditions.DEFAULT,
             this.follower,
             this.follower.getX(),
             this.follower.getY(),
@@ -22587,11 +21958,9 @@ public class FollowLeaderGoal extends Goal {
 ```java
 package com.medelium.entity.ai;
 
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.util.DefaultRandomPos;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
+import net.minecraft.util.math.Vec3d;
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
@@ -22619,7 +21988,7 @@ public class FleeFromEntityGoal<T extends LivingEntity> extends Goal {
         this.fleeDistance = fleeDistance;
         this.speedModifier = speedModifier;
         
-        this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+        this.setFlags(EnumSet.of(Goal.Control.MOVE));
     }
 
     @Override
@@ -22627,7 +21996,7 @@ public class FleeFromEntityGoal<T extends LivingEntity> extends Goal {
         // Chercher l'entité la plus proche dont il faut fuir
         this.entityToFleeFrom = this.mob.level().getNearestEntity(
             this.entityClassToFleeFrom,
-            net.minecraft.world.entity.ai.targeting.TargetingConditions.DEFAULT
+            net.minecraft.entity.ai.targeting.TargetingConditions.DEFAULT
                 .selector(this.fleeFromPredicate),
             this.mob,
             this.mob.getX(),
@@ -22694,10 +22063,10 @@ public class FleeFromEntityGoal<T extends LivingEntity> extends Goal {
 
 ```java
 // Fuir les joueurs
-this.goalSelector.addGoal(1, new FleeFromEntityGoal<>(this, Player.class, 10.0, 1.5));
+this.goalSelector.add(1, new FleeFromEntityGoal<>(this, Player.class, 10.0, 1.5));
 
 // Fuir les zombies uniquement si ils sont agressifs
-this.goalSelector.addGoal(1, new FleeFromEntityGoal<>(
+this.goalSelector.add(1, new FleeFromEntityGoal<>(
     this, 
     Zombie.class,
     entity -> entity.getTarget() != null,  // Predicate
@@ -22715,13 +22084,13 @@ this.goalSelector.addGoal(1, new FleeFromEntityGoal<>(
 ```java
 package com.medelium.entity.ai;
 
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
+// Fabric: import net.minecraft.entity.ai equivalent
+import net.minecraft.util.math.AABB;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -22742,7 +22111,7 @@ public class SpecialAttackGoal extends Goal {
         this.attackWindup = attackWindup;
         this.attackCooldown = attackCooldown;
         
-        this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+        this.setFlags(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
     }
 
     @Override
@@ -22793,8 +22162,8 @@ public class SpecialAttackGoal extends Goal {
             this.windupTimer--;
 
             // Particules de charge
-            if (this.mob.level() instanceof ServerLevel serverLevel && this.windupTimer % 5 == 0) {
-                serverLevel.sendParticles(
+            if (this.mob.level() instanceof ServerWorld serverWorld && this.windupTimer % 5 == 0) {
+                serverWorld.spawnParticles(
                     ParticleTypes.FLAME,
                     this.mob.getX(),
                     this.mob.getY() + 1.0,
@@ -22818,7 +22187,7 @@ public class SpecialAttackGoal extends Goal {
     }
 
     private void executeAttack(LivingEntity target) {
-        if (!(this.mob.level() instanceof ServerLevel serverLevel)) return;
+        if (!(this.mob.level() instanceof ServerWorld serverWorld)) return;
 
         // Attaque en zone (AoE)
         AABB attackBox = new AABB(
@@ -22838,7 +22207,7 @@ public class SpecialAttackGoal extends Goal {
 
         for (LivingEntity entity : targets) {
             // Infliger des dégâts
-            entity.hurt(this.mob.damageSources().mobAttack(this.mob), 8.0f);
+            entity.damage(this.mob.getDamageSources().mobAttack(this.mob), 8.0f);
             
             // Knockback
             double dx = entity.getX() - this.mob.getX();
@@ -22856,7 +22225,7 @@ public class SpecialAttackGoal extends Goal {
             }
 
             // Particules sur chaque cible touchée
-            serverLevel.sendParticles(
+            serverWorld.spawnParticles(
                 ParticleTypes.EXPLOSION,
                 entity.getX(),
                 entity.getY() + 1.0,
@@ -22866,7 +22235,7 @@ public class SpecialAttackGoal extends Goal {
         }
 
         // Effet visuel central
-        serverLevel.sendParticles(
+        serverWorld.spawnParticles(
             ParticleTypes.EXPLOSION_EMITTER,
             this.mob.getX(),
             this.mob.getY() + 1.0,
@@ -22894,13 +22263,13 @@ public class SpecialAttackGoal extends Goal {
 ```java
 package com.medelium.entity.ai;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.*;
+// Fabric: import net.minecraft.entity.ai equivalent
 import java.util.EnumSet;
 
 public class SummonAlliesGoal extends Goal {
@@ -22921,7 +22290,7 @@ public class SummonAlliesGoal extends Goal {
         this.summonCooldown = summonCooldown;
         this.healthThreshold = healthThreshold;
         
-        this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+        this.setFlags(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
     }
 
     @Override
@@ -22943,7 +22312,7 @@ public class SummonAlliesGoal extends Goal {
 
     @Override
     public void start() {
-        if (!(this.mob.level() instanceof ServerLevel serverLevel)) return;
+        if (!(this.mob.level() instanceof ServerWorld serverWorld)) return;
 
         this.mob.getNavigation().stop();
         
@@ -22958,19 +22327,19 @@ public class SummonAlliesGoal extends Goal {
             double offsetX = Math.cos(angle) * radius;
             double offsetZ = Math.sin(angle) * radius;
 
-            BlockPos spawnPos = this.mob.blockPosition().offset(
+            BlockPos spawnPos = this.mob.getBlockPos().offset(
                 (int)offsetX,
                 0,
                 (int)offsetZ
             );
 
             // Trouver une position valide
-            while (!serverLevel.getBlockState(spawnPos).isAir() && spawnPos.getY() < 256) {
+            while (!serverWorld.getBlockState(spawnPos).isAir() && spawnPos.getY() < 256) {
                 spawnPos = spawnPos.above();
             }
 
             // Créer l'allié
-            Mob ally = this.allyType.create(serverLevel);
+            Mob ally = this.allyType.create(serverWorld);
             if (ally != null) {
                 ally.moveTo(
                     spawnPos.getX() + 0.5,
@@ -22985,11 +22354,11 @@ public class SummonAlliesGoal extends Goal {
                     ally.setTarget(this.mob.getTarget());
                 }
 
-                serverLevel.addFreshEntity(ally);
+                serverWorld.spawnEntity(ally);
 
                 // Particules d'invocation
-                serverLevel.sendParticles(
-                    net.minecraft.core.particles.ParticleTypes.POOF,
+                serverWorld.spawnParticles(
+                    net.minecraft.particle.ParticleTypes.POOF,
                     ally.getX(),
                     ally.getY() + 1.0,
                     ally.getZ(),
@@ -23022,7 +22391,7 @@ protected void registerGoals() {
         1200,               // 60 secondes de cooldown
         0.5f                // À 50% de vie
     );
-    this.goalSelector.addGoal(2, this.summonGoal);
+    this.goalSelector.add(2, this.summonGoal);
 }
 
 // Reset quand le boss heal
@@ -23050,21 +22419,21 @@ private PhaseAttackGoal phase3Goal;
 protected void registerGoals() {
     // Phase 1 : Combat normal (100%-70% HP)
     this.phase1Goal = new PhaseAttackGoal(this, 1.0, 40, 200, 0.7f, 1.0f);
-    this.goalSelector.addGoal(2, this.phase1Goal);
+    this.goalSelector.add(2, this.phase1Goal);
 
     // Phase 2 : Attaques plus rapides (70%-30% HP)
     this.phase2Goal = new PhaseAttackGoal(this, 1.2, 30, 150, 0.3f, 0.7f);
-    this.goalSelector.addGoal(2, this.phase2Goal);
+    this.goalSelector.add(2, this.phase2Goal);
 
     // Phase 3 : Berserk (30%-0% HP)
     this.phase3Goal = new PhaseAttackGoal(this, 1.5, 20, 100, 0.0f, 0.3f);
-    this.goalSelector.addGoal(2, this.phase3Goal);
+    this.goalSelector.add(2, this.phase3Goal);
 
     // Invocation à 50% HP
-    this.goalSelector.addGoal(1, new SummonAlliesGoal(this, EntityType.SKELETON, 4, 1200, 0.5f));
+    this.goalSelector.add(1, new SummonAlliesGoal(this, EntityType.SKELETON, 4, 1200, 0.5f));
 
     // Attaque spéciale en zone
-    this.goalSelector.addGoal(3, new SpecialAttackGoal(this, 8.0, 40, 300));
+    this.goalSelector.add(3, new SpecialAttackGoal(this, 8.0, 40, 300));
 }
 
 // Goal qui s'active selon la phase
@@ -23101,7 +22470,7 @@ class PhaseAttackGoal extends MeleeAttackGoal {
 public void aiStep() {
     super.aiStep();
     
-    if (!this.level().isClientSide && this.tickCount % 100 == 0) {
+    if (!this.level().isClient && this.age % 100 == 0) {
         this.goalSelector.getAvailableGoals().forEach(goal -> {
             if (goal.isRunning()) {
                 System.out.println("Active Goal: " + goal.getGoal().getClass().getSimpleName());
@@ -23204,7 +22573,7 @@ Vous savez maintenant :
 
 ### 📖 **Qu'est-ce que c'est ?**
 
-Les **Paintings** (tableaux) sont des entités décoratives que les joueurs peuvent placer sur les murs. En 1.21+, Minecraft utilise le système **PaintingVariant** data-driven pour créer des tableaux personnalisés avec vos propres images.
+Les **Paintings** (tableaux) sont des entités décoratives que les joueurs peuvent placer sur les murs. En 1.21+, Minecraft utilise le système **net.minecraft.entity.decoration.painting.PaintingVariant** data-driven pour créer des tableaux personnalisés avec vos propres images.
 
 ### 🎯 **Pourquoi créer des tableaux custom ?**
 
@@ -23216,7 +22585,7 @@ Les **Paintings** (tableaux) sont des entités décoratives que les joueurs peuv
 
 ### 🔧 **Composants d'un painting**
 
-1. **PaintingVariant** : Registry data-driven (1.21+)
+1. **net.minecraft.entity.decoration.painting.PaintingVariant** : Registry data-driven (1.21+)
 2. **Texture PNG** : Image du tableau (multiples tailles possibles)
 3. **JSON data** : Définition du variant
 4. **Item** : Objet pour placer le tableau (optionnel, vanilla painting item fonctionne)
@@ -23247,7 +22616,7 @@ Les tableaux Minecraft utilisent des **blocs** comme unité. Chaque bloc = 16x16
 
 **📁 Emplacement :** `assets/minecraft/textures/painting/`
 
-**⚠️ IMPORTANT :** Les textures de tableaux vont dans `assets/minecraft/` et **PAS** dans `assets/medeliummod/` !
+**⚠️ IMPORTANT :** Les textures de tableaux vont dans `assets/minecraft/` et **PAS** dans `assets/medelium/` !
 
 **📁 Créer vos textures :**
 
@@ -23283,64 +22652,63 @@ src/main/resources/assets/minecraft/textures/painting/
 
 ---
 
-### **48.3 Registry PaintingVariant (1.21+)**
+### **48.3 Registry net.minecraft.entity.decoration.painting.PaintingVariant (1.21+)**
 
-En 1.21+, les PaintingVariants sont **data-driven** (comme les JukeboxSong et BannerPattern).
+En 1.21+, les net.minecraft.entity.decoration.painting.PaintingVariants sont **data-driven** (comme les /* Fabric 1.20.1: pas de JukeboxSong, utiliser Item.Settings avec musicDisc() */ et BannerPattern).
 
 **📁 `ModPaintings.java` :**
 
 ```java
 package com.medelium.registry;
 
-import com.medelium.MedeliumMod;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
+import com.medelium.Medelium;
+import net.minecraft.registry.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.decoration.PaintingVariant;
+import net.minecraft.util.Identifier;
+import net.minecraft.entity.*;
 
 public class ModPaintings {
     
     // ResourceKeys pour les variants
-    public static final ResourceKey<PaintingVariant> KING_PORTRAIT = 
+    public static final ResourceKey<net.minecraft.entity.decoration.painting.PaintingVariant> KING_PORTRAIT = 
         createKey("king_portrait");
     
-    public static final ResourceKey<PaintingVariant> ROYAL_CREST = 
+    public static final ResourceKey<net.minecraft.entity.decoration.painting.PaintingVariant> ROYAL_CREST = 
         createKey("royal_crest");
     
-    public static final ResourceKey<PaintingVariant> KNIGHT_STATUE = 
+    public static final ResourceKey<net.minecraft.entity.decoration.painting.PaintingVariant> KNIGHT_STATUE = 
         createKey("knight_statue");
     
-    public static final ResourceKey<PaintingVariant> THRONE_ROOM = 
+    public static final ResourceKey<net.minecraft.entity.decoration.painting.PaintingVariant> THRONE_ROOM = 
         createKey("throne_room");
     
-    public static final ResourceKey<PaintingVariant> MEDIEVAL_BATTLE = 
+    public static final ResourceKey<net.minecraft.entity.decoration.painting.PaintingVariant> MEDIEVAL_BATTLE = 
         createKey("medieval_battle");
     
-    public static final ResourceKey<PaintingVariant> CASTLE_SIEGE = 
+    public static final ResourceKey<net.minecraft.entity.decoration.painting.PaintingVariant> CASTLE_SIEGE = 
         createKey("castle_siege");
     
-    public static final ResourceKey<PaintingVariant> WORLD_MAP = 
+    public static final ResourceKey<net.minecraft.entity.decoration.painting.PaintingVariant> WORLD_MAP = 
         createKey("world_map");
     
-    public static final ResourceKey<PaintingVariant> DRAGON_SLAYER = 
+    public static final ResourceKey<net.minecraft.entity.decoration.painting.PaintingVariant> DRAGON_SLAYER = 
         createKey("dragon_slayer");
     
-    public static final ResourceKey<PaintingVariant> ANCIENT_SCROLL = 
+    public static final ResourceKey<net.minecraft.entity.decoration.painting.PaintingVariant> ANCIENT_SCROLL = 
         createKey("ancient_scroll");
     
-    public static final ResourceKey<PaintingVariant> ROYAL_FAMILY = 
+    public static final ResourceKey<net.minecraft.entity.decoration.painting.PaintingVariant> ROYAL_FAMILY = 
         createKey("royal_family");
 
-    private static ResourceKey<PaintingVariant> createKey(String name) {
+    private static ResourceKey<net.minecraft.entity.decoration.painting.PaintingVariant> createKey(String name) {
         return ResourceKey.create(
             Registries.PAINTING_VARIANT, 
-            ResourceLocation.fromNamespaceAndPath(MedeliumMod.MOD_ID, name)
+            new Identifier(Medelium.MOD_ID, name)
         );
     }
 
     // Bootstrap pour datagen (optionnel)
-    public static void bootstrap(BootstrapContext<PaintingVariant> context) {
+    public static void bootstrap(BootstrapContext<net.minecraft.entity.decoration.painting.PaintingVariant> context) {
         // Les variants sont définis via JSON data, pas code
         // Cette méthode sert pour le datagen si vous l'utilisez
     }
@@ -23351,11 +22719,11 @@ public class ModPaintings {
 
 ### **48.4 Définir les variants (JSON data)**
 
-**📁 `data/medeliummod/painting_variant/king_portrait.json` :**
+**📁 `data/medelium/painting_variant/king_portrait.json` :**
 
 ```json
 {
-  "asset_id": "medeliummod:king_portrait",
+  "asset_id": "medelium:king_portrait",
   "height": 1,
   "width": 1
 }
@@ -23366,51 +22734,51 @@ public class ModPaintings {
 - `height` : Hauteur en blocs (1 bloc = 16 pixels)
 - `width` : Largeur en blocs (1 bloc = 16 pixels)
 
-**📁 `data/medeliummod/painting_variant/royal_crest.json` :**
+**📁 `data/medelium/painting_variant/royal_crest.json` :**
 
 ```json
 {
-  "asset_id": "medeliummod:royal_crest",
+  "asset_id": "medelium:royal_crest",
   "height": 1,
   "width": 2
 }
 ```
 
-**📁 `data/medeliummod/painting_variant/throne_room.json` :**
+**📁 `data/medelium/painting_variant/throne_room.json` :**
 
 ```json
 {
-  "asset_id": "medeliummod:throne_room",
+  "asset_id": "medelium:throne_room",
   "height": 2,
   "width": 2
 }
 ```
 
-**📁 `data/medeliummod/painting_variant/medieval_battle.json` :**
+**📁 `data/medelium/painting_variant/medieval_battle.json` :**
 
 ```json
 {
-  "asset_id": "medeliummod:medieval_battle",
+  "asset_id": "medelium:medieval_battle",
   "height": 2,
   "width": 4
 }
 ```
 
-**📁 `data/medeliummod/painting_variant/castle_siege.json` :**
+**📁 `data/medelium/painting_variant/castle_siege.json` :**
 
 ```json
 {
-  "asset_id": "medeliummod:castle_siege",
+  "asset_id": "medelium:castle_siege",
   "height": 3,
   "width": 4
 }
 ```
 
-**📁 `data/medeliummod/painting_variant/world_map.json` :**
+**📁 `data/medelium/painting_variant/world_map.json` :**
 
 ```json
 {
-  "asset_id": "medeliummod:world_map",
+  "asset_id": "medelium:world_map",
   "height": 4,
   "width": 4
 }
@@ -23419,7 +22787,7 @@ public class ModPaintings {
 **📁 Structure complète des fichiers :**
 
 ```
-data/medeliummod/painting_variant/
+data/medelium/painting_variant/
 ├── king_portrait.json       (1x1)
 ├── royal_crest.json         (2x1)
 ├── knight_statue.json       (1x2)
@@ -23436,75 +22804,75 @@ data/medeliummod/painting_variant/
 
 ### **48.5 Traductions**
 
-**📁 `assets/medeliummod/lang/en_us.json` :**
+**📁 `assets/medelium/lang/en_us.json` :**
 
 ```json
 {
-  "painting.medeliummod.king_portrait.title": "King's Portrait",
-  "painting.medeliummod.king_portrait.author": "Royal Painter",
+  "painting.medelium.king_portrait.title": "King's Portrait",
+  "painting.medelium.king_portrait.author": "Royal Painter",
   
-  "painting.medeliummod.royal_crest.title": "Royal Crest",
-  "painting.medeliummod.royal_crest.author": "Herald's Office",
+  "painting.medelium.royal_crest.title": "Royal Crest",
+  "painting.medelium.royal_crest.author": "Herald's Office",
   
-  "painting.medeliummod.knight_statue.title": "Knight's Statue",
-  "painting.medeliummod.knight_statue.author": "Stone Carver",
+  "painting.medelium.knight_statue.title": "Knight's Statue",
+  "painting.medelium.knight_statue.author": "Stone Carver",
   
-  "painting.medeliummod.throne_room.title": "The Throne Room",
-  "painting.medeliummod.throne_room.author": "Court Painter",
+  "painting.medelium.throne_room.title": "The Throne Room",
+  "painting.medelium.throne_room.author": "Court Painter",
   
-  "painting.medeliummod.medieval_battle.title": "Battle of Kingdoms",
-  "painting.medeliummod.medieval_battle.author": "War Chronicler",
+  "painting.medelium.medieval_battle.title": "Battle of Kingdoms",
+  "painting.medelium.medieval_battle.author": "War Chronicler",
   
-  "painting.medeliummod.castle_siege.title": "The Great Siege",
-  "painting.medeliummod.castle_siege.author": "Battlefield Artist",
+  "painting.medelium.castle_siege.title": "The Great Siege",
+  "painting.medelium.castle_siege.author": "Battlefield Artist",
   
-  "painting.medeliummod.world_map.title": "Ancient World Map",
-  "painting.medeliummod.world_map.author": "Cartographer",
+  "painting.medelium.world_map.title": "Ancient World Map",
+  "painting.medelium.world_map.author": "Cartographer",
   
-  "painting.medeliummod.dragon_slayer.title": "Dragon Slayer",
-  "painting.medeliummod.dragon_slayer.author": "Legend Keeper",
+  "painting.medelium.dragon_slayer.title": "Dragon Slayer",
+  "painting.medelium.dragon_slayer.author": "Legend Keeper",
   
-  "painting.medeliummod.ancient_scroll.title": "Ancient Scroll",
-  "painting.medeliummod.ancient_scroll.author": "Scribe",
+  "painting.medelium.ancient_scroll.title": "Ancient Scroll",
+  "painting.medelium.ancient_scroll.author": "Scribe",
   
-  "painting.medeliummod.royal_family.title": "Royal Family Portrait",
-  "painting.medeliummod.royal_family.author": "Master Painter"
+  "painting.medelium.royal_family.title": "Royal Family Portrait",
+  "painting.medelium.royal_family.author": "Master Painter"
 }
 ```
 
-**📁 `assets/medeliummod/lang/fr_fr.json` :**
+**📁 `assets/medelium/lang/fr_fr.json` :**
 
 ```json
 {
-  "painting.medeliummod.king_portrait.title": "Portrait du Roi",
-  "painting.medeliummod.king_portrait.author": "Peintre Royal",
+  "painting.medelium.king_portrait.title": "Portrait du Roi",
+  "painting.medelium.king_portrait.author": "Peintre Royal",
   
-  "painting.medeliummod.royal_crest.title": "Blason Royal",
-  "painting.medeliummod.royal_crest.author": "Bureau du Héraut",
+  "painting.medelium.royal_crest.title": "Blason Royal",
+  "painting.medelium.royal_crest.author": "Bureau du Héraut",
   
-  "painting.medeliummod.knight_statue.title": "Statue du Chevalier",
-  "painting.medeliummod.knight_statue.author": "Tailleur de Pierre",
+  "painting.medelium.knight_statue.title": "Statue du Chevalier",
+  "painting.medelium.knight_statue.author": "Tailleur de Pierre",
   
-  "painting.medeliummod.throne_room.title": "La Salle du Trône",
-  "painting.medeliummod.throne_room.author": "Peintre de la Cour",
+  "painting.medelium.throne_room.title": "La Salle du Trône",
+  "painting.medelium.throne_room.author": "Peintre de la Cour",
   
-  "painting.medeliummod.medieval_battle.title": "Bataille des Royaumes",
-  "painting.medeliummod.medieval_battle.author": "Chroniqueur de Guerre",
+  "painting.medelium.medieval_battle.title": "Bataille des Royaumes",
+  "painting.medelium.medieval_battle.author": "Chroniqueur de Guerre",
   
-  "painting.medeliummod.castle_siege.title": "Le Grand Siège",
-  "painting.medeliummod.castle_siege.author": "Artiste de Bataille",
+  "painting.medelium.castle_siege.title": "Le Grand Siège",
+  "painting.medelium.castle_siege.author": "Artiste de Bataille",
   
-  "painting.medeliummod.world_map.title": "Carte du Monde Ancien",
-  "painting.medeliummod.world_map.author": "Cartographe",
+  "painting.medelium.world_map.title": "Carte du Monde Ancien",
+  "painting.medelium.world_map.author": "Cartographe",
   
-  "painting.medeliummod.dragon_slayer.title": "Tueur de Dragon",
-  "painting.medeliummod.dragon_slayer.author": "Gardien de Légendes",
+  "painting.medelium.dragon_slayer.title": "Tueur de Dragon",
+  "painting.medelium.dragon_slayer.author": "Gardien de Légendes",
   
-  "painting.medeliummod.ancient_scroll.title": "Parchemin Ancien",
-  "painting.medeliummod.ancient_scroll.author": "Scribe",
+  "painting.medelium.ancient_scroll.title": "Parchemin Ancien",
+  "painting.medelium.ancient_scroll.author": "Scribe",
   
-  "painting.medeliummod.royal_family.title": "Portrait de la Famille Royale",
-  "painting.medeliummod.royal_family.author": "Maître Peintre"
+  "painting.medelium.royal_family.title": "Portrait de la Famille Royale",
+  "painting.medelium.royal_family.author": "Maître Peintre"
 }
 ```
 
@@ -23523,46 +22891,46 @@ Si vous voulez un item qui place UNIQUEMENT vos tableaux custom :
 ```java
 public class CustomPaintingItem extends Item {
     
-    private final ResourceKey<PaintingVariant> variant;
+    private final ResourceKey<net.minecraft.entity.decoration.painting.PaintingVariant> variant;
 
-    public CustomPaintingItem(ResourceKey<PaintingVariant> variant, Properties properties) {
+    public CustomPaintingItem(ResourceKey<net.minecraft.entity.decoration.painting.PaintingVariant> variant, Properties properties) {
         super(properties);
         this.variant = variant;
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext context) {
+    public ActionResult useOn(UseOnContext context) {
         BlockPos blockPos = context.getClickedPos();
         Direction direction = context.getClickedFace();
         
         if (!direction.getAxis().isHorizontal()) {
-            return InteractionResult.FAIL;
+            return ActionResult.FAIL;
         }
 
         Level level = context.getLevel();
-        Player player = context.getPlayer();
+        PlayerEntity player = context.getPlayer();
         
-        if (!level.isClientSide) {
+        if (!world.isClient) {
             // Créer l'entité Painting
-            Painting painting = new Painting(level, blockPos, direction);
+            Painting painting = new Painting(world, blockPos, direction);
             
             // Définir le variant spécifique
-            painting.setVariant(level.registryAccess()
+            painting.setVariant(level.getRegistryManager()
                 .registryOrThrow(Registries.PAINTING_VARIANT)
                 .getHolderOrThrow(this.variant));
             
             if (painting.survives()) {
-                level.addFreshEntity(painting);
+                level.spawnEntity(painting);
                 
                 if (!player.isCreative()) {
-                    context.getItemInHand().shrink(1);
+                    context.getStackInHand().shrink(1);
                 }
                 
-                return InteractionResult.SUCCESS;
+                return ActionResult.SUCCESS;
             }
         }
         
-        return InteractionResult.CONSUME;
+        return ActionResult.CONSUME;
     }
 }
 ```
@@ -23570,12 +22938,10 @@ public class CustomPaintingItem extends Item {
 **Enregistrement de l'item :**
 
 ```java
-public static final DeferredItem<Item> KING_PORTRAIT_ITEM = ITEMS.register("king_portrait_item",
-    () -> new CustomPaintingItem(ModPaintings.KING_PORTRAIT, new Item.Properties())
+public static final Item KING_PORTRAIT_ITEM = registerItem("king_portrait_item", new CustomPaintingItem(ModPaintings.KING_PORTRAIT, new FabricItemSettings())
 );
 
-public static final DeferredItem<Item> THRONE_ROOM_ITEM = ITEMS.register("throne_room_item",
-    () -> new CustomPaintingItem(ModPaintings.THRONE_ROOM, new Item.Properties())
+public static final Item THRONE_ROOM_ITEM = registerItem("throne_room_item", new CustomPaintingItem(ModPaintings.THRONE_ROOM, new FabricItemSettings())
 );
 ```
 
@@ -23583,7 +22949,7 @@ public static final DeferredItem<Item> THRONE_ROOM_ITEM = ITEMS.register("throne
 
 ### **48.7 Loot tables - Tableaux dans les coffres**
 
-**📁 `data/medeliummod/loot_table/chests/castle_loot.json` :**
+**📁 `data/medelium/loot_table/chests/castle_loot.json` :**
 
 ```json
 {
@@ -23608,12 +22974,12 @@ public static final DeferredItem<Item> THRONE_ROOM_ITEM = ITEMS.register("throne
         },
         {
           "type": "minecraft:item",
-          "name": "medeliummod:king_portrait_item",
+          "name": "medelium:king_portrait_item",
           "weight": 2
         },
         {
           "type": "minecraft:item",
-          "name": "medeliummod:throne_room_item",
+          "name": "medelium:throne_room_item",
           "weight": 1
         }
       ]
@@ -23630,16 +22996,16 @@ public static final DeferredItem<Item> THRONE_ROOM_ITEM = ITEMS.register("throne
 
 ```
 /give @p minecraft:painting
-/summon minecraft:painting ~ ~ ~ {variant:"medeliummod:king_portrait"}
-/summon minecraft:painting ~ ~ ~ {variant:"medeliummod:throne_room"}
-/summon minecraft:painting ~ ~ ~ {variant:"medeliummod:world_map"}
+/summon minecraft:painting ~ ~ ~ {variant:"medelium:king_portrait"}
+/summon minecraft:painting ~ ~ ~ {variant:"medelium:throne_room"}
+/summon minecraft:painting ~ ~ ~ {variant:"medelium:world_map"}
 ```
 
 **🔍 Lister tous les variants :**
 
 ```java
 // Code debug
-level.registryAccess()
+level.getRegistryManager()
     .registryOrThrow(Registries.PAINTING_VARIANT)
     .keySet()
     .forEach(key -> {
@@ -23699,28 +23065,25 @@ level.registryAccess()
 
 ### **48.10 Data Generator pour tableaux**
 
-**📁 `PaintingVariantProvider.java` :**
+**📁 `net.minecraft.entity.decoration.painting.PaintingVariantProvider.java` :**
 
 ```java
 package com.medelium.datagen;
 
-import com.medelium.MedeliumMod;
+import com.medelium.Medelium;
 import com.medelium.registry.ModPaintings;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.registry.*;
+import net.minecraft.registry.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.entity.decoration.PaintingVariant;
-import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
+import net.minecraft.entity.*;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public class PaintingVariantProvider extends DatapackBuiltinEntriesProvider {
+public class net.minecraft.entity.decoration.painting.PaintingVariantProvider extends DatapackBuiltinEntriesProvider {
     
-    public PaintingVariantProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries, createBuilder(), Set.of(MedeliumMod.MOD_ID));
+    public net.minecraft.entity.decoration.painting.PaintingVariantProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registries) {
+        super(output, registries, createBuilder(), Set.of(Medelium.MOD_ID));
     }
 
     private static RegistrySetBuilder createBuilder() {
@@ -23739,26 +23102,25 @@ public class PaintingVariantProvider extends DatapackBuiltinEntriesProvider {
             });
     }
 
-    private static void register(BootstrapContext<PaintingVariant> context,
-                                  ResourceKey<PaintingVariant> key,
+    private static void register(BootstrapContext<net.minecraft.entity.decoration.painting.PaintingVariant> context,
+                                  ResourceKey<net.minecraft.entity.decoration.painting.PaintingVariant> key,
                                   int width, int height) {
-        context.register(key, new PaintingVariant(width, height, key.location()));
+        context.register(key, new net.minecraft.entity.decoration.painting.PaintingVariant(width, height, key.location()));
     }
 }
 ```
 
-**Enregistrer dans GatherDataEvent :**
+**Enregistrer dans DataGeneratorEntrypoint :**
 
 ```java
-@SubscribeEvent
-public static void gatherData(GatherDataEvent event) {
+public static void gatherData(DataGeneratorEntrypoint event) {
     DataGenerator generator = event.getGenerator();
-    PackOutput output = generator.getPackOutput();
-    CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+    FabricDataOutput output = generator.getFabricDataOutput();
+    CompletableFuture<RegistryWrapper.WrapperLookup> lookupProvider = event.getLookupProvider();
     
     generator.addProvider(
         event.includeServer(),
-        new PaintingVariantProvider(output, lookupProvider)
+        new net.minecraft.entity.decoration.painting.PaintingVariantProvider(output, lookupProvider)
     );
 }
 ```
@@ -23773,7 +23135,7 @@ public static void gatherData(GatherDataEvent event) {
 
 ```
 1. Vérifier que la texture existe dans assets/minecraft/textures/painting/
-2. Vérifier que le JSON data existe dans data/medeliummod/painting_variant/
+2. Vérifier que le JSON data existe dans data/medelium/painting_variant/
 3. Vérifier que asset_id correspond au nom de la texture
 4. Vérifier que width et height sont corrects
 5. Redémarrer Minecraft (les data sont chargés au démarrage)
@@ -23833,7 +23195,7 @@ Pour forcer un variant spécifique :
 ✅ **Créer les textures PNG** (tailles exactes : 16x16, 32x16, etc.)  
 ✅ **Placer dans** `assets/minecraft/textures/painting/`  
 ✅ **Créer les ResourceKeys** dans ModPaintings.java  
-✅ **Créer les JSON data** dans `data/medeliummod/painting_variant/`  
+✅ **Créer les JSON data** dans `data/medelium/painting_variant/`  
 ✅ **Définir width et height** correctement dans chaque JSON  
 ✅ **Ajouter les traductions** (.title et .author) dans lang files  
 ✅ **Tester avec** `/summon minecraft:painting ~ ~ ~ {variant:"..."}`  
@@ -23845,18 +23207,18 @@ Pour forcer un variant spécifique :
 
 ```
 1. Créer la texture : assets/minecraft/textures/painting/my_painting.png (ex: 32x32)
-2. Créer le JSON : data/medeliummod/painting_variant/my_painting.json
+2. Créer le JSON : data/medelium/painting_variant/my_painting.json
    {
-     "asset_id": "medeliummod:my_painting",
+     "asset_id": "medelium:my_painting",
      "height": 2,
      "width": 2
    }
 3. Ajouter ResourceKey dans ModPaintings.java :
-   public static final ResourceKey<PaintingVariant> MY_PAINTING = createKey("my_painting");
+   public static final ResourceKey<net.minecraft.entity.decoration.painting.PaintingVariant> MY_PAINTING = createKey("my_painting");
 4. Ajouter traductions :
-   "painting.medeliummod.my_painting.title": "Mon Tableau"
-   "painting.medeliummod.my_painting.author": "Artiste"
-5. Tester : /summon minecraft:painting ~ ~ ~ {variant:"medeliummod:my_painting"}
+   "painting.medelium.my_painting.title": "Mon Tableau"
+   "painting.medelium.my_painting.author": "Artiste"
+5. Tester : /summon minecraft:painting ~ ~ ~ {variant:"medelium:my_painting"}
 ```
 
 ---
@@ -23865,7 +23227,7 @@ Pour forcer un variant spécifique :
 
 Vous savez maintenant :
 
-1. ✅ Créer des **PaintingVariants** avec le système 1.21+ data-driven
+1. ✅ Créer des **net.minecraft.entity.decoration.painting.PaintingVariants** avec le système 1.21+ data-driven
 2. ✅ Utiliser les **bonnes tailles** de textures (16x16, 32x32, 64x48, etc.)
 3. ✅ Placer les textures dans **assets/minecraft/** (pas votre mod !)
 4. ✅ Créer les **JSON data** avec asset_id, width, height
