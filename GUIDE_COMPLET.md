@@ -4577,6 +4577,11 @@ public class BlessingEffect extends StatusEffect {
 
 ## 12. 📝 Recettes de Craft
 
+Valeur	 | Usage
+"blocks" : Cuisson de blocs (ex : sable → verre, argile → brique)
+"food"   : Cuisson de nourriture (ex : bœuf cru → steak)
+"misc"   : Tout le reste, y compris la cuisson de minerais
+
 ### 12.1 Recette Shaped (Forme Précise)
 
 **Créer :** `src/main/resources/data/medelium/recipe/knight_sword.json`
