@@ -4577,14 +4577,9 @@ public class BlessingEffect extends StatusEffect {
 
 ## 12. 📝 Recettes de Craft
 
-Valeur	 | Usage
-"blocks" : Cuisson de blocs (ex : sable → verre, argile → brique)
-"food"   : Cuisson de nourriture (ex : bœuf cru → steak)
-"misc"   : Tout le reste, y compris la cuisson de minerais
-
 ### 12.1 Recette Shaped (Forme Précise)
 
-**Créer :** `src/main/resources/data/medelium/recipe/knight_sword.json`
+**Créer :** `src/main/resources/data/medelium/recipes/knight_sword.json`
 
 ```json
 {
@@ -4604,7 +4599,7 @@ Valeur	 | Usage
     }
   },
   "result": {
-    "id": "medelium:knight_sword",
+    "item": "medelium:knight_sword",
     "count": 1
   }
 }
@@ -4612,7 +4607,7 @@ Valeur	 | Usage
 
 ### 12.2 Recette Shapeless (Forme Libre)
 
-**Créer :** `src/main/resources/data/medelium/recipe/gold_coin.json`
+**Créer :** `src/main/resources/data/medelium/recipes/gold_coin.json`
 
 ```json
 {
@@ -4633,7 +4628,7 @@ Valeur	 | Usage
     }
   ],
   "result": {
-    "id": "medelium:gold_coin",
+    "item": "medelium:gold_coin",
     "count": 1
   }
 }
@@ -4641,7 +4636,7 @@ Valeur	 | Usage
 
 ### 12.3 Recette de Cuisson (Fourneau)
 
-**Créer :** `src/main/resources/data/medelium/recipe/medieval_bread_smelting.json`
+**Créer :** `src/main/resources/data/medelium/recipes/medieval_bread_smelting.json`
 
 ```json
 {
@@ -4652,15 +4647,13 @@ Valeur	 | Usage
   "ingredient": {
     "item": "minecraft:wheat"
   },
-  "result": {
-    "id": "medelium:medieval_bread"
-  }
+  "result": "medelium:medieval_bread"
 }
 ```
 
 ### 12.4 Recette Smithing (Table de Forgeron)
 
-**Créer :** `src/main/resources/data/medelium/recipe/royal_sword_smithing.json`
+**Créer :** `src/main/resources/data/medelium/recipes/royal_sword_smithing.json`
 
 ```json
 {
@@ -4675,7 +4668,7 @@ Valeur	 | Usage
     "item": "minecraft:diamond"
   },
   "result": {
-    "id": "medelium:royal_sword"
+    "item": "medelium:royal_sword"
   }
 }
 ```
@@ -18820,7 +18813,7 @@ Ajoutez vos disques dans les loot tables de structures/mobs.
 
 Vous pouvez rendre certains disques craftables :
 
-**📁 `data/medelium/recipe/tavern_music_disc.json` :**
+**📁 `data/medelium/recipes/tavern_music_disc.json` :**
 
 ```
 {
@@ -19532,7 +19525,7 @@ Les items patterns ont leurs propres textures.
 
 Créez des recettes pour obtenir les pattern items.
 
-**📁 `data/medelium/recipe/crown_banner_pattern.json` :**
+**📁 `data/medelium/recipes/crown_banner_pattern.json` :**
 
 ```
 {
@@ -19557,7 +19550,7 @@ Créez des recettes pour obtenir les pattern items.
 }
 ```
 
-**📁 `data/medelium/recipe/crossed_swords_banner_pattern.json` :**
+**📁 `data/medelium/recipes/crossed_swords_banner_pattern.json` :**
 
 ```
 {
@@ -19582,7 +19575,7 @@ Créez des recettes pour obtenir les pattern items.
 }
 ```
 
-**📁 `data/medelium/recipe/dragon_banner_pattern.json` :**
+**📁 `data/medelium/recipes/dragon_banner_pattern.json` :**
 
 ```
 {
@@ -19747,7 +19740,7 @@ public static final TagKey<BannerPattern> MY_PATTERN = create("pattern_item/my_p
 ```
 data/medelium/banner_pattern/my_pattern.json
 data/medelium/tags/banner_pattern/pattern_item/my_pattern.json
-data/medelium/recipe/my_banner_pattern.json
+data/medelium/recipes/my_banner_pattern.json
 ```
 
 3. **Textures :**
