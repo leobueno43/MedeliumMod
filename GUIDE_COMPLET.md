@@ -2467,7 +2467,7 @@ Formatting.WHITE        - Blanc
 
 ```java
 public static final Block MON_BLOC = registerBlock("mon_bloc",
-    () -> new Block(FabricBlockSettings.create()
+    new Block(FabricBlockSettings.create()
         .strength(3.0f, 6.0f)  // dureté, résistance explosion
         .requiresTool()  // Nécessite bon outil
         .sounds(BlockSoundGroup.STONE)  // Son de pierre
